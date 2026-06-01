@@ -9,3 +9,59 @@
     transform: translateX(100%);
   }
 }
+
+@keyframes gb-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gb-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gb-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer utilities {
+  .gb-animate-fade-in {
+    animation: gb-fade-in 220ms ease both;
+  }
+
+  .gb-animate-fade-up {
+    animation: gb-fade-up 260ms ease both;
+  }
+
+  .gb-animate-scale-in {
+    animation: gb-scale-in 220ms ease both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gb-animate-fade-in,
+  .gb-animate-fade-up,
+  .gb-animate-scale-in {
+    animation: none;
+  }
+}

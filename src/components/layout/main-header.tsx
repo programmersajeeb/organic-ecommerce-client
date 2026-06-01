@@ -8,22 +8,41 @@ import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { headerActions, mobileMenuItems } from "@/constants/navigation";
 
 export function MainHeader() {
+  const cartItemCount = 2;
+
   return (
     <div className="gb-shop-main-header">
       <div className="gb-shop-header-container gb-shop-main-header__inner">
         <details className="gb-shop-mobile-menu">
-          <summary className="gb-shop-icon-button gb-shop-mobile-menu__trigger">
-            <Menu className="gb-shop-mobile-menu__open-icon" />
-            <X className="gb-shop-mobile-menu__close-icon" />
+          <summary
+            className="gb-shop-icon-button gb-shop-mobile-menu__trigger"
+            aria-label="Open navigation menu"
+          >
+            <span className="gb-sr-only">Open navigation menu</span>
+            <Menu
+              aria-hidden="true"
+              className="gb-shop-mobile-menu__open-icon"
+            />
+            <X
+              aria-hidden="true"
+              className="gb-shop-mobile-menu__close-icon"
+            />
           </summary>
 
-          <div className="gb-shop-mobile-menu__panel">
+          <nav
+            aria-label="Mobile navigation"
+            className="gb-shop-mobile-menu__panel"
+          >
             {mobileMenuItems.map((item) => (
-              <Link key={item.href} href={item.href} className="gb-shop-mobile-menu__link">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="gb-shop-mobile-menu__link"
+              >
                 {item.label}
               </Link>
             ))}
-          </div>
+          </nav>
         </details>
 
         <div className="gb-shop-main-header__logo">
@@ -42,9 +61,13 @@ export function MainHeader() {
           <ThemeToggle />
         </div>
 
-        <Link href="/cart" aria-label="Cart" className="gb-shop-mobile-cart">
-          <ShoppingCart />
-          <span>2</span>
+        <Link
+          href="/cart"
+          aria-label={`Cart with ${cartItemCount} items`}
+          className="gb-shop-mobile-cart"
+        >
+          <ShoppingCart aria-hidden="true" />
+          <span>{cartItemCount}</span>
         </Link>
       </div>
     </div>

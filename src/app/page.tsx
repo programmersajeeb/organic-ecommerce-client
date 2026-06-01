@@ -1,9 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/common/product-card";
 import { SectionHeading } from "@/components/common/section-heading";
-import { ProductGridSkeleton } from "@/components/skeletons/product-grid-skeleton";
 
 type Product = {
   title: string;
@@ -32,32 +28,21 @@ const productData: Product[] = [
 ];
 
 export default function HomePage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setProducts(productData);
-      setIsLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <main className="gb-section-soft min-h-screen">
-      <section className="gb-container gb-section">
-        <SectionHeading title="Top Selling Products" actionText="View All Items →" />
+    <main className="min-h-screen bg-page">
+      <section className="gb-section-gradient gb-section">
+        <div className="gb-container">
+          <SectionHeading
+            title="Top Selling Products"
+            actionText="View All Items →"
+          />
 
-        {isLoading ? (
-          <ProductGridSkeleton count={productData.length} />
-        ) : (
           <div className="gb-product-grid">
-            {products.map((product) => (
+            {productData.map((product) => (
               <ProductCard key={product.title} {...product} />
             ))}
           </div>
-        )}
+        </div>
       </section>
     </main>
   );

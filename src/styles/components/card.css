@@ -1,24 +1,51 @@
 /* =============================================================================
-   COMPONENT — CARD
+   COMPONENT - CARD
    -----------------------------------------------------------------------------
    Shared card primitive for product cards, content cards and panels.
    ============================================================================= */
 
 @layer components {
   .gb-card {
-    background: var(--color-card);
+    position: relative;
+    overflow: hidden;
     border: 1px solid var(--color-border-soft);
     border-radius: var(--radius-lg);
+    background: var(--color-card);
+    color: var(--color-body);
     box-shadow: var(--shadow-card);
     transition:
       border-color 180ms ease,
       box-shadow 180ms ease,
-      transform 180ms ease;
+      transform 180ms ease,
+      background 180ms ease;
   }
 
-  .gb-card:hover {
+  .gb-card-interactive {
+    cursor: pointer;
+  }
+
+  .gb-card-interactive:hover {
     border-color: var(--color-border);
     box-shadow: var(--shadow-card-hover);
     transform: translateY(-2px);
+  }
+
+  .gb-card-interactive:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .gb-card-muted {
+    border-color: var(--color-border-soft);
+    background: var(--color-section);
+  }
+
+  .gb-card-flat {
+    box-shadow: none;
+  }
+
+  .gb-card-bordered {
+    border-color: var(--color-border);
+    box-shadow: none;
   }
 }

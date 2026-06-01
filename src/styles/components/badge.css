@@ -1,33 +1,96 @@
 /* =============================================================================
    COMPONENT — BADGE
    -----------------------------------------------------------------------------
-   Ecommerce status badges.
+   Ecommerce status, product and promotional badges.
    ============================================================================= */
 
 @layer components {
+  .gb-badge,
   .gb-badge-success,
   .gb-badge-warning,
-  .gb-badge-error {
+  .gb-badge-error,
+  .gb-badge-info,
+  .gb-badge-primary,
+  .gb-badge-brand,
+  .gb-badge-soft {
     display: inline-flex;
+    min-height: 1.5rem;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-sm);
-    color: var(--color-inverse);
-    font-size: 0.7rem;
-    font-weight: 700;
+    gap: 0.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+    font-weight: 800;
     line-height: 1;
-    padding: 0.3rem 0.45rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    padding: 0.32rem 0.6rem;
+  }
+
+  .gb-badge {
+    border-color: var(--color-border);
+    background: var(--color-card);
+    color: var(--color-body);
+  }
+
+  .gb-badge-primary {
+    background: var(--color-primary);
+    color: var(--color-inverse);
+  }
+
+  .gb-badge-brand {
+    background: var(--color-brand);
+    color: var(--color-inverse);
+  }
+
+  .gb-badge-soft {
+    border-color: var(--color-border-soft);
+    background: var(--color-primary-soft);
+    color: var(--color-primary-hover);
   }
 
   .gb-badge-success {
     background: var(--color-success);
+    color: var(--color-inverse);
   }
 
   .gb-badge-warning {
     background: var(--color-warning);
+    color: var(--color-heading);
   }
 
   .gb-badge-error {
     background: var(--color-error);
+    color: var(--color-inverse);
+  }
+
+  .gb-badge-info {
+    background: var(--color-info);
+    color: var(--color-inverse);
+  }
+
+  .gb-badge-success.is-soft {
+    border-color: hsl(var(--gb-success) / 0.24);
+    background: var(--color-success-soft);
+    color: var(--color-success);
+  }
+
+  .gb-badge-warning.is-soft {
+    border-color: hsl(var(--gb-warning) / 0.24);
+    background: var(--color-warning-soft);
+    color: var(--color-warning);
+  }
+
+  .gb-badge-error.is-soft {
+    border-color: hsl(var(--gb-error) / 0.24);
+    background: var(--color-error-soft);
+    color: var(--color-error);
+  }
+
+  .gb-badge-info.is-soft {
+    border-color: hsl(var(--gb-info) / 0.24);
+    background: var(--color-info-soft);
+    color: var(--color-info);
   }
 }

@@ -16,10 +16,18 @@ export function HeaderAction({
   badge,
   icon: Icon,
 }: HeaderActionProps) {
+  const accessibleLabel = badge
+    ? `${label}${subLabel ? `, ${subLabel}` : ""}, ${badge} items`
+    : `${label}${subLabel ? `, ${subLabel}` : ""}`;
+
   return (
-    <Link href={href} className="gb-shop-header-action">
+    <Link
+      href={href}
+      className="gb-shop-header-action"
+      aria-label={accessibleLabel}
+    >
       <span className="gb-shop-header-action__icon">
-        <Icon />
+        <Icon aria-hidden="true" />
 
         {badge ? (
           <span className="gb-shop-header-action__badge">{badge}</span>

@@ -1,128 +1,215 @@
 /* =============================================================================
-   DESIGN TOKENS
+   GHORER BAZAR — DESIGN TOKENS
    -----------------------------------------------------------------------------
    All colors, fonts, radius, shadows and shadcn/ui theme tokens live here.
    Change this file to control the full website design globally.
    ============================================================================= */
 
 :root {
-  /* ---------------------------------------------------------------------------
-     Brand Colors
-     --------------------------------------------------------------------------- */
-  --color-primary: #ff7a00;
-  --color-primary-hover: #f26f00;
-  --color-primary-soft: #fff3e6;
-
-  --color-secondary: #f9a825;
-  --color-accent: #ff5722;
+  color-scheme: light;
 
   /* ---------------------------------------------------------------------------
-     Background Colors
+     Core Brand Palette - HSL Channels
      --------------------------------------------------------------------------- */
-  --color-background: #ffffff;
-  --color-section: #fffaf3;
-  --color-card: #ffffff;
-  --color-header: #ffffff;
-  --color-navbar: #002f2b;
+  --gb-brand: 151 72% 18%;
+  --gb-brand-hover: 151 72% 14%;
+  --gb-brand-soft: 142 45% 94%;
+
+  --gb-action: 24 100% 50%;
+  --gb-action-hover: 24 100% 45%;
+  --gb-action-soft: 32 100% 94%;
+
+  --gb-gold: 42 96% 54%;
+  --gb-gold-soft: 42 100% 94%;
 
   /* ---------------------------------------------------------------------------
-     Border & Divider Colors
+     Surface Palette - HSL Channels
      --------------------------------------------------------------------------- */
-  --color-border: #ead9c2;
-  --color-border-soft: #f3e6d6;
-  --color-divider: #eeeeee;
+  --gb-background: 40 78% 97%;
+  --gb-section: 38 80% 95%;
+  --gb-card: 0 0% 100%;
+  --gb-header: 0 0% 100%;
+  --gb-navbar: var(--gb-brand);
 
   /* ---------------------------------------------------------------------------
-     Text Colors
+     Text Palette - HSL Channels
      --------------------------------------------------------------------------- */
-  --color-heading: #2f2f2f;
-  --color-body: #555555;
-  --color-muted: #8a8a8a;
-  --color-inverse: #ffffff;
+  --gb-heading: 155 35% 11%;
+  --gb-body: 154 14% 31%;
+  --gb-muted: 150 8% 53%;
+  --gb-inverse: 0 0% 100%;
 
   /* ---------------------------------------------------------------------------
-     Product / Price Colors
+     Border & Divider Palette - HSL Channels
      --------------------------------------------------------------------------- */
-  --color-price: #ff7a00;
-  --color-old-price: #9ca3af;
+  --gb-border: 36 40% 86%;
+  --gb-border-soft: 38 55% 91%;
+  --gb-divider: 36 34% 90%;
 
   /* ---------------------------------------------------------------------------
-     Status Colors
+     Status Palette - HSL Channels
      --------------------------------------------------------------------------- */
-  --color-success: #22c55e;
-  --color-success-soft: #dcfce7;
+  --gb-success: 145 63% 35%;
+  --gb-success-soft: 140 55% 92%;
 
-  --color-warning: #f59e0b;
-  --color-warning-soft: #fff7ed;
+  --gb-warning: 38 92% 50%;
+  --gb-warning-soft: 38 100% 93%;
 
-  --color-error: #ef4444;
-  --color-error-soft: #fee2e2;
+  --gb-error: 0 76% 55%;
+  --gb-error-soft: 0 86% 94%;
 
-  --color-info: #3b82f6;
+  --gb-info: 215 88% 55%;
+  --gb-info-soft: 214 90% 94%;
 
   /* ---------------------------------------------------------------------------
-     Skeleton Loading Colors
+     shadcn/ui Compatible Tokens
      --------------------------------------------------------------------------- */
-  --color-skeleton: #f3f3f3;
-  --color-skeleton-shine: #ffffff;
+  --background: var(--gb-background);
+  --foreground: var(--gb-heading);
+
+  --card: var(--gb-card);
+  --card-foreground: var(--gb-heading);
+
+  --popover: var(--gb-card);
+  --popover-foreground: var(--gb-heading);
+
+  --primary: var(--gb-action);
+  --primary-foreground: var(--gb-inverse);
+
+  --secondary: var(--gb-brand);
+  --secondary-foreground: var(--gb-inverse);
+
+  --muted: var(--gb-section);
+  --muted-foreground: var(--gb-muted);
+
+  --accent: var(--gb-action-soft);
+  --accent-foreground: var(--gb-heading);
+
+  --destructive: var(--gb-error);
+  --destructive-foreground: var(--gb-inverse);
+
+  --border: var(--gb-border);
+  --input: var(--gb-border);
+  --ring: var(--gb-action);
+
+  --chart-1: var(--gb-action);
+  --chart-2: var(--gb-brand);
+  --chart-3: var(--gb-gold);
+  --chart-4: var(--gb-success);
+  --chart-5: var(--gb-info);
+
+  --sidebar: var(--gb-card);
+  --sidebar-foreground: var(--gb-heading);
+  --sidebar-primary: var(--gb-brand);
+  --sidebar-primary-foreground: var(--gb-inverse);
+  --sidebar-accent: var(--gb-action-soft);
+  --sidebar-accent-foreground: var(--gb-heading);
+  --sidebar-border: var(--gb-border);
+  --sidebar-ring: var(--gb-action);
+
+  /* ---------------------------------------------------------------------------
+     Project Color Aliases
+     --------------------------------------------------------------------------- */
+  --color-brand: hsl(var(--gb-brand));
+  --color-brand-hover: hsl(var(--gb-brand-hover));
+  --color-brand-soft: hsl(var(--gb-brand-soft));
+
+  --color-primary: hsl(var(--gb-action));
+  --color-primary-hover: hsl(var(--gb-action-hover));
+  --color-primary-soft: hsl(var(--gb-action-soft));
+
+  --color-secondary: hsl(var(--gb-gold));
+  --color-secondary-soft: hsl(var(--gb-gold-soft));
+  --color-accent: hsl(var(--gb-action));
+
+  --color-background: hsl(var(--gb-background));
+  --color-section: hsl(var(--gb-section));
+  --color-card: hsl(var(--gb-card));
+  --color-header: hsl(var(--gb-header));
+  --color-navbar: hsl(var(--gb-navbar));
+
+  --color-border: hsl(var(--gb-border));
+  --color-border-soft: hsl(var(--gb-border-soft));
+  --color-divider: hsl(var(--gb-divider));
+
+  --color-heading: hsl(var(--gb-heading));
+  --color-body: hsl(var(--gb-body));
+  --color-muted: hsl(var(--gb-muted));
+  --color-inverse: hsl(var(--gb-inverse));
+
+  --color-price: hsl(var(--gb-action));
+  --color-old-price: hsl(var(--gb-muted));
+  --color-rating: hsl(var(--gb-gold));
+
+  --color-success: hsl(var(--gb-success));
+  --color-success-soft: hsl(var(--gb-success-soft));
+
+  --color-warning: hsl(var(--gb-warning));
+  --color-warning-soft: hsl(var(--gb-warning-soft));
+
+  --color-error: hsl(var(--gb-error));
+  --color-error-soft: hsl(var(--gb-error-soft));
+
+  --color-info: hsl(var(--gb-info));
+  --color-info-soft: hsl(var(--gb-info-soft));
+
+  --color-skeleton: hsl(38 35% 90%);
+  --color-skeleton-shine: hsl(0 0% 100%);
 
   /* ---------------------------------------------------------------------------
      Border Radius
      --------------------------------------------------------------------------- */
   --radius-xs: 0.1875rem;
-  --radius-sm: 0.25rem;
-  --radius: 0.5rem;
-  --radius-lg: 0.75rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 0.875rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
   --radius-full: 9999px;
 
   /* ---------------------------------------------------------------------------
      Shadows
      --------------------------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-xs: 0 1px 2px hsl(155 35% 11% / 0.04);
+  --shadow-sm: 0 2px 8px hsl(155 35% 11% / 0.05);
+  --shadow: 0 8px 24px hsl(155 35% 11% / 0.07);
+  --shadow-lg: 0 16px 40px hsl(155 35% 11% / 0.1);
 
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 10px 28px hsl(155 35% 11% / 0.06);
+  --shadow-card-hover: 0 18px 42px hsl(155 35% 11% / 0.11);
+
+  --shadow-header: 0 10px 30px hsl(155 35% 11% / 0.08);
+  --shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.22);
 
   /* ---------------------------------------------------------------------------
      Typography
      --------------------------------------------------------------------------- */
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: "Merriweather", Georgia, serif;
-  --font-mono: "Fira Code", Consolas, monospace;
+  --gb-font-sans:
+    var(--font-inter, "Inter"),
+    var(--font-noto-sans-bengali, "Noto Sans Bengali"),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
-  /* ---------------------------------------------------------------------------
-     shadcn/ui Compatible Tokens
-     --------------------------------------------------------------------------- */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 18%;
+  --gb-font-heading:
+    var(--font-merriweather, "Merriweather"),
+    var(--font-noto-sans-bengali, "Noto Sans Bengali"),
+    Georgia,
+    serif;
 
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 18%;
+  --gb-font-mono:
+    "Fira Code",
+    "JetBrains Mono",
+    Consolas,
+    monospace;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 18%;
-
-  --primary: 29 100% 50%;
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 38 94% 56%;
-  --secondary-foreground: 0 0% 18%;
-
-  --muted: 33 100% 97%;
-  --muted-foreground: 0 0% 54%;
-
-  --accent: 14 100% 57%;
-  --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-
-  --border: 34 45% 84%;
-  --input: 34 45% 84%;
-  --ring: 29 100% 50%;
+  --font-sans: var(--gb-font-sans);
+  --font-heading: var(--gb-font-heading);
+  --font-serif: var(--gb-font-heading);
+  --font-mono: var(--gb-font-mono);
 }
 
 /* =============================================================================
@@ -130,77 +217,135 @@
    ============================================================================= */
 
 .dark {
-  --color-primary: #ff8a1f;
-  --color-primary-hover: #ff9a3d;
-  --color-primary-soft: #2a1808;
+  color-scheme: dark;
 
-  --color-secondary: #fbbf24;
-  --color-accent: #ff7043;
+  --gb-brand: 145 58% 42%;
+  --gb-brand-hover: 145 58% 50%;
+  --gb-brand-soft: 150 36% 15%;
 
-  --color-background: #111827;
-  --color-section: #151f2e;
-  --color-card: #1f2937;
-  --color-header: #111827;
-  --color-navbar: #001f1c;
+  --gb-action: 25 100% 58%;
+  --gb-action-hover: 25 100% 64%;
+  --gb-action-soft: 24 42% 16%;
 
-  --color-border: #374151;
-  --color-border-soft: #2f3a4a;
-  --color-divider: #263244;
+  --gb-gold: 42 96% 60%;
+  --gb-gold-soft: 42 44% 16%;
 
-  --color-heading: #f9fafb;
-  --color-body: #d1d5db;
-  --color-muted: #9ca3af;
-  --color-inverse: #ffffff;
+  --gb-background: 151 42% 7%;
+  --gb-section: 151 34% 9%;
+  --gb-card: 150 30% 11%;
+  --gb-header: 151 42% 7%;
+  --gb-navbar: 151 48% 8%;
 
-  --color-price: #ff8a1f;
-  --color-old-price: #9ca3af;
+  --gb-heading: 42 45% 96%;
+  --gb-body: 42 18% 82%;
+  --gb-muted: 42 10% 64%;
+  --gb-inverse: 0 0% 100%;
 
-  --color-success: #22c55e;
-  --color-success-soft: #052e16;
+  --gb-border: 150 20% 21%;
+  --gb-border-soft: 150 22% 16%;
+  --gb-divider: 150 18% 18%;
 
-  --color-warning: #facc15;
-  --color-warning-soft: #2a2103;
+  --gb-success: 145 58% 48%;
+  --gb-success-soft: 145 42% 14%;
 
-  --color-error: #f87171;
-  --color-error-soft: #3f1111;
+  --gb-warning: 42 96% 62%;
+  --gb-warning-soft: 42 46% 15%;
 
-  --color-info: #60a5fa;
+  --gb-error: 0 84% 68%;
+  --gb-error-soft: 0 44% 16%;
 
-  --color-skeleton: #2f3a4a;
-  --color-skeleton-shine: #3f4b5f;
+  --gb-info: 214 92% 68%;
+  --gb-info-soft: 214 42% 16%;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --color-skeleton: hsl(150 22% 17%);
+  --color-skeleton-shine: hsl(150 18% 24%);
 
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.25);
-  --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.35);
+  --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.2);
+  --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.24);
+  --shadow: 0 8px 24px hsl(0 0% 0% / 0.28);
+  --shadow-lg: 0 16px 40px hsl(0 0% 0% / 0.36);
 
-  --background: 221 39% 11%;
-  --foreground: 210 40% 98%;
+  --shadow-card: 0 10px 28px hsl(0 0% 0% / 0.28);
+  --shadow-card-hover: 0 18px 42px hsl(0 0% 0% / 0.38);
 
-  --card: 217 33% 17%;
-  --card-foreground: 210 40% 98%;
+  --shadow-header: 0 10px 30px hsl(0 0% 0% / 0.32);
+  --shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.28);
+}
 
-  --popover: 217 33% 17%;
-  --popover-foreground: 210 40% 98%;
+/* =============================================================================
+   TAILWIND V4 THEME BRIDGE
+   -----------------------------------------------------------------------------
+   This maps the global design tokens to Tailwind utilities such as:
+   bg-background, text-foreground, bg-primary, border-border, ring-ring,
+   font-sans, font-heading, rounded-lg, shadow-card, etc.
+   ============================================================================= */
 
-  --primary: 28 100% 56%;
-  --primary-foreground: 0 0% 100%;
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-  --secondary: 43 96% 56%;
-  --secondary-foreground: 221 39% 11%;
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
 
-  --accent: 14 100% 63%;
-  --accent-foreground: 0 0% 100%;
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
 
-  --destructive: 0 91% 71%;
-  --destructive-foreground: 0 0% 100%;
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
 
-  --border: 215 28% 27%;
-  --input: 215 28% 27%;
-  --ring: 28 100% 56%;
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-brand: hsl(var(--gb-brand));
+  --color-brand-foreground: hsl(var(--gb-inverse));
+
+  --color-price: hsl(var(--gb-action));
+  --color-rating: hsl(var(--gb-gold));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-sans: var(--gb-font-sans);
+  --font-heading: var(--gb-font-heading);
+  --font-serif: var(--gb-font-heading);
+  --font-mono: var(--gb-font-mono);
+
+  --radius-xs: 0.1875rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
 }

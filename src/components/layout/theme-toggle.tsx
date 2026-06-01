@@ -1,27 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
+const subscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+function useIsMounted() {
+  return useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
+}
+
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  const isMounted = useIsMounted();
   const { resolvedTheme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted && resolvedTheme === "dark";
+  const isDark = isMounted && resolvedTheme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
 
   return (
     <button
       type="button"
-      aria-label="Toggle dark mode"
+      aria-label={`Switch to ${nextTheme} mode`}
       className="gb-shop-icon-button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      disabled={!isMounted}
+      onClick={() => setTheme(nextTheme)}
     >
-      {isDark ? <Sun /> : <Moon />}
+      {isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
     </button>
   );
 }

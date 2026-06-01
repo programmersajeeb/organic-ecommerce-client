@@ -7,22 +7,38 @@
 @layer components {
   .gb-container {
     width: 100%;
-    max-width: 1180px;
+    max-width: 1280px;
     margin-inline: auto;
-    padding-inline: 1rem;
+    padding-inline: clamp(1rem, 3vw, 2rem);
+  }
+
+  .gb-container-narrow {
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 2rem);
   }
 
   .gb-container-wide {
     width: 100%;
     max-width: 1480px;
     margin-inline: auto;
-    padding-inline: clamp(1rem, 3vw, 4rem);
+    padding-inline: clamp(1rem, 3vw, 3.5rem);
+  }
+
+  .gb-container-full {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 3.5rem);
   }
 }
 
 @media (max-width: 640px) {
   .gb-container,
-  .gb-container-wide {
+  .gb-container-narrow,
+  .gb-container-wide,
+  .gb-container-full {
     padding-inline: 0.75rem;
   }
 }

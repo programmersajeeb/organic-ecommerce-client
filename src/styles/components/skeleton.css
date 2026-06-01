@@ -20,9 +20,33 @@
     background: linear-gradient(
       90deg,
       transparent,
+      hsl(var(--gb-inverse) / 0.42),
+      transparent
+    );
+    animation: gb-skeleton-shimmer 1.35s ease-in-out infinite;
+  }
+
+  .gb-skeleton.is-rounded {
+    border-radius: var(--radius-full);
+  }
+
+  .gb-skeleton.is-circle {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-full);
+  }
+
+  .dark .gb-skeleton::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
       var(--color-skeleton-shine),
       transparent
     );
-    animation: gb-skeleton-shimmer 1.4s infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gb-skeleton::after {
+      animation: none;
+    }
   }
 }

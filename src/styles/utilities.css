@@ -1,75 +1,159 @@
 /* =============================================================================
    UTILITIES
    -----------------------------------------------------------------------------
-   Small reusable helper classes based on design tokens.
+   Small reusable helper classes based on Ghorer Bazar design tokens.
+   Use gb-* prefix to avoid conflicts with Tailwind/shadcn utilities.
    ============================================================================= */
 
 @layer utilities {
-  .text-primary {
+  .gb-text-primary {
     color: var(--color-primary);
   }
 
-  .text-secondary {
+  .gb-text-brand {
+    color: var(--color-brand);
+  }
+
+  .gb-text-secondary {
     color: var(--color-secondary);
   }
 
-  .text-accent {
+  .gb-text-accent {
     color: var(--color-accent);
   }
 
-  .text-heading {
+  .gb-text-heading {
     color: var(--color-heading);
   }
 
-  .text-body {
+  .gb-text-body {
     color: var(--color-body);
   }
 
-  .text-muted {
+  .gb-text-muted {
     color: var(--color-muted);
   }
 
-  .bg-primary {
+  .gb-text-inverse {
+    color: var(--color-inverse);
+  }
+
+  .gb-bg-primary {
     background-color: var(--color-primary);
   }
 
-  .bg-secondary {
+  .gb-bg-brand {
+    background-color: var(--color-brand);
+  }
+
+  .gb-bg-secondary {
     background-color: var(--color-secondary);
   }
 
-  .bg-accent {
+  .gb-bg-accent {
     background-color: var(--color-accent);
   }
 
-  .bg-page {
+  .gb-bg-page {
     background-color: var(--color-background);
   }
 
-  .bg-section {
+  .gb-bg-section {
     background-color: var(--color-section);
   }
 
-  .bg-card {
+  .gb-bg-card {
     background-color: var(--color-card);
   }
 
-  .border-brand {
+  .gb-bg-soft {
+    background-color: var(--color-primary-soft);
+  }
+
+  .gb-border {
     border-color: var(--color-border);
   }
 
-  .rounded-default {
+  .gb-border-soft {
+    border-color: var(--color-border-soft);
+  }
+
+  .gb-rounded {
     border-radius: var(--radius);
   }
 
-  .rounded-card {
+  .gb-rounded-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  .gb-rounded-card {
     border-radius: var(--radius-lg);
   }
 
-  .shadow-default {
+  .gb-rounded-full {
+    border-radius: var(--radius-full);
+  }
+
+  .gb-shadow {
     box-shadow: var(--shadow);
   }
 
-  .shadow-card {
+  .gb-shadow-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .gb-shadow-card {
     box-shadow: var(--shadow-card);
+  }
+
+  .gb-shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .gb-focus-ring {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    box-shadow: var(--shadow-focus);
+  }
+
+  .gb-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+
+  .gb-scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .gb-scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gb-line-clamp-1,
+  .gb-line-clamp-2,
+  .gb-line-clamp-3 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+
+  .gb-line-clamp-1 {
+    -webkit-line-clamp: 1;
+  }
+
+  .gb-line-clamp-2 {
+    -webkit-line-clamp: 2;
+  }
+
+  .gb-line-clamp-3 {
+    -webkit-line-clamp: 3;
   }
 }

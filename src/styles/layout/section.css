@@ -1,21 +1,73 @@
 /* =============================================================================
-   LAYOUT — SECTION
+   LAYOUT - SECTION
    -----------------------------------------------------------------------------
    Shared section spacing and section backgrounds.
    ============================================================================= */
 
 @layer components {
   .gb-section {
-    padding-block: 2.5rem;
+    padding-block: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .gb-section-sm {
+    padding-block: clamp(1.75rem, 3vw, 3rem);
+  }
+
+  .gb-section-lg {
+    padding-block: clamp(3.5rem, 7vw, 7rem);
   }
 
   .gb-section-soft {
     background: var(--color-section);
   }
+
+  .gb-section-card {
+    background: var(--color-card);
+  }
+
+  .gb-section-bordered {
+    border-block: 1px solid var(--color-border-soft);
+  }
+
+  .gb-section-top-bordered {
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .gb-section-bottom-bordered {
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .gb-section-gradient {
+    background:
+      radial-gradient(
+        circle at top left,
+        var(--color-primary-soft),
+        transparent 34%
+      ),
+      linear-gradient(
+        180deg,
+        var(--color-section),
+        var(--color-background)
+      );
+  }
+
+  .gb-section-fill {
+    min-height: calc(100vh - 9rem);
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media (max-width: 640px) {
   .gb-section {
-    padding-block: 1.75rem;
+    padding-block: 2rem;
+  }
+
+  .gb-section-sm {
+    padding-block: 1.5rem;
+  }
+
+  .gb-section-lg {
+    padding-block: 3rem;
   }
 }

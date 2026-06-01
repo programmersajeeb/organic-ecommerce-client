@@ -5,12 +5,12 @@ import { categoryNavItems } from "@/constants/navigation";
 
 export function CategoryNavigation() {
   return (
-    <nav className="gb-shop-category-nav">
+    <nav className="gb-shop-category-nav" aria-label="Product categories">
       <div className="gb-shop-header-container gb-shop-category-nav__inner">
         <Link href="/categories" className="gb-shop-category-nav__button">
-          <Menu />
+          <Menu aria-hidden="true" />
           <span>Shop by Category</span>
-          <ChevronDown />
+          <ChevronDown aria-hidden="true" />
         </Link>
 
         <div className="gb-shop-category-nav__items">
@@ -18,6 +18,7 @@ export function CategoryNavigation() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={item.isHighlighted ? "page" : undefined}
               className={
                 item.isHighlighted
                   ? "gb-shop-category-nav__link gb-shop-category-nav__link--active"
@@ -28,9 +29,12 @@ export function CategoryNavigation() {
             </Link>
           ))}
 
-          <Link href="/categories" className="gb-shop-category-nav__link gb-shop-category-nav__more">
+          <Link
+            href="/categories"
+            className="gb-shop-category-nav__link gb-shop-category-nav__more"
+          >
             <span>More</span>
-            <ChevronDown />
+            <ChevronDown aria-hidden="true" />
           </Link>
         </div>
       </div>
