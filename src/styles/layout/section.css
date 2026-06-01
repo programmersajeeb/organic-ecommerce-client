@@ -1,0 +1,21 @@
+/* =============================================================================
+   LAYOUT — SECTION
+   -----------------------------------------------------------------------------
+   Shared section spacing and section backgrounds.
+   ============================================================================= */
+
+@layer components {
+  .gb-section {
+    padding-block: 2.5rem;
+  }
+
+  .gb-section-soft {
+    background: var(--color-section);
+  }
+}
+
+@media (max-width: 640px) {
+  .gb-section {
+    padding-block: 1.75rem;
+  }
+}

@@ -1,0 +1,32 @@
+/* =============================================================================
+   COMPONENT — SECTION HEADING
+   -----------------------------------------------------------------------------
+   Common section title style with brand underline.
+   ============================================================================= */
+
+@layer components {
+  .gb-section-title {
+    position: relative;
+    display: inline-block;
+    color: var(--color-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .gb-section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.45rem;
+    width: 42px;
+    height: 3px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+  }
+}
+
+@media (max-width: 640px) {
+  .gb-section-title {
+    font-size: 1.1rem;
+  }
+}

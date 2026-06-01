@@ -1,0 +1,28 @@
+/* =============================================================================
+   COMPONENT — SKELETON
+   -----------------------------------------------------------------------------
+   Reusable shimmer loading skeleton.
+   ============================================================================= */
+
+@layer components {
+  .gb-skeleton {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--color-skeleton);
+  }
+
+  .gb-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-skeleton-shine),
+      transparent
+    );
+    animation: gb-skeleton-shimmer 1.4s infinite;
+  }
+}

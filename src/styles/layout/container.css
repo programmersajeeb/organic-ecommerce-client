@@ -1,0 +1,28 @@
+/* =============================================================================
+   LAYOUT — CONTAINER
+   -----------------------------------------------------------------------------
+   Shared max-width containers for pages and sections.
+   ============================================================================= */
+
+@layer components {
+  .gb-container {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  .gb-container-wide {
+    width: 100%;
+    max-width: 1480px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, 4rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .gb-container,
+  .gb-container-wide {
+    padding-inline: 0.75rem;
+  }
+}

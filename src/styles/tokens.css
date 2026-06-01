@@ -1,0 +1,206 @@
+/* =============================================================================
+   DESIGN TOKENS
+   -----------------------------------------------------------------------------
+   All colors, fonts, radius, shadows and shadcn/ui theme tokens live here.
+   Change this file to control the full website design globally.
+   ============================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------------
+     Brand Colors
+     --------------------------------------------------------------------------- */
+  --color-primary: #ff7a00;
+  --color-primary-hover: #f26f00;
+  --color-primary-soft: #fff3e6;
+
+  --color-secondary: #f9a825;
+  --color-accent: #ff5722;
+
+  /* ---------------------------------------------------------------------------
+     Background Colors
+     --------------------------------------------------------------------------- */
+  --color-background: #ffffff;
+  --color-section: #fffaf3;
+  --color-card: #ffffff;
+  --color-header: #ffffff;
+  --color-navbar: #002f2b;
+
+  /* ---------------------------------------------------------------------------
+     Border & Divider Colors
+     --------------------------------------------------------------------------- */
+  --color-border: #ead9c2;
+  --color-border-soft: #f3e6d6;
+  --color-divider: #eeeeee;
+
+  /* ---------------------------------------------------------------------------
+     Text Colors
+     --------------------------------------------------------------------------- */
+  --color-heading: #2f2f2f;
+  --color-body: #555555;
+  --color-muted: #8a8a8a;
+  --color-inverse: #ffffff;
+
+  /* ---------------------------------------------------------------------------
+     Product / Price Colors
+     --------------------------------------------------------------------------- */
+  --color-price: #ff7a00;
+  --color-old-price: #9ca3af;
+
+  /* ---------------------------------------------------------------------------
+     Status Colors
+     --------------------------------------------------------------------------- */
+  --color-success: #22c55e;
+  --color-success-soft: #dcfce7;
+
+  --color-warning: #f59e0b;
+  --color-warning-soft: #fff7ed;
+
+  --color-error: #ef4444;
+  --color-error-soft: #fee2e2;
+
+  --color-info: #3b82f6;
+
+  /* ---------------------------------------------------------------------------
+     Skeleton Loading Colors
+     --------------------------------------------------------------------------- */
+  --color-skeleton: #f3f3f3;
+  --color-skeleton-shine: #ffffff;
+
+  /* ---------------------------------------------------------------------------
+     Border Radius
+     --------------------------------------------------------------------------- */
+  --radius-xs: 0.1875rem;
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ---------------------------------------------------------------------------
+     Shadows
+     --------------------------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.08);
+
+  /* ---------------------------------------------------------------------------
+     Typography
+     --------------------------------------------------------------------------- */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Merriweather", Georgia, serif;
+  --font-mono: "Fira Code", Consolas, monospace;
+
+  /* ---------------------------------------------------------------------------
+     shadcn/ui Compatible Tokens
+     --------------------------------------------------------------------------- */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 18%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 18%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 18%;
+
+  --primary: 29 100% 50%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 38 94% 56%;
+  --secondary-foreground: 0 0% 18%;
+
+  --muted: 33 100% 97%;
+  --muted-foreground: 0 0% 54%;
+
+  --accent: 14 100% 57%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 34 45% 84%;
+  --input: 34 45% 84%;
+  --ring: 29 100% 50%;
+}
+
+/* =============================================================================
+   DARK MODE TOKENS
+   ============================================================================= */
+
+.dark {
+  --color-primary: #ff8a1f;
+  --color-primary-hover: #ff9a3d;
+  --color-primary-soft: #2a1808;
+
+  --color-secondary: #fbbf24;
+  --color-accent: #ff7043;
+
+  --color-background: #111827;
+  --color-section: #151f2e;
+  --color-card: #1f2937;
+  --color-header: #111827;
+  --color-navbar: #001f1c;
+
+  --color-border: #374151;
+  --color-border-soft: #2f3a4a;
+  --color-divider: #263244;
+
+  --color-heading: #f9fafb;
+  --color-body: #d1d5db;
+  --color-muted: #9ca3af;
+  --color-inverse: #ffffff;
+
+  --color-price: #ff8a1f;
+  --color-old-price: #9ca3af;
+
+  --color-success: #22c55e;
+  --color-success-soft: #052e16;
+
+  --color-warning: #facc15;
+  --color-warning-soft: #2a2103;
+
+  --color-error: #f87171;
+  --color-error-soft: #3f1111;
+
+  --color-info: #60a5fa;
+
+  --color-skeleton: #2f3a4a;
+  --color-skeleton-shine: #3f4b5f;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.35);
+
+  --background: 221 39% 11%;
+  --foreground: 210 40% 98%;
+
+  --card: 217 33% 17%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 217 33% 17%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 28 100% 56%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 43 96% 56%;
+  --secondary-foreground: 221 39% 11%;
+
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 14 100% 63%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 91% 71%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 215 28% 27%;
+  --input: 215 28% 27%;
+  --ring: 28 100% 56%;
+}

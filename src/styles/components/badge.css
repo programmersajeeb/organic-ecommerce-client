@@ -1,0 +1,33 @@
+/* =============================================================================
+   COMPONENT — BADGE
+   -----------------------------------------------------------------------------
+   Ecommerce status badges.
+   ============================================================================= */
+
+@layer components {
+  .gb-badge-success,
+  .gb-badge-warning,
+  .gb-badge-error {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--color-inverse);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0.3rem 0.45rem;
+  }
+
+  .gb-badge-success {
+    background: var(--color-success);
+  }
+
+  .gb-badge-warning {
+    background: var(--color-warning);
+  }
+
+  .gb-badge-error {
+    background: var(--color-error);
+  }
+}

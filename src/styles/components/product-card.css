@@ -1,0 +1,86 @@
+/* =============================================================================
+   COMPONENT — PRODUCT CARD
+   -----------------------------------------------------------------------------
+   Product card and responsive ecommerce product grid.
+   ============================================================================= */
+
+@layer components {
+  .gb-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .gb-product-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 0.75rem;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .gb-product-card:hover {
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .gb-product-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
+  }
+
+  .gb-product-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    margin-bottom: 1rem;
+    background: var(--color-card);
+    border-radius: var(--radius);
+  }
+
+  .gb-product-image {
+    object-fit: contain;
+    padding: 0.75rem;
+  }
+
+  .gb-product-title {
+    min-height: 2.6rem;
+    margin-bottom: 0.65rem;
+    color: var(--color-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .gb-product-price-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .gb-product-cart-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .gb-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .gb-product-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

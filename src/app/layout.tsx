@@ -1,16 +1,25 @@
-import "./globals.css";
-import { ThemeProvider } from "next-themes";
+import type { Metadata } from "next";
 
-export const metadata = {
+import { SiteHeader } from "@/components/layout/site-header";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+
+import "./globals.css";
+
+export const metadata: Metadata = {
   title: "Ghorer Bazar",
   description: "Enterprise Organic Ecommerce Platform",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider attribute="class" enableSystem={true} defaultTheme="light">
+        <ThemeProvider>
+          <SiteHeader />
           {children}
         </ThemeProvider>
       </body>

@@ -1,0 +1,75 @@
+/* =============================================================================
+   UTILITIES
+   -----------------------------------------------------------------------------
+   Small reusable helper classes based on design tokens.
+   ============================================================================= */
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .text-heading {
+    color: var(--color-heading);
+  }
+
+  .text-body {
+    color: var(--color-body);
+  }
+
+  .text-muted {
+    color: var(--color-muted);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+
+  .bg-page {
+    background-color: var(--color-background);
+  }
+
+  .bg-section {
+    background-color: var(--color-section);
+  }
+
+  .bg-card {
+    background-color: var(--color-card);
+  }
+
+  .border-brand {
+    border-color: var(--color-border);
+  }
+
+  .rounded-default {
+    border-radius: var(--radius);
+  }
+
+  .rounded-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .shadow-default {
+    box-shadow: var(--shadow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+}
