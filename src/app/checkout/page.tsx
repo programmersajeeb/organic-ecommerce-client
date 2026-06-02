@@ -26,11 +26,11 @@ export default function CheckoutPage() {
           </p>
 
           <div className="gb-account-page__actions">
-            <Link href="/cart" className="gb-button gb-button--primary">
+            <Link href="/cart" className="gb-btn-primary">
               Back to cart
             </Link>
 
-            <Link href="/" className="gb-button gb-button--outline">
+            <Link href="/" className="gb-btn-outline">
               Continue shopping
             </Link>
           </div>

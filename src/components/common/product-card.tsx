@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 
-type ProductCardProps = {
+type ProductCardProps = Readonly<{
   title: string;
   image: string;
   price: string;
   oldPrice?: string;
   badge?: string;
   badgeType?: "success" | "warning" | "error";
-};
+}>;
 
 export function ProductCard({
   title,
@@ -46,7 +46,12 @@ export function ProductCard({
 
         <div className="gb-product-price-row">
           <span className="gb-price">{price}</span>
-          {oldPrice ? <span className="gb-old-price">{oldPrice}</span> : null}
+
+          {oldPrice ? (
+            <del className="gb-old-price" aria-label={`Previous price ${oldPrice}`}>
+              {oldPrice}
+            </del>
+          ) : null}
         </div>
 
         <div className="gb-product-actions">
@@ -55,8 +60,8 @@ export function ProductCard({
             className="gb-btn-outline gb-product-cart-btn"
             aria-label={`Add ${title} to cart`}
           >
-            <ShoppingCart aria-hidden="true" size={15} />
-            Add To Cart
+            <ShoppingCart aria-hidden="true" focusable="false" size={15} />
+            <span>Add To Cart</span>
           </button>
         </div>
       </div>

@@ -1,14 +1,14 @@
 import { ProductCard } from "@/components/common/product-card";
 import { SectionHeading } from "@/components/common/section-heading";
 
-type Product = {
+type Product = Readonly<{
   title: string;
   image: string;
   price: string;
   oldPrice?: string;
   badge?: string;
   badgeType?: "success" | "warning" | "error";
-};
+}>;
 
 const productData: Product[] = [
   {
@@ -29,21 +29,20 @@ const productData: Product[] = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-page">
-      <section className="gb-section-gradient gb-section">
-        <div className="gb-container">
-          <SectionHeading
-            title="Top Selling Products"
-            actionText="View All Items →"
-          />
+    <section className="gb-section gb-section-gradient">
+      <div className="gb-container">
+        <SectionHeading
+          title="Top Selling Products"
+          actionText="View All Items"
+          actionHref="/categories"
+        />
 
-          <div className="gb-product-grid">
-            {productData.map((product) => (
-              <ProductCard key={product.title} {...product} />
-            ))}
-          </div>
+        <div className="gb-product-grid">
+          {productData.map((product) => (
+            <ProductCard key={product.title} {...product} />
+          ))}
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

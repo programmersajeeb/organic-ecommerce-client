@@ -25,11 +25,11 @@ export default function TrackOrderPage() {
           </p>
 
           <div className="gb-account-page__actions">
-            <Link href="/" className="gb-button gb-button--primary">
+            <Link href="/" className="gb-btn-primary">
               Continue shopping
             </Link>
 
-            <Link href="/account/login" className="gb-button gb-button--outline">
+            <Link href="/account/login" className="gb-btn-outline">
               Sign in to account
             </Link>
           </div>

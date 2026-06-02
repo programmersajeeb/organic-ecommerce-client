@@ -25,11 +25,11 @@ export default function HelpCenterPage() {
           </p>
 
           <div className="gb-account-page__actions">
-            <Link href="/track-order" className="gb-button gb-button--primary">
+            <Link href="/track-order" className="gb-btn-primary">
               Track an order
             </Link>
 
-            <Link href="/" className="gb-button gb-button--outline">
+            <Link href="/" className="gb-btn-outline">
               Continue shopping
             </Link>
           </div>

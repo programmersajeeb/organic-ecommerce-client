@@ -60,7 +60,6 @@ export const categoryNavItems: CategoryNavItem[] = [
   {
     label: "Mango Pre-Order",
     href: "/collections/mango-pre-order",
-    isHighlighted: true,
   },
   {
     label: "Honey",
@@ -81,6 +80,10 @@ export const categoryNavItems: CategoryNavItem[] = [
   {
     label: "Rice & Lentils",
     href: "/categories/rice-and-lentils",
+  },
+  {
+    label: "Fruits",
+    href: "/categories/fruits",
   },
 ];
 
@@ -122,11 +125,7 @@ export const mobileMenuItems: MobileMenuItem[] = [
     href: "/categories/rice-and-lentils",
   },
   {
-    label: "My Account",
-    href: "/account",
-  },
-  {
-    label: "Track Order",
-    href: "/track-order",
+    label: "Fruits",
+    href: "/categories/fruits",
   },
 ];

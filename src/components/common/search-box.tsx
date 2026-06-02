@@ -1,26 +1,32 @@
 import { Search } from "lucide-react";
 
-type SearchBoxProps = {
+type SearchBoxProps = Readonly<{
+  id?: string;
+  action?: string;
+  label?: string;
   placeholder?: string;
-};
+}>;
 
 export function SearchBox({
+  id = "site-search",
+  action = "/search",
+  label = "Search products",
   placeholder = "Search for honey, dates, mangoes, spices...",
 }: SearchBoxProps) {
   return (
     <form
-      action="/search"
+      action={action}
       method="get"
       role="search"
-      aria-label="Product search"
+      aria-label={label}
       className="gb-shop-search"
     >
-      <label htmlFor="site-search" className="gb-sr-only">
-        Search products
+      <label htmlFor={id} className="sr-only">
+        {label}
       </label>
 
       <input
-        id="site-search"
+        id={id}
         name="q"
         type="search"
         inputMode="search"
@@ -35,7 +41,7 @@ export function SearchBox({
 
       <button
         type="submit"
-        aria-label="Search products"
+        aria-label={label}
         className="gb-shop-search__button"
       >
         <Search aria-hidden="true" focusable="false" />

@@ -159,28 +159,48 @@
   /* ---------------------------------------------------------------------------
      Border Radius
      --------------------------------------------------------------------------- */
-  --radius-xs: 0.1875rem;
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius: 0.75rem;
-  --radius-lg: 0.875rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
-  --radius-full: 9999px;
+  --gb-radius-xs: 0.1875rem;
+  --gb-radius-sm: 0.375rem;
+  --gb-radius-md: 0.5rem;
+  --gb-radius-base: 0.75rem;
+  --gb-radius-lg: 0.875rem;
+  --gb-radius-xl: 1rem;
+  --gb-radius-2xl: 1.25rem;
+  --gb-radius-3xl: 1.5rem;
+  --gb-radius-full: 9999px;
+
+  --radius-xs: var(--gb-radius-xs);
+  --radius-sm: var(--gb-radius-sm);
+  --radius-md: var(--gb-radius-md);
+  --radius: var(--gb-radius-base);
+  --radius-lg: var(--gb-radius-lg);
+  --radius-xl: var(--gb-radius-xl);
+  --radius-2xl: var(--gb-radius-2xl);
+  --radius-3xl: var(--gb-radius-3xl);
+  --radius-full: var(--gb-radius-full);
 
   /* ---------------------------------------------------------------------------
      Shadows
      --------------------------------------------------------------------------- */
-  --shadow-xs: 0 1px 2px hsl(155 35% 11% / 0.04);
-  --shadow-sm: 0 2px 8px hsl(155 35% 11% / 0.05);
-  --shadow: 0 8px 24px hsl(155 35% 11% / 0.07);
-  --shadow-lg: 0 16px 40px hsl(155 35% 11% / 0.1);
+  --gb-shadow-xs: 0 1px 2px hsl(155 35% 11% / 0.04);
+  --gb-shadow-sm: 0 2px 8px hsl(155 35% 11% / 0.05);
+  --gb-shadow-base: 0 8px 24px hsl(155 35% 11% / 0.07);
+  --gb-shadow-lg: 0 16px 40px hsl(155 35% 11% / 0.1);
 
-  --shadow-card: 0 10px 28px hsl(155 35% 11% / 0.06);
-  --shadow-card-hover: 0 18px 42px hsl(155 35% 11% / 0.11);
+  --gb-shadow-card: 0 10px 28px hsl(155 35% 11% / 0.06);
+  --gb-shadow-card-hover: 0 18px 42px hsl(155 35% 11% / 0.11);
 
-  --shadow-header: 0 10px 30px hsl(155 35% 11% / 0.08);
-  --shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.22);
+  --gb-shadow-header: 0 10px 30px hsl(155 35% 11% / 0.08);
+  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.22);
+
+  --shadow-xs: var(--gb-shadow-xs);
+  --shadow-sm: var(--gb-shadow-sm);
+  --shadow: var(--gb-shadow-base);
+  --shadow-lg: var(--gb-shadow-lg);
+  --shadow-card: var(--gb-shadow-card);
+  --shadow-card-hover: var(--gb-shadow-card-hover);
+  --shadow-header: var(--gb-shadow-header);
+  --shadow-focus: var(--gb-shadow-focus);
 
   /* ---------------------------------------------------------------------------
      Typography
@@ -260,16 +280,16 @@
   --color-skeleton: hsl(150 22% 17%);
   --color-skeleton-shine: hsl(150 18% 24%);
 
-  --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.2);
-  --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.24);
-  --shadow: 0 8px 24px hsl(0 0% 0% / 0.28);
-  --shadow-lg: 0 16px 40px hsl(0 0% 0% / 0.36);
+  --gb-shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.2);
+  --gb-shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.24);
+  --gb-shadow-base: 0 8px 24px hsl(0 0% 0% / 0.28);
+  --gb-shadow-lg: 0 16px 40px hsl(0 0% 0% / 0.36);
 
-  --shadow-card: 0 10px 28px hsl(0 0% 0% / 0.28);
-  --shadow-card-hover: 0 18px 42px hsl(0 0% 0% / 0.38);
+  --gb-shadow-card: 0 10px 28px hsl(0 0% 0% / 0.28);
+  --gb-shadow-card-hover: 0 18px 42px hsl(0 0% 0% / 0.38);
 
-  --shadow-header: 0 10px 30px hsl(0 0% 0% / 0.32);
-  --shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.28);
+  --gb-shadow-header: 0 10px 30px hsl(0 0% 0% / 0.32);
+  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.28);
 }
 
 /* =============================================================================
@@ -310,10 +330,25 @@
   --color-ring: hsl(var(--ring));
 
   --color-brand: hsl(var(--gb-brand));
+  --color-brand-hover: hsl(var(--gb-brand-hover));
+  --color-brand-soft: hsl(var(--gb-brand-soft));
   --color-brand-foreground: hsl(var(--gb-inverse));
 
   --color-price: hsl(var(--gb-action));
+  --color-old-price: hsl(var(--gb-muted));
   --color-rating: hsl(var(--gb-gold));
+
+  --color-success: hsl(var(--gb-success));
+  --color-success-soft: hsl(var(--gb-success-soft));
+
+  --color-warning: hsl(var(--gb-warning));
+  --color-warning-soft: hsl(var(--gb-warning-soft));
+
+  --color-error: hsl(var(--gb-error));
+  --color-error-soft: hsl(var(--gb-error-soft));
+
+  --color-info: hsl(var(--gb-info));
+  --color-info-soft: hsl(var(--gb-info-soft));
 
   --color-chart-1: hsl(var(--chart-1));
   --color-chart-2: hsl(var(--chart-2));
@@ -335,17 +370,21 @@
   --font-serif: var(--gb-font-heading);
   --font-mono: var(--gb-font-mono);
 
-  --radius-xs: 0.1875rem;
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: var(--radius);
-  --radius-xl: var(--radius-xl);
-  --radius-2xl: var(--radius-2xl);
+  --radius-xs: var(--gb-radius-xs);
+  --radius-sm: var(--gb-radius-sm);
+  --radius-md: var(--gb-radius-md);
+  --radius-lg: var(--gb-radius-base);
+  --radius-xl: var(--gb-radius-xl);
+  --radius-2xl: var(--gb-radius-2xl);
+  --radius-3xl: var(--gb-radius-3xl);
+  --radius-full: var(--gb-radius-full);
 
-  --shadow-xs: var(--shadow-xs);
-  --shadow-sm: var(--shadow-sm);
-  --shadow: var(--shadow);
-  --shadow-lg: var(--shadow-lg);
-  --shadow-card: var(--shadow-card);
-  --shadow-card-hover: var(--shadow-card-hover);
+  --shadow-xs: var(--gb-shadow-xs);
+  --shadow-sm: var(--gb-shadow-sm);
+  --shadow: var(--gb-shadow-base);
+  --shadow-lg: var(--gb-shadow-lg);
+  --shadow-card: var(--gb-shadow-card);
+  --shadow-card-hover: var(--gb-shadow-card-hover);
+  --shadow-header: var(--gb-shadow-header);
+  --shadow-focus: var(--gb-shadow-focus);
 }

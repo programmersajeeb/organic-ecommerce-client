@@ -6,6 +6,10 @@
    ============================================================================= */
 
 @layer utilities {
+  /* ---------------------------------------------------------------------------
+     Text Colors
+     --------------------------------------------------------------------------- */
+
   .gb-text-primary {
     color: var(--color-primary);
   }
@@ -38,6 +42,34 @@
     color: var(--color-inverse);
   }
 
+  .gb-text-price {
+    color: var(--color-price);
+  }
+
+  .gb-text-old-price {
+    color: var(--color-old-price);
+  }
+
+  .gb-text-success {
+    color: var(--color-success);
+  }
+
+  .gb-text-warning {
+    color: var(--color-warning);
+  }
+
+  .gb-text-error {
+    color: var(--color-error);
+  }
+
+  .gb-text-info {
+    color: var(--color-info);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Background Colors
+     --------------------------------------------------------------------------- */
+
   .gb-bg-primary {
     background-color: var(--color-primary);
   }
@@ -66,9 +98,45 @@
     background-color: var(--color-card);
   }
 
+  .gb-bg-header {
+    background-color: var(--color-header);
+  }
+
+  .gb-bg-navbar {
+    background-color: var(--color-navbar);
+  }
+
   .gb-bg-soft {
     background-color: var(--color-primary-soft);
   }
+
+  .gb-bg-brand-soft {
+    background-color: var(--color-brand-soft);
+  }
+
+  .gb-bg-secondary-soft {
+    background-color: var(--color-secondary-soft);
+  }
+
+  .gb-bg-success-soft {
+    background-color: var(--color-success-soft);
+  }
+
+  .gb-bg-warning-soft {
+    background-color: var(--color-warning-soft);
+  }
+
+  .gb-bg-error-soft {
+    background-color: var(--color-error-soft);
+  }
+
+  .gb-bg-info-soft {
+    background-color: var(--color-info-soft);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Borders
+     --------------------------------------------------------------------------- */
 
   .gb-border {
     border-color: var(--color-border);
@@ -78,28 +146,76 @@
     border-color: var(--color-border-soft);
   }
 
-  .gb-rounded {
-    border-radius: var(--radius);
+  .gb-border-divider {
+    border-color: var(--color-divider);
+  }
+
+  .gb-border-primary {
+    border-color: var(--color-primary);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Radius
+     --------------------------------------------------------------------------- */
+
+  .gb-rounded-xs {
+    border-radius: var(--radius-xs);
   }
 
   .gb-rounded-sm {
     border-radius: var(--radius-sm);
   }
 
+  .gb-rounded-md {
+    border-radius: var(--radius-md);
+  }
+
+  .gb-rounded {
+    border-radius: var(--radius);
+  }
+
   .gb-rounded-card {
     border-radius: var(--radius-lg);
+  }
+
+  .gb-rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  .gb-rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+
+  .gb-rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
+
+  .gb-rounded-3xl {
+    border-radius: var(--radius-3xl);
   }
 
   .gb-rounded-full {
     border-radius: var(--radius-full);
   }
 
-  .gb-shadow {
-    box-shadow: var(--shadow);
+  /* ---------------------------------------------------------------------------
+     Shadows
+     --------------------------------------------------------------------------- */
+
+  .gb-shadow-xs {
+    box-shadow: var(--shadow-xs);
   }
 
   .gb-shadow-sm {
     box-shadow: var(--shadow-sm);
+  }
+
+  .gb-shadow {
+    box-shadow: var(--shadow);
+  }
+
+  .gb-shadow-lg {
+    box-shadow: var(--shadow-lg);
   }
 
   .gb-shadow-card {
@@ -110,9 +226,20 @@
     box-shadow: var(--shadow-card-hover);
   }
 
+  .gb-shadow-header {
+    box-shadow: var(--shadow-header);
+  }
+
+  .gb-shadow-focus {
+    box-shadow: var(--shadow-focus);
+  }
+
+  /* ---------------------------------------------------------------------------
+     Accessibility
+     --------------------------------------------------------------------------- */
+
   .gb-focus-ring {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
+    outline: 0;
     box-shadow: var(--shadow-focus);
   }
 
@@ -128,6 +255,10 @@
     margin: -1px;
   }
 
+  /* ---------------------------------------------------------------------------
+     Scrolling
+     --------------------------------------------------------------------------- */
+
   .gb-scrollbar-hidden {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -136,6 +267,14 @@
   .gb-scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
+
+  .gb-overscroll-contain {
+    overscroll-behavior: contain;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Text Helpers
+     --------------------------------------------------------------------------- */
 
   .gb-line-clamp-1,
   .gb-line-clamp-2,
@@ -155,5 +294,30 @@
 
   .gb-line-clamp-3 {
     -webkit-line-clamp: 3;
+  }
+
+  .gb-text-balance {
+    text-wrap: balance;
+  }
+
+  .gb-text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Layout Helpers
+     --------------------------------------------------------------------------- */
+
+  .gb-min-w-0 {
+    min-width: 0;
+  }
+
+  .gb-isolate {
+    isolation: isolate;
+  }
+
+  .gb-full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
   }
 }

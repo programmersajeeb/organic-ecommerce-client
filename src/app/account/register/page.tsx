@@ -26,14 +26,11 @@ export default function RegisterPage() {
           </p>
 
           <div className="gb-account-page__actions">
-            <Link
-              href="/account/login"
-              className="gb-button gb-button--primary"
-            >
+            <Link href="/account/login" className="gb-btn-primary">
               Sign in instead
             </Link>
 
-            <Link href="/account" className="gb-button gb-button--outline">
+            <Link href="/account" className="gb-btn-outline">
               Back to account
             </Link>
           </div>

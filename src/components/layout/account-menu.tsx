@@ -9,6 +9,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+import type { MouseEvent } from "react";
 import {
   ChevronDown,
   Heart,
@@ -76,15 +77,18 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
     triggerRef.current?.focus();
   }, []);
 
-  const handleTriggerClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    setIsOpen((currentValue) => !currentValue);
-  };
+  const handleTriggerClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      setIsOpen((currentValue) => !currentValue);
+    },
+    [],
+  );
 
-  const handleThemeChange = () => {
+  const handleThemeChange = useCallback(() => {
     setTheme(nextTheme);
     closeMenu();
-  };
+  }, [closeMenu, nextTheme, setTheme]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -283,7 +287,7 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
             </>
           )}
 
-          <div className="gb-shop-account-menu__divider" />
+          <div className="gb-shop-account-menu__divider" role="separator" />
 
           <button
             type="button"

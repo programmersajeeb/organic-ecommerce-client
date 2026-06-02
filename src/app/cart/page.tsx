@@ -25,11 +25,11 @@ export default function CartPage() {
           </p>
 
           <div className="gb-account-page__actions">
-            <Link href="/" className="gb-button gb-button--primary">
+            <Link href="/" className="gb-btn-primary">
               Continue shopping
             </Link>
 
-            <Link href="/checkout" className="gb-button gb-button--outline">
+            <Link href="/checkout" className="gb-btn-outline">
               Proceed to checkout
             </Link>
           </div>
