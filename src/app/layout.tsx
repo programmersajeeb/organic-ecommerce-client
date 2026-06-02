@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Merriweather, Noto_Sans_Bengali } from "next/font/google";
+import type { ReactNode } from "react";
 
 import { SiteHeader } from "@/components/layout/site-header";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -42,21 +43,46 @@ export const metadata: Metadata = {
     "natural food",
     "Bangladesh ecommerce",
   ],
+  authors: [{ name: "Ghorer Bazar" }],
+  creator: "Ghorer Bazar",
+  publisher: "Ghorer Bazar",
+  category: "Ecommerce",
+  openGraph: {
+    type: "website",
+    siteName: "Ghorer Bazar",
+    title: "Ghorer Bazar | Organic Ecommerce Platform",
+    description:
+      "Buy authentic organic grocery products, honey, oil, spices, dates and natural food items online from Ghorer Bazar.",
+    locale: "en_BD",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ghorer Bazar | Organic Ecommerce Platform",
+    description:
+      "Buy authentic organic grocery products, honey, oil, spices, dates and natural food items online from Ghorer Bazar.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-BD" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${notoSansBengali.variable} ${merriweather.variable}`}
+        className={`${inter.variable} ${notoSansBengali.variable} ${merriweather.variable} gb-app-shell`}
       >
         <ThemeProvider>
           <SiteHeader />
-          {children}
+
+          <main id="main-content" className="gb-main-content" tabIndex={-1}>
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

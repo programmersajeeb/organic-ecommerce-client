@@ -1,41 +1,46 @@
 import Link from "next/link";
 import { Menu, ShoppingCart, X } from "lucide-react";
 
-import { HeaderAction } from "@/components/common/header-action";
 import { SearchBox } from "@/components/common/search-box";
 import { SiteLogo } from "@/components/common/site-logo";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
-import { headerActions, mobileMenuItems } from "@/constants/navigation";
+import { AccountMenu } from "@/components/layout/account-menu";
+import { mobileMenuItems } from "@/constants/navigation";
+
+const cartPreview = {
+  itemCount: 2,
+  subtotal: "৳2,450",
+  href: "/cart",
+};
 
 export function MainHeader() {
-  const cartItemCount = 2;
-
   return (
-    <div className="gb-shop-main-header">
+    <div className="gb-shop-main-header" aria-label="Main site header">
       <div className="gb-shop-header-container gb-shop-main-header__inner">
         <details className="gb-shop-mobile-menu">
           <summary
             className="gb-shop-icon-button gb-shop-mobile-menu__trigger"
-            aria-label="Open navigation menu"
+            aria-label="Open mobile navigation menu"
           >
-            <span className="gb-sr-only">Open navigation menu</span>
+            <span className="gb-sr-only">Open mobile navigation menu</span>
             <Menu
               aria-hidden="true"
+              focusable="false"
               className="gb-shop-mobile-menu__open-icon"
             />
             <X
               aria-hidden="true"
+              focusable="false"
               className="gb-shop-mobile-menu__close-icon"
             />
           </summary>
 
           <nav
-            aria-label="Mobile navigation"
+            aria-label="Mobile primary navigation"
             className="gb-shop-mobile-menu__panel"
           >
             {mobileMenuItems.map((item) => (
               <Link
-                key={item.href}
+                key={`${item.label}-${item.href}`}
                 href={item.href}
                 className="gb-shop-mobile-menu__link"
               >
@@ -53,22 +58,45 @@ export function MainHeader() {
           <SearchBox />
         </div>
 
-        <div className="gb-shop-main-header__actions">
-          {headerActions.map((action) => (
-            <HeaderAction key={action.label} {...action} />
-          ))}
+        <div
+          className="gb-shop-main-header__actions"
+          aria-label="Account and cart actions"
+        >
+          <AccountMenu />
 
-          <ThemeToggle />
+          <Link
+            href={cartPreview.href}
+            aria-label={`Open cart, ${cartPreview.itemCount} items, subtotal ${cartPreview.subtotal}`}
+            className="gb-shop-header-cart"
+          >
+            <span className="gb-shop-header-cart__icon" aria-hidden="true">
+              <ShoppingCart aria-hidden="true" focusable="false" />
+              <span className="gb-shop-header-cart__badge">
+                {cartPreview.itemCount}
+              </span>
+            </span>
+
+            <span className="gb-shop-header-cart__content">
+              <span className="gb-shop-header-cart__label">Cart</span>
+              <span className="gb-shop-header-cart__sub-label">
+                {cartPreview.subtotal}
+              </span>
+            </span>
+          </Link>
         </div>
 
-        <Link
-          href="/cart"
-          aria-label={`Cart with ${cartItemCount} items`}
-          className="gb-shop-mobile-cart"
-        >
-          <ShoppingCart aria-hidden="true" />
-          <span>{cartItemCount}</span>
-        </Link>
+        <div className="gb-shop-mobile-actions" aria-label="Mobile actions">
+          <AccountMenu variant="mobile" />
+
+          <Link
+            href={cartPreview.href}
+            aria-label={`Open cart, ${cartPreview.itemCount} items, subtotal ${cartPreview.subtotal}`}
+            className="gb-shop-mobile-cart"
+          >
+            <ShoppingCart aria-hidden="true" focusable="false" />
+            <span aria-hidden="true">{cartPreview.itemCount}</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

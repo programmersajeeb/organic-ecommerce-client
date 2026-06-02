@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-const subscribe = () => () => {};
+const subscribe = () => () => undefined;
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
@@ -27,11 +27,16 @@ export function ThemeToggle() {
     <button
       type="button"
       aria-label={`Switch to ${nextTheme} mode`}
+      aria-pressed={isDark}
       className="gb-shop-icon-button"
       disabled={!isMounted}
       onClick={() => setTheme(nextTheme)}
     >
-      {isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
+      {isDark ? (
+        <Sun aria-hidden="true" focusable="false" />
+      ) : (
+        <Moon aria-hidden="true" focusable="false" />
+      )}
     </button>
   );
 }

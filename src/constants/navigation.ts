@@ -1,17 +1,13 @@
 import {
   BadgeCheck,
   CircleHelp,
-  Heart,
   PackageCheck,
   RefreshCcw,
   ShieldCheck,
-  ShoppingCart,
-  UserRound,
 } from "lucide-react";
 
 import type {
   CategoryNavItem,
-  HeaderActionItem,
   MobileMenuItem,
   TopBarItem,
 } from "@/types/navigation";
@@ -49,27 +45,6 @@ export const topBarRightItems: TopBarItem[] = [
     label: "Help Center",
     href: "/help-center",
     icon: CircleHelp,
-  },
-];
-
-export const headerActions: HeaderActionItem[] = [
-  {
-    label: "Wishlist",
-    href: "/wishlist",
-    icon: Heart,
-  },
-  {
-    label: "Account",
-    subLabel: "Login / Sign up",
-    href: "/account",
-    icon: UserRound,
-  },
-  {
-    label: "Cart",
-    subLabel: "৳2,450",
-    href: "/cart",
-    icon: ShoppingCart,
-    badge: "2",
   },
 ];
 
@@ -145,10 +120,6 @@ export const mobileMenuItems: MobileMenuItem[] = [
   {
     label: "Rice & Lentils",
     href: "/categories/rice-and-lentils",
-  },
-  {
-    label: "Wishlist",
-    href: "/wishlist",
   },
   {
     label: "My Account",

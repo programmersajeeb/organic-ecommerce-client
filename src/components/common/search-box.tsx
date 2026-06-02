@@ -8,7 +8,13 @@ export function SearchBox({
   placeholder = "Search for honey, dates, mangoes, spices...",
 }: SearchBoxProps) {
   return (
-    <form action="/search" role="search" className="gb-shop-search">
+    <form
+      action="/search"
+      method="get"
+      role="search"
+      aria-label="Product search"
+      className="gb-shop-search"
+    >
       <label htmlFor="site-search" className="gb-sr-only">
         Search products
       </label>
@@ -17,10 +23,12 @@ export function SearchBox({
         id="site-search"
         name="q"
         type="search"
+        inputMode="search"
         autoComplete="off"
         autoCapitalize="none"
         spellCheck={false}
         enterKeyHint="search"
+        maxLength={80}
         placeholder={placeholder}
         className="gb-shop-search__input"
       />
@@ -30,7 +38,7 @@ export function SearchBox({
         aria-label="Search products"
         className="gb-shop-search__button"
       >
-        <Search aria-hidden="true" />
+        <Search aria-hidden="true" focusable="false" />
       </button>
     </form>
   );

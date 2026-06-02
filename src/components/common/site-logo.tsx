@@ -7,13 +7,22 @@ type SiteLogoProps = {
 
 export function SiteLogo({ compact = false }: SiteLogoProps) {
   return (
-    <Link href="/" aria-label="Ghorer Bazar Home" className="gb-shop-logo">
+    <Link href="/" aria-label="Ghorer Bazar home" className="gb-shop-logo">
       <span className="gb-shop-logo__icon" aria-hidden="true">
-        <ShoppingBag className="gb-shop-logo__bag-icon" />
-        <Leaf className="gb-shop-logo__leaf-icon" />
+        <ShoppingBag
+          aria-hidden="true"
+          focusable="false"
+          className="gb-shop-logo__bag-icon"
+        />
+        <Leaf
+          aria-hidden="true"
+          focusable="false"
+          className="gb-shop-logo__leaf-icon"
+        />
       </span>
 
       <span
+        aria-hidden="true"
         className={
           compact
             ? "gb-shop-logo__text gb-shop-logo__text--compact"

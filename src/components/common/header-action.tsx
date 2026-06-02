@@ -6,6 +6,7 @@ type HeaderActionProps = {
   label: string;
   subLabel?: string;
   badge?: string;
+  badgeLabel?: string;
   icon: LucideIcon;
 };
 
@@ -14,11 +15,12 @@ export function HeaderAction({
   label,
   subLabel,
   badge,
+  badgeLabel,
   icon: Icon,
 }: HeaderActionProps) {
-  const accessibleLabel = badge
-    ? `${label}${subLabel ? `, ${subLabel}` : ""}, ${badge} items`
-    : `${label}${subLabel ? `, ${subLabel}` : ""}`;
+  const accessibleLabel = [label, subLabel, badgeLabel ?? badge]
+    .filter(Boolean)
+    .join(", ");
 
   return (
     <Link
@@ -26,8 +28,8 @@ export function HeaderAction({
       className="gb-shop-header-action"
       aria-label={accessibleLabel}
     >
-      <span className="gb-shop-header-action__icon">
-        <Icon aria-hidden="true" />
+      <span className="gb-shop-header-action__icon" aria-hidden="true">
+        <Icon aria-hidden="true" focusable="false" />
 
         {badge ? (
           <span className="gb-shop-header-action__badge">{badge}</span>
