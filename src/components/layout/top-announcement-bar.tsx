@@ -3,6 +3,8 @@ import Link from "next/link";
 import { topBarLeftItems, topBarRightItems } from "@/constants/navigation";
 
 export function TopAnnouncementBar() {
+  const primaryAnnouncement = topBarLeftItems[0];
+
   return (
     <div className="gb-shop-topbar">
       <nav
@@ -26,6 +28,17 @@ export function TopAnnouncementBar() {
             );
           })}
         </ul>
+
+        {primaryAnnouncement ? (
+          <Link
+            href={primaryAnnouncement.href}
+            className="gb-shop-topbar__mobile-announcement"
+            aria-label={primaryAnnouncement.label}
+          >
+            <primaryAnnouncement.icon aria-hidden="true" focusable="false" />
+            <span>{primaryAnnouncement.label}</span>
+          </Link>
+        ) : null}
 
         <ul className="gb-shop-topbar__right" aria-label="Store quick links">
           {topBarRightItems.map((item) => {
@@ -51,6 +64,14 @@ export function TopAnnouncementBar() {
             </Link>
           </li>
         </ul>
+
+        <Link
+          href="/language"
+          className="gb-shop-topbar__mobile-language"
+          aria-label="Change language between English and Bengali"
+        >
+          EN | বাংলা
+        </Link>
       </nav>
     </div>
   );

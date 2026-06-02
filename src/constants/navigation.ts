@@ -50,18 +50,6 @@ export const topBarRightItems: TopBarItem[] = [
 
 export const categoryNavItems: CategoryNavItem[] = [
   {
-    label: "Eid 2026",
-    href: "/collections/eid-2026",
-  },
-  {
-    label: "Offer Zone",
-    href: "/offers",
-  },
-  {
-    label: "Mango Pre-Order",
-    href: "/collections/mango-pre-order",
-  },
-  {
     label: "Honey",
     href: "/categories/honey",
   },
@@ -84,6 +72,20 @@ export const categoryNavItems: CategoryNavItem[] = [
   {
     label: "Fruits",
     href: "/categories/fruits",
+  },
+  {
+    label: "Mango Pre-Order",
+    href: "/collections/mango-pre-order",
+    isHighlighted: true,
+  },
+  {
+    label: "Eid 2026",
+    href: "/collections/eid-2026",
+  },
+  {
+    label: "Offer Zone",
+    href: "/offers",
+    isHighlighted: true,
   },
 ];
 
@@ -93,18 +95,6 @@ export const mobileMenuItems: MobileMenuItem[] = [
     href: "/categories",
   },
   {
-    label: "Eid 2026",
-    href: "/collections/eid-2026",
-  },
-  {
-    label: "Offer Zone",
-    href: "/offers",
-  },
-  {
-    label: "Mango Pre-Order",
-    href: "/collections/mango-pre-order",
-  },
-  {
     label: "Honey",
     href: "/categories/honey",
   },
@@ -127,5 +117,17 @@ export const mobileMenuItems: MobileMenuItem[] = [
   {
     label: "Fruits",
     href: "/categories/fruits",
+  },
+  {
+    label: "Mango Pre-Order",
+    href: "/collections/mango-pre-order",
+  },
+  {
+    label: "Eid 2026",
+    href: "/collections/eid-2026",
+  },
+  {
+    label: "Offer Zone",
+    href: "/offers",
   },
 ];

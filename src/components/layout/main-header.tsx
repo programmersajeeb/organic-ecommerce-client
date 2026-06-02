@@ -6,6 +6,7 @@ import {
   Apple,
   BadgePercent,
   CalendarDays,
+  ChevronDown,
   ChevronRight,
   Droplets,
   Gift,
@@ -30,7 +31,6 @@ import {
   useRef,
   useState,
 } from "react";
-import type { ChangeEvent, MouseEvent } from "react";
 
 import { SearchBox } from "@/components/common/search-box";
 import { SiteLogo } from "@/components/common/site-logo";
@@ -56,24 +56,29 @@ type DrawerShopItem = Readonly<{
 
 type DrawerFilterOption = Readonly<{
   label: string;
+  shortLabel: string;
   value: "all" | DrawerItemType;
 }>;
 
 const drawerFilterOptions: DrawerFilterOption[] = [
   {
     label: "All Categories",
+    shortLabel: "All",
     value: "all",
   },
   {
     label: "Main Categories",
+    shortLabel: "Main",
     value: "category",
   },
   {
     label: "Seasonal",
+    shortLabel: "Seasonal",
     value: "seasonal",
   },
   {
     label: "Offers",
+    shortLabel: "Offers",
     value: "offer",
   },
 ];
@@ -155,7 +160,11 @@ const drawerShopItems: DrawerShopItem[] = [
 ];
 
 function normalizeText(value: string) {
-  return value.toLowerCase().replace(/\s+/g, " ").trim();
+  return value
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function isItemActive(pathname: string, href: string) {
@@ -168,18 +177,28 @@ function isItemActive(pathname: string, href: string) {
 
 export function MainHeader() {
   const pathname = usePathname();
+
   const mobileMenuId = useId();
   const drawerTitleId = useId();
   const drawerSearchId = useId();
-  const drawerFilterId = useId();
+  const drawerFilterLabelId = useId();
+  const drawerFilterMenuId = useId();
 
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const mobileDrawerPanelRef = useRef<HTMLElement>(null);
+  const drawerFilterRef = useRef<HTMLDivElement>(null);
+  const drawerItemRefs = useRef(new Map<string, HTMLAnchorElement>());
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDrawerFilterOpen, setIsDrawerFilterOpen] = useState(false);
   const [drawerSearchQuery, setDrawerSearchQuery] = useState("");
   const [drawerFilter, setDrawerFilter] =
     useState<DrawerFilterOption["value"]>("all");
+
+  const activeDrawerItemHref = useMemo(() => {
+    return drawerShopItems.find((item) => isItemActive(pathname, item.href))
+      ?.href;
+  }, [pathname]);
 
   const filteredDrawerItems = useMemo(() => {
     const normalizedQuery = normalizeText(drawerSearchQuery);
@@ -204,35 +223,59 @@ export function MainHeader() {
     });
   }, [drawerFilter, drawerSearchQuery]);
 
+  const selectedDrawerFilter = useMemo(() => {
+    return (
+      drawerFilterOptions.find((option) => option.value === drawerFilter) ??
+      drawerFilterOptions[0]
+    );
+  }, [drawerFilter]);
+
   const resultText =
     filteredDrawerItems.length === 1
       ? "1 item found"
       : `${filteredDrawerItems.length} items found`;
 
+  const closeDrawerFilter = useCallback(() => {
+    setIsDrawerFilterOpen(false);
+  }, []);
+
   const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
+    setIsDrawerFilterOpen(false);
     setDrawerSearchQuery("");
     setDrawerFilter("all");
   }, []);
 
   const closeMobileMenuAndFocusTrigger = useCallback(() => {
-    setIsMobileMenuOpen(false);
-    setDrawerSearchQuery("");
-    setDrawerFilter("all");
-    mobileMenuTriggerRef.current?.focus();
+    closeMobileMenu();
+
+    window.requestAnimationFrame(() => {
+      mobileMenuTriggerRef.current?.focus();
+    });
+  }, [closeMobileMenu]);
+
+  const handleMobileMenuTriggerClick = useCallback(() => {
+    setIsMobileMenuOpen((currentValue) => {
+      const nextValue = !currentValue;
+
+      if (!nextValue) {
+        setIsDrawerFilterOpen(false);
+        setDrawerSearchQuery("");
+        setDrawerFilter("all");
+      }
+
+      return nextValue;
+    });
   }, []);
 
-  const handleMobileMenuTriggerClick = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-      setIsMobileMenuOpen((currentValue) => !currentValue);
-    },
-    [],
-  );
+  const handleDrawerFilterTriggerClick = useCallback(() => {
+    setIsDrawerFilterOpen((currentValue) => !currentValue);
+  }, []);
 
   const handleDrawerFilterChange = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      setDrawerFilter(event.target.value as DrawerFilterOption["value"]);
+    (value: DrawerFilterOption["value"]) => {
+      setDrawerFilter(value);
+      setIsDrawerFilterOpen(false);
     },
     [],
   );
@@ -240,6 +283,18 @@ export function MainHeader() {
   const clearDrawerSearch = useCallback(() => {
     setDrawerSearchQuery("");
   }, []);
+
+  const setDrawerItemRef = useCallback(
+    (href: string, node: HTMLAnchorElement | null) => {
+      if (node) {
+        drawerItemRefs.current.set(href, node);
+        return;
+      }
+
+      drawerItemRefs.current.delete(href);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -256,9 +311,31 @@ export function MainHeader() {
       mobileDrawerPanelRef.current?.focus();
     });
 
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!isDrawerFilterOpen) {
+        return;
+      }
+
+      const target = event.target;
+
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (!drawerFilterRef.current?.contains(target)) {
+        closeDrawerFilter();
+      }
+    };
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
+
+        if (isDrawerFilterOpen) {
+          closeDrawerFilter();
+          return;
+        }
+
         closeMobileMenuAndFocusTrigger();
         return;
       }
@@ -275,7 +352,12 @@ export function MainHeader() {
 
       const focusableElements = Array.from(
         panel.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          [
+            "a[href]",
+            "button:not([disabled])",
+            "input:not([disabled])",
+            '[tabindex]:not([tabindex="-1"])',
+          ].join(", "),
         ),
       );
 
@@ -305,16 +387,49 @@ export function MainHeader() {
       }
     };
 
+    document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
     window.addEventListener("resize", handleResize);
 
     return () => {
       document.body.style.overflow = previousBodyOverflow;
       document.documentElement.style.overflow = previousHtmlOverflow;
+      document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", handleResize);
     };
-  }, [closeMobileMenu, closeMobileMenuAndFocusTrigger, isMobileMenuOpen]);
+  }, [
+    closeDrawerFilter,
+    closeMobileMenu,
+    closeMobileMenuAndFocusTrigger,
+    isDrawerFilterOpen,
+    isMobileMenuOpen,
+  ]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen || !activeDrawerItemHref) {
+      return;
+    }
+
+    const scrollTimer = window.setTimeout(() => {
+      drawerItemRefs.current.get(activeDrawerItemHref)?.scrollIntoView({
+        block: "nearest",
+        behavior: "smooth",
+      });
+    }, 120);
+
+    return () => {
+      window.clearTimeout(scrollTimer);
+    };
+  }, [activeDrawerItemHref, drawerFilter, drawerSearchQuery, isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    closeMobileMenu();
+  }, [closeMobileMenu, pathname]);
 
   return (
     <div className="gb-shop-main-header" aria-label="Main site header">
@@ -416,7 +531,7 @@ export function MainHeader() {
             type="button"
             className="gb-shop-mobile-drawer__backdrop"
             aria-label="Close mobile category sidebar"
-            onClick={closeMobileMenu}
+            onClick={closeMobileMenuAndFocusTrigger}
           />
 
           <aside
@@ -447,6 +562,10 @@ export function MainHeader() {
                 </button>
               </div>
             </div>
+
+            <h2 id={drawerTitleId} className="gb-sr-only">
+              Shop categories
+            </h2>
 
             <div className="gb-shop-mobile-drawer__search-wrap">
               <div className="gb-shop-mobile-drawer__search-row">
@@ -482,31 +601,98 @@ export function MainHeader() {
                   ) : null}
                 </div>
 
-                <label htmlFor={drawerFilterId} className="gb-sr-only">
-                  Filter category list
-                </label>
-
-                <div className="gb-shop-mobile-drawer__filter">
-                  <select
-                    id={drawerFilterId}
-                    value={drawerFilter}
-                    onChange={handleDrawerFilterChange}
-                    aria-label="Filter category list"
+                <div
+                  ref={drawerFilterRef}
+                  className="gb-shop-mobile-drawer__filter-control"
+                >
+                  <button
+                    type="button"
+                    className="gb-shop-mobile-drawer__filter"
+                    aria-labelledby={drawerFilterLabelId}
+                    aria-expanded={isDrawerFilterOpen}
+                    aria-controls={drawerFilterMenuId}
+                    aria-haspopup="menu"
+                    onClick={handleDrawerFilterTriggerClick}
                   >
-                    {drawerFilterOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
+                    <span
+                      id={drawerFilterLabelId}
+                      className="gb-shop-mobile-drawer__filter-label"
+                    >
+                      {selectedDrawerFilter.label}
+                    </span>
 
-                  <ChevronRight aria-hidden="true" focusable="false" />
+                    <ChevronDown
+                      aria-hidden="true"
+                      focusable="false"
+                      className="gb-shop-mobile-drawer__filter-icon"
+                    />
+                  </button>
+
+                  {isDrawerFilterOpen ? (
+                    <div
+                      id={drawerFilterMenuId}
+                      className="gb-shop-mobile-drawer__filter-menu"
+                      role="menu"
+                      aria-label="Choose category filter"
+                    >
+                      {drawerFilterOptions.map((option) => {
+                        const isSelected = option.value === drawerFilter;
+
+                        return (
+                          <button
+                            key={option.value}
+                            type="button"
+                            role="menuitemradio"
+                            aria-checked={isSelected}
+                            className={
+                              isSelected
+                                ? "gb-shop-mobile-drawer__filter-menu-item gb-shop-mobile-drawer__filter-menu-item--active"
+                                : "gb-shop-mobile-drawer__filter-menu-item"
+                            }
+                            onClick={() =>
+                              handleDrawerFilterChange(option.value)
+                            }
+                          >
+                            <span>{option.label}</span>
+
+                            {isSelected ? (
+                              <span aria-hidden="true">✓</span>
+                            ) : null}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
-              <p className="gb-shop-mobile-drawer__result-text">
-                {resultText}
-              </p>
+              <div
+                className="gb-shop-mobile-drawer__filter-tabs"
+                role="group"
+                aria-label="Filter category list"
+              >
+                {drawerFilterOptions.map((option) => {
+                  const isSelected = option.value === drawerFilter;
+
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      className={
+                        isSelected
+                          ? "gb-shop-mobile-drawer__filter-tab gb-shop-mobile-drawer__filter-tab--active"
+                          : "gb-shop-mobile-drawer__filter-tab"
+                      }
+                      aria-pressed={isSelected}
+                      onClick={() => handleDrawerFilterChange(option.value)}
+                    >
+                      {option.shortLabel}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <p className="gb-shop-mobile-drawer__result-text">{resultText}</p>
             </div>
 
             <nav
@@ -515,16 +701,12 @@ export function MainHeader() {
             >
               <section
                 className="gb-shop-mobile-drawer__section"
-                aria-labelledby={drawerTitleId}
+                aria-label="Shop categories"
               >
                 <div className="gb-shop-mobile-drawer__section-header">
-                  <div>
-                    <p className="gb-shop-mobile-drawer__eyebrow">
-                      Shop Categories
-                    </p>
-
-                    <h2 id={drawerTitleId}>Browse Categories</h2>
-                  </div>
+                  <p className="gb-shop-mobile-drawer__eyebrow">
+                    Shop Categories
+                  </p>
 
                   <Link
                     href="/categories"
@@ -544,6 +726,7 @@ export function MainHeader() {
                       return (
                         <Link
                           key={item.href}
+                          ref={(node) => setDrawerItemRef(item.href, node)}
                           href={item.href}
                           className={
                             isActive

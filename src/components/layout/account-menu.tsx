@@ -1,15 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
-import type { MouseEvent } from "react";
+import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Heart,
@@ -21,15 +13,85 @@ import {
   Sun,
   UserRound,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
+import type { MouseEvent } from "react";
 
 type AccountMenuProps = {
   variant?: "desktop" | "mobile";
 };
 
+type AccountMenuItem = Readonly<{
+  title: string;
+  description: string;
+  href: string;
+  icon: LucideIcon;
+}>;
+
 const subscribe = () => () => undefined;
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
+
+const accountPreview = {
+  isAuthenticated: false,
+  userName: "Guest",
+};
+
+const authenticatedMenuItems: AccountMenuItem[] = [
+  {
+    title: "My Account",
+    description: "Manage your profile",
+    href: "/account",
+    icon: UserRound,
+  },
+  {
+    title: "My Orders",
+    description: "View and track your orders",
+    href: "/orders",
+    icon: PackageSearch,
+  },
+  {
+    title: "Wishlist",
+    description: "View your saved items",
+    href: "/wishlist",
+    icon: Heart,
+  },
+  {
+    title: "Addresses",
+    description: "Manage delivery addresses",
+    href: "/addresses",
+    icon: MapPin,
+  },
+];
+
+const guestMenuItems: AccountMenuItem[] = [
+  {
+    title: "Sign in / Create account",
+    description: "Access orders, wishlist and offers",
+    href: "/account/login",
+    icon: LogIn,
+  },
+  {
+    title: "Track Order",
+    description: "Check your recent order status",
+    href: "/track-order",
+    icon: PackageSearch,
+  },
+  {
+    title: "Help Center",
+    description: "Get help and support",
+    href: "/help-center",
+    icon: HelpCircle,
+  },
+];
 
 function useIsMounted() {
   return useSyncExternalStore(
@@ -39,17 +101,22 @@ function useIsMounted() {
   );
 }
 
-/**
- * Later this object can come from auth/session store.
- * For now, logged out state is used.
- * Important rule: Wishlist will only show after user is signed in.
- */
-const accountPreview = {
-  isAuthenticated: false,
-  userName: "Guest",
-};
+function isMenuItemActive(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function getAccountMenuItemClassName(isActive: boolean) {
+  return isActive
+    ? "gb-shop-account-menu__item gb-shop-account-menu__item--active"
+    : "gb-shop-account-menu__item";
+}
 
 export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
+  const pathname = usePathname();
   const menuId = useId();
   const isMounted = useIsMounted();
   const { resolvedTheme, setTheme } = useTheme();
@@ -63,6 +130,10 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
   const nextTheme = isDark ? "light" : "dark";
   const themeLabel = isDark ? "Dark Mode" : "Light Mode";
 
+  const menuItems = accountPreview.isAuthenticated
+    ? authenticatedMenuItems
+    : guestMenuItems;
+
   const rootClassName =
     variant === "mobile"
       ? "gb-shop-account-menu gb-shop-account-menu--mobile"
@@ -74,7 +145,10 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
 
   const closeMenuAndFocusTrigger = useCallback(() => {
     setIsOpen(false);
-    triggerRef.current?.focus();
+
+    window.requestAnimationFrame(() => {
+      triggerRef.current?.focus();
+    });
   }, []);
 
   const handleTriggerClick = useCallback(
@@ -87,8 +161,7 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
 
   const handleThemeChange = useCallback(() => {
     setTheme(nextTheme);
-    closeMenu();
-  }, [closeMenu, nextTheme, setTheme]);
+  }, [nextTheme, setTheme]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -108,10 +181,12 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeMenuAndFocusTrigger();
+      if (event.key !== "Escape") {
+        return;
       }
+
+      event.preventDefault();
+      closeMenuAndFocusTrigger();
     };
 
     document.addEventListener("pointerdown", handlePointerDown);
@@ -123,6 +198,10 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
     };
   }, [closeMenu, closeMenuAndFocusTrigger, isOpen]);
 
+  useEffect(() => {
+    closeMenu();
+  }, [closeMenu, pathname]);
+
   return (
     <details ref={menuRef} className={rootClassName} open={isOpen}>
       <summary
@@ -131,6 +210,7 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
         aria-label={isOpen ? "Close account menu" : "Open account menu"}
         aria-expanded={isOpen}
         aria-controls={menuId}
+        aria-haspopup="menu"
         onClick={handleTriggerClick}
       >
         <span className="gb-shop-account-menu__trigger-icon" aria-hidden="true">
@@ -153,145 +233,52 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
         />
       </summary>
 
-      <div id={menuId} className="gb-shop-account-menu__dropdown">
+      <div
+        id={menuId}
+        className="gb-shop-account-menu__dropdown"
+        aria-label="Account menu"
+        role="menu"
+      >
         <div className="gb-shop-account-menu__panel">
-          {accountPreview.isAuthenticated ? (
-            <>
-              <Link
-                href="/account"
-                className="gb-shop-account-menu__item"
-                onClick={closeMenu}
-              >
-                <span className="gb-shop-account-menu__item-icon">
-                  <UserRound aria-hidden="true" focusable="false" />
-                </span>
-                <span className="gb-shop-account-menu__item-content">
-                  <span className="gb-shop-account-menu__item-title">
-                    My Account
-                  </span>
-                  <span className="gb-shop-account-menu__item-text">
-                    Manage your profile
-                  </span>
-                </span>
-              </Link>
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = isMenuItemActive(pathname, item.href);
 
+            return (
               <Link
-                href="/orders"
-                className="gb-shop-account-menu__item"
+                key={item.href}
+                href={item.href}
+                className={getAccountMenuItemClassName(isActive)}
+                role="menuitem"
+                aria-current={isActive ? "page" : undefined}
                 onClick={closeMenu}
               >
                 <span className="gb-shop-account-menu__item-icon">
-                  <PackageSearch aria-hidden="true" focusable="false" />
+                  <Icon aria-hidden="true" focusable="false" />
                 </span>
-                <span className="gb-shop-account-menu__item-content">
-                  <span className="gb-shop-account-menu__item-title">
-                    My Orders
-                  </span>
-                  <span className="gb-shop-account-menu__item-text">
-                    View and track your orders
-                  </span>
-                </span>
-              </Link>
 
-              <Link
-                href="/wishlist"
-                className="gb-shop-account-menu__item"
-                onClick={closeMenu}
-              >
-                <span className="gb-shop-account-menu__item-icon">
-                  <Heart aria-hidden="true" focusable="false" />
-                </span>
                 <span className="gb-shop-account-menu__item-content">
                   <span className="gb-shop-account-menu__item-title">
-                    Wishlist
+                    {item.title}
                   </span>
                   <span className="gb-shop-account-menu__item-text">
-                    View your saved items
+                    {item.description}
                   </span>
                 </span>
-              </Link>
 
-              <Link
-                href="/addresses"
-                className="gb-shop-account-menu__item"
-                onClick={closeMenu}
-              >
-                <span className="gb-shop-account-menu__item-icon">
-                  <MapPin aria-hidden="true" focusable="false" />
-                </span>
-                <span className="gb-shop-account-menu__item-content">
-                  <span className="gb-shop-account-menu__item-title">
-                    Addresses
-                  </span>
-                  <span className="gb-shop-account-menu__item-text">
-                    Manage delivery addresses
-                  </span>
-                </span>
+                {isActive ? (
+                  <span className="gb-sr-only">Current page</span>
+                ) : null}
               </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                href="/account/login"
-                className="gb-shop-account-menu__item"
-                onClick={closeMenu}
-              >
-                <span className="gb-shop-account-menu__item-icon">
-                  <LogIn aria-hidden="true" focusable="false" />
-                </span>
-                <span className="gb-shop-account-menu__item-content">
-                  <span className="gb-shop-account-menu__item-title">
-                    Sign in / Create account
-                  </span>
-                  <span className="gb-shop-account-menu__item-text">
-                    Access orders, wishlist and offers
-                  </span>
-                </span>
-              </Link>
-
-              <Link
-                href="/track-order"
-                className="gb-shop-account-menu__item"
-                onClick={closeMenu}
-              >
-                <span className="gb-shop-account-menu__item-icon">
-                  <PackageSearch aria-hidden="true" focusable="false" />
-                </span>
-                <span className="gb-shop-account-menu__item-content">
-                  <span className="gb-shop-account-menu__item-title">
-                    Track Order
-                  </span>
-                  <span className="gb-shop-account-menu__item-text">
-                    Check your recent order status
-                  </span>
-                </span>
-              </Link>
-
-              <Link
-                href="/help-center"
-                className="gb-shop-account-menu__item"
-                onClick={closeMenu}
-              >
-                <span className="gb-shop-account-menu__item-icon">
-                  <HelpCircle aria-hidden="true" focusable="false" />
-                </span>
-                <span className="gb-shop-account-menu__item-content">
-                  <span className="gb-shop-account-menu__item-title">
-                    Help Center
-                  </span>
-                  <span className="gb-shop-account-menu__item-text">
-                    Get help and support
-                  </span>
-                </span>
-              </Link>
-            </>
-          )}
+            );
+          })}
 
           <div className="gb-shop-account-menu__divider" role="separator" />
 
           <button
             type="button"
             className="gb-shop-account-menu__theme"
+            role="menuitem"
             aria-label={`Switch to ${nextTheme} mode`}
             aria-pressed={isDark}
             disabled={!isMounted}

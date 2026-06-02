@@ -21,7 +21,7 @@ export function SearchBox({
       aria-label={label}
       className="gb-shop-search"
     >
-      <label htmlFor={id} className="sr-only">
+      <label htmlFor={id} className="gb-sr-only">
         {label}
       </label>
 
@@ -41,7 +41,7 @@ export function SearchBox({
 
       <button
         type="submit"
-        aria-label={label}
+        aria-label="Submit product search"
         className="gb-shop-search__button"
       >
         <Search aria-hidden="true" focusable="false" />

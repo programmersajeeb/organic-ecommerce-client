@@ -17,15 +17,15 @@ type SearchPageProps = Readonly<{
   }>;
 }>;
 
-type SearchProduct = {
+type SearchProduct = Readonly<{
   title: string;
   image: string;
   price: string;
   oldPrice?: string;
   badge?: string;
   badgeType?: "success" | "warning" | "error";
-  keywords: string[];
-};
+  keywords: ReadonlyArray<string>;
+}>;
 
 const searchableProducts: SearchProduct[] = [
   {
@@ -34,10 +34,10 @@ const searchableProducts: SearchProduct[] = [
     price: "৳2,300",
     oldPrice: "৳2,500",
     badge: "Save 8%",
-    keywords: ["honey", "sundarban", "raw honey", "organic honey"],
+    keywords: ["honey", "modhu", "sundarban", "raw honey", "organic honey"],
   },
   {
-    title: "Deshi Mustard Oil 5 liter",
+    title: "Deshi Mustard Oil 5 Liter",
     image: "/placeholder-product.png",
     price: "৳1,550",
     badge: "Best Selling",
@@ -45,11 +45,18 @@ const searchableProducts: SearchProduct[] = [
     keywords: ["oil", "mustard oil", "deshi oil", "cooking oil"],
   },
   {
+    title: "Pure Cow Ghee 500g",
+    image: "/placeholder-product.png",
+    price: "৳1,150",
+    badge: "Pure",
+    keywords: ["ghee", "cow ghee", "pure ghee", "oil and ghee"],
+  },
+  {
     title: "Premium Dates 1kg",
     image: "/placeholder-product.png",
     price: "৳1,250",
     badge: "Premium",
-    keywords: ["dates", "premium dates", "ajwa", "medjool"],
+    keywords: ["dates", "khejur", "premium dates", "ajwa", "medjool"],
   },
   {
     title: "Organic Spice Combo",
@@ -59,18 +66,66 @@ const searchableProducts: SearchProduct[] = [
     badge: "Organic",
     keywords: ["spices", "masala", "turmeric", "chili", "cumin"],
   },
+  {
+    title: "Premium Rice & Lentils Pack",
+    image: "/placeholder-product.png",
+    price: "৳1,890",
+    badge: "Family Pack",
+    keywords: ["rice", "lentils", "dal", "rice and lentils", "pantry"],
+  },
+  {
+    title: "Seasonal Mango Pre-Order Box",
+    image: "/placeholder-product.png",
+    price: "৳1,700",
+    badge: "New",
+    badgeType: "warning",
+    keywords: ["mango", "mango pre order", "fruits", "seasonal fruit"],
+  },
+  {
+    title: "Fresh Fruit Family Box",
+    image: "/placeholder-product.png",
+    price: "৳1,350",
+    badge: "Fresh",
+    keywords: ["fruits", "fresh fruit", "banana", "apple", "seasonal"],
+  },
+];
+
+const popularSearches = [
+  "Honey",
+  "Mustard Oil",
+  "Dates",
+  "Spices",
+  "Rice",
+  "Mango",
 ];
 
 function normalizeText(value: string) {
-  return value.toLowerCase().replace(/\s+/g, " ").trim();
+  return value
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9৳\u0980-\u09ff]+/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function getSearchQuery(value?: string | string[]) {
-  if (Array.isArray(value)) {
-    return value[0] ?? "";
+  const query = Array.isArray(value) ? value[0] : value;
+
+  return query?.trim().slice(0, 80) ?? "";
+}
+
+function doesProductMatchQuery(product: SearchProduct, query: string) {
+  const queryWords = normalizeText(query).split(" ").filter(Boolean);
+
+  if (queryWords.length === 0) {
+    return false;
   }
 
-  return value ?? "";
+  const searchableText = normalizeText(
+    [product.title, ...product.keywords].join(" "),
+  );
+
+  return queryWords.every((word) => searchableText.includes(word));
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
@@ -79,19 +134,17 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const normalizedQuery = normalizeText(query);
 
   const searchResults = normalizedQuery
-    ? searchableProducts.filter((product) => {
-        const searchableText = normalizeText(
-          [product.title, ...product.keywords].join(" "),
-        );
-
-        return searchableText.includes(normalizedQuery);
-      })
+    ? searchableProducts.filter((product) =>
+        doesProductMatchQuery(product, query),
+      )
     : [];
+
+  const hasSearchResults = searchResults.length > 0;
 
   return (
     <section className="gb-section">
       <div className="gb-container">
-        <div className="gb-card gb-account-page">
+        <div className="gb-card gb-account-page gb-search-page">
           <p className="gb-account-page__eyebrow">Product Search</p>
 
           <h1 className="gb-account-page__title">
@@ -101,12 +154,12 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </h1>
 
           <p className="gb-account-page__description">
-            Find honey, dates, spices, oil, ghee, rice, lentils and other
-            organic grocery products. This search page is ready for future
+            Find honey, dates, spices, oil, ghee, rice, lentils, fruits and
+            other organic grocery products. This page is ready for future
             backend/API powered product search.
           </p>
 
-          <div className="mt-6">
+          <div className="gb-account-page__form">
             <SearchBox
               id="search-page-input"
               label="Search organic products"
@@ -115,35 +168,63 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </div>
 
           {!normalizedQuery ? (
-            <div className="gb-account-page__actions">
-              <Link href="/categories" className="gb-btn-primary">
-                Browse categories
-              </Link>
+            <>
+              <div
+                className="gb-search-page__quick-links"
+                aria-label="Popular searches"
+              >
+                {popularSearches.map((item) => (
+                  <Link
+                    key={item}
+                    href={`/search?q=${encodeURIComponent(item)}`}
+                    className="gb-badge gb-badge-success"
+                  >
+                    {item}
+                  </Link>
+                ))}
+              </div>
 
-              <Link href="/" className="gb-btn-outline">
-                Continue shopping
-              </Link>
-            </div>
+              <div className="gb-account-page__actions">
+                <Link href="/categories" className="gb-btn-primary">
+                  Browse categories
+                </Link>
+
+                <Link href="/" className="gb-btn-outline">
+                  Continue shopping
+                </Link>
+              </div>
+            </>
           ) : null}
 
-          {normalizedQuery && searchResults.length === 0 ? (
-            <div className="mt-8 rounded-2xl border border-dashed border-border bg-muted/30 p-6 text-center">
-              <Search
-                className="mx-auto size-8 text-muted-foreground"
-                aria-hidden="true"
-                focusable="false"
-              />
+          {normalizedQuery && !hasSearchResults ? (
+            <div className="gb-search-empty">
+              <span className="gb-search-empty__icon" aria-hidden="true">
+                <Search aria-hidden="true" focusable="false" />
+              </span>
 
-              <h2 className="mt-4 text-xl font-black text-foreground">
-                No products found
-              </h2>
+              <h2 className="gb-search-empty__title">No products found</h2>
 
-              <p className="mx-auto mt-2 max-w-md text-sm font-medium leading-6 text-muted-foreground">
-                Try searching for honey, dates, spices, oil, ghee, rice or
-                lentils.
+              <p className="gb-search-empty__description">
+                Try searching for honey, dates, spices, oil, ghee, rice,
+                lentils or mango.
               </p>
 
-              <div className="mt-5">
+              <div
+                className="gb-search-empty__quick-links"
+                aria-label="Suggested searches"
+              >
+                {popularSearches.map((item) => (
+                  <Link
+                    key={item}
+                    href={`/search?q=${encodeURIComponent(item)}`}
+                    className="gb-badge gb-badge-success"
+                  >
+                    {item}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="gb-search-empty__actions">
                 <Link href="/categories" className="gb-btn-primary">
                   Browse all categories
                 </Link>
@@ -152,17 +233,25 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           ) : null}
         </div>
 
-        {searchResults.length > 0 ? (
-          <div className="mt-8">
-            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-2xl font-black tracking-tight text-foreground">
-                {searchResults.length} product
-                {searchResults.length > 1 ? "s" : ""} found
-              </h2>
+        {hasSearchResults ? (
+          <div className="gb-search-results">
+            <div className="gb-search-results__header">
+              <div>
+                <h2 className="gb-search-results__title">
+                  {searchResults.length} product
+                  {searchResults.length > 1 ? "s" : ""} found
+                </h2>
 
-              <Link href="/categories" className="gb-btn-outline">
-                View all categories
-              </Link>
+                <p className="gb-search-results__meta">
+                  Showing matching organic products for your search.
+                </p>
+              </div>
+
+              <div className="gb-search-results__actions">
+                <Link href="/categories" className="gb-btn-outline">
+                  View all categories
+                </Link>
+              </div>
             </div>
 
             <div className="gb-product-grid">

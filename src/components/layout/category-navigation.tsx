@@ -4,9 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Apple,
+  BadgePercent,
+  CalendarDays,
   ChevronDown,
   ChevronRight,
   Droplet,
+  Gift,
   Leaf,
   Menu,
   MoreHorizontal,
@@ -26,8 +29,6 @@ import {
   useRef,
   useState,
 } from "react";
-
-import { categoryNavItems } from "@/constants/navigation";
 
 type CategoryMenuItem = Readonly<{
   label: string;
@@ -61,6 +62,7 @@ type CategoryMenu = Readonly<{
   href: string;
   description: string;
   icon: LucideIcon;
+  searchTerms: ReadonlyArray<string>;
   groups: ReadonlyArray<CategoryMenuGroup>;
   featuredLinks: ReadonlyArray<CategoryFeaturedLink>;
   promotion: CategoryPromotion;
@@ -72,9 +74,21 @@ type CategorySearchResult = Readonly<{
   href: string;
   eyebrow: string;
   icon: LucideIcon;
+  searchTerms: ReadonlyArray<string>;
 }>;
 
 const DEFAULT_CATEGORY_KEY = "honey";
+
+const primaryCategoryKeys = [
+  "honey",
+  "oil-and-ghee",
+  "dates",
+  "spices",
+  "rice-and-lentils",
+  "fruits",
+  "mango-pre-order",
+  "offers",
+] as const;
 
 const categoryMenus: CategoryMenu[] = [
   {
@@ -84,6 +98,7 @@ const categoryMenus: CategoryMenu[] = [
     href: "/categories/honey",
     description: "Pure, raw and naturally sourced honey collections.",
     icon: Package,
+    searchTerms: ["honey", "raw honey", "forest honey", "mustard honey"],
     promotion: {
       eyebrow: "Featured Honey",
       title: "Pure forest honey for daily wellness",
@@ -149,6 +164,7 @@ const categoryMenus: CategoryMenu[] = [
     href: "/categories/oil-and-ghee",
     description: "Cold-pressed oils, pure ghee and kitchen essentials.",
     icon: Droplet,
+    searchTerms: ["oil", "ghee", "mustard oil", "cooking oil", "pure ghee"],
     promotion: {
       eyebrow: "Kitchen Essentials",
       title: "Pure oil and ghee for healthy cooking",
@@ -235,6 +251,7 @@ const categoryMenus: CategoryMenu[] = [
     href: "/categories/dates",
     description: "Premium dates, gift packs and family value packs.",
     icon: Sparkles,
+    searchTerms: ["dates", "ajwa", "medjool", "mabroom", "gift dates"],
     promotion: {
       eyebrow: "Premium Dates",
       title: "Naturally sweet and premium quality dates",
@@ -300,6 +317,7 @@ const categoryMenus: CategoryMenu[] = [
     href: "/categories/spices",
     description: "Fresh spices, whole spices and ready spice mixes.",
     icon: Leaf,
+    searchTerms: ["spices", "masala", "turmeric", "chili", "cumin"],
     promotion: {
       eyebrow: "Fresh Spices",
       title: "Perfect touch of natural flavor",
@@ -384,6 +402,7 @@ const categoryMenus: CategoryMenu[] = [
     href: "/categories/rice-and-lentils",
     description: "Premium rice, lentils and daily pantry staples.",
     icon: Wheat,
+    searchTerms: ["rice", "lentils", "dal", "staples", "pantry"],
     promotion: {
       eyebrow: "Daily Staples",
       title: "Clean pantry essentials for every family",
@@ -473,6 +492,7 @@ const categoryMenus: CategoryMenu[] = [
     href: "/categories/fruits",
     description: "Fresh seasonal fruits and organic fruit boxes.",
     icon: Apple,
+    searchTerms: ["fruits", "mango", "banana", "apple", "seasonal fruits"],
     promotion: {
       eyebrow: "Fresh Fruits",
       title: "Seasonal fruits delivered fresh",
@@ -543,7 +563,242 @@ const categoryMenus: CategoryMenu[] = [
       },
     ],
   },
+  {
+    key: "mango-pre-order",
+    label: "Mango Pre-Order",
+    shortLabel: "Mango",
+    href: "/collections/mango-pre-order",
+    description: "Pre-order premium seasonal mangoes.",
+    icon: CalendarDays,
+    searchTerms: ["mango", "pre order", "seasonal mango", "premium mango"],
+    promotion: {
+      eyebrow: "Seasonal Pre-Order",
+      title: "Reserve premium mangoes before the season rush",
+      description: "Pre-order handpicked seasonal mangoes for family and gifting.",
+      ctaLabel: "Pre-Order Mango",
+      href: "/collections/mango-pre-order",
+    },
+    groups: [
+      {
+        title: "Mango Varieties",
+        href: "/collections/mango-pre-order",
+        items: [
+          {
+            label: "Himsagar Mango",
+            href: "/collections/mango-pre-order/himsagar",
+          },
+          {
+            label: "Langra Mango",
+            href: "/collections/mango-pre-order/langra",
+          },
+          {
+            label: "Amrapali Mango",
+            href: "/collections/mango-pre-order/amrapali",
+          },
+          {
+            label: "Haribhanga Mango",
+            href: "/collections/mango-pre-order/haribhanga",
+          },
+        ],
+      },
+      {
+        title: "Pre-Order Packs",
+        href: "/collections/mango-pre-order/packs",
+        items: [
+          {
+            label: "Family Mango Box",
+            href: "/collections/mango-pre-order/family-box",
+          },
+          {
+            label: "Gift Mango Box",
+            href: "/collections/mango-pre-order/gift-box",
+          },
+          {
+            label: "Bulk Pre-Order",
+            href: "/collections/mango-pre-order/bulk",
+          },
+        ],
+      },
+      {
+        title: "Seasonal Guides",
+        href: "/collections/mango-pre-order/guides",
+        items: [
+          {
+            label: "Delivery Timeline",
+            href: "/collections/mango-pre-order/delivery-timeline",
+          },
+          {
+            label: "Storage Guide",
+            href: "/collections/mango-pre-order/storage-guide",
+          },
+          {
+            label: "Quality Promise",
+            href: "/collections/mango-pre-order/quality",
+          },
+        ],
+      },
+    ],
+    featuredLinks: [
+      {
+        label: "New Season",
+        href: "/collections/mango-pre-order/new-season",
+        icon: Sparkles,
+      },
+      {
+        label: "Gift Packs",
+        href: "/collections/mango-pre-order/gift-box",
+        icon: Gift,
+      },
+      {
+        label: "Quality Promise",
+        href: "/collections/mango-pre-order/quality",
+        icon: ShieldCheck,
+      },
+    ],
+  },
+  {
+    key: "eid-2026",
+    label: "Eid 2026",
+    shortLabel: "Eid",
+    href: "/collections/eid-2026",
+    description: "Festive organic grocery and gift picks.",
+    icon: Gift,
+    searchTerms: ["eid", "eid 2026", "gift", "festival", "gift box"],
+    promotion: {
+      eyebrow: "Festive Collection",
+      title: "Organic grocery and gifts for Eid 2026",
+      description: "Premium festive picks for family, guests and gifting.",
+      ctaLabel: "Explore Eid Picks",
+      href: "/collections/eid-2026",
+    },
+    groups: [
+      {
+        title: "Gift Picks",
+        href: "/collections/eid-2026/gifts",
+        items: [
+          { label: "Honey Gift Box", href: "/collections/eid-2026/honey-gift" },
+          { label: "Dates Gift Box", href: "/collections/eid-2026/dates-gift" },
+          {
+            label: "Premium Grocery Box",
+            href: "/collections/eid-2026/grocery-box",
+          },
+        ],
+      },
+      {
+        title: "Festive Staples",
+        href: "/collections/eid-2026/staples",
+        items: [
+          { label: "Rice & Lentils", href: "/collections/eid-2026/staples" },
+          { label: "Cooking Oil", href: "/collections/eid-2026/cooking-oil" },
+          { label: "Spices", href: "/collections/eid-2026/spices" },
+        ],
+      },
+      {
+        title: "Family Bundles",
+        href: "/collections/eid-2026/bundles",
+        items: [
+          {
+            label: "Small Family Bundle",
+            href: "/collections/eid-2026/small-family",
+          },
+          {
+            label: "Large Family Bundle",
+            href: "/collections/eid-2026/large-family",
+          },
+          {
+            label: "Guest Hosting Bundle",
+            href: "/collections/eid-2026/guest-hosting",
+          },
+        ],
+      },
+    ],
+    featuredLinks: [
+      {
+        label: "Gift Boxes",
+        href: "/collections/eid-2026/gifts",
+        icon: Gift,
+      },
+      {
+        label: "Best Deals",
+        href: "/collections/eid-2026/deals",
+        icon: BadgePercent,
+      },
+      {
+        label: "Premium Picks",
+        href: "/collections/eid-2026/premium",
+        icon: Star,
+      },
+    ],
+  },
+  {
+    key: "offers",
+    label: "Offer Zone",
+    shortLabel: "Offers",
+    href: "/offers",
+    description: "Best offers and exclusive grocery deals.",
+    icon: BadgePercent,
+    searchTerms: ["offer", "offers", "deals", "discount", "sale"],
+    promotion: {
+      eyebrow: "Best Deals",
+      title: "Save more on everyday organic essentials",
+      description: "Limited-time offers on honey, dates, staples and more.",
+      ctaLabel: "View Offers",
+      href: "/offers",
+    },
+    groups: [
+      {
+        title: "Current Offers",
+        href: "/offers",
+        items: [
+          { label: "Today’s Deals", href: "/offers/today" },
+          { label: "Bundle Offers", href: "/offers/bundles" },
+          { label: "Family Packs", href: "/offers/family-packs" },
+          { label: "Gift Deals", href: "/offers/gifts" },
+        ],
+      },
+      {
+        title: "By Category",
+        href: "/offers/categories",
+        items: [
+          { label: "Honey Offers", href: "/offers/honey" },
+          { label: "Dates Offers", href: "/offers/dates" },
+          { label: "Rice & Lentils Offers", href: "/offers/rice-and-lentils" },
+          { label: "Fruit Offers", href: "/offers/fruits" },
+        ],
+      },
+      {
+        title: "Smart Savings",
+        href: "/offers/savings",
+        items: [
+          { label: "Under ৳500", href: "/offers/under-500" },
+          { label: "Monthly Grocery Deals", href: "/offers/monthly-grocery" },
+          { label: "New Customer Offers", href: "/offers/new-customer" },
+        ],
+      },
+    ],
+    featuredLinks: [
+      {
+        label: "Today’s Deals",
+        href: "/offers/today",
+        icon: BadgePercent,
+      },
+      {
+        label: "Bundle Offers",
+        href: "/offers/bundles",
+        icon: Sparkles,
+      },
+      {
+        label: "Best Sellers",
+        href: "/offers/best-sellers",
+        icon: Star,
+      },
+    ],
+  },
 ];
+
+const primaryCategoryMenus = primaryCategoryKeys
+  .map((key) => categoryMenus.find((category) => category.key === key))
+  .filter((category): category is CategoryMenu => Boolean(category));
 
 const categorySearchResults: CategorySearchResult[] = categoryMenus.flatMap(
   (category) => [
@@ -553,6 +808,7 @@ const categorySearchResults: CategorySearchResult[] = categoryMenus.flatMap(
       href: category.href,
       eyebrow: "Category",
       icon: category.icon,
+      searchTerms: category.searchTerms,
     },
     ...category.groups.flatMap((group) => [
       {
@@ -561,6 +817,7 @@ const categorySearchResults: CategorySearchResult[] = categoryMenus.flatMap(
         href: group.href,
         eyebrow: category.label,
         icon: category.icon,
+        searchTerms: [category.label, group.title, ...category.searchTerms],
       },
       ...group.items.map((item) => ({
         id: `item-${category.key}-${group.title}-${item.label}`,
@@ -568,6 +825,12 @@ const categorySearchResults: CategorySearchResult[] = categoryMenus.flatMap(
         href: item.href,
         eyebrow: `${category.label} / ${group.title}`,
         icon: category.icon,
+        searchTerms: [
+          category.label,
+          group.title,
+          item.label,
+          ...category.searchTerms,
+        ],
       })),
     ]),
     ...category.featuredLinks.map((item) => ({
@@ -576,6 +839,7 @@ const categorySearchResults: CategorySearchResult[] = categoryMenus.flatMap(
       href: item.href,
       eyebrow: `${category.label} / Featured`,
       icon: item.icon,
+      searchTerms: [category.label, item.label, ...category.searchTerms],
     })),
   ],
 );
@@ -583,9 +847,21 @@ const categorySearchResults: CategorySearchResult[] = categoryMenus.flatMap(
 function normalizeText(value: string) {
   return value
     .toLowerCase()
-    .replace(/&/g, "and")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9৳\u0980-\u09ff]+/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function doesTextMatchQuery(text: string, query: string) {
+  const normalizedText = normalizeText(text);
+  const queryWords = normalizeText(query).split(" ").filter(Boolean);
+
+  if (queryWords.length === 0) {
+    return false;
+  }
+
+  return queryWords.every((word) => normalizedText.includes(word));
 }
 
 function isLinkActive(pathname: string, href: string) {
@@ -594,17 +870,6 @@ function isLinkActive(pathname: string, href: string) {
   }
 
   return pathname === href || pathname.startsWith(`${href}/`);
-}
-
-function findCategoryByLabel(label: string) {
-  const normalizedLabel = normalizeText(label);
-
-  return categoryMenus.find((category) => {
-    return (
-      normalizeText(category.label) === normalizedLabel ||
-      normalizeText(category.shortLabel) === normalizedLabel
-    );
-  });
 }
 
 function findCategoryByPathname(pathname: string) {
@@ -618,16 +883,15 @@ function getCategoryByKey(key: string) {
 }
 
 function getFilteredSearchResults(query: string) {
-  const normalizedQuery = normalizeText(query);
-
-  if (!normalizedQuery) {
+  if (!normalizeText(query)) {
     return [];
   }
 
   return categorySearchResults
     .filter((item) => {
-      return normalizeText(`${item.label} ${item.eyebrow}`).includes(
-        normalizedQuery,
+      return doesTextMatchQuery(
+        [item.label, item.eyebrow, ...item.searchTerms].join(" "),
+        query,
       );
     })
     .slice(0, 12);
@@ -636,12 +900,18 @@ function getFilteredSearchResults(query: string) {
 export function CategoryNavigation() {
   const pathname = usePathname();
   const desktopMenuId = useId();
+  const desktopSearchId = useId();
 
   const navRef = useRef<HTMLElement>(null);
   const desktopTriggerRef = useRef<HTMLButtonElement>(null);
 
   const routeCategory = findCategoryByPathname(pathname);
   const routeCategoryKey = routeCategory?.key ?? DEFAULT_CATEGORY_KEY;
+  const isRoutePrimaryCategory = routeCategory
+    ? primaryCategoryKeys.includes(
+        routeCategory.key as (typeof primaryCategoryKeys)[number],
+      )
+    : false;
 
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
   const [desktopQuery, setDesktopQuery] = useState("");
@@ -661,27 +931,32 @@ export function CategoryNavigation() {
     setDesktopQuery("");
   }, []);
 
+  const closeDesktopMenuAndFocusTrigger = useCallback(() => {
+    closeDesktopMenu();
+
+    window.requestAnimationFrame(() => {
+      desktopTriggerRef.current?.focus();
+    });
+  }, [closeDesktopMenu]);
+
   const openDesktopMenu = useCallback(() => {
     setPreviewCategoryKey(routeCategoryKey);
     setIsDesktopMenuOpen(true);
   }, [routeCategoryKey]);
 
   const toggleDesktopMenu = useCallback(() => {
-    if (isDesktopMenuOpen) {
-      closeDesktopMenu();
-      return;
-    }
+    setIsDesktopMenuOpen((currentValue) => {
+      const nextValue = !currentValue;
 
-    openDesktopMenu();
-  }, [closeDesktopMenu, isDesktopMenuOpen, openDesktopMenu]);
+      if (nextValue) {
+        setPreviewCategoryKey(routeCategoryKey);
+        return true;
+      }
 
-  const handleDesktopCategoryPreview = useCallback((label: string) => {
-    const category = findCategoryByLabel(label);
-
-    if (category) {
-      setPreviewCategoryKey(category.key);
-    }
-  }, []);
+      setDesktopQuery("");
+      return false;
+    });
+  }, [routeCategoryKey]);
 
   useEffect(() => {
     if (!isDesktopMenuOpen) {
@@ -712,18 +987,29 @@ export function CategoryNavigation() {
       }
 
       event.preventDefault();
-      closeDesktopMenu();
-      desktopTriggerRef.current?.focus();
+      closeDesktopMenuAndFocusTrigger();
+    };
+
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 900px)").matches) {
+        closeDesktopMenu();
+      }
     };
 
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [closeDesktopMenu, isDesktopMenuOpen]);
+  }, [closeDesktopMenu, closeDesktopMenuAndFocusTrigger, isDesktopMenuOpen]);
+
+  useEffect(() => {
+    closeDesktopMenu();
+  }, [closeDesktopMenu, pathname]);
 
   return (
     <nav
@@ -751,9 +1037,8 @@ export function CategoryNavigation() {
           className="gb-shop-category-nav__items"
           aria-label="Featured product categories"
         >
-          {categoryNavItems.map((item) => {
-            const category = findCategoryByLabel(item.label);
-            const Icon = category?.icon;
+          {primaryCategoryMenus.map((item) => {
+            const Icon = item.icon;
             const isActive = isLinkActive(pathname, item.href);
 
             return (
@@ -766,17 +1051,15 @@ export function CategoryNavigation() {
                     : "gb-shop-category-nav__link"
                 }
                 aria-current={isActive ? "page" : undefined}
-                onMouseEnter={() => handleDesktopCategoryPreview(item.label)}
-                onFocus={() => handleDesktopCategoryPreview(item.label)}
+                onMouseEnter={() => setPreviewCategoryKey(item.key)}
+                onFocus={() => setPreviewCategoryKey(item.key)}
                 onClick={closeDesktopMenu}
               >
-                {Icon ? (
-                  <Icon
-                    className="gb-shop-category-nav__link-icon"
-                    aria-hidden="true"
-                    focusable="false"
-                  />
-                ) : null}
+                <Icon
+                  className="gb-shop-category-nav__link-icon"
+                  aria-hidden="true"
+                  focusable="false"
+                />
 
                 <span>{item.label}</span>
               </Link>
@@ -786,11 +1069,11 @@ export function CategoryNavigation() {
           <button
             type="button"
             className={
-              isDesktopMenuOpen
+              isDesktopMenuOpen || (routeCategory && !isRoutePrimaryCategory)
                 ? "gb-shop-category-nav__link gb-shop-category-nav__more gb-shop-category-nav__link--active"
                 : "gb-shop-category-nav__link gb-shop-category-nav__more"
             }
-            aria-label="View more product categories"
+            aria-label="View more product categories and collections"
             aria-haspopup="true"
             aria-expanded={isDesktopMenuOpen}
             aria-controls={desktopMenuId}
@@ -812,17 +1095,25 @@ export function CategoryNavigation() {
         >
           <div className="gb-shop-header-container gb-shop-category-mega__inner">
             <div className="gb-shop-category-mega__aside">
-              <label className="gb-shop-category-mega__search">
+              <div className="gb-shop-category-mega__search">
                 <Search aria-hidden="true" focusable="false" />
-                <span className="gb-sr-only">Search within categories</span>
+
+                <label htmlFor={desktopSearchId} className="gb-sr-only">
+                  Search within categories
+                </label>
 
                 <input
+                  id={desktopSearchId}
                   type="search"
+                  inputMode="search"
+                  autoComplete="off"
+                  autoCapitalize="none"
+                  spellCheck={false}
                   placeholder="Search inside categories..."
                   value={desktopQuery}
                   onChange={(event) => setDesktopQuery(event.target.value)}
                 />
-              </label>
+              </div>
 
               <div className="gb-shop-category-mega__promo">
                 <span className="gb-shop-category-mega__promo-eyebrow">
@@ -877,7 +1168,7 @@ export function CategoryNavigation() {
                   </div>
                 ) : (
                   <div className="gb-shop-category-mega__empty">
-                    No category found. Try honey, dates, spices or rice.
+                    No category found. Try honey, dates, spices, rice or mango.
                   </div>
                 )}
               </div>
@@ -889,18 +1180,21 @@ export function CategoryNavigation() {
                 >
                   {categoryMenus.map((category) => {
                     const Icon = category.icon;
-                    const isActive = category.key === activeDesktopCategory.key;
+                    const isPreviewActive =
+                      category.key === activeDesktopCategory.key;
+                    const isRouteActive = isLinkActive(pathname, category.href);
 
                     return (
                       <button
                         key={category.key}
                         type="button"
                         className={
-                          isActive
+                          isPreviewActive
                             ? "gb-shop-category-mega__rail-item gb-shop-category-mega__rail-item--active"
                             : "gb-shop-category-mega__rail-item"
                         }
-                        aria-pressed={isActive}
+                        aria-pressed={isPreviewActive}
+                        aria-current={isRouteActive ? "page" : undefined}
                         onMouseEnter={() => setPreviewCategoryKey(category.key)}
                         onFocus={() => setPreviewCategoryKey(category.key)}
                         onClick={() => setPreviewCategoryKey(category.key)}

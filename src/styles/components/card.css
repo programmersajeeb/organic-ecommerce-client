@@ -1,8 +1,8 @@
 /* =============================================================================
    COMPONENT - CARD
    -----------------------------------------------------------------------------
-   Shared card primitive for product cards, content cards, account panels
-   and ecommerce UI sections.
+   Shared card primitive for product cards, content cards, account panels,
+   search states and ecommerce UI sections.
    ============================================================================= */
 
 @layer components {
@@ -33,13 +33,9 @@
     transform: translateY(-2px);
   }
 
-  .gb-card-interactive:focus-visible {
-    outline: 0;
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-focus);
-  }
-
+  .gb-card-interactive:focus-visible,
   .gb-card-interactive:focus-within {
+    outline: 0;
     border-color: var(--color-primary);
     box-shadow: var(--shadow-focus);
   }
@@ -59,7 +55,7 @@
   }
 
   /* ---------------------------------------------------------------------------
-     Account Page Card
+     Account / Content Page Card
      --------------------------------------------------------------------------- */
 
   .gb-account-page {
@@ -111,12 +107,140 @@
     line-height: 1.75;
   }
 
+  .gb-account-page__form {
+    margin-top: 1.5rem;
+  }
+
   .gb-account-page__actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem;
     margin-top: 1.65rem;
+  }
+
+  /* ---------------------------------------------------------------------------
+     Search Page States
+     --------------------------------------------------------------------------- */
+
+  .gb-search-page {
+    width: min(100%, 52rem);
+  }
+
+  .gb-search-page__quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+  }
+
+  .gb-search-empty {
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+    border: 1px dashed var(--color-border-soft);
+    border-radius: var(--radius-2xl);
+    background:
+      radial-gradient(
+        circle at top,
+        var(--color-primary-soft),
+        transparent 34%
+      ),
+      var(--color-section);
+    color: var(--color-body);
+    text-align: center;
+    padding: clamp(1.35rem, 4vw, 2.5rem);
+  }
+
+  .gb-search-empty__icon {
+    display: inline-flex;
+    width: 3.25rem;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-card);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .gb-search-empty__icon svg {
+    width: 1.45rem;
+    height: 1.45rem;
+    stroke-width: 2.35;
+  }
+
+  .gb-search-empty__title {
+    max-width: 32rem;
+    margin-top: 1rem;
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .gb-search-empty__description {
+    max-width: 34rem;
+    margin-top: 0.55rem;
+    color: var(--color-body);
+    font-size: 0.94rem;
+    font-weight: 600;
+    line-height: 1.7;
+  }
+
+  .gb-search-empty__quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+  }
+
+  .gb-search-empty__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .gb-search-results {
+    margin-top: 2rem;
+  }
+
+  .gb-search-results__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .gb-search-results__title {
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    font-size: clamp(1.45rem, 3vw, 2.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+  }
+
+  .gb-search-results__meta {
+    color: var(--color-muted);
+    font-size: 0.86rem;
+    font-weight: 750;
+    line-height: 1.3;
+  }
+
+  .gb-search-results__actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.65rem;
   }
 
   @media (max-width: 560px) {
@@ -129,14 +253,32 @@
       letter-spacing: -0.035em;
     }
 
-    .gb-account-page__actions {
+    .gb-account-page__actions,
+    .gb-search-empty__actions {
       display: grid;
       grid-template-columns: 1fr;
     }
 
     .gb-account-page__actions .gb-btn-primary,
     .gb-account-page__actions .gb-btn-outline,
-    .gb-account-page__actions .gb-btn-ghost {
+    .gb-account-page__actions .gb-btn-ghost,
+    .gb-search-empty__actions .gb-btn-primary,
+    .gb-search-empty__actions .gb-btn-outline,
+    .gb-search-empty__actions .gb-btn-ghost {
+      width: 100%;
+    }
+
+    .gb-search-results__header {
+      align-items: flex-start;
+    }
+
+    .gb-search-results__actions {
+      width: 100%;
+      justify-content: stretch;
+    }
+
+    .gb-search-results__actions .gb-btn-outline,
+    .gb-search-results__actions .gb-btn-primary {
       width: 100%;
     }
   }
