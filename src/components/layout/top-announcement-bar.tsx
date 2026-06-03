@@ -4,6 +4,7 @@ import { topBarLeftItems, topBarRightItems } from "@/constants/navigation";
 
 export function TopAnnouncementBar() {
   const primaryAnnouncement = topBarLeftItems[0];
+  const PrimaryAnnouncementIcon = primaryAnnouncement?.icon;
 
   return (
     <div className="gb-shop-topbar">
@@ -29,13 +30,13 @@ export function TopAnnouncementBar() {
           })}
         </ul>
 
-        {primaryAnnouncement ? (
+        {primaryAnnouncement && PrimaryAnnouncementIcon ? (
           <Link
             href={primaryAnnouncement.href}
             className="gb-shop-topbar__mobile-announcement"
             aria-label={primaryAnnouncement.label}
           >
-            <primaryAnnouncement.icon aria-hidden="true" focusable="false" />
+            <PrimaryAnnouncementIcon aria-hidden="true" focusable="false" />
             <span>{primaryAnnouncement.label}</span>
           </Link>
         ) : null}
@@ -60,7 +61,7 @@ export function TopAnnouncementBar() {
               className="gb-shop-topbar__language"
               aria-label="Change language between English and Bengali"
             >
-              EN | বাংলা
+              EN <span aria-hidden="true">|</span> বাংলা
             </Link>
           </li>
         </ul>
@@ -70,7 +71,7 @@ export function TopAnnouncementBar() {
           className="gb-shop-topbar__mobile-language"
           aria-label="Change language between English and Bengali"
         >
-          EN | বাংলা
+          EN <span aria-hidden="true">|</span> বাংলা
         </Link>
       </nav>
     </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import {
   Apple,
   BadgePercent,
@@ -30,6 +31,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 
 import { SearchBox } from "@/components/common/search-box";
@@ -175,6 +177,37 @@ function isItemActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function subscribeToClientStore() {
+  return () => undefined;
+}
+
+function getClientSnapshot() {
+  return true;
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
+function focusElementWithoutScrolling(element: HTMLElement | null) {
+  if (!element) {
+    return;
+  }
+
+  const currentScrollX = window.scrollX;
+  const currentScrollY = window.scrollY;
+
+  try {
+    element.focus({ preventScroll: true });
+  } catch {
+    element.focus();
+  }
+
+  if (window.scrollX !== currentScrollX || window.scrollY !== currentScrollY) {
+    window.scrollTo(currentScrollX, currentScrollY);
+  }
+}
+
 export function MainHeader() {
   const pathname = usePathname();
 
@@ -187,18 +220,18 @@ export function MainHeader() {
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
   const mobileDrawerPanelRef = useRef<HTMLElement>(null);
   const drawerFilterRef = useRef<HTMLDivElement>(null);
-  const drawerItemRefs = useRef(new Map<string, HTMLAnchorElement>());
+
+  const isClient = useSyncExternalStore(
+    subscribeToClientStore,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDrawerFilterOpen, setIsDrawerFilterOpen] = useState(false);
   const [drawerSearchQuery, setDrawerSearchQuery] = useState("");
   const [drawerFilter, setDrawerFilter] =
     useState<DrawerFilterOption["value"]>("all");
-
-  const activeDrawerItemHref = useMemo(() => {
-    return drawerShopItems.find((item) => isItemActive(pathname, item.href))
-      ?.href;
-  }, [pathname]);
 
   const filteredDrawerItems = useMemo(() => {
     const normalizedQuery = normalizeText(drawerSearchQuery);
@@ -250,7 +283,7 @@ export function MainHeader() {
     closeMobileMenu();
 
     window.requestAnimationFrame(() => {
-      mobileMenuTriggerRef.current?.focus();
+      focusElementWithoutScrolling(mobileMenuTriggerRef.current);
     });
   }, [closeMobileMenu]);
 
@@ -284,32 +317,58 @@ export function MainHeader() {
     setDrawerSearchQuery("");
   }, []);
 
-  const setDrawerItemRef = useCallback(
-    (href: string, node: HTMLAnchorElement | null) => {
-      if (node) {
-        drawerItemRefs.current.set(href, node);
-        return;
-      }
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
 
-      drawerItemRefs.current.delete(href);
-    },
-    [],
-  );
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousHtmlOverscrollBehavior =
+      document.documentElement.style.overscrollBehavior;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousBodyOverscrollBehavior = document.body.style.overscrollBehavior;
+    const previousBodyPaddingRight = document.body.style.paddingRight;
+
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.overscrollBehavior = "none";
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    return () => {
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.documentElement.style.overscrollBehavior =
+        previousHtmlOverscrollBehavior;
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.overscrollBehavior = previousBodyOverscrollBehavior;
+      document.body.style.paddingRight = previousBodyPaddingRight;
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
       return;
     }
 
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-
-    window.requestAnimationFrame(() => {
-      mobileDrawerPanelRef.current?.focus();
+    const animationFrame = window.requestAnimationFrame(() => {
+      focusElementWithoutScrolling(mobileDrawerPanelRef.current);
     });
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
 
     const handlePointerDown = (event: PointerEvent) => {
       if (!isDrawerFilterOpen) {
@@ -392,8 +451,6 @@ export function MainHeader() {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", handleResize);
@@ -406,30 +463,318 @@ export function MainHeader() {
     isMobileMenuOpen,
   ]);
 
-  useEffect(() => {
-    if (!isMobileMenuOpen || !activeDrawerItemHref) {
-      return;
-    }
+  const mobileDrawer = isMobileMenuOpen ? (
+    <div
+      id={mobileMenuId}
+      className="gb-shop-mobile-drawer"
+      aria-labelledby={drawerTitleId}
+      role="dialog"
+      aria-modal="true"
+    >
+      <button
+        type="button"
+        className="gb-shop-mobile-drawer__backdrop"
+        aria-label="Close mobile category sidebar"
+        tabIndex={-1}
+        onClick={closeMobileMenu}
+      />
 
-    const scrollTimer = window.setTimeout(() => {
-      drawerItemRefs.current.get(activeDrawerItemHref)?.scrollIntoView({
-        block: "nearest",
-        behavior: "smooth",
-      });
-    }, 120);
+      <aside
+        ref={mobileDrawerPanelRef}
+        className="gb-shop-mobile-drawer__panel"
+        tabIndex={-1}
+      >
+        <div className="gb-shop-mobile-drawer__header">
+          <SiteLogo compact />
 
-    return () => {
-      window.clearTimeout(scrollTimer);
-    };
-  }, [activeDrawerItemHref, drawerFilter, drawerSearchQuery, isMobileMenuOpen]);
+          <div className="gb-shop-mobile-drawer__header-actions">
+            <Link
+              href="/language"
+              className="gb-shop-mobile-drawer__language"
+              aria-label="Change language between English and Bengali"
+              onClick={closeMobileMenu}
+            >
+              EN <span aria-hidden="true">|</span> বাংলা
+            </Link>
 
-  useEffect(() => {
-    if (!isMobileMenuOpen) {
-      return;
-    }
+            <button
+              type="button"
+              className="gb-shop-mobile-drawer__close"
+              aria-label="Close mobile category sidebar"
+              onClick={closeMobileMenu}
+            >
+              <X aria-hidden="true" focusable="false" />
+            </button>
+          </div>
+        </div>
 
-    closeMobileMenu();
-  }, [closeMobileMenu, pathname]);
+        <h2 id={drawerTitleId} className="gb-sr-only">
+          Shop categories
+        </h2>
+
+        <div className="gb-shop-mobile-drawer__search-wrap">
+          <div className="gb-shop-mobile-drawer__search-row">
+            <label htmlFor={drawerSearchId} className="gb-sr-only">
+              Search categories
+            </label>
+
+            <div className="gb-shop-mobile-drawer__search">
+              <Search aria-hidden="true" focusable="false" />
+
+              <input
+                id={drawerSearchId}
+                type="search"
+                inputMode="search"
+                autoComplete="off"
+                autoCapitalize="none"
+                spellCheck={false}
+                placeholder="Search categories..."
+                value={drawerSearchQuery}
+                onChange={(event) => setDrawerSearchQuery(event.target.value)}
+              />
+
+              {drawerSearchQuery ? (
+                <button
+                  type="button"
+                  aria-label="Clear category search"
+                  onClick={clearDrawerSearch}
+                >
+                  <X aria-hidden="true" focusable="false" />
+                </button>
+              ) : null}
+            </div>
+
+            <div
+              ref={drawerFilterRef}
+              className="gb-shop-mobile-drawer__filter-control"
+            >
+              <button
+                type="button"
+                className="gb-shop-mobile-drawer__filter"
+                aria-labelledby={drawerFilterLabelId}
+                aria-expanded={isDrawerFilterOpen}
+                aria-controls={drawerFilterMenuId}
+                aria-haspopup="menu"
+                onClick={handleDrawerFilterTriggerClick}
+              >
+                <span
+                  id={drawerFilterLabelId}
+                  className="gb-shop-mobile-drawer__filter-label"
+                >
+                  {selectedDrawerFilter.label}
+                </span>
+
+                <ChevronDown
+                  aria-hidden="true"
+                  focusable="false"
+                  className="gb-shop-mobile-drawer__filter-icon"
+                />
+              </button>
+
+              {isDrawerFilterOpen ? (
+                <div
+                  id={drawerFilterMenuId}
+                  className="gb-shop-mobile-drawer__filter-menu"
+                  role="menu"
+                  aria-label="Choose category filter"
+                >
+                  {drawerFilterOptions.map((option) => {
+                    const isSelected = option.value === drawerFilter;
+
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        role="menuitemradio"
+                        aria-checked={isSelected}
+                        className={
+                          isSelected
+                            ? "gb-shop-mobile-drawer__filter-menu-item gb-shop-mobile-drawer__filter-menu-item--active"
+                            : "gb-shop-mobile-drawer__filter-menu-item"
+                        }
+                        onClick={() => handleDrawerFilterChange(option.value)}
+                      >
+                        <span>{option.label}</span>
+
+                        {isSelected ? (
+                          <span aria-hidden="true">✓</span>
+                        ) : null}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
+          </div>
+
+          <div
+            className="gb-shop-mobile-drawer__filter-tabs"
+            role="group"
+            aria-label="Filter category list"
+          >
+            {drawerFilterOptions.map((option) => {
+              const isSelected = option.value === drawerFilter;
+
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  className={
+                    isSelected
+                      ? "gb-shop-mobile-drawer__filter-tab gb-shop-mobile-drawer__filter-tab--active"
+                      : "gb-shop-mobile-drawer__filter-tab"
+                  }
+                  aria-pressed={isSelected}
+                  onClick={() => handleDrawerFilterChange(option.value)}
+                >
+                  {option.shortLabel}
+                </button>
+              );
+            })}
+          </div>
+
+          <p className="gb-shop-mobile-drawer__result-text">{resultText}</p>
+        </div>
+
+        <nav
+          className="gb-shop-mobile-drawer__body"
+          aria-label="Mobile category navigation"
+        >
+          <section
+            className="gb-shop-mobile-drawer__section"
+            aria-label="Shop categories"
+          >
+            <div className="gb-shop-mobile-drawer__section-header">
+              <p className="gb-shop-mobile-drawer__eyebrow">
+                Shop Categories
+              </p>
+
+              <Link
+                href="/categories"
+                className="gb-shop-mobile-drawer__view-link"
+                onClick={closeMobileMenu}
+              >
+                View all
+              </Link>
+            </div>
+
+            {filteredDrawerItems.length > 0 ? (
+              <div className="gb-shop-mobile-drawer__category-list">
+                {filteredDrawerItems.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = isItemActive(pathname, item.href);
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={
+                        isActive
+                          ? "gb-shop-mobile-drawer__category-item gb-shop-mobile-drawer__category-item--active"
+                          : "gb-shop-mobile-drawer__category-item"
+                      }
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={closeMobileMenu}
+                    >
+                      <span
+                        className="gb-shop-mobile-drawer__item-icon"
+                        aria-hidden="true"
+                      >
+                        <Icon aria-hidden="true" focusable="false" />
+                      </span>
+
+                      <span className="gb-shop-mobile-drawer__item-content">
+                        <strong>{item.label}</strong>
+                        <small>{item.description}</small>
+                      </span>
+
+                      {item.badge ? (
+                        <span className="gb-shop-mobile-drawer__badge">
+                          {item.badge}
+                        </span>
+                      ) : (
+                        <ChevronRight aria-hidden="true" focusable="false" />
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="gb-shop-mobile-drawer__empty">
+                <strong>No category found</strong>
+                <span>Try honey, oil, dates, spices or rice.</span>
+              </div>
+            )}
+          </section>
+
+          <section className="gb-shop-mobile-drawer__section">
+            <div className="gb-shop-mobile-drawer__info-grid">
+              <Link
+                href="/quality"
+                className="gb-shop-mobile-drawer__trust-card"
+                onClick={closeMobileMenu}
+              >
+                <span aria-hidden="true">
+                  <ShieldCheck aria-hidden="true" focusable="false" />
+                </span>
+
+                <span>
+                  <strong>100% Natural & Authentic</strong>
+                  <small>Carefully sourced products for your family.</small>
+                </span>
+
+                <ChevronRight aria-hidden="true" focusable="false" />
+              </Link>
+
+              <Link
+                href="/help-center"
+                className="gb-shop-mobile-drawer__help-card"
+                onClick={closeMobileMenu}
+              >
+                <span aria-hidden="true">
+                  <Headphones aria-hidden="true" focusable="false" />
+                </span>
+
+                <span>
+                  <strong>Need help?</strong>
+                  <small>We are here to support your shopping.</small>
+                </span>
+
+                <ChevronRight aria-hidden="true" focusable="false" />
+              </Link>
+            </div>
+          </section>
+        </nav>
+
+        <div className="gb-shop-mobile-drawer__footer">
+          <div className="gb-shop-mobile-drawer__footer-actions">
+            <Link
+              href="/categories"
+              className="gb-shop-mobile-drawer__primary-action"
+              onClick={closeMobileMenu}
+            >
+              <Grid3X3 aria-hidden="true" focusable="false" />
+              <span>View All Categories</span>
+            </Link>
+
+            <Link
+              href={cartPreview.href}
+              className="gb-shop-mobile-drawer__cart-action"
+              aria-label={`Open cart, ${cartPreview.itemCount} items, subtotal ${cartPreview.subtotal}`}
+              onClick={closeMobileMenu}
+            >
+              <ShoppingCart aria-hidden="true" focusable="false" />
+
+              <span>
+                <strong>Cart ({cartPreview.itemCount})</strong>
+                <small>{cartPreview.subtotal}</small>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </aside>
+    </div>
+  ) : null;
 
   return (
     <div className="gb-shop-main-header" aria-label="Main site header">
@@ -519,325 +864,7 @@ export function MainHeader() {
         </div>
       </div>
 
-      {isMobileMenuOpen ? (
-        <div
-          id={mobileMenuId}
-          className="gb-shop-mobile-drawer"
-          aria-labelledby={drawerTitleId}
-          role="dialog"
-          aria-modal="true"
-        >
-          <button
-            type="button"
-            className="gb-shop-mobile-drawer__backdrop"
-            aria-label="Close mobile category sidebar"
-            onClick={closeMobileMenuAndFocusTrigger}
-          />
-
-          <aside
-            ref={mobileDrawerPanelRef}
-            className="gb-shop-mobile-drawer__panel"
-            tabIndex={-1}
-          >
-            <div className="gb-shop-mobile-drawer__header">
-              <SiteLogo compact />
-
-              <div className="gb-shop-mobile-drawer__header-actions">
-                <Link
-                  href="/language"
-                  className="gb-shop-mobile-drawer__language"
-                  aria-label="Change language between English and Bengali"
-                  onClick={closeMobileMenu}
-                >
-                  EN <span aria-hidden="true">|</span> বাংলা
-                </Link>
-
-                <button
-                  type="button"
-                  className="gb-shop-mobile-drawer__close"
-                  aria-label="Close mobile category sidebar"
-                  onClick={closeMobileMenuAndFocusTrigger}
-                >
-                  <X aria-hidden="true" focusable="false" />
-                </button>
-              </div>
-            </div>
-
-            <h2 id={drawerTitleId} className="gb-sr-only">
-              Shop categories
-            </h2>
-
-            <div className="gb-shop-mobile-drawer__search-wrap">
-              <div className="gb-shop-mobile-drawer__search-row">
-                <label htmlFor={drawerSearchId} className="gb-sr-only">
-                  Search categories
-                </label>
-
-                <div className="gb-shop-mobile-drawer__search">
-                  <Search aria-hidden="true" focusable="false" />
-
-                  <input
-                    id={drawerSearchId}
-                    type="search"
-                    inputMode="search"
-                    autoComplete="off"
-                    autoCapitalize="none"
-                    spellCheck={false}
-                    placeholder="Search categories..."
-                    value={drawerSearchQuery}
-                    onChange={(event) =>
-                      setDrawerSearchQuery(event.target.value)
-                    }
-                  />
-
-                  {drawerSearchQuery ? (
-                    <button
-                      type="button"
-                      aria-label="Clear category search"
-                      onClick={clearDrawerSearch}
-                    >
-                      <X aria-hidden="true" focusable="false" />
-                    </button>
-                  ) : null}
-                </div>
-
-                <div
-                  ref={drawerFilterRef}
-                  className="gb-shop-mobile-drawer__filter-control"
-                >
-                  <button
-                    type="button"
-                    className="gb-shop-mobile-drawer__filter"
-                    aria-labelledby={drawerFilterLabelId}
-                    aria-expanded={isDrawerFilterOpen}
-                    aria-controls={drawerFilterMenuId}
-                    aria-haspopup="menu"
-                    onClick={handleDrawerFilterTriggerClick}
-                  >
-                    <span
-                      id={drawerFilterLabelId}
-                      className="gb-shop-mobile-drawer__filter-label"
-                    >
-                      {selectedDrawerFilter.label}
-                    </span>
-
-                    <ChevronDown
-                      aria-hidden="true"
-                      focusable="false"
-                      className="gb-shop-mobile-drawer__filter-icon"
-                    />
-                  </button>
-
-                  {isDrawerFilterOpen ? (
-                    <div
-                      id={drawerFilterMenuId}
-                      className="gb-shop-mobile-drawer__filter-menu"
-                      role="menu"
-                      aria-label="Choose category filter"
-                    >
-                      {drawerFilterOptions.map((option) => {
-                        const isSelected = option.value === drawerFilter;
-
-                        return (
-                          <button
-                            key={option.value}
-                            type="button"
-                            role="menuitemradio"
-                            aria-checked={isSelected}
-                            className={
-                              isSelected
-                                ? "gb-shop-mobile-drawer__filter-menu-item gb-shop-mobile-drawer__filter-menu-item--active"
-                                : "gb-shop-mobile-drawer__filter-menu-item"
-                            }
-                            onClick={() =>
-                              handleDrawerFilterChange(option.value)
-                            }
-                          >
-                            <span>{option.label}</span>
-
-                            {isSelected ? (
-                              <span aria-hidden="true">✓</span>
-                            ) : null}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-
-              <div
-                className="gb-shop-mobile-drawer__filter-tabs"
-                role="group"
-                aria-label="Filter category list"
-              >
-                {drawerFilterOptions.map((option) => {
-                  const isSelected = option.value === drawerFilter;
-
-                  return (
-                    <button
-                      key={option.value}
-                      type="button"
-                      className={
-                        isSelected
-                          ? "gb-shop-mobile-drawer__filter-tab gb-shop-mobile-drawer__filter-tab--active"
-                          : "gb-shop-mobile-drawer__filter-tab"
-                      }
-                      aria-pressed={isSelected}
-                      onClick={() => handleDrawerFilterChange(option.value)}
-                    >
-                      {option.shortLabel}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <p className="gb-shop-mobile-drawer__result-text">{resultText}</p>
-            </div>
-
-            <nav
-              className="gb-shop-mobile-drawer__body"
-              aria-label="Mobile category navigation"
-            >
-              <section
-                className="gb-shop-mobile-drawer__section"
-                aria-label="Shop categories"
-              >
-                <div className="gb-shop-mobile-drawer__section-header">
-                  <p className="gb-shop-mobile-drawer__eyebrow">
-                    Shop Categories
-                  </p>
-
-                  <Link
-                    href="/categories"
-                    className="gb-shop-mobile-drawer__view-link"
-                    onClick={closeMobileMenu}
-                  >
-                    View all
-                  </Link>
-                </div>
-
-                {filteredDrawerItems.length > 0 ? (
-                  <div className="gb-shop-mobile-drawer__category-list">
-                    {filteredDrawerItems.map((item) => {
-                      const Icon = item.icon;
-                      const isActive = isItemActive(pathname, item.href);
-
-                      return (
-                        <Link
-                          key={item.href}
-                          ref={(node) => setDrawerItemRef(item.href, node)}
-                          href={item.href}
-                          className={
-                            isActive
-                              ? "gb-shop-mobile-drawer__category-item gb-shop-mobile-drawer__category-item--active"
-                              : "gb-shop-mobile-drawer__category-item"
-                          }
-                          aria-current={isActive ? "page" : undefined}
-                          onClick={closeMobileMenu}
-                        >
-                          <span
-                            className="gb-shop-mobile-drawer__item-icon"
-                            aria-hidden="true"
-                          >
-                            <Icon aria-hidden="true" focusable="false" />
-                          </span>
-
-                          <span className="gb-shop-mobile-drawer__item-content">
-                            <strong>{item.label}</strong>
-                            <small>{item.description}</small>
-                          </span>
-
-                          {item.badge ? (
-                            <span className="gb-shop-mobile-drawer__badge">
-                              {item.badge}
-                            </span>
-                          ) : (
-                            <ChevronRight
-                              aria-hidden="true"
-                              focusable="false"
-                            />
-                          )}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <div className="gb-shop-mobile-drawer__empty">
-                    <strong>No category found</strong>
-                    <span>Try honey, oil, dates, spices or rice.</span>
-                  </div>
-                )}
-              </section>
-
-              <section className="gb-shop-mobile-drawer__section">
-                <div className="gb-shop-mobile-drawer__info-grid">
-                  <Link
-                    href="/quality"
-                    className="gb-shop-mobile-drawer__trust-card"
-                    onClick={closeMobileMenu}
-                  >
-                    <span aria-hidden="true">
-                      <ShieldCheck aria-hidden="true" focusable="false" />
-                    </span>
-
-                    <span>
-                      <strong>100% Natural & Authentic</strong>
-                      <small>Carefully sourced products for your family.</small>
-                    </span>
-
-                    <ChevronRight aria-hidden="true" focusable="false" />
-                  </Link>
-
-                  <Link
-                    href="/help-center"
-                    className="gb-shop-mobile-drawer__help-card"
-                    onClick={closeMobileMenu}
-                  >
-                    <span aria-hidden="true">
-                      <Headphones aria-hidden="true" focusable="false" />
-                    </span>
-
-                    <span>
-                      <strong>Need help?</strong>
-                      <small>We are here to support your shopping.</small>
-                    </span>
-
-                    <ChevronRight aria-hidden="true" focusable="false" />
-                  </Link>
-                </div>
-              </section>
-            </nav>
-
-            <div className="gb-shop-mobile-drawer__footer">
-              <div className="gb-shop-mobile-drawer__footer-actions">
-                <Link
-                  href="/categories"
-                  className="gb-shop-mobile-drawer__primary-action"
-                  onClick={closeMobileMenu}
-                >
-                  <Grid3X3 aria-hidden="true" focusable="false" />
-                  <span>View All Categories</span>
-                </Link>
-
-                <Link
-                  href={cartPreview.href}
-                  className="gb-shop-mobile-drawer__cart-action"
-                  aria-label={`Open cart, ${cartPreview.itemCount} items, subtotal ${cartPreview.subtotal}`}
-                  onClick={closeMobileMenu}
-                >
-                  <ShoppingCart aria-hidden="true" focusable="false" />
-
-                  <span>
-                    <strong>Cart ({cartPreview.itemCount})</strong>
-                    <small>{cartPreview.subtotal}</small>
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </aside>
-        </div>
-      ) : null}
+      {isClient && mobileDrawer ? createPortal(mobileDrawer, document.body) : null}
     </div>
   );
 }

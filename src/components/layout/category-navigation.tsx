@@ -21,14 +21,7 @@ import {
   Wheat,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 type CategoryMenuItem = Readonly<{
   label: string;
@@ -915,9 +908,14 @@ export function CategoryNavigation() {
 
   const [isDesktopMenuOpen, setIsDesktopMenuOpen] = useState(false);
   const [desktopQuery, setDesktopQuery] = useState("");
-  const [previewCategoryKey, setPreviewCategoryKey] = useState(routeCategoryKey);
+  const [previewCategoryKey, setPreviewCategoryKey] =
+    useState(DEFAULT_CATEGORY_KEY);
 
-  const activeDesktopCategory = getCategoryByKey(previewCategoryKey);
+  const activePreviewCategoryKey = isDesktopMenuOpen
+    ? previewCategoryKey
+    : routeCategoryKey;
+
+  const activeDesktopCategory = getCategoryByKey(activePreviewCategoryKey);
 
   const desktopSearchResults = useMemo(
     () => getFilteredSearchResults(desktopQuery),
@@ -939,11 +937,6 @@ export function CategoryNavigation() {
     });
   }, [closeDesktopMenu]);
 
-  const openDesktopMenu = useCallback(() => {
-    setPreviewCategoryKey(routeCategoryKey);
-    setIsDesktopMenuOpen(true);
-  }, [routeCategoryKey]);
-
   const toggleDesktopMenu = useCallback(() => {
     setIsDesktopMenuOpen((currentValue) => {
       const nextValue = !currentValue;
@@ -958,11 +951,13 @@ export function CategoryNavigation() {
     });
   }, [routeCategoryKey]);
 
-  useEffect(() => {
-    if (!isDesktopMenuOpen) {
-      setPreviewCategoryKey(routeCategoryKey);
-    }
-  }, [isDesktopMenuOpen, routeCategoryKey]);
+  const handlePrimaryCategoryPreview = useCallback((categoryKey: string) => {
+    setPreviewCategoryKey(categoryKey);
+  }, []);
+
+  const handleRailCategoryPreview = useCallback((categoryKey: string) => {
+    setPreviewCategoryKey(categoryKey);
+  }, []);
 
   useEffect(() => {
     if (!isDesktopMenuOpen) {
@@ -1007,10 +1002,6 @@ export function CategoryNavigation() {
     };
   }, [closeDesktopMenu, closeDesktopMenuAndFocusTrigger, isDesktopMenuOpen]);
 
-  useEffect(() => {
-    closeDesktopMenu();
-  }, [closeDesktopMenu, pathname]);
-
   return (
     <nav
       ref={navRef}
@@ -1051,8 +1042,8 @@ export function CategoryNavigation() {
                     : "gb-shop-category-nav__link"
                 }
                 aria-current={isActive ? "page" : undefined}
-                onMouseEnter={() => setPreviewCategoryKey(item.key)}
-                onFocus={() => setPreviewCategoryKey(item.key)}
+                onMouseEnter={() => handlePrimaryCategoryPreview(item.key)}
+                onFocus={() => handlePrimaryCategoryPreview(item.key)}
                 onClick={closeDesktopMenu}
               >
                 <Icon
@@ -1195,9 +1186,11 @@ export function CategoryNavigation() {
                         }
                         aria-pressed={isPreviewActive}
                         aria-current={isRouteActive ? "page" : undefined}
-                        onMouseEnter={() => setPreviewCategoryKey(category.key)}
-                        onFocus={() => setPreviewCategoryKey(category.key)}
-                        onClick={() => setPreviewCategoryKey(category.key)}
+                        onMouseEnter={() =>
+                          handleRailCategoryPreview(category.key)
+                        }
+                        onFocus={() => handleRailCategoryPreview(category.key)}
+                        onClick={() => handleRailCategoryPreview(category.key)}
                       >
                         <Icon aria-hidden="true" focusable="false" />
 

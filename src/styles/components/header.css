@@ -673,10 +673,13 @@
     transition: transform 220ms ease;
   }
 
+  .gb-shop-account-menu__theme[aria-checked="true"] .gb-shop-account-menu__switch,
   .gb-shop-account-menu__theme[aria-pressed="true"] .gb-shop-account-menu__switch {
     background: var(--color-primary);
   }
 
+  .gb-shop-account-menu__theme[aria-checked="true"]
+    .gb-shop-account-menu__switch-thumb,
   .gb-shop-account-menu__theme[aria-pressed="true"]
     .gb-shop-account-menu__switch-thumb {
     transform: translateX(1.05rem);
@@ -828,21 +831,36 @@
     inset: 0;
     z-index: 130;
     display: flex;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100vh;
+    overflow: hidden;
+    overscroll-behavior: contain;
     pointer-events: auto;
   }
 
   .gb-shop-mobile-drawer__backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100vh;
     border: 0;
-    background: hsl(var(--gb-heading) / 0.46);
+    outline: 0;
+    background: hsl(var(--gb-heading) / 0.52);
     cursor: pointer;
     animation: gb-mobile-drawer-backdrop-in 180ms ease both;
   }
 
-  @supports (backdrop-filter: blur(8px)) {
+  .gb-shop-mobile-drawer__backdrop:focus,
+  .gb-shop-mobile-drawer__backdrop:focus-visible {
+    outline: 0;
+  }
+
+  @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
     .gb-shop-mobile-drawer__backdrop {
-      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(7px);
+      backdrop-filter: blur(7px);
     }
   }
 
@@ -853,8 +871,10 @@
     width: min(27rem, calc(100vw - 2rem));
     max-width: 100%;
     height: 100dvh;
+    max-height: 100dvh;
     grid-template-rows: auto auto minmax(0, 1fr) auto;
     overflow: hidden;
+    overscroll-behavior: contain;
     border-right: 1px solid var(--color-border-soft);
     background:
       radial-gradient(
@@ -2623,8 +2643,21 @@
   }
 
   .gb-shop-topbar {
-    background: var(--color-header);
-    padding-block: 0.32rem;
+    background:
+      radial-gradient(
+        circle at left center,
+        hsl(var(--gb-inverse) / 0.1),
+        transparent 36%
+      ),
+      linear-gradient(135deg, var(--color-navbar), var(--color-brand));
+    padding-block: 0;
+  }
+
+  .gb-shop-topbar .gb-shop-header-container {
+    max-width: 1440px;
+    padding-inline:
+      max(1rem, env(safe-area-inset-left))
+      max(1rem, env(safe-area-inset-right));
   }
 
   .gb-shop-topbar__inner {
@@ -2634,20 +2667,15 @@
     align-items: center;
     justify-content: normal;
     gap: 0.7rem;
-    border: 1px solid hsl(var(--gb-inverse) / 0.12);
-    border-radius: var(--radius-lg);
-    background:
-      radial-gradient(
-        circle at left center,
-        hsl(var(--gb-inverse) / 0.1),
-        transparent 36%
-      ),
-      linear-gradient(135deg, var(--color-navbar), var(--color-brand));
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--color-inverse);
     box-shadow:
       inset 0 1px 0 hsl(var(--gb-inverse) / 0.1),
       0 8px 18px hsl(var(--gb-heading) / 0.08);
-    padding-inline: 0.8rem;
+    padding-inline: 0.28rem;
   }
 
   .gb-shop-topbar__left,
@@ -2876,14 +2904,20 @@
   }
 
   .gb-shop-topbar {
-    padding-block: 0.28rem;
+    padding-block: 0;
+  }
+
+  .gb-shop-topbar .gb-shop-header-container {
+    padding-inline:
+      max(0.85rem, env(safe-area-inset-left))
+      max(0.85rem, env(safe-area-inset-right));
   }
 
   .gb-shop-topbar__inner {
     min-height: 2.12rem;
     gap: 0.48rem;
-    border-radius: var(--radius);
-    padding-inline: 0.68rem;
+    border-radius: 0;
+    padding-inline: 0.18rem;
   }
 
   .gb-shop-topbar__mobile-announcement,
@@ -3023,13 +3057,19 @@
   }
 
   .gb-shop-topbar {
-    padding-block: 0.24rem;
+    padding-block: 0;
+  }
+
+  .gb-shop-topbar .gb-shop-header-container {
+    padding-inline:
+      max(0.72rem, env(safe-area-inset-left))
+      max(0.72rem, env(safe-area-inset-right));
   }
 
   .gb-shop-topbar__inner {
     min-height: 2rem;
     gap: 0.36rem;
-    padding-inline: 0.56rem;
+    padding-inline: 0.12rem;
   }
 
   .gb-shop-topbar__mobile-announcement {

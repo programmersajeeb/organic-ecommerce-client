@@ -115,6 +115,25 @@ function getAccountMenuItemClassName(isActive: boolean) {
     : "gb-shop-account-menu__item";
 }
 
+function focusElementWithoutScrolling(element: HTMLElement | null) {
+  if (!element) {
+    return;
+  }
+
+  const currentScrollX = window.scrollX;
+  const currentScrollY = window.scrollY;
+
+  try {
+    element.focus({ preventScroll: true });
+  } catch {
+    element.focus();
+  }
+
+  if (window.scrollX !== currentScrollX || window.scrollY !== currentScrollY) {
+    window.scrollTo(currentScrollX, currentScrollY);
+  }
+}
+
 export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
   const pathname = usePathname();
   const menuId = useId();
@@ -139,6 +158,10 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
       ? "gb-shop-account-menu gb-shop-account-menu--mobile"
       : "gb-shop-account-menu";
 
+  const themeButtonClassName = isDark
+    ? "gb-shop-account-menu__theme gb-shop-account-menu__theme--active"
+    : "gb-shop-account-menu__theme";
+
   const closeMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
@@ -147,17 +170,14 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
     setIsOpen(false);
 
     window.requestAnimationFrame(() => {
-      triggerRef.current?.focus();
+      focusElementWithoutScrolling(triggerRef.current);
     });
   }, []);
 
-  const handleTriggerClick = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      event.preventDefault();
-      setIsOpen((currentValue) => !currentValue);
-    },
-    [],
-  );
+  const handleTriggerClick = useCallback((event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    setIsOpen((currentValue) => !currentValue);
+  }, []);
 
   const handleThemeChange = useCallback(() => {
     setTheme(nextTheme);
@@ -197,10 +217,6 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [closeMenu, closeMenuAndFocusTrigger, isOpen]);
-
-  useEffect(() => {
-    closeMenu();
-  }, [closeMenu, pathname]);
 
   return (
     <details ref={menuRef} className={rootClassName} open={isOpen}>
@@ -253,7 +269,10 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
                 aria-current={isActive ? "page" : undefined}
                 onClick={closeMenu}
               >
-                <span className="gb-shop-account-menu__item-icon">
+                <span
+                  className="gb-shop-account-menu__item-icon"
+                  aria-hidden="true"
+                >
                   <Icon aria-hidden="true" focusable="false" />
                 </span>
 
@@ -277,14 +296,17 @@ export function AccountMenu({ variant = "desktop" }: AccountMenuProps) {
 
           <button
             type="button"
-            className="gb-shop-account-menu__theme"
-            role="menuitem"
+            className={themeButtonClassName}
+            role="menuitemcheckbox"
             aria-label={`Switch to ${nextTheme} mode`}
-            aria-pressed={isDark}
+            aria-checked={isDark}
             disabled={!isMounted}
             onClick={handleThemeChange}
           >
-            <span className="gb-shop-account-menu__item-icon">
+            <span
+              className="gb-shop-account-menu__item-icon"
+              aria-hidden="true"
+            >
               {isDark ? (
                 <Moon aria-hidden="true" focusable="false" />
               ) : (
