@@ -1,5 +1,15 @@
 /* =============================================================================
-   GHORER BAZAR — GLOBAL CSS ENTRY
+   365 SHOP — GLOBAL STYLESHEET ENTRY
+   -----------------------------------------------------------------------------
+   Purpose:
+   This file only controls the global stylesheet loading order.
+
+   Rules:
+   - Do not write component styles here.
+   - Do not write page/section-specific styles here.
+   - Do not write raw color/font/shadow values here.
+   - Keep all design decisions inside token-based CSS files.
+   - Add feature/component CSS only when that feature is actively being built.
    ============================================================================= */
 
 @import "tailwindcss";
@@ -8,19 +18,23 @@
 /* next-themes uses `.dark` class, so Tailwind dark: utilities must follow it */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* 01 — Design system tokens */
 @import "../styles/tokens.css";
+
+/* 02 — Base document reset and global element defaults */
 @import "../styles/base.css";
 
+/* 03 — Layout primitives */
 @import "../styles/layout/container.css";
 @import "../styles/layout/section.css";
 
+/* 04 — Reusable UI primitives */
 @import "../styles/components/button.css";
 @import "../styles/components/badge.css";
-@import "../styles/components/card.css";
-@import "../styles/components/product-card.css";
-@import "../styles/components/skeleton.css";
-@import "../styles/components/section-heading.css";
+
+/* 05 — Active layout/component modules */
 @import "../styles/components/header.css";
 
+/* 06 — Global utilities and motion */
 @import "../styles/utilities.css";
 @import "../styles/animations.css";

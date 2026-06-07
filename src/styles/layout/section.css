@@ -1,12 +1,29 @@
 /* =============================================================================
-   LAYOUT - SECTION
+   365 SHOP — LAYOUT: SECTION
    -----------------------------------------------------------------------------
-   Shared section spacing and section backgrounds.
+   Purpose:
+   Shared section spacing, backgrounds and vertical rhythm for premium pages.
+
+   Rules:
+   - Do not write page-specific section styles here.
+   - Use only global tokens from `tokens.css`.
+   - Keep section utilities predictable and reusable.
    ============================================================================= */
 
 @layer components {
+  .gb-section,
+  .gb-section-sm,
+  .gb-section-lg,
+  .gb-section-tight {
+    position: relative;
+  }
+
   .gb-section {
-    padding-block: clamp(2.5rem, 5vw, 5rem);
+    padding-block: clamp(
+      var(--gb-section-y-tablet),
+      5vw,
+      var(--gb-section-y-desktop)
+    );
   }
 
   .gb-section-sm {
@@ -14,15 +31,43 @@
   }
 
   .gb-section-lg {
-    padding-block: clamp(3.5rem, 7vw, 7rem);
+    padding-block: clamp(4rem, 7vw, 7.5rem);
+  }
+
+  .gb-section-tight {
+    padding-block: clamp(1.25rem, 2vw, 2rem);
   }
 
   .gb-section-soft {
-    background: var(--color-section);
+    background: var(--color-surface-soft);
+  }
+
+  .gb-section-muted {
+    background: var(--color-surface-muted);
   }
 
   .gb-section-card {
-    background: var(--color-card);
+    background: var(--color-surface);
+  }
+
+  .gb-section-elevated {
+    background: var(--color-surface-elevated);
+  }
+
+  .gb-section-ink {
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at top right,
+        hsl(var(--gb-brand) / 0.24),
+        transparent 28rem
+      ),
+      linear-gradient(
+        135deg,
+        var(--color-footer) 0%,
+        hsl(var(--gb-graphite-soft)) 100%
+      );
+    color: var(--color-inverse);
   }
 
   .gb-section-bordered {
@@ -38,36 +83,108 @@
   }
 
   .gb-section-gradient {
+    overflow: hidden;
     background:
       radial-gradient(
         circle at top left,
-        var(--color-primary-soft),
-        transparent 34%
+        hsl(var(--gb-brand) / 0.12),
+        transparent 30rem
+      ),
+      radial-gradient(
+        circle at bottom right,
+        hsl(var(--gb-graphite) / 0.06),
+        transparent 34rem
       ),
       linear-gradient(
         180deg,
-        var(--color-section),
-        var(--color-background)
+        var(--color-surface) 0%,
+        var(--color-background) 100%
+      );
+  }
+
+  .gb-section-brand-soft {
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at top right,
+        hsl(var(--gb-brand) / 0.16),
+        transparent 30rem
+      ),
+      linear-gradient(
+        180deg,
+        var(--color-brand-subtle) 0%,
+        var(--color-background) 100%
       );
   }
 
   .gb-section-fill {
-    min-height: calc(100vh - 9rem);
     display: flex;
+    min-height: calc(
+      100svh - var(--gb-topbar-height) - var(--gb-header-height-desktop)
+    );
     align-items: center;
   }
-}
 
-@media (max-width: 640px) {
-  .gb-section {
-    padding-block: 2rem;
+  .gb-section-stack {
+    display: grid;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
   }
 
-  .gb-section-sm {
-    padding-block: 1.5rem;
+  .gb-section-stack-lg {
+    display: grid;
+    gap: clamp(1.75rem, 3vw, 3rem);
   }
 
-  .gb-section-lg {
-    padding-block: 3rem;
+  .gb-section-stack-xl {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 900px) {
+    .gb-section {
+      padding-block: var(--gb-section-y-tablet);
+    }
+
+    .gb-section-sm {
+      padding-block: 1.75rem;
+    }
+
+    .gb-section-lg {
+      padding-block: 3.5rem;
+    }
+
+    .gb-section-fill {
+      min-height: calc(100svh - var(--gb-header-height-mobile));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gb-section {
+      padding-block: var(--gb-section-y-mobile);
+    }
+
+    .gb-section-sm {
+      padding-block: 1.5rem;
+    }
+
+    .gb-section-lg {
+      padding-block: 3rem;
+    }
+
+    .gb-section-tight {
+      padding-block: 1rem;
+    }
+
+    .gb-section-stack {
+      gap: 1.125rem;
+    }
+
+    .gb-section-stack-lg {
+      gap: 1.5rem;
+    }
+
+    .gb-section-stack-xl {
+      gap: 2rem;
+    }
   }
 }

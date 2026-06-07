@@ -1,13 +1,6 @@
-import { CategoryNavigation } from "@/components/layout/category-navigation";
-import { MainHeader } from "@/components/layout/main-header";
-import { TopAnnouncementBar } from "@/components/layout/top-announcement-bar";
+import { HeaderClient } from "./header/header-client";
+import { headerData, headerSearchConfig } from "./header/header-data";
 
 export function SiteHeader() {
-  return (
-    <header className="gb-shop-header">
-      <TopAnnouncementBar />
-      <MainHeader />
-      <CategoryNavigation />
-    </header>
-  );
+  return <HeaderClient data={headerData} searchConfig={headerSearchConfig} />;
 }

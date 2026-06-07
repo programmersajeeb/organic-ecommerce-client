@@ -1,165 +1,207 @@
 /* =============================================================================
-   GHORER BAZAR — DESIGN TOKENS
+   365 SHOP — ENTERPRISE DESIGN TOKENS
    -----------------------------------------------------------------------------
-   All colors, fonts, radius, shadows and shadcn/ui theme tokens live here.
-   Change this file to control the full website design globally.
+   Purpose:
+   This file is the single source of truth for the full visual system.
+
+   Includes:
+   - Brand colors
+   - Light/Dark mode tokens
+   - shadcn/ui token mapping
+   - Tailwind v4 Theme Bridge
+   - Typography
+   - Radius
+   - Shadows
+   - Spacing/layout primitives
+   - Header semantic tokens
+   - Motion
+   - Z-index
+   - Ecommerce semantic aliases
+
+   Rules:
+   - Do not write component-specific CSS here.
+   - Do not hardcode colors in component CSS.
+   - Use HSL channel tokens for theme switching.
+   - Use project prefix `gb-*` for custom project tokens.
    ============================================================================= */
 
 :root {
   color-scheme: light;
 
-  /* ---------------------------------------------------------------------------
-     Core Brand Palette - HSL Channels
-     --------------------------------------------------------------------------- */
-  --gb-brand: 151 72% 18%;
-  --gb-brand-hover: 151 72% 14%;
-  --gb-brand-soft: 142 45% 94%;
+  --gb-brand: 358 86% 49%;
+  --gb-brand-hover: 358 84% 43%;
+  --gb-brand-active: 358 78% 36%;
+  --gb-brand-soft: 358 100% 96%;
+  --gb-brand-subtle: 358 100% 98%;
+  --gb-brand-ring: 358 86% 49%;
 
-  --gb-action: 24 100% 50%;
-  --gb-action-hover: 24 100% 45%;
-  --gb-action-soft: 32 100% 94%;
+  --gb-graphite: 220 17% 7%;
+  --gb-graphite-soft: 220 14% 12%;
+  --gb-graphite-muted: 220 8% 28%;
 
-  --gb-gold: 42 96% 54%;
-  --gb-gold-soft: 42 100% 94%;
+  --gb-white: 0 0% 100%;
+  --gb-off-white: 0 0% 98%;
+  --gb-snow: 0 0% 99%;
 
-  /* ---------------------------------------------------------------------------
-     Surface Palette - HSL Channels
-     --------------------------------------------------------------------------- */
-  --gb-background: 40 78% 97%;
-  --gb-section: 38 80% 95%;
-  --gb-card: 0 0% 100%;
+  --gb-background: 0 0% 98%;
+  --gb-foreground: 220 17% 7%;
+
+  --gb-surface: 0 0% 100%;
+  --gb-surface-soft: 0 0% 97%;
+  --gb-surface-muted: 0 0% 94%;
+  --gb-surface-elevated: 0 0% 100%;
+  --gb-surface-inverse: 220 17% 7%;
+
   --gb-header: 0 0% 100%;
-  --gb-navbar: var(--gb-brand);
+  --gb-header-top: 220 17% 7%;
+  --gb-navigation: 0 0% 100%;
+  --gb-footer: 220 17% 7%;
 
-  /* ---------------------------------------------------------------------------
-     Text Palette - HSL Channels
-     --------------------------------------------------------------------------- */
-  --gb-heading: 155 35% 11%;
-  --gb-body: 154 14% 31%;
-  --gb-muted: 150 8% 53%;
+  --gb-overlay: 220 17% 7%;
+  --gb-overlay-alpha: 0.62;
+
+  --gb-skeleton: 220 13% 91%;
+  --gb-skeleton-shine: 0 0% 100%;
+
+  --gb-heading: 220 17% 7%;
+  --gb-body: 220 9% 24%;
+  --gb-muted: 220 7% 43%;
+  --gb-subtle: 220 6% 58%;
+  --gb-disabled: 220 7% 72%;
   --gb-inverse: 0 0% 100%;
 
-  /* ---------------------------------------------------------------------------
-     Border & Divider Palette - HSL Channels
-     --------------------------------------------------------------------------- */
-  --gb-border: 36 40% 86%;
-  --gb-border-soft: 38 55% 91%;
-  --gb-divider: 36 34% 90%;
+  --gb-border: 220 12% 88%;
+  --gb-border-soft: 220 13% 92%;
+  --gb-border-strong: 220 10% 78%;
+  --gb-divider: 220 13% 91%;
+  --gb-input: 220 12% 88%;
 
-  /* ---------------------------------------------------------------------------
-     Status Palette - HSL Channels
-     --------------------------------------------------------------------------- */
-  --gb-success: 145 63% 35%;
-  --gb-success-soft: 140 55% 92%;
+  --gb-price: 358 86% 49%;
+  --gb-price-old: 220 6% 58%;
+  --gb-discount: 358 86% 49%;
+  --gb-rating: 42 96% 54%;
+  --gb-rating-soft: 42 100% 94%;
+  --gb-stock: 145 64% 36%;
+  --gb-stock-soft: 145 55% 93%;
+
+  --gb-success: 145 64% 36%;
+  --gb-success-soft: 145 55% 93%;
+  --gb-success-foreground: 145 70% 20%;
 
   --gb-warning: 38 92% 50%;
-  --gb-warning-soft: 38 100% 93%;
+  --gb-warning-soft: 38 100% 94%;
+  --gb-warning-foreground: 32 90% 24%;
 
-  --gb-error: 0 76% 55%;
-  --gb-error-soft: 0 86% 94%;
+  --gb-error: 358 86% 49%;
+  --gb-error-soft: 358 100% 96%;
+  --gb-error-foreground: 358 70% 28%;
 
-  --gb-info: 215 88% 55%;
-  --gb-info-soft: 214 90% 94%;
+  --gb-info: 217 91% 56%;
+  --gb-info-soft: 217 100% 96%;
+  --gb-info-foreground: 217 76% 32%;
 
-  /* ---------------------------------------------------------------------------
-     shadcn/ui Compatible Tokens
-     --------------------------------------------------------------------------- */
   --background: var(--gb-background);
-  --foreground: var(--gb-heading);
+  --foreground: var(--gb-foreground);
 
-  --card: var(--gb-card);
+  --card: var(--gb-surface);
   --card-foreground: var(--gb-heading);
 
-  --popover: var(--gb-card);
+  --popover: var(--gb-surface-elevated);
   --popover-foreground: var(--gb-heading);
 
-  --primary: var(--gb-action);
+  --primary: var(--gb-brand);
   --primary-foreground: var(--gb-inverse);
 
-  --secondary: var(--gb-brand);
+  --secondary: var(--gb-graphite);
   --secondary-foreground: var(--gb-inverse);
 
-  --muted: var(--gb-section);
+  --muted: var(--gb-surface-soft);
   --muted-foreground: var(--gb-muted);
 
-  --accent: var(--gb-action-soft);
+  --accent: var(--gb-brand-soft);
   --accent-foreground: var(--gb-heading);
 
   --destructive: var(--gb-error);
   --destructive-foreground: var(--gb-inverse);
 
   --border: var(--gb-border);
-  --input: var(--gb-border);
-  --ring: var(--gb-action);
+  --input: var(--gb-input);
+  --ring: var(--gb-brand-ring);
 
-  --chart-1: var(--gb-action);
-  --chart-2: var(--gb-brand);
-  --chart-3: var(--gb-gold);
+  --chart-1: var(--gb-brand);
+  --chart-2: var(--gb-graphite);
+  --chart-3: var(--gb-rating);
   --chart-4: var(--gb-success);
   --chart-5: var(--gb-info);
 
-  --sidebar: var(--gb-card);
+  --sidebar: var(--gb-surface);
   --sidebar-foreground: var(--gb-heading);
   --sidebar-primary: var(--gb-brand);
   --sidebar-primary-foreground: var(--gb-inverse);
-  --sidebar-accent: var(--gb-action-soft);
+  --sidebar-accent: var(--gb-brand-soft);
   --sidebar-accent-foreground: var(--gb-heading);
   --sidebar-border: var(--gb-border);
-  --sidebar-ring: var(--gb-action);
+  --sidebar-ring: var(--gb-brand-ring);
 
-  /* ---------------------------------------------------------------------------
-     Project Color Aliases
-     --------------------------------------------------------------------------- */
-  --color-brand: hsl(var(--gb-brand));
-  --color-brand-hover: hsl(var(--gb-brand-hover));
-  --color-brand-soft: hsl(var(--gb-brand-soft));
+  --gb-font-sans:
+    var(--font-inter),
+    var(--font-noto-bengali),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
-  --color-primary: hsl(var(--gb-action));
-  --color-primary-hover: hsl(var(--gb-action-hover));
-  --color-primary-soft: hsl(var(--gb-action-soft));
+  --gb-font-heading:
+    var(--font-merriweather),
+    var(--font-inter),
+    var(--font-noto-bengali),
+    Georgia,
+    serif;
 
-  --color-secondary: hsl(var(--gb-gold));
-  --color-secondary-soft: hsl(var(--gb-gold-soft));
-  --color-accent: hsl(var(--gb-action));
+  --gb-font-bangla:
+    var(--font-noto-bengali),
+    var(--font-inter),
+    system-ui,
+    sans-serif;
 
-  --color-background: hsl(var(--gb-background));
-  --color-section: hsl(var(--gb-section));
-  --color-card: hsl(var(--gb-card));
-  --color-header: hsl(var(--gb-header));
-  --color-navbar: hsl(var(--gb-navbar));
+  --gb-font-mono:
+    "JetBrains Mono",
+    "Fira Code",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
 
-  --color-border: hsl(var(--gb-border));
-  --color-border-soft: hsl(var(--gb-border-soft));
-  --color-divider: hsl(var(--gb-divider));
+  --font-sans: var(--gb-font-sans);
+  --font-heading: var(--gb-font-heading);
+  --font-bangla: var(--gb-font-bangla);
+  --font-serif: var(--gb-font-heading);
+  --font-mono: var(--gb-font-mono);
 
-  --color-heading: hsl(var(--gb-heading));
-  --color-body: hsl(var(--gb-body));
-  --color-muted: hsl(var(--gb-muted));
-  --color-inverse: hsl(var(--gb-inverse));
+  --gb-text-xs: 0.75rem;
+  --gb-text-sm: 0.875rem;
+  --gb-text-base: 1rem;
+  --gb-text-lg: 1.125rem;
+  --gb-text-xl: 1.25rem;
+  --gb-text-2xl: 1.5rem;
+  --gb-text-3xl: 1.875rem;
+  --gb-text-4xl: 2.25rem;
+  --gb-text-5xl: 3rem;
+  --gb-text-6xl: 3.75rem;
 
-  --color-price: hsl(var(--gb-action));
-  --color-old-price: hsl(var(--gb-muted));
-  --color-rating: hsl(var(--gb-gold));
+  --gb-leading-none: 1;
+  --gb-leading-tight: 1.18;
+  --gb-leading-snug: 1.32;
+  --gb-leading-normal: 1.6;
+  --gb-leading-relaxed: 1.75;
 
-  --color-success: hsl(var(--gb-success));
-  --color-success-soft: hsl(var(--gb-success-soft));
+  --gb-tracking-tight: -0.025em;
+  --gb-tracking-normal: 0;
+  --gb-tracking-wide: 0.02em;
+  --gb-tracking-wider: 0.06em;
 
-  --color-warning: hsl(var(--gb-warning));
-  --color-warning-soft: hsl(var(--gb-warning-soft));
-
-  --color-error: hsl(var(--gb-error));
-  --color-error-soft: hsl(var(--gb-error-soft));
-
-  --color-info: hsl(var(--gb-info));
-  --color-info-soft: hsl(var(--gb-info-soft));
-
-  --color-skeleton: hsl(38 35% 90%);
-  --color-skeleton-shine: hsl(0 0% 100%);
-
-  /* ---------------------------------------------------------------------------
-     Border Radius
-     --------------------------------------------------------------------------- */
-  --gb-radius-xs: 0.1875rem;
+  --gb-radius-xs: 0.25rem;
   --gb-radius-sm: 0.375rem;
   --gb-radius-md: 0.5rem;
   --gb-radius-base: 0.75rem;
@@ -167,6 +209,7 @@
   --gb-radius-xl: 1rem;
   --gb-radius-2xl: 1.25rem;
   --gb-radius-3xl: 1.5rem;
+  --gb-radius-4xl: 2rem;
   --gb-radius-full: 9999px;
 
   --radius-xs: var(--gb-radius-xs);
@@ -177,128 +220,525 @@
   --radius-xl: var(--gb-radius-xl);
   --radius-2xl: var(--gb-radius-2xl);
   --radius-3xl: var(--gb-radius-3xl);
+  --radius-4xl: var(--gb-radius-4xl);
   --radius-full: var(--gb-radius-full);
 
-  /* ---------------------------------------------------------------------------
-     Shadows
-     --------------------------------------------------------------------------- */
-  --gb-shadow-xs: 0 1px 2px hsl(155 35% 11% / 0.04);
-  --gb-shadow-sm: 0 2px 8px hsl(155 35% 11% / 0.05);
-  --gb-shadow-base: 0 8px 24px hsl(155 35% 11% / 0.07);
-  --gb-shadow-lg: 0 16px 40px hsl(155 35% 11% / 0.1);
+  --gb-shadow-xs: 0 1px 2px hsl(220 17% 7% / 0.04);
+  --gb-shadow-sm: 0 4px 14px hsl(220 17% 7% / 0.06);
+  --gb-shadow-md: 0 8px 24px hsl(220 17% 7% / 0.08);
+  --gb-shadow-base: 0 12px 34px hsl(220 17% 7% / 0.08);
+  --gb-shadow-lg: 0 20px 54px hsl(220 17% 7% / 0.12);
+  --gb-shadow-xl: 0 28px 80px hsl(220 17% 7% / 0.16);
 
-  --gb-shadow-card: 0 10px 28px hsl(155 35% 11% / 0.06);
-  --gb-shadow-card-hover: 0 18px 42px hsl(155 35% 11% / 0.11);
+  --gb-shadow-card: 0 12px 34px hsl(220 17% 7% / 0.07);
+  --gb-shadow-card-hover: 0 22px 58px hsl(220 17% 7% / 0.13);
 
-  --gb-shadow-header: 0 10px 30px hsl(155 35% 11% / 0.08);
-  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.22);
+  --gb-shadow-header: 0 10px 34px hsl(220 17% 7% / 0.08);
+  --gb-shadow-dropdown: 0 18px 56px hsl(220 17% 7% / 0.16);
+  --gb-shadow-drawer: 0 28px 90px hsl(220 17% 7% / 0.24);
+  --gb-shadow-modal: 0 32px 100px hsl(220 17% 7% / 0.28);
+
+  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-brand-ring) / 0.22);
+  --gb-shadow-focus-strong: 0 0 0 4px hsl(var(--gb-brand-ring) / 0.3);
 
   --shadow-xs: var(--gb-shadow-xs);
   --shadow-sm: var(--gb-shadow-sm);
+  --shadow-md: var(--gb-shadow-md);
   --shadow: var(--gb-shadow-base);
   --shadow-lg: var(--gb-shadow-lg);
+  --shadow-xl: var(--gb-shadow-xl);
   --shadow-card: var(--gb-shadow-card);
   --shadow-card-hover: var(--gb-shadow-card-hover);
   --shadow-header: var(--gb-shadow-header);
+  --shadow-dropdown: var(--gb-shadow-dropdown);
+  --shadow-drawer: var(--gb-shadow-drawer);
+  --shadow-modal: var(--gb-shadow-modal);
   --shadow-focus: var(--gb-shadow-focus);
 
+  --gb-container-xs: 40rem;
+  --gb-container-sm: 48rem;
+  --gb-container-md: 64rem;
+  --gb-container-lg: 80rem;
+  --gb-container-xl: 90rem;
+  --gb-container-2xl: 96rem;
+
+  --gb-container-padding-mobile: 1rem;
+  --gb-container-padding-tablet: 1.25rem;
+  --gb-container-padding-desktop: 1.5rem;
+
+  --gb-section-y-mobile: 2rem;
+  --gb-section-y-tablet: 3rem;
+  --gb-section-y-desktop: 4rem;
+
+  --gb-header-height-mobile: 4rem;
+  --gb-header-height-desktop: 5rem;
+  --gb-topbar-height: 2.25rem;
+  --gb-bottom-nav-height: 4.25rem;
+
+  --gb-breakpoint-header-2xl: 90rem;
+  --gb-breakpoint-header-xl: 80rem;
+  --gb-breakpoint-header-lg: 72.5rem;
+  --gb-breakpoint-header-md: 64rem;
+  --gb-breakpoint-header-sm: 40rem;
+  --gb-breakpoint-header-xs: 23.75rem;
+
   /* ---------------------------------------------------------------------------
-     Typography
+     Header semantic design tokens
      --------------------------------------------------------------------------- */
-  --gb-font-sans:
-    var(--font-inter, "Inter"),
-    var(--font-noto-sans-bengali, "Noto Sans Bengali"),
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
 
-  --gb-font-heading:
-    var(--font-merriweather, "Merriweather"),
-    var(--font-noto-sans-bengali, "Noto Sans Bengali"),
-    Georgia,
-    serif;
+  --gb-header-container-max-width: var(--gb-container-lg);
+  --gb-header-container-padding-min: var(--gb-container-padding-mobile);
+  --gb-header-container-padding-fluid: 2vw;
+  --gb-header-container-padding-max: var(--gb-container-padding-desktop);
 
-  --gb-font-mono:
-    "Fira Code",
-    "JetBrains Mono",
-    Consolas,
-    monospace;
+  --gb-header-brand-border-subtle: hsl(var(--gb-brand) / 0.32);
+  --gb-header-brand-border-soft: hsl(var(--gb-brand) / 0.3);
+  --gb-header-brand-focus-border: hsl(var(--gb-brand-ring) / 0.58);
+  --gb-header-overlay-background: hsl(
+    var(--gb-overlay) / var(--gb-overlay-alpha)
+  );
 
-  --font-sans: var(--gb-font-sans);
-  --font-heading: var(--gb-font-heading);
-  --font-serif: var(--gb-font-heading);
-  --font-mono: var(--gb-font-mono);
+  --gb-header-transform-lift: translateY(-0.0625rem);
+  --gb-header-transform-rest: translateY(0);
+  --gb-header-transform-press: scale(0.98);
+  --gb-header-logo-cart-transform: rotate(-7deg);
+  --gb-header-drawer-backdrop-blur: blur(0.375rem);
+
+  --gb-header-topbar-height: 2rem;
+  --gb-header-topbar-background: hsl(var(--gb-snow));
+  --gb-header-topbar-border-color: hsl(var(--gb-border-soft));
+  --gb-header-topbar-text-color: hsl(var(--gb-body));
+  --gb-header-topbar-icon-color: hsl(var(--gb-muted));
+  --gb-header-topbar-hover-color: hsl(var(--gb-brand-hover));
+  --gb-header-topbar-font-family: var(--font-sans);
+  --gb-header-topbar-font-size: 0.6875rem;
+  --gb-header-topbar-font-weight: 680;
+  --gb-header-topbar-line-height: var(--gb-leading-none);
+  --gb-header-topbar-content-gap: 1rem;
+  --gb-header-topbar-trust-gap-min: 0.85rem;
+  --gb-header-topbar-trust-gap-fluid: 1.6vw;
+  --gb-header-topbar-trust-gap-max: 1.35rem;
+  --gb-header-topbar-utility-gap-min: 0.75rem;
+  --gb-header-topbar-utility-gap-fluid: 1.25vw;
+  --gb-header-topbar-utility-gap-max: 1.05rem;
+  --gb-header-topbar-item-gap: 0.35rem;
+  --gb-header-topbar-action-height: 1.75rem;
+  --gb-header-topbar-icon-size: 0.82rem;
+  --gb-header-topbar-icon-stroke-width: 2.15;
+
+  --gb-header-dropdown-offset: 0.5rem;
+  --gb-header-dropdown-min-width: 11rem;
+  --gb-header-dropdown-max-width: 22rem;
+  --gb-header-dropdown-max-height: 28rem;
+  --gb-header-dropdown-gap: 0.25rem;
+  --gb-header-dropdown-padding: 0.45rem;
+  --gb-header-dropdown-border-color: hsl(var(--gb-border-soft));
+  --gb-header-dropdown-background: hsl(var(--gb-surface-elevated));
+  --gb-header-dropdown-radius: var(--radius-xl);
+  --gb-header-dropdown-shadow: var(--shadow-dropdown);
+
+  --gb-header-category-menu-min-width: 16rem;
+  --gb-header-account-menu-min-width: 13rem;
+
+  --gb-header-menu-item-height: 2.45rem;
+  --gb-header-menu-item-gap: 0.75rem;
+  --gb-header-menu-item-padding-y: 0.6rem;
+  --gb-header-menu-item-padding-x: 0.75rem;
+  --gb-header-menu-item-radius: var(--radius-lg);
+  --gb-header-menu-item-font-size: 0.8125rem;
+  --gb-header-menu-item-font-weight: 750;
+  --gb-header-menu-item-line-height: var(--gb-leading-tight);
+  --gb-header-menu-item-color: hsl(var(--gb-body));
+  --gb-header-menu-item-hover-background: hsl(var(--gb-brand-soft));
+  --gb-header-menu-item-hover-color: hsl(var(--gb-brand-hover));
+  --gb-header-menu-item-icon-size: 1rem;
+  --gb-header-menu-item-icon-stroke-width: 2.2;
+
+  --gb-header-main-background: hsl(var(--gb-header));
+  --gb-header-main-min-height: var(--gb-header-height-desktop);
+  --gb-header-main-padding-y: 0.75rem;
+  --gb-header-main-grid-template-desktop:
+    minmax(6.25rem, 7rem) minmax(9.75rem, 10.75rem) minmax(20rem, 1fr) auto;
+  --gb-header-main-grid-template-2xl:
+    minmax(6rem, 6.65rem) minmax(9.25rem, 10rem) minmax(18rem, 1fr) auto;
+  --gb-header-main-grid-template-xl:
+    minmax(5.9rem, 6.4rem) minmax(8.6rem, 9.4rem) minmax(15rem, 1fr) auto;
+  --gb-header-main-grid-template-lg:
+    minmax(5.9rem, 6.4rem) minmax(16rem, 1fr) auto;
+  --gb-header-main-gap-min: 0.8rem;
+  --gb-header-main-gap-fluid: 1.4vw;
+  --gb-header-main-gap-max: 1.15rem;
+  --gb-header-main-gap-compact: 0.7rem;
+
+  --gb-header-logo-mark-width: 6.35rem;
+  --gb-header-logo-mark-width-tablet: 7rem;
+  --gb-header-logo-mark-width-mobile: 6.65rem;
+  --gb-header-logo-mark-width-compact: 6rem;
+  --gb-header-logo-brand-gap: 0.2rem;
+  --gb-header-logo-number-color: hsl(var(--gb-brand));
+  --gb-header-logo-color: hsl(var(--gb-heading));
+  --gb-header-logo-font-family: var(--font-sans);
+  --gb-header-logo-font-weight: 950;
+  --gb-header-logo-letter-spacing: -0.055em;
+  --gb-header-logo-line-height: 0.88;
+  --gb-header-logo-number-font-size: 1.78rem;
+  --gb-header-logo-number-font-size-tablet: 1.82rem;
+  --gb-header-logo-number-font-size-mobile: 1.65rem;
+  --gb-header-logo-number-font-size-compact: 1.48rem;
+  --gb-header-logo-cart-margin-top: -0.02rem;
+  --gb-header-logo-cart-icon-size: 1.58rem;
+  --gb-header-logo-cart-icon-size-tablet: 1.7rem;
+  --gb-header-logo-cart-icon-size-mobile: 1.6rem;
+  --gb-header-logo-cart-icon-size-compact: 1.45rem;
+  --gb-header-logo-cart-icon-stroke-width: 2.45;
+  --gb-header-logo-name-margin-top: -0.02rem;
+  --gb-header-logo-name-font-size: 1.5rem;
+  --gb-header-logo-name-font-size-tablet: 1.56rem;
+  --gb-header-logo-name-font-size-mobile: 1.42rem;
+  --gb-header-logo-name-font-size-compact: 1.28rem;
+
+  --gb-header-category-trigger-height: 3rem;
+  --gb-header-category-trigger-gap: 0.55rem;
+  --gb-header-category-trigger-border-color: hsl(var(--gb-brand));
+  --gb-header-category-trigger-background: hsl(var(--gb-brand));
+  --gb-header-category-trigger-hover-background: hsl(var(--gb-brand-hover));
+  --gb-header-category-trigger-color: hsl(var(--gb-inverse));
+  --gb-header-category-trigger-radius: var(--radius-2xl);
+  --gb-header-category-trigger-padding-x: 1rem;
+  --gb-header-category-trigger-padding-x-compact: 0.85rem;
+  --gb-header-category-trigger-font-family: var(--font-sans);
+  --gb-header-category-trigger-font-size: 0.875rem;
+  --gb-header-category-trigger-font-size-compact: 0.8125rem;
+  --gb-header-category-trigger-font-weight: 850;
+  --gb-header-category-trigger-line-height: var(--gb-leading-none);
+  --gb-header-category-trigger-shadow: 0 0.875rem 1.875rem
+    hsl(var(--gb-brand) / 0.16);
+  --gb-header-category-trigger-shadow-hover: 0 1rem 2.125rem
+    hsl(var(--gb-brand) / 0.22);
+  --gb-header-category-trigger-icon-size: 1.05rem;
+  --gb-header-category-trigger-icon-stroke-width: 2.45;
+
+  --gb-header-search-height: 3rem;
+  --gb-header-search-max-width: 54rem;
+  --gb-header-search-border-color: hsl(var(--gb-input));
+  --gb-header-search-border-focus-color: var(--gb-header-brand-focus-border);
+  --gb-header-search-radius: var(--radius-2xl);
+  --gb-header-search-radius-mobile: var(--radius-xl);
+  --gb-header-search-background: hsl(var(--gb-surface));
+  --gb-header-search-shadow: var(--shadow-xs);
+  --gb-header-search-focus-shadow: var(--shadow-focus);
+  --gb-header-search-input-padding-x: 1.15rem;
+  --gb-header-search-input-padding-x-mobile: 0.9rem;
+  --gb-header-search-input-color: hsl(var(--gb-heading));
+  --gb-header-search-input-placeholder-color: hsl(var(--gb-subtle));
+  --gb-header-search-input-font-family: var(--font-sans);
+  --gb-header-search-input-font-size: 0.875rem;
+  --gb-header-search-input-font-size-mobile: 0.8125rem;
+  --gb-header-search-input-font-weight: 600;
+  --gb-header-search-button-width: 3.65rem;
+  --gb-header-search-button-width-mobile: 3.15rem;
+  --gb-header-search-button-background: hsl(var(--gb-brand));
+  --gb-header-search-button-hover-background: hsl(var(--gb-brand-hover));
+  --gb-header-search-button-color: hsl(var(--gb-inverse));
+  --gb-header-search-button-icon-size: 1.28rem;
+  --gb-header-search-button-icon-stroke-width: 2.55;
+
+  --gb-header-actions-gap: 0.65rem;
+  --gb-header-actions-gap-compact: 0.45rem;
+  --gb-header-action-size: 2.75rem;
+  --gb-header-action-gap: 0.18rem;
+  --gb-header-action-color: hsl(var(--gb-heading));
+  --gb-header-action-hover-color: hsl(var(--gb-brand-hover));
+  --gb-header-action-icon-size: 2.45rem;
+  --gb-header-action-icon-border-color: hsl(var(--gb-border-soft));
+  --gb-header-action-icon-hover-border-color: var(--gb-header-brand-border-subtle);
+  --gb-header-action-icon-background: hsl(var(--gb-surface));
+  --gb-header-action-icon-hover-background: hsl(var(--gb-brand-soft));
+  --gb-header-action-icon-shadow: var(--shadow-xs);
+  --gb-header-action-icon-hover-shadow: var(--shadow-sm);
+  --gb-header-action-svg-size: 1.2rem;
+  --gb-header-action-svg-stroke-width: 2.25;
+
+  --gb-header-count-offset: -0.38rem;
+  --gb-header-count-min-width: 1.1rem;
+  --gb-header-count-height: 1.1rem;
+  --gb-header-count-border-width: 2px;
+  --gb-header-count-border-color: hsl(var(--gb-header));
+  --gb-header-count-background: hsl(var(--gb-brand));
+  --gb-header-count-color: hsl(var(--gb-inverse));
+  --gb-header-count-padding-x: 0.22rem;
+  --gb-header-count-font-size: 0.6rem;
+  --gb-header-count-font-weight: 950;
+  --gb-header-count-line-height: 1;
+
+  --gb-header-nav-section-background: hsl(var(--gb-header));
+  --gb-header-nav-section-border-color: transparent;
+  --gb-header-nav-section-padding-start: 0.55rem;
+  --gb-header-nav-section-padding-end: 0.68rem;
+
+  --gb-header-nav-shell-height: 2.95rem;
+  --gb-header-nav-shell-gap: 0.75rem;
+  --gb-header-nav-shell-background: hsl(var(--gb-surface));
+  --gb-header-nav-shell-border-color: hsl(var(--gb-border-soft));
+  --gb-header-nav-shell-radius: var(--radius-lg);
+  --gb-header-nav-shell-padding-y: 0.24rem;
+  --gb-header-nav-shell-padding-x: 0.95rem;
+  --gb-header-nav-shell-shadow: 0 0.75rem 1.75rem hsl(220 17% 7% / 0.055);
+
+  --gb-header-nav-list-gap: 0.52rem;
+
+  --gb-header-nav-item-height: 2.35rem;
+  --gb-header-nav-item-gap: 0.4rem;
+  --gb-header-nav-item-padding-x: 0.42rem;
+  --gb-header-nav-item-radius: var(--radius-md);
+  --gb-header-nav-item-color: hsl(var(--gb-body));
+  --gb-header-nav-item-font-family: var(--font-sans);
+  --gb-header-nav-item-font-size: 0.71875rem;
+  --gb-header-nav-item-font-weight: 720;
+  --gb-header-nav-item-line-height: var(--gb-leading-none);
+  --gb-header-nav-item-hover-background: transparent;
+  --gb-header-nav-item-hover-color: hsl(var(--gb-brand-hover));
+  --gb-header-nav-item-active-background: transparent;
+  --gb-header-nav-item-active-color: hsl(var(--gb-brand-hover));
+  --gb-header-nav-item-icon-size: 0.88rem;
+  --gb-header-nav-item-icon-color: hsl(var(--gb-muted));
+  --gb-header-nav-item-icon-active-color: hsl(var(--gb-brand-hover));
+  --gb-header-nav-item-icon-stroke-width: 2.15;
+
+  --gb-header-nav-indicator-inset-x: 0.42rem;
+  --gb-header-nav-indicator-offset: calc(
+    (var(--gb-header-nav-shell-padding-y) + 1px) * -1
+  );
+  --gb-header-nav-indicator-height: 0.125rem;
+  --gb-header-nav-indicator-color: hsl(var(--gb-brand));
+
+  --gb-header-mobile-main-gap: 0.75rem;
+  --gb-header-mobile-main-padding-y: 0.625rem;
+  --gb-header-mobile-search-padding-top: 0;
+  --gb-header-mobile-search-padding-bottom: 0.8rem;
+  --gb-header-mobile-actions-gap: 0.5rem;
+  --gb-header-mobile-actions-gap-compact: 0.35rem;
+
+  --gb-header-mobile-button-size: 2.75rem;
+  --gb-header-mobile-button-size-compact: 2.55rem;
+  --gb-header-mobile-button-border-color: hsl(var(--gb-border-soft));
+  --gb-header-mobile-button-hover-border-color: var(--gb-header-brand-border-soft);
+  --gb-header-mobile-button-radius: var(--radius-xl);
+  --gb-header-mobile-button-background: hsl(var(--gb-surface));
+  --gb-header-mobile-button-hover-background: hsl(var(--gb-brand-soft));
+  --gb-header-mobile-button-color: hsl(var(--gb-heading));
+  --gb-header-mobile-button-hover-color: hsl(var(--gb-brand-hover));
+  --gb-header-mobile-button-shadow: var(--shadow-xs);
+  --gb-header-mobile-button-icon-size: 1.25rem;
+  --gb-header-mobile-button-icon-stroke-width: 2.35;
+
+  --gb-header-mobile-search-overlay-background: var(--gb-header-overlay-background);
+  --gb-header-mobile-search-panel-background: var(--gb-header-drawer-background);
+  --gb-header-mobile-search-panel-color: var(--gb-header-drawer-color);
+  --gb-header-mobile-search-panel-padding-y: var(--gb-header-drawer-head-padding-y);
+  --gb-header-mobile-search-panel-padding-x: var(--gb-header-drawer-head-padding-x);
+  --gb-header-mobile-search-panel-gap: var(--gb-header-mobile-main-gap);
+
+  --gb-header-mobile-category-nav-background: hsl(var(--gb-header));
+  --gb-header-mobile-category-nav-border-color: hsl(var(--gb-border-soft));
+  --gb-header-mobile-category-nav-padding-top: 0;
+  --gb-header-mobile-category-nav-padding-bottom: 0.75rem;
+  --gb-header-mobile-category-list-gap: 0.5rem;
+  --gb-header-mobile-category-chip-height: 2.25rem;
+  --gb-header-mobile-category-chip-gap: 0.4rem;
+  --gb-header-mobile-category-chip-padding-x: 0.8rem;
+  --gb-header-mobile-category-chip-radius: var(--radius-full);
+  --gb-header-mobile-category-chip-border-color: hsl(var(--gb-border-soft));
+  --gb-header-mobile-category-chip-hover-border-color: var(--gb-header-brand-border-soft);
+  --gb-header-mobile-category-chip-background: hsl(var(--gb-surface));
+  --gb-header-mobile-category-chip-hover-background: hsl(var(--gb-brand-soft));
+  --gb-header-mobile-category-chip-color: hsl(var(--gb-body));
+  --gb-header-mobile-category-chip-active-color: hsl(var(--gb-brand-hover));
+  --gb-header-mobile-category-chip-font-family: var(--font-sans);
+  --gb-header-mobile-category-chip-font-size: var(--gb-text-xs);
+  --gb-header-mobile-category-chip-font-weight: 780;
+  --gb-header-mobile-category-chip-line-height: var(--gb-leading-none);
+  --gb-header-mobile-category-chip-icon-size: 0.9rem;
+  --gb-header-mobile-category-chip-icon-stroke-width: 2.2;
+  --gb-header-mobile-category-menu-offset: 0.45rem;
+  --gb-header-mobile-category-menu-min-width: 14rem;
+
+  --gb-header-mobile-nav-height: var(--gb-bottom-nav-height);
+  --gb-header-mobile-nav-gap: 0.25rem;
+  --gb-header-mobile-nav-border-color: hsl(var(--gb-border-soft));
+  --gb-header-mobile-nav-background: hsl(var(--gb-surface-elevated));
+  --gb-header-mobile-nav-padding-y: 0.35rem;
+  --gb-header-mobile-nav-padding-x: var(--gb-container-padding-mobile);
+  --gb-header-mobile-nav-shadow: var(--shadow-header);
+  --gb-header-mobile-nav-link-min-height: 3.2rem;
+  --gb-header-mobile-nav-link-gap: 0.22rem;
+  --gb-header-mobile-nav-link-radius: var(--radius-xl);
+  --gb-header-mobile-nav-link-padding-y: 0.35rem;
+  --gb-header-mobile-nav-link-padding-x: 0.25rem;
+  --gb-header-mobile-nav-link-background: transparent;
+  --gb-header-mobile-nav-link-hover-background: hsl(var(--gb-brand-soft));
+  --gb-header-mobile-nav-link-color: hsl(var(--gb-muted));
+  --gb-header-mobile-nav-link-active-color: hsl(var(--gb-brand-hover));
+  --gb-header-mobile-nav-icon-size: 1.25rem;
+  --gb-header-mobile-nav-icon-stroke-width: 2.35;
+  --gb-header-mobile-nav-label-font-family: var(--font-sans);
+  --gb-header-mobile-nav-label-font-size: 0.625rem;
+  --gb-header-mobile-nav-label-font-weight: 760;
+  --gb-header-mobile-nav-label-line-height: var(--gb-leading-none);
+
+  --gb-header-drawer-width: 24rem;
+  --gb-header-drawer-width-mobile: 22rem;
+  --gb-header-drawer-border-color: hsl(var(--gb-border-soft));
+  --gb-header-drawer-background: hsl(var(--gb-surface-elevated));
+  --gb-header-drawer-color: hsl(var(--gb-body));
+  --gb-header-drawer-shadow: var(--shadow-drawer);
+  --gb-header-drawer-head-gap: 1rem;
+  --gb-header-drawer-head-border-color: hsl(var(--gb-border-soft));
+  --gb-header-drawer-head-padding-y: 0.75rem;
+  --gb-header-drawer-head-padding-x: 1rem;
+  --gb-header-drawer-body-gap: 1rem;
+  --gb-header-drawer-body-padding: 1rem;
+  --gb-header-drawer-section-gap: 0.5rem;
+  --gb-header-drawer-title-color: hsl(var(--gb-heading));
+  --gb-header-drawer-title-font-size: var(--gb-text-xs);
+  --gb-header-drawer-title-font-weight: 900;
+  --gb-header-drawer-title-letter-spacing: var(--gb-tracking-wider);
+
+  --gb-header-drawer-link-height: 2.75rem;
+  --gb-header-drawer-link-gap: 0.75rem;
+  --gb-header-drawer-link-border-color: hsl(var(--gb-border-soft));
+  --gb-header-drawer-link-hover-border-color: var(--gb-header-brand-border-soft);
+  --gb-header-drawer-link-radius: var(--radius-xl);
+  --gb-header-drawer-link-background: hsl(var(--gb-surface));
+  --gb-header-drawer-link-hover-background: hsl(var(--gb-brand-soft));
+  --gb-header-drawer-link-color: hsl(var(--gb-body));
+  --gb-header-drawer-link-hover-color: hsl(var(--gb-brand-hover));
+  --gb-header-drawer-link-padding-y: 0.7rem;
+  --gb-header-drawer-link-padding-x: 0.85rem;
+  --gb-header-drawer-link-font-size: var(--gb-text-sm);
+  --gb-header-drawer-link-font-weight: 760;
+  --gb-header-drawer-link-line-height: var(--gb-leading-tight);
+  --gb-header-drawer-link-icon-size: 1.05rem;
+  --gb-header-drawer-link-icon-stroke-width: 2.25;
+
+  --gb-duration-instant: 80ms;
+  --gb-duration-fast: 150ms;
+  --gb-duration-base: 220ms;
+  --gb-duration-slow: 320ms;
+  --gb-duration-slower: 500ms;
+
+  --gb-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --gb-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --gb-ease-entrance: cubic-bezier(0, 0, 0.2, 1);
+  --gb-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  --gb-z-base: 0;
+  --gb-z-raised: 10;
+  --gb-z-sticky: 100;
+  --gb-z-header: 200;
+  --gb-z-dropdown: 300;
+  --gb-z-drawer: 400;
+  --gb-z-modal: 500;
+  --gb-z-popover: 600;
+  --gb-z-toast: 700;
+  --gb-z-tooltip: 800;
 }
-
-/* =============================================================================
-   DARK MODE TOKENS
-   ============================================================================= */
 
 .dark {
   color-scheme: dark;
 
-  --gb-brand: 145 58% 42%;
-  --gb-brand-hover: 145 58% 50%;
-  --gb-brand-soft: 150 36% 15%;
+  --gb-brand: 358 88% 58%;
+  --gb-brand-hover: 358 92% 64%;
+  --gb-brand-active: 358 78% 48%;
+  --gb-brand-soft: 358 36% 16%;
+  --gb-brand-subtle: 358 28% 12%;
+  --gb-brand-ring: 358 88% 58%;
 
-  --gb-action: 25 100% 58%;
-  --gb-action-hover: 25 100% 64%;
-  --gb-action-soft: 24 42% 16%;
+  --gb-graphite: 0 0% 96%;
+  --gb-graphite-soft: 0 0% 90%;
+  --gb-graphite-muted: 0 0% 74%;
 
-  --gb-gold: 42 96% 60%;
-  --gb-gold-soft: 42 44% 16%;
+  --gb-white: 0 0% 100%;
+  --gb-off-white: 0 0% 8%;
+  --gb-snow: 0 0% 6%;
 
-  --gb-background: 151 42% 7%;
-  --gb-section: 151 34% 9%;
-  --gb-card: 150 30% 11%;
-  --gb-header: 151 42% 7%;
-  --gb-navbar: 151 48% 8%;
+  --gb-background: 220 17% 5%;
+  --gb-foreground: 0 0% 96%;
 
-  --gb-heading: 42 45% 96%;
-  --gb-body: 42 18% 82%;
-  --gb-muted: 42 10% 64%;
+  --gb-surface: 220 16% 8%;
+  --gb-surface-soft: 220 14% 11%;
+  --gb-surface-muted: 220 12% 15%;
+  --gb-surface-elevated: 220 14% 12%;
+  --gb-surface-inverse: 0 0% 96%;
+
+  --gb-header: 220 17% 6%;
+  --gb-header-top: 220 17% 4%;
+  --gb-navigation: 220 16% 8%;
+  --gb-footer: 220 17% 4%;
+
+  --gb-overlay: 0 0% 0%;
+  --gb-overlay-alpha: 0.72;
+
+  --gb-skeleton: 220 12% 15%;
+  --gb-skeleton-shine: 220 12% 23%;
+
+  --gb-heading: 0 0% 98%;
+  --gb-body: 0 0% 84%;
+  --gb-muted: 0 0% 64%;
+  --gb-subtle: 0 0% 50%;
+  --gb-disabled: 0 0% 36%;
   --gb-inverse: 0 0% 100%;
 
-  --gb-border: 150 20% 21%;
-  --gb-border-soft: 150 22% 16%;
-  --gb-divider: 150 18% 18%;
+  --gb-border: 220 11% 20%;
+  --gb-border-soft: 220 12% 16%;
+  --gb-border-strong: 220 10% 28%;
+  --gb-divider: 220 12% 17%;
+  --gb-input: 220 11% 22%;
 
-  --gb-success: 145 58% 48%;
-  --gb-success-soft: 145 42% 14%;
+  --gb-price: 358 88% 64%;
+  --gb-price-old: 0 0% 52%;
+  --gb-discount: 358 88% 64%;
+  --gb-rating: 42 96% 62%;
+  --gb-rating-soft: 42 44% 16%;
+  --gb-stock: 145 60% 50%;
+  --gb-stock-soft: 145 38% 15%;
 
-  --gb-warning: 42 96% 62%;
-  --gb-warning-soft: 42 46% 15%;
+  --gb-success: 145 60% 50%;
+  --gb-success-soft: 145 38% 15%;
+  --gb-success-foreground: 145 70% 78%;
 
-  --gb-error: 0 84% 68%;
-  --gb-error-soft: 0 44% 16%;
+  --gb-warning: 42 96% 64%;
+  --gb-warning-soft: 42 42% 16%;
+  --gb-warning-foreground: 42 92% 82%;
 
-  --gb-info: 214 92% 68%;
-  --gb-info-soft: 214 42% 16%;
+  --gb-error: 358 88% 64%;
+  --gb-error-soft: 358 42% 16%;
+  --gb-error-foreground: 358 90% 84%;
 
-  --color-skeleton: hsl(150 22% 17%);
-  --color-skeleton-shine: hsl(150 18% 24%);
+  --gb-info: 217 92% 68%;
+  --gb-info-soft: 217 42% 16%;
+  --gb-info-foreground: 217 92% 84%;
 
-  --gb-shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.2);
-  --gb-shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.24);
-  --gb-shadow-base: 0 8px 24px hsl(0 0% 0% / 0.28);
-  --gb-shadow-lg: 0 16px 40px hsl(0 0% 0% / 0.36);
+  --gb-shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.22);
+  --gb-shadow-sm: 0 4px 14px hsl(0 0% 0% / 0.26);
+  --gb-shadow-md: 0 8px 24px hsl(0 0% 0% / 0.3);
+  --gb-shadow-base: 0 12px 34px hsl(0 0% 0% / 0.3);
+  --gb-shadow-lg: 0 20px 54px hsl(0 0% 0% / 0.38);
+  --gb-shadow-xl: 0 28px 80px hsl(0 0% 0% / 0.46);
 
-  --gb-shadow-card: 0 10px 28px hsl(0 0% 0% / 0.28);
-  --gb-shadow-card-hover: 0 18px 42px hsl(0 0% 0% / 0.38);
+  --gb-shadow-card: 0 12px 34px hsl(0 0% 0% / 0.3);
+  --gb-shadow-card-hover: 0 22px 58px hsl(0 0% 0% / 0.42);
 
-  --gb-shadow-header: 0 10px 30px hsl(0 0% 0% / 0.32);
-  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-action) / 0.28);
+  --gb-shadow-header: 0 10px 34px hsl(0 0% 0% / 0.38);
+  --gb-shadow-dropdown: 0 18px 56px hsl(0 0% 0% / 0.42);
+  --gb-shadow-drawer: 0 28px 90px hsl(0 0% 0% / 0.56);
+  --gb-shadow-modal: 0 32px 100px hsl(0 0% 0% / 0.62);
+
+  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-brand-ring) / 0.3);
+  --gb-shadow-focus-strong: 0 0 0 4px hsl(var(--gb-brand-ring) / 0.38);
+
+  --gb-header-nav-shell-shadow: 0 0.75rem 1.75rem hsl(0 0% 0% / 0.3);
 }
-
-/* =============================================================================
-   TAILWIND V4 THEME BRIDGE
-   -----------------------------------------------------------------------------
-   This maps the global design tokens to Tailwind utilities such as:
-   bg-background, text-foreground, bg-primary, border-border, ring-ring,
-   font-sans, font-heading, rounded-lg, shadow-card, etc.
-   ============================================================================= */
 
 @theme inline {
   --color-background: hsl(var(--background));
@@ -331,24 +771,72 @@
 
   --color-brand: hsl(var(--gb-brand));
   --color-brand-hover: hsl(var(--gb-brand-hover));
+  --color-brand-active: hsl(var(--gb-brand-active));
   --color-brand-soft: hsl(var(--gb-brand-soft));
+  --color-brand-subtle: hsl(var(--gb-brand-subtle));
   --color-brand-foreground: hsl(var(--gb-inverse));
 
-  --color-price: hsl(var(--gb-action));
-  --color-old-price: hsl(var(--gb-muted));
-  --color-rating: hsl(var(--gb-gold));
+  --color-graphite: hsl(var(--gb-graphite));
+  --color-graphite-soft: hsl(var(--gb-graphite-soft));
+  --color-graphite-muted: hsl(var(--gb-graphite-muted));
+
+  --color-surface: hsl(var(--gb-surface));
+  --color-surface-soft: hsl(var(--gb-surface-soft));
+  --color-surface-muted: hsl(var(--gb-surface-muted));
+  --color-surface-elevated: hsl(var(--gb-surface-elevated));
+  --color-surface-inverse: hsl(var(--gb-surface-inverse));
+
+  --color-section: hsl(var(--gb-surface-soft));
+  --color-header: hsl(var(--gb-header));
+  --color-header-top: hsl(var(--gb-header-top));
+  --color-navigation: hsl(var(--gb-navigation));
+  --color-navbar: hsl(var(--gb-header-top));
+  --color-footer: hsl(var(--gb-footer));
+
+  --color-heading: hsl(var(--gb-heading));
+  --color-body: hsl(var(--gb-body));
+  --color-text-muted: hsl(var(--gb-muted));
+  --color-subtle: hsl(var(--gb-subtle));
+  --color-disabled: hsl(var(--gb-disabled));
+  --color-inverse: hsl(var(--gb-inverse));
+
+  --color-divider: hsl(var(--gb-divider));
+  --color-border-soft: hsl(var(--gb-border-soft));
+  --color-border-strong: hsl(var(--gb-border-strong));
+
+  --color-price: hsl(var(--gb-price));
+  --color-price-old: hsl(var(--gb-price-old));
+  --color-old-price: hsl(var(--gb-price-old));
+  --color-discount: hsl(var(--gb-discount));
+  --color-rating: hsl(var(--gb-rating));
+  --color-rating-soft: hsl(var(--gb-rating-soft));
+  --color-stock: hsl(var(--gb-stock));
+  --color-stock-soft: hsl(var(--gb-stock-soft));
 
   --color-success: hsl(var(--gb-success));
   --color-success-soft: hsl(var(--gb-success-soft));
+  --color-success-foreground: hsl(var(--gb-success-foreground));
 
   --color-warning: hsl(var(--gb-warning));
   --color-warning-soft: hsl(var(--gb-warning-soft));
+  --color-warning-foreground: hsl(var(--gb-warning-foreground));
 
   --color-error: hsl(var(--gb-error));
   --color-error-soft: hsl(var(--gb-error-soft));
+  --color-error-foreground: hsl(var(--gb-error-foreground));
 
   --color-info: hsl(var(--gb-info));
   --color-info-soft: hsl(var(--gb-info-soft));
+  --color-info-foreground: hsl(var(--gb-info-foreground));
+
+  --color-overlay: hsl(var(--gb-overlay) / var(--gb-overlay-alpha));
+  --color-skeleton: hsl(var(--gb-skeleton));
+  --color-skeleton-shine: hsl(var(--gb-skeleton-shine));
+
+  --color-primary-hover: hsl(var(--gb-brand-hover));
+  --color-primary-active: hsl(var(--gb-brand-active));
+  --color-primary-soft: hsl(var(--gb-brand-soft));
+  --color-secondary-soft: hsl(var(--gb-surface-muted));
 
   --color-chart-1: hsl(var(--chart-1));
   --color-chart-2: hsl(var(--chart-2));
@@ -367,24 +855,37 @@
 
   --font-sans: var(--gb-font-sans);
   --font-heading: var(--gb-font-heading);
+  --font-bangla: var(--gb-font-bangla);
   --font-serif: var(--gb-font-heading);
   --font-mono: var(--gb-font-mono);
 
   --radius-xs: var(--gb-radius-xs);
   --radius-sm: var(--gb-radius-sm);
   --radius-md: var(--gb-radius-md);
-  --radius-lg: var(--gb-radius-base);
+  --radius-base: var(--gb-radius-base);
+  --radius-lg: var(--gb-radius-lg);
   --radius-xl: var(--gb-radius-xl);
   --radius-2xl: var(--gb-radius-2xl);
   --radius-3xl: var(--gb-radius-3xl);
+  --radius-4xl: var(--gb-radius-4xl);
   --radius-full: var(--gb-radius-full);
 
   --shadow-xs: var(--gb-shadow-xs);
   --shadow-sm: var(--gb-shadow-sm);
+  --shadow-md: var(--gb-shadow-md);
   --shadow: var(--gb-shadow-base);
   --shadow-lg: var(--gb-shadow-lg);
+  --shadow-xl: var(--gb-shadow-xl);
   --shadow-card: var(--gb-shadow-card);
   --shadow-card-hover: var(--gb-shadow-card-hover);
   --shadow-header: var(--gb-shadow-header);
+  --shadow-dropdown: var(--gb-shadow-dropdown);
+  --shadow-drawer: var(--gb-shadow-drawer);
+  --shadow-modal: var(--gb-shadow-modal);
   --shadow-focus: var(--gb-shadow-focus);
+
+  --ease-standard: var(--gb-ease-standard);
+  --ease-emphasized: var(--gb-ease-emphasized);
+  --ease-entrance: var(--gb-ease-entrance);
+  --ease-exit: var(--gb-ease-exit);
 }

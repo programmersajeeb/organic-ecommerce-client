@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import type { ReactNode } from "react";
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -15,8 +15,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       enableSystem
       enableColorScheme
       disableTransitionOnChange
-      storageKey="ghorer-bazar-theme"
-      themes={["light", "dark"]}
+      storageKey="shop365-theme"
     >
       {children}
     </NextThemesProvider>

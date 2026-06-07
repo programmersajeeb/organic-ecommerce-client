@@ -1,12 +1,12 @@
 {
-  "name": "organic-ecommerce-frontend",
+  "name": "shop365-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check": "pnpm lint && pnpm typecheck"
   },
@@ -33,13 +33,16 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@serwist/next": "^9.5.11",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "msw": "^2.14.6",
     "postcss": "^8",
+    "serwist": "^9.5.11",
     "shadcn": "^4.8.3",
     "tailwindcss": "^4",
     "typescript": "^5"

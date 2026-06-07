@@ -1,8 +1,25 @@
 /* =============================================================================
-   ANIMATIONS
+   365 SHOP — ANIMATIONS
    -----------------------------------------------------------------------------
-   Global reusable keyframes.
+   Purpose:
+   Global reusable keyframes and animation utility classes.
+
+   Rules:
+   - Keep animations generic and reusable.
+   - Do not write component-specific animation styles here.
+   - Use global motion tokens from `tokens.css`.
+   - Respect reduced motion preferences.
    ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Keyframes
+   ----------------------------------------------------------------------------- */
+
+@keyframes gb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 @keyframes gb-skeleton-shimmer {
   100% {
@@ -20,10 +37,32 @@
   }
 }
 
+@keyframes gb-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes gb-fade-up {
   from {
     opacity: 0;
     transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gb-fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
   }
 
   to {
@@ -44,24 +83,132 @@
   }
 }
 
-@layer utilities {
-  .gb-animate-fade-in {
-    animation: gb-fade-in 220ms ease both;
+@keyframes gb-scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
   }
 
-  .gb-animate-fade-up {
-    animation: gb-fade-up 260ms ease both;
-  }
-
-  .gb-animate-scale-in {
-    animation: gb-scale-in 220ms ease both;
+  to {
+    opacity: 0;
+    transform: scale(0.96);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .gb-animate-fade-in,
-  .gb-animate-fade-up,
+@keyframes gb-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gb-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gb-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gb-drawer-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Animation Utilities
+   ----------------------------------------------------------------------------- */
+
+@layer utilities {
+  .gb-animate-spin {
+    animation: gb-spin var(--gb-duration-slower) linear infinite;
+  }
+
+  .gb-animate-fade-in {
+    animation: gb-fade-in var(--gb-duration-base) var(--gb-ease-standard) both;
+  }
+
+  .gb-animate-fade-out {
+    animation: gb-fade-out var(--gb-duration-fast) var(--gb-ease-standard) both;
+  }
+
+  .gb-animate-fade-up {
+    animation: gb-fade-up var(--gb-duration-base) var(--gb-ease-emphasized) both;
+  }
+
+  .gb-animate-fade-down {
+    animation: gb-fade-down var(--gb-duration-base) var(--gb-ease-emphasized) both;
+  }
+
   .gb-animate-scale-in {
-    animation: none;
+    animation: gb-scale-in var(--gb-duration-base) var(--gb-ease-emphasized) both;
+  }
+
+  .gb-animate-scale-out {
+    animation: gb-scale-out var(--gb-duration-fast) var(--gb-ease-standard) both;
+  }
+
+  .gb-animate-slide-in-left {
+    animation: gb-slide-in-left var(--gb-duration-base) var(--gb-ease-emphasized)
+      both;
+  }
+
+  .gb-animate-slide-in-right {
+    animation: gb-slide-in-right var(--gb-duration-base) var(--gb-ease-emphasized)
+      both;
+  }
+
+  .gb-animate-drawer-in {
+    animation: gb-drawer-in var(--gb-duration-slow) var(--gb-ease-emphasized)
+      both;
+  }
+
+  .gb-animate-drawer-out {
+    animation: gb-drawer-out var(--gb-duration-base) var(--gb-ease-standard)
+      both;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   Reduced Motion
+   ----------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .gb-animate-spin,
+  .gb-animate-fade-in,
+  .gb-animate-fade-out,
+  .gb-animate-fade-up,
+  .gb-animate-fade-down,
+  .gb-animate-scale-in,
+  .gb-animate-scale-out,
+  .gb-animate-slide-in-left,
+  .gb-animate-slide-in-right,
+  .gb-animate-drawer-in,
+  .gb-animate-drawer-out {
+    animation: none !important;
   }
 }
