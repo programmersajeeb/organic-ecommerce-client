@@ -8,7 +8,7 @@ import {
   useMemo,
   useRef,
   type KeyboardEvent,
-  type PointerEvent,
+  type PointerEvent as ReactPointerEvent,
 } from "react";
 
 import { getProtectedHref } from "./header-actions";
@@ -45,25 +45,40 @@ type HeaderMobileLogoProps = Readonly<{
   onCloseAll: () => void;
 }>;
 
+type HeaderDrawerAccountLinkProps = Readonly<{
+  counts: HeaderCounts;
+  item: HeaderAccountLink;
+  pathname: string;
+  user: HeaderUserState;
+  onCloseAll: () => void;
+}>;
+
 const ROOT_PATHNAME = "/";
 const SIGN_IN_LINK_ID = "sign-in";
 const CREATE_ACCOUNT_LINK_ID = "create-account";
 const MY_ACCOUNT_LINK_ID = "my-account";
 
 const GUEST_ACCOUNT_LINK_ORDER = [
-  "sign-in",
-  "create-account",
+  SIGN_IN_LINK_ID,
+  CREATE_ACCOUNT_LINK_ID,
   "track-order",
   "help-center",
   "saved-wishlist",
 ] as const;
 
 const AUTHENTICATED_ACCOUNT_LINK_ORDER = [
-  "my-account",
+  MY_ACCOUNT_LINK_ID,
   "saved-wishlist",
   "track-order",
   "help-center",
 ] as const;
+
+const PRIMARY_GUEST_LINK_IDS = new Set<string>([
+  SIGN_IN_LINK_ID,
+  CREATE_ACCOUNT_LINK_ID,
+]);
+
+const PRIMARY_AUTHENTICATED_LINK_IDS = new Set<string>([MY_ACCOUNT_LINK_ID]);
 
 const FOCUSABLE_SELECTOR = [
   "a[href]",
@@ -93,7 +108,7 @@ function normalizePathname(pathname: string) {
 }
 
 function isInternalHref(href: string) {
-  return href.startsWith(ROOT_PATHNAME);
+  return href.startsWith(ROOT_PATHNAME) && !href.startsWith("//");
 }
 
 function isRouteActive(pathname: string, href: string) {
@@ -160,6 +175,28 @@ function getVisibleAccountLinks(
 
       return firstIndex - secondIndex;
     });
+}
+
+function getPrimaryAccountLinks(
+  accountLinks: readonly HeaderAccountLink[],
+  user: HeaderUserState,
+) {
+  const primaryLinkIds = user.isAuthenticated
+    ? PRIMARY_AUTHENTICATED_LINK_IDS
+    : PRIMARY_GUEST_LINK_IDS;
+
+  return accountLinks.filter((item) => primaryLinkIds.has(item.id));
+}
+
+function getSecondaryAccountLinks(
+  accountLinks: readonly HeaderAccountLink[],
+  user: HeaderUserState,
+) {
+  const primaryLinkIds = user.isAuthenticated
+    ? PRIMARY_AUTHENTICATED_LINK_IDS
+    : PRIMARY_GUEST_LINK_IDS;
+
+  return accountLinks.filter((item) => !primaryLinkIds.has(item.id));
 }
 
 function getVisibleUtilityLinks(
@@ -295,6 +332,41 @@ function HeaderMobileLogo({ onCloseAll }: HeaderMobileLogoProps) {
   );
 }
 
+function HeaderDrawerAccountLink({
+  counts,
+  item,
+  pathname,
+  user,
+  onCloseAll,
+}: HeaderDrawerAccountLinkProps) {
+  const href = getProtectedHref(item.href, user, item.requiresAuth);
+  const isActive = isRouteActive(pathname, href);
+  const shouldShowWishlistCount = isWishlistLink(item) && counts.wishlist > 0;
+
+  return (
+    <Link
+      className="gb-site-header__drawer-link"
+      href={href}
+      aria-current={isActive ? "page" : undefined}
+      aria-label={getAccountLinkAriaLabel(item, counts)}
+      onClick={onCloseAll}
+    >
+      <span>
+        {item.label}
+        {item.description ? (
+          <span className="gb-sr-only"> — {item.description}</span>
+        ) : null}
+      </span>
+
+      {shouldShowWishlistCount ? (
+        <span aria-hidden="true">{formatCount(counts.wishlist)}</span>
+      ) : (
+        <HeaderIcon name={getAccountLinkIconName(item)} />
+      )}
+    </Link>
+  );
+}
+
 export function HeaderMobileDrawer({
   accountLinks,
   cartSummary,
@@ -324,19 +396,29 @@ export function HeaderMobileDrawer({
     [accountLinks, user],
   );
 
+  const primaryAccountLinks = useMemo(
+    () => getPrimaryAccountLinks(visibleAccountLinks, user),
+    [visibleAccountLinks, user],
+  );
+
+  const secondaryAccountLinks = useMemo(
+    () => getSecondaryAccountLinks(visibleAccountLinks, user),
+    [visibleAccountLinks, user],
+  );
+
   const visibleUtilityLinks = useMemo(
     () => getVisibleUtilityLinks(utilityLinks, accountLinks),
     [accountLinks, utilityLinks],
   );
 
   const drawerTitleId = `${mobileDrawerId}-title`;
-  const shopHeadingId = `${mobileDrawerId}-shop-heading`;
   const accountHeadingId = `${mobileDrawerId}-account-heading`;
+  const shopHeadingId = `${mobileDrawerId}-shop-heading`;
   const serviceHeadingId = `${mobileDrawerId}-service-heading`;
   const languageHeadingId = `${mobileDrawerId}-language-heading`;
 
   const handleOverlayPointerDown = useCallback(
-    (event: PointerEvent<HTMLDivElement>) => {
+    (event: ReactPointerEvent<HTMLDivElement>) => {
       if (event.currentTarget === event.target) {
         onCloseAll();
       }
@@ -389,9 +471,13 @@ export function HeaderMobileDrawer({
         ? document.activeElement
         : null;
 
-    closeButtonRef.current?.focus();
+    const animationFrameId = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus();
+    });
 
     return () => {
+      window.cancelAnimationFrame(animationFrameId);
+
       if (previousActiveElement && document.contains(previousActiveElement)) {
         previousActiveElement.focus();
       }
@@ -436,6 +522,52 @@ export function HeaderMobileDrawer({
         </div>
 
         <div className="gb-site-header__drawer-body">
+          <nav
+            className="gb-site-header__drawer-section"
+            aria-labelledby={accountHeadingId}
+          >
+            <h3 id={accountHeadingId} className="gb-site-header__drawer-title">
+              Account
+            </h3>
+
+            {primaryAccountLinks.map((item) => (
+              <HeaderDrawerAccountLink
+                key={item.id}
+                counts={counts}
+                item={item}
+                pathname={pathname}
+                user={user}
+                onCloseAll={onCloseAll}
+              />
+            ))}
+
+            {secondaryAccountLinks.map((item) => (
+              <HeaderDrawerAccountLink
+                key={item.id}
+                counts={counts}
+                item={item}
+                pathname={pathname}
+                user={user}
+                onCloseAll={onCloseAll}
+              />
+            ))}
+
+            <Link
+              className="gb-site-header__drawer-link"
+              href={cartSummary.cartHref}
+              aria-current={
+                isRouteActive(pathname, cartSummary.cartHref)
+                  ? "page"
+                  : undefined
+              }
+              aria-label={getCartAriaLabel(cartSummary)}
+              onClick={onCloseAll}
+            >
+              <span>My Cart</span>
+              <span aria-hidden="true">{cartSummary.totalLabel}</span>
+            </Link>
+          </nav>
+
           {allCategories.length > 0 ? (
             <nav
               className="gb-site-header__drawer-section"
@@ -464,61 +596,6 @@ export function HeaderMobileDrawer({
               })}
             </nav>
           ) : null}
-
-          <nav
-            className="gb-site-header__drawer-section"
-            aria-labelledby={accountHeadingId}
-          >
-            <h3 id={accountHeadingId} className="gb-site-header__drawer-title">
-              Account
-            </h3>
-
-            {visibleAccountLinks.map((item) => {
-              const href = getProtectedHref(item.href, user, item.requiresAuth);
-              const isActive = isRouteActive(pathname, href);
-              const shouldShowWishlistCount =
-                isWishlistLink(item) && counts.wishlist > 0;
-
-              return (
-                <Link
-                  key={item.id}
-                  className="gb-site-header__drawer-link"
-                  href={href}
-                  aria-current={isActive ? "page" : undefined}
-                  aria-label={getAccountLinkAriaLabel(item, counts)}
-                  onClick={onCloseAll}
-                >
-                  <span>
-                    {item.label}
-                    {item.description ? (
-                      <span className="gb-sr-only"> — {item.description}</span>
-                    ) : null}
-                  </span>
-
-                  {shouldShowWishlistCount ? (
-                    <span aria-hidden="true">{formatCount(counts.wishlist)}</span>
-                  ) : (
-                    <HeaderIcon name={getAccountLinkIconName(item)} />
-                  )}
-                </Link>
-              );
-            })}
-
-            <Link
-              className="gb-site-header__drawer-link"
-              href={cartSummary.cartHref}
-              aria-current={
-                isRouteActive(pathname, cartSummary.cartHref)
-                  ? "page"
-                  : undefined
-              }
-              aria-label={getCartAriaLabel(cartSummary)}
-              onClick={onCloseAll}
-            >
-              <span>My Cart</span>
-              <span aria-hidden="true">{cartSummary.totalLabel}</span>
-            </Link>
-          </nav>
 
           {visibleUtilityLinks.length > 0 ? (
             <nav

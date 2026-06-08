@@ -49,27 +49,44 @@ type HeaderNotificationMenuProps = Readonly<{
 type HeaderThemeMode = "light" | "dark";
 
 const ACCOUNT_OVERVIEW_HREF = "/account";
-const NOTIFICATIONS_HREF = "/account/notifications";
-const WISHLIST_HREF = "/account/wishlist";
+const ACCOUNT_LOGIN_HREF = "/account/login";
+const ACCOUNT_REGISTER_HREF = "/account/register";
+const CART_HREF = "/cart";
+const HELP_CENTER_HREF = "/help-center";
+const TRACK_ORDER_HREF = "/track-order";
+
+const NOTIFICATIONS_HREF = ACCOUNT_OVERVIEW_HREF;
+const WISHLIST_FALLBACK_HREF = ACCOUNT_LOGIN_HREF;
 
 const SIGN_IN_LINK_ID = "sign-in";
 const CREATE_ACCOUNT_LINK_ID = "create-account";
 const MY_ACCOUNT_LINK_ID = "my-account";
+const SAVED_WISHLIST_LINK_ID = "saved-wishlist";
 
 const GUEST_ACCOUNT_LINK_ORDER = [
   "track-order",
   "help-center",
-  "saved-wishlist",
+  SAVED_WISHLIST_LINK_ID,
 ] as const;
 
 const AUTHENTICATED_ACCOUNT_LINK_ORDER = [
-  "my-account",
-  "saved-wishlist",
+  SAVED_WISHLIST_LINK_ID,
   "track-order",
   "help-center",
 ] as const;
 
 const NOTIFICATION_PREVIEW_LIMIT = 4;
+
+const SUPPORTED_HEADER_ROUTES = new Set<string>([
+  "/",
+  ACCOUNT_OVERVIEW_HREF,
+  ACCOUNT_LOGIN_HREF,
+  ACCOUNT_REGISTER_HREF,
+  CART_HREF,
+  "/checkout",
+  TRACK_ORDER_HREF,
+  HELP_CENTER_HREF,
+]);
 
 export function getProtectedHref(
   href: string,
@@ -84,11 +101,59 @@ export function getProtectedHref(
     next: href,
   });
 
-  return `/account/login?${searchParams.toString()}`;
+  return `${ACCOUNT_LOGIN_HREF}?${searchParams.toString()}`;
 }
 
 function getClassName(...classNames: Array<string | false | null | undefined>) {
   return classNames.filter(Boolean).join(" ");
+}
+
+function getCleanPathname(href: string) {
+  return href.split(/[?#]/)[0] || "/";
+}
+
+function isSupportedHeaderHref(href: string) {
+  const cleanHref = getCleanPathname(href);
+
+  return SUPPORTED_HEADER_ROUTES.has(cleanHref);
+}
+
+function getSafeHeaderHref(href: string) {
+  if (isSupportedHeaderHref(href)) {
+    return href;
+  }
+
+  if (href.includes("wishlist")) {
+    return WISHLIST_FALLBACK_HREF;
+  }
+
+  if (href.includes("order")) {
+    return TRACK_ORDER_HREF;
+  }
+
+  if (href.includes("help") || href.includes("support")) {
+    return HELP_CENTER_HREF;
+  }
+
+  if (href.includes("notification")) {
+    return ACCOUNT_OVERVIEW_HREF;
+  }
+
+  return ACCOUNT_OVERVIEW_HREF;
+}
+
+function getSafeProtectedHref(
+  href: string,
+  user: HeaderUserState,
+  requiresAuth?: boolean,
+) {
+  const protectedHref = getProtectedHref(href, user, requiresAuth);
+
+  if (protectedHref.startsWith(`${ACCOUNT_LOGIN_HREF}?`)) {
+    return protectedHref;
+  }
+
+  return getSafeHeaderHref(protectedHref);
 }
 
 function isHeaderThemeMode(value: string | undefined): value is HeaderThemeMode {
@@ -202,6 +267,13 @@ function findAccountLink(
   return accountLinks.find((item) => item.id === id);
 }
 
+function findWishlistLink(accountLinks: readonly HeaderAccountLink[]) {
+  return (
+    findAccountLink(accountLinks, SAVED_WISHLIST_LINK_ID) ??
+    accountLinks.find((item) => item.href.includes("wishlist"))
+  );
+}
+
 function getAccountMenuIconName(item: HeaderAccountLink): HeaderIconKey {
   const normalizedId = item.id.toLowerCase();
 
@@ -241,7 +313,7 @@ function getAccountMenuIconName(item: HeaderAccountLink): HeaderIconKey {
 }
 
 function isWishlistLink(item: HeaderAccountLink) {
-  return item.id === "saved-wishlist" || item.href.includes("wishlist");
+  return item.id === SAVED_WISHLIST_LINK_ID || item.href.includes("wishlist");
 }
 
 function getAccountShortcutAriaLabel(
@@ -269,11 +341,11 @@ function getSortedAccountLinks(
     ? AUTHENTICATED_ACCOUNT_LINK_ORDER
     : GUEST_ACCOUNT_LINK_ORDER;
 
-  const hiddenIds = new Set<string>(
-    user.isAuthenticated
-      ? [SIGN_IN_LINK_ID, CREATE_ACCOUNT_LINK_ID]
-      : [SIGN_IN_LINK_ID, CREATE_ACCOUNT_LINK_ID, MY_ACCOUNT_LINK_ID],
-  );
+  const hiddenIds = new Set<string>([
+    SIGN_IN_LINK_ID,
+    CREATE_ACCOUNT_LINK_ID,
+    MY_ACCOUNT_LINK_ID,
+  ]);
 
   const orderMap = new Map<string, number>(
     orderedIds.map((itemId, index) => [itemId, index]),
@@ -399,7 +471,7 @@ function HeaderNotificationMenu({
                 "gb-site-header__notification-item",
                 item.isUnread && "gb-site-header__notification-item--unread",
               )}
-              href={item.href}
+              href={getSafeHeaderHref(item.href)}
               role="menuitem"
               aria-label={getNotificationAriaLabel(item)}
               onClick={onCloseAll}
@@ -490,10 +562,20 @@ export function HeaderActions({
   const signInLink = findAccountLink(accountLinks, SIGN_IN_LINK_ID);
   const createAccountLink = findAccountLink(accountLinks, CREATE_ACCOUNT_LINK_ID);
   const myAccountLink = findAccountLink(accountLinks, MY_ACCOUNT_LINK_ID);
+  const wishlistLink = findWishlistLink(accountLinks);
   const visibleAccountLinks = getSortedAccountLinks(accountLinks, user);
 
-  const notificationsHref = getProtectedHref(NOTIFICATIONS_HREF, user, true);
-  const wishlistHref = getProtectedHref(WISHLIST_HREF, user, true);
+  const notificationsHref = getSafeProtectedHref(
+    NOTIFICATIONS_HREF,
+    user,
+    true,
+  );
+
+  const wishlistHref = getSafeProtectedHref(
+    wishlistLink?.href ?? WISHLIST_FALLBACK_HREF,
+    user,
+    wishlistLink?.requiresAuth ?? true,
+  );
 
   const notificationLabel = getItemCountLabel(
     counts.notifications,
@@ -522,7 +604,7 @@ export function HeaderActions({
 
   return (
     <nav className="gb-site-header__actions" aria-label="Store actions">
-      <div className="gb-site-header__language gb-site-header__notifications">
+      <div className="gb-site-header__notifications">
         <button
           type="button"
           className="gb-site-header__action"
@@ -548,11 +630,11 @@ export function HeaderActions({
         ) : null}
       </div>
 
-      <div className="gb-site-header__language gb-site-header__account">
+      <div className="gb-site-header__account">
         <button
           type="button"
           className="gb-site-header__action"
-          aria-label={`Open account menu, current account state is ${accountLabel}`}
+          aria-label={`Open account menu, ${accountLabel}`}
           aria-expanded={isAccountMenuOpen}
           aria-controls={accountMenuId}
           aria-haspopup="menu"
@@ -619,7 +701,7 @@ export function HeaderActions({
                   <>
                     <Link
                       className="gb-site-header__account-card-link gb-site-header__account-card-link--primary"
-                      href={signInLink?.href ?? "/account/login"}
+                      href={signInLink?.href ?? ACCOUNT_LOGIN_HREF}
                       role="menuitem"
                       aria-label={signInLink?.ariaLabel ?? "Sign in"}
                       onClick={onCloseAll}
@@ -629,7 +711,7 @@ export function HeaderActions({
 
                     <Link
                       className="gb-site-header__account-card-link"
-                      href={createAccountLink?.href ?? "/account/register"}
+                      href={createAccountLink?.href ?? ACCOUNT_REGISTER_HREF}
                       role="menuitem"
                       aria-label={
                         createAccountLink?.ariaLabel ??
@@ -662,7 +744,11 @@ export function HeaderActions({
                         shouldShowWishlistCount &&
                           "gb-site-header__account-menu-item--with-badge",
                       )}
-                      href={getProtectedHref(item.href, user, item.requiresAuth)}
+                      href={getSafeProtectedHref(
+                        item.href,
+                        user,
+                        item.requiresAuth,
+                      )}
                       role="menuitem"
                       aria-label={getAccountShortcutAriaLabel(item, counts)}
                       onClick={onCloseAll}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { KeyboardEvent } from "react";
+import { useMemo, type KeyboardEvent } from "react";
 
 import { HeaderIcon } from "./header-icons";
 import type {
@@ -39,15 +39,32 @@ type CategoryMenuProps = Readonly<{
 
 const ROOT_PATHNAME = "/";
 
+function getCleanPathname(pathname: string) {
+  return pathname.split(/[?#]/)[0] || ROOT_PATHNAME;
+}
+
 function normalizePathname(pathname: string) {
-  if (pathname.length > ROOT_PATHNAME.length && pathname.endsWith("/")) {
-    return pathname.slice(0, -1);
+  const cleanPathname = getCleanPathname(pathname);
+
+  if (
+    cleanPathname.length > ROOT_PATHNAME.length &&
+    cleanPathname.endsWith("/")
+  ) {
+    return cleanPathname.slice(0, -1);
   }
 
-  return pathname;
+  return cleanPathname;
+}
+
+function isInternalHref(href: string) {
+  return href.startsWith(ROOT_PATHNAME) && !href.startsWith("//");
 }
 
 function isCategoryActive(pathname: string, href: string) {
+  if (!isInternalHref(href)) {
+    return false;
+  }
+
   const currentPathname = normalizePathname(pathname);
   const categoryHref = normalizePathname(href);
 
@@ -196,8 +213,17 @@ export function HeaderCategoriesTrigger({
   primaryCategories,
 }: HeaderCategoriesTriggerProps) {
   const pathname = usePathname();
-  const allCategories = getMergedCategories(primaryCategories, moreCategories);
-  const activeCategory = getActiveCategory(pathname, allCategories);
+
+  const allCategories = useMemo(
+    () => getMergedCategories(primaryCategories, moreCategories),
+    [moreCategories, primaryCategories],
+  );
+
+  const activeCategory = useMemo(
+    () => getActiveCategory(pathname, allCategories),
+    [allCategories, pathname],
+  );
+
   const isCategoriesMenuOpen = activePanel === "categories";
   const hasCategories = allCategories.length > 0;
 
@@ -206,7 +232,7 @@ export function HeaderCategoriesTrigger({
   }
 
   return (
-    <div className="gb-site-header__language gb-site-header__categories">
+    <div className="gb-site-header__categories">
       <button
         type="button"
         className="gb-site-header__categories-trigger"
@@ -252,10 +278,14 @@ export function HeaderCategoryNav({
 }: HeaderCategoryNavProps) {
   const pathname = usePathname();
 
+  const activeMoreCategory = useMemo(
+    () => getActiveCategory(pathname, moreCategories),
+    [moreCategories, pathname],
+  );
+
   const isMoreMenuOpen = activePanel === "more";
   const hasPrimaryCategories = primaryCategories.length > 0;
   const hasMoreCategories = moreCategories.length > 0;
-  const activeMoreCategory = getActiveCategory(pathname, moreCategories);
 
   if (!hasPrimaryCategories && !hasMoreCategories) {
     return null;
@@ -288,7 +318,7 @@ export function HeaderCategoryNav({
         ) : null}
 
         {hasMoreCategories ? (
-          <div className="gb-site-header__language gb-site-header__more">
+          <div className="gb-site-header__more">
             <button
               type="button"
               className="gb-site-header__more-trigger"

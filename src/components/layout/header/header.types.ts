@@ -37,7 +37,7 @@ export type HeaderPanelKey =
 
 export type HeaderPanel = HeaderPanelKey | null;
 
-export type HeaderLanguageId = "en" | "bn";
+export type HeaderLanguageId = "en" | "bn" | (string & {});
 
 export type HeaderSearchSource = "desktop" | "mobile";
 

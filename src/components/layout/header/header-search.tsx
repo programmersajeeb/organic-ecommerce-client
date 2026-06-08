@@ -92,11 +92,16 @@ export function HeaderSearch({
       className={getClassName("gb-site-header__search", className)}
       role="search"
       aria-label={label}
+      data-source={source}
       onSubmit={handleSubmit}
     >
       <label className="gb-sr-only" htmlFor={id}>
         {label}
       </label>
+
+      <span className="gb-site-header__search-leading-icon" aria-hidden="true">
+        <HeaderIcon name="search" />
+      </span>
 
       <input
         ref={inputRef}

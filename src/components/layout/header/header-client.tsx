@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   type KeyboardEvent as ReactKeyboardEvent,
   type RefObject,
@@ -115,14 +115,58 @@ type HeaderMobileBottomButtonProps = Readonly<{
 const DEFAULT_LANGUAGE_ID: HeaderLanguageId = "en";
 const LANGUAGE_STORAGE_KEY = "gb-language";
 const LANGUAGE_CHANGE_EVENT = "gb-language-change";
-const HEADER_SCROLL_THRESHOLD = 8;
+const HEADER_SCROLLED_THRESHOLD = 8;
+const HEADER_MOBILE_SEARCH_COLLAPSE_Y = 112;
+const HEADER_MOBILE_SEARCH_EXPAND_Y = 44;
+const HEADER_SCROLL_DELTA_GUARD = 8;
 const ROOT_PATHNAME = "/";
 const ACCOUNT_OVERVIEW_HREF = "/account";
-const NOTIFICATIONS_HREF = "/account/notifications";
+const ACCOUNT_LOGIN_HREF = "/account/login";
+const ACCOUNT_REGISTER_HREF = "/account/register";
+const CART_HREF = "/cart";
+const CHECKOUT_HREF = "/checkout";
+const TRACK_ORDER_HREF = "/track-order";
+const HELP_CENTER_HREF = "/help-center";
+const SEARCH_FALLBACK_HREF = ROOT_PATHNAME;
+const NOTIFICATIONS_HREF = ACCOUNT_OVERVIEW_HREF;
 const WISHLIST_HREF = "/account/wishlist";
 const SIGN_IN_LINK_ID = "sign-in";
 const MY_ACCOUNT_LINK_ID = "my-account";
 const SAVED_WISHLIST_LINK_ID = "saved-wishlist";
+
+const SUPPORTED_HEADER_ROUTES = new Set<string>([
+  ROOT_PATHNAME,
+  ACCOUNT_OVERVIEW_HREF,
+  ACCOUNT_LOGIN_HREF,
+  ACCOUNT_REGISTER_HREF,
+  CART_HREF,
+  CHECKOUT_HREF,
+  TRACK_ORDER_HREF,
+  HELP_CENTER_HREF,
+]);
+
+type HeaderScrollSnapshot = Readonly<{
+  isScrolled: boolean;
+  isMobileSearchCollapsed: boolean;
+}>;
+
+const HEADER_SCROLL_TOP_SNAPSHOT: HeaderScrollSnapshot = {
+  isScrolled: false,
+  isMobileSearchCollapsed: false,
+};
+
+const HEADER_SCROLL_EXPANDED_SNAPSHOT: HeaderScrollSnapshot = {
+  isScrolled: true,
+  isMobileSearchCollapsed: false,
+};
+
+const HEADER_SCROLL_COLLAPSED_SNAPSHOT: HeaderScrollSnapshot = {
+  isScrolled: true,
+  isMobileSearchCollapsed: true,
+};
+
+let headerScrollSnapshot = HEADER_SCROLL_TOP_SNAPSHOT;
+let previousHeaderScrollY = 0;
 
 const FOCUSABLE_SELECTOR = [
   "a[href]",
@@ -139,15 +183,51 @@ function getClassName(...classNames: Array<string | false | null | undefined>) {
 }
 
 function normalizePathname(pathname: string) {
-  if (pathname.length > ROOT_PATHNAME.length && pathname.endsWith("/")) {
-    return pathname.slice(0, -1);
+  const cleanPathname = pathname.split(/[?#]/)[0] || ROOT_PATHNAME;
+
+  if (
+    cleanPathname.length > ROOT_PATHNAME.length &&
+    cleanPathname.endsWith("/")
+  ) {
+    return cleanPathname.slice(0, -1);
   }
 
-  return pathname;
+  return cleanPathname;
 }
 
 function isInternalHref(href: string) {
-  return href.startsWith(ROOT_PATHNAME);
+  return href.startsWith(ROOT_PATHNAME) && !href.startsWith("//");
+}
+
+function isSupportedHeaderHref(href: string) {
+  if (!isInternalHref(href)) {
+    return true;
+  }
+
+  return SUPPORTED_HEADER_ROUTES.has(normalizePathname(href));
+}
+
+function getSafeHeaderHref(href: string, fallbackHref = ACCOUNT_OVERVIEW_HREF) {
+  if (isSupportedHeaderHref(href)) {
+    return href;
+  }
+
+  return fallbackHref;
+}
+
+function getSafeProtectedHeaderHref(
+  href: string,
+  user: HeaderUserState,
+  requiresAuth?: boolean,
+  fallbackHref = ACCOUNT_OVERVIEW_HREF,
+) {
+  const protectedHref = getProtectedHref(href, user, requiresAuth);
+
+  if (protectedHref.startsWith(`${ACCOUNT_LOGIN_HREF}?`)) {
+    return protectedHref;
+  }
+
+  return getSafeHeaderHref(protectedHref, fallbackHref);
 }
 
 function isRouteActive(pathname: string, href: string) {
@@ -268,12 +348,68 @@ function useStoredLanguage(options: readonly HeaderLanguageOption[]) {
   );
 }
 
-function getHeaderScrollSnapshot() {
+function getStableHeaderScrollSnapshot(
+  scrollY: number,
+  previousScrollY: number,
+  currentSnapshot: HeaderScrollSnapshot,
+) {
+  const scrollDelta = scrollY - previousScrollY;
+  const isScrolled = scrollY > HEADER_SCROLLED_THRESHOLD;
+  let isMobileSearchCollapsed = currentSnapshot.isMobileSearchCollapsed;
+
+  if (scrollY <= HEADER_MOBILE_SEARCH_EXPAND_Y) {
+    isMobileSearchCollapsed = false;
+  } else if (
+    scrollY >= HEADER_MOBILE_SEARCH_COLLAPSE_Y &&
+    scrollDelta >= HEADER_SCROLL_DELTA_GUARD
+  ) {
+    isMobileSearchCollapsed = true;
+  }
+
+  if (!isScrolled) {
+    return HEADER_SCROLL_TOP_SNAPSHOT;
+  }
+
+  return isMobileSearchCollapsed
+    ? HEADER_SCROLL_COLLAPSED_SNAPSHOT
+    : HEADER_SCROLL_EXPANDED_SNAPSHOT;
+}
+
+function refreshHeaderScrollSnapshot(forceNotify: boolean) {
   if (typeof window === "undefined") {
     return false;
   }
 
-  return window.scrollY > HEADER_SCROLL_THRESHOLD;
+  const currentScrollY = Math.max(0, window.scrollY);
+  const scrollDelta = Math.abs(currentScrollY - previousHeaderScrollY);
+
+  if (
+    !forceNotify &&
+    scrollDelta < HEADER_SCROLL_DELTA_GUARD &&
+    currentScrollY > HEADER_MOBILE_SEARCH_EXPAND_Y &&
+    currentScrollY < HEADER_MOBILE_SEARCH_COLLAPSE_Y
+  ) {
+    return false;
+  }
+
+  const nextSnapshot = getStableHeaderScrollSnapshot(
+    currentScrollY,
+    previousHeaderScrollY,
+    headerScrollSnapshot,
+  );
+
+  previousHeaderScrollY = currentScrollY;
+
+  if (nextSnapshot === headerScrollSnapshot) {
+    return false;
+  }
+
+  headerScrollSnapshot = nextSnapshot;
+  return true;
+}
+
+function getHeaderScrollSnapshot() {
+  return headerScrollSnapshot;
 }
 
 function subscribeToHeaderScrollStore(onStoreChange: () => void) {
@@ -283,6 +419,14 @@ function subscribeToHeaderScrollStore(onStoreChange: () => void) {
 
   let animationFrameId: number | null = null;
 
+  previousHeaderScrollY = Math.max(0, window.scrollY);
+  headerScrollSnapshot =
+    previousHeaderScrollY >= HEADER_MOBILE_SEARCH_COLLAPSE_Y
+      ? HEADER_SCROLL_COLLAPSED_SNAPSHOT
+      : previousHeaderScrollY > HEADER_SCROLLED_THRESHOLD
+        ? HEADER_SCROLL_EXPANDED_SNAPSHOT
+        : HEADER_SCROLL_TOP_SNAPSHOT;
+
   const handleScroll = () => {
     if (animationFrameId !== null) {
       return;
@@ -290,11 +434,22 @@ function subscribeToHeaderScrollStore(onStoreChange: () => void) {
 
     animationFrameId = window.requestAnimationFrame(() => {
       animationFrameId = null;
-      onStoreChange();
+
+      if (refreshHeaderScrollSnapshot(false)) {
+        onStoreChange();
+      }
     });
   };
 
+  const handleScrollPositionReset = () => {
+    if (refreshHeaderScrollSnapshot(true)) {
+      onStoreChange();
+    }
+  };
+
   window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleScrollPositionReset);
+  window.addEventListener("orientationchange", handleScrollPositionReset);
 
   return () => {
     if (animationFrameId !== null) {
@@ -302,6 +457,8 @@ function subscribeToHeaderScrollStore(onStoreChange: () => void) {
     }
 
     window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScrollPositionReset);
+    window.removeEventListener("orientationchange", handleScrollPositionReset);
   };
 }
 
@@ -309,7 +466,7 @@ function useHeaderScrollState() {
   return useSyncExternalStore(
     subscribeToHeaderScrollStore,
     getHeaderScrollSnapshot,
-    () => false,
+    () => HEADER_SCROLL_TOP_SNAPSHOT,
   );
 }
 
@@ -346,7 +503,12 @@ function getSearchHref(searchHref: string, query: string) {
     q: query,
   });
 
-  return `${searchHref}?${searchParams.toString()}`;
+  const normalizedSearchHref = normalizePathname(searchHref);
+  const safeSearchHref = isSupportedHeaderHref(normalizedSearchHref)
+    ? normalizedSearchHref
+    : SEARCH_FALLBACK_HREF;
+
+  return `${safeSearchHref}?${searchParams.toString()}`;
 }
 
 function getMenuItems(menu: HTMLElement) {
@@ -483,6 +645,43 @@ function getCategoryNavActiveState(
 ) {
   return [...primaryCategories, ...moreCategories].some((category) =>
     isRouteActive(pathname, category.href),
+  );
+}
+
+function isWishlistPath(pathname: string) {
+  const currentPathname = normalizePathname(pathname);
+
+  return (
+    currentPathname === WISHLIST_HREF ||
+    currentPathname.startsWith(`${WISHLIST_HREF}/`)
+  );
+}
+
+function getSafeNextPathname(nextHref: string | null) {
+  if (!nextHref || !isInternalHref(nextHref)) {
+    return null;
+  }
+
+  return normalizePathname(nextHref);
+}
+
+function getMobileActivePathname(pathname: string, nextHref: string | null) {
+  const nextPathname = getSafeNextPathname(nextHref);
+
+  if (nextPathname && isWishlistPath(nextPathname)) {
+    return nextPathname;
+  }
+
+  return pathname;
+}
+
+function isAccountPath(pathname: string) {
+  const currentPathname = normalizePathname(pathname);
+
+  return (
+    (currentPathname === ACCOUNT_OVERVIEW_HREF ||
+      currentPathname.startsWith(`${ACCOUNT_OVERVIEW_HREF}/`)) &&
+    !isWishlistPath(currentPathname)
   );
 }
 
@@ -693,11 +892,19 @@ function HeaderMobileBottomNavigation({
   onCloseAll,
   onOpenCategories,
 }: HeaderMobileBottomNavigationProps) {
-  const isCategoriesActive = getCategoryNavActiveState(
-    currentPathname,
-    primaryCategories,
-    moreCategories,
-  );
+  const isWishlistActive = isWishlistPath(currentPathname);
+  const isAccountActive = isAccountPath(currentPathname);
+  const isCartActive = isRouteActive(currentPathname, cartSummary.cartHref);
+  const isHomeActive =
+    !isWishlistActive &&
+    !isAccountActive &&
+    !isCartActive &&
+    isRouteActive(currentPathname, ROOT_PATHNAME);
+  const isCategoriesActive =
+    !isWishlistActive &&
+    !isAccountActive &&
+    !isCartActive &&
+    getCategoryNavActiveState(currentPathname, primaryCategories, moreCategories);
 
   return (
     <nav
@@ -707,7 +914,7 @@ function HeaderMobileBottomNavigation({
       <HeaderMobileBottomLink
         href="/"
         icon="home"
-        isActive={isRouteActive(currentPathname, "/")}
+        isActive={isHomeActive}
         label="Home"
         onClick={onCloseAll}
       />
@@ -725,7 +932,7 @@ function HeaderMobileBottomNavigation({
         href={wishlistHref}
         icon="wishlist"
         count={counts.wishlist}
-        isActive={isRouteActive(currentPathname, wishlistHref)}
+        isActive={isWishlistActive}
         label="Wishlist"
         ariaLabel={`View wishlist, ${getWishlistLabel(counts.wishlist)}`}
         onClick={onCloseAll}
@@ -735,7 +942,7 @@ function HeaderMobileBottomNavigation({
         href={cartSummary.cartHref}
         icon="cart"
         count={cartSummary.itemCount}
-        isActive={isRouteActive(currentPathname, cartSummary.cartHref)}
+        isActive={isCartActive}
         label="Cart"
         ariaLabel={getCartAriaLabel(cartSummary)}
         onClick={onCloseAll}
@@ -744,7 +951,7 @@ function HeaderMobileBottomNavigation({
       <HeaderMobileBottomLink
         href={accountHref}
         icon="user"
-        isActive={isRouteActive(currentPathname, ACCOUNT_OVERVIEW_HREF)}
+        isActive={isAccountActive}
         label="Account"
         ariaLabel={
           user.isAuthenticated ? "View account" : "Sign in to your account"
@@ -771,13 +978,14 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
 
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [activePanel, setActivePanel] = useState<HeaderPanel>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const isScrolled = useHeaderScrollState();
+  const { isMobileSearchCollapsed, isScrolled } = useHeaderScrollState();
   const selectedLanguage = useStoredLanguage(languageOptions);
   const headerRef = useRef<HTMLElement | null>(null);
   const mobileSearchDialogRef = useRef<HTMLDivElement | null>(null);
@@ -803,21 +1011,28 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
   const notificationsHref = getProtectedHref(NOTIFICATIONS_HREF, user, true);
   const isLanguageMenuOpen = activePanel === "language";
   const isBodyLocked = isMobileMenuOpen || isMobileSearchOpen;
+  const mobileActiveNextHref = searchParams.get("next");
+  const mobileActivePathname = useMemo(
+    () => getMobileActivePathname(pathname, mobileActiveNextHref),
+    [mobileActiveNextHref, pathname],
+  );
 
   const mobileNavigationHrefs = useMemo(() => {
     const wishlistLink = findWishlistLink(accountLinks);
     const accountLink = getPreferredAccountLink(accountLinks, user);
 
     return {
-      accountHref: getProtectedHref(
+      accountHref: getSafeProtectedHeaderHref(
         accountLink?.href ?? ACCOUNT_OVERVIEW_HREF,
         user,
         accountLink?.requiresAuth ?? !user.isAuthenticated,
+        user.isAuthenticated ? ACCOUNT_OVERVIEW_HREF : ACCOUNT_LOGIN_HREF,
       ),
-      wishlistHref: getProtectedHref(
+      wishlistHref: getSafeProtectedHeaderHref(
         wishlistLink?.href ?? WISHLIST_HREF,
         user,
         wishlistLink?.requiresAuth ?? true,
+        user.isAuthenticated ? ACCOUNT_OVERVIEW_HREF : ACCOUNT_LOGIN_HREF,
       ),
     };
   }, [accountLinks, user]);
@@ -825,6 +1040,7 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
   const headerClassName = getClassName(
     "gb-site-header",
     isScrolled && "gb-site-header--scrolled",
+    isMobileSearchCollapsed && "gb-site-header--mobile-search-collapsed",
     isMobileMenuOpen && "gb-site-header--mobile-menu-open",
     isMobileSearchOpen && "gb-site-header--mobile-search-open",
   );
@@ -944,7 +1160,13 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
   }, [isMobileSearchOpen]);
 
   return (
-    <header ref={headerRef} className={headerClassName}>
+    <header
+      ref={headerRef}
+      className={headerClassName}
+      data-mobile-search-state={
+        isMobileSearchCollapsed ? "collapsed" : "expanded"
+      }
+    >
       <div className="gb-site-header__topbar">
         <div className="gb-container-wide gb-site-header__topbar-inner">
           <div
@@ -1166,7 +1388,7 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
         accountHref={mobileNavigationHrefs.accountHref}
         cartSummary={cartSummary}
         counts={counts}
-        currentPathname={pathname}
+        currentPathname={mobileActivePathname}
         mobileDrawerId={mobileDrawerId}
         primaryCategories={primaryCategories}
         moreCategories={moreCategories}
