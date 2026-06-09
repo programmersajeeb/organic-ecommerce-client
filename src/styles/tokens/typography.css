@@ -1,0 +1,72 @@
+/* =============================================================================
+   365 SHOP — TYPOGRAPHY TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines the global font families, text scale, line-height scale,
+   and letter-spacing scale.
+
+   Rules:
+   - Font variables must respect the font setup from root layout.
+   - Do not define component-specific typography here.
+   - Component typography should consume these tokens or semantic tokens.
+   ============================================================================= */
+
+:root {
+  --gb-font-sans:
+    var(--font-inter),
+    var(--font-noto-bengali),
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --gb-font-heading:
+    var(--font-merriweather),
+    var(--font-inter),
+    var(--font-noto-bengali),
+    Georgia,
+    serif;
+
+  --gb-font-bangla:
+    var(--font-noto-bengali),
+    var(--font-inter),
+    system-ui,
+    sans-serif;
+
+  --gb-font-mono:
+    "JetBrains Mono",
+    "Fira Code",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  --font-sans: var(--gb-font-sans);
+  --font-heading: var(--gb-font-heading);
+  --font-bangla: var(--gb-font-bangla);
+  --font-serif: var(--gb-font-heading);
+  --font-mono: var(--gb-font-mono);
+
+  --gb-text-xs: 0.75rem;
+  --gb-text-sm: 0.875rem;
+  --gb-text-base: 1rem;
+  --gb-text-lg: 1.125rem;
+  --gb-text-xl: 1.25rem;
+  --gb-text-2xl: 1.5rem;
+  --gb-text-3xl: 1.875rem;
+  --gb-text-4xl: 2.25rem;
+  --gb-text-5xl: 3rem;
+  --gb-text-6xl: 3.75rem;
+
+  --gb-leading-none: 1;
+  --gb-leading-tight: 1.18;
+  --gb-leading-snug: 1.32;
+  --gb-leading-normal: 1.6;
+  --gb-leading-relaxed: 1.75;
+
+  --gb-tracking-tight: -0.025em;
+  --gb-tracking-normal: 0;
+  --gb-tracking-wide: 0.02em;
+  --gb-tracking-wider: 0.06em;
+}

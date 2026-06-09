@@ -1,0 +1,40 @@
+/* =============================================================================
+   365 SHOP — LAYOUT TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines reusable layout primitives for container widths, page/section spacing,
+   header heights, mobile bottom navigation height, and layout breakpoints.
+
+   Rules:
+   - Keep reusable layout primitives here.
+   - Component-specific layout tokens should live in component token files.
+   ============================================================================= */
+
+:root {
+  --gb-container-xs: 40rem;
+  --gb-container-sm: 48rem;
+  --gb-container-md: 64rem;
+  --gb-container-lg: 80rem;
+  --gb-container-xl: 90rem;
+  --gb-container-2xl: 96rem;
+
+  --gb-container-padding-mobile: 1rem;
+  --gb-container-padding-tablet: 1.25rem;
+  --gb-container-padding-desktop: 1.5rem;
+
+  --gb-section-y-mobile: 2rem;
+  --gb-section-y-tablet: 3rem;
+  --gb-section-y-desktop: 4rem;
+
+  --gb-header-height-mobile: 4.15rem;
+  --gb-header-height-desktop: 5rem;
+  --gb-topbar-height: 2.25rem;
+  --gb-bottom-nav-height: 4.48rem;
+
+  --gb-breakpoint-header-2xl: 90rem;
+  --gb-breakpoint-header-xl: 80rem;
+  --gb-breakpoint-header-lg: 72.5rem;
+  --gb-breakpoint-header-md: 64rem;
+  --gb-breakpoint-header-sm: 40rem;
+  --gb-breakpoint-header-xs: 23.75rem;
+}

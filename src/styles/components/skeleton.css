@@ -1,0 +1,163 @@
+/* =============================================================================
+   365 SHOP — SHARED SKELETON COMPONENTS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Reusable enterprise loading skeleton styles for banners, cards, sections,
+   and shared UI modules.
+
+   Rules:
+   - Consume tokens from src/styles/tokens/skeleton.tokens.css.
+   - Do not hardcode raw colors, shadows, radius, spacing, or typography.
+   - Keep class prefix `gb-`.
+   ============================================================================= */
+
+.gb-skeleton {
+  position: relative;
+  overflow: var(--gb-skeleton-overflow);
+  border-radius: var(--gb-skeleton-radius-md);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: var(--gb-skeleton-shimmer-background);
+  background-size: var(--gb-skeleton-shimmer-size) 100%;
+  content: "";
+  transform: translateX(-100%);
+  animation: gb-skeleton-shimmer var(--gb-skeleton-shimmer-duration)
+    var(--gb-skeleton-shimmer-ease) infinite;
+}
+
+.gb-banner-skeleton {
+  position: relative;
+  block-size: var(--gb-skeleton-banner-block-size);
+  overflow: var(--gb-skeleton-overflow);
+  isolation: isolate;
+  border: var(--gb-skeleton-border-width) solid
+    var(--gb-skeleton-border-color);
+  border-radius: var(--gb-skeleton-radius-banner);
+  background: var(--gb-skeleton-banner-background);
+  box-shadow: var(--gb-skeleton-shadow);
+}
+
+.gb-banner-skeleton::before,
+.gb-banner-skeleton::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.gb-banner-skeleton::before {
+  z-index: var(--gb-z-base);
+  opacity: var(--gb-skeleton-banner-pattern-opacity);
+  background-image: var(--gb-skeleton-banner-pattern-background);
+  background-size: var(--gb-skeleton-banner-pattern-size);
+}
+
+.gb-banner-skeleton::after {
+  z-index: var(--gb-z-overlay);
+  background: var(--gb-skeleton-shimmer-background);
+  background-size: var(--gb-skeleton-shimmer-size) 100%;
+  transform: translateX(-100%);
+  animation: gb-skeleton-shimmer var(--gb-skeleton-shimmer-duration)
+    var(--gb-skeleton-shimmer-ease) infinite;
+}
+
+.gb-banner-skeleton__content {
+  position: absolute;
+  z-index: var(--gb-z-raised);
+  inset-block-start: var(--gb-skeleton-banner-content-inset-block-start);
+  inset-inline-start: var(--gb-skeleton-banner-content-inset-inline-start);
+  display: grid;
+  width: var(--gb-skeleton-banner-content-width);
+  gap: var(--gb-skeleton-banner-content-gap);
+}
+
+.gb-banner-skeleton__line {
+  display: block;
+  border-radius: var(--gb-skeleton-radius-full);
+  background: var(--gb-skeleton-surface-strong);
+}
+
+.gb-banner-skeleton__line--sm {
+  width: var(--gb-skeleton-banner-line-width-sm);
+  height: var(--gb-skeleton-banner-line-height-sm);
+}
+
+.gb-banner-skeleton__line--md {
+  width: var(--gb-skeleton-banner-line-width-md);
+  height: var(--gb-skeleton-banner-line-height-md);
+}
+
+.gb-banner-skeleton__line--lg {
+  width: var(--gb-skeleton-banner-line-width-lg);
+  height: var(--gb-skeleton-banner-line-height-lg);
+}
+
+.gb-banner-skeleton__visual {
+  display: none;
+}
+
+.gb-banner-skeleton__dots {
+  position: absolute;
+  z-index: var(--gb-z-dropdown);
+  inset-block-end: var(--gb-skeleton-banner-dots-inset-block-end);
+  inset-inline-start: var(--gb-skeleton-banner-dots-inset-inline-start);
+  display: flex;
+  align-items: center;
+  gap: var(--gb-skeleton-banner-dots-gap);
+  padding-block: var(--gb-skeleton-banner-dots-padding-y);
+  padding-inline: var(--gb-skeleton-banner-dots-padding-x);
+  border: var(--gb-skeleton-banner-dots-border-width) solid
+    var(--gb-skeleton-banner-dots-border-color);
+  border-radius: var(--gb-skeleton-banner-dots-radius);
+  background: var(--gb-skeleton-banner-dots-background);
+  box-shadow: var(--gb-skeleton-banner-dots-shadow);
+  backdrop-filter: var(--gb-skeleton-banner-dots-backdrop-filter);
+}
+
+.gb-banner-skeleton__dot {
+  width: var(--gb-skeleton-banner-dot-size);
+  height: var(--gb-skeleton-banner-dot-size);
+  border-radius: var(--gb-skeleton-radius-full);
+  background: var(--gb-skeleton-banner-dot-background);
+}
+
+.gb-banner-skeleton__dot--active {
+  width: var(--gb-skeleton-banner-dot-active-width);
+  background: var(--gb-skeleton-banner-dot-active-background);
+}
+
+@keyframes gb-skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 64rem) {
+  .gb-banner-skeleton {
+    block-size: var(--gb-skeleton-banner-block-size-tablet);
+  }
+}
+
+@media (max-width: 48rem) {
+  .gb-banner-skeleton {
+    block-size: var(--gb-skeleton-banner-block-size-mobile);
+    border-radius: var(--gb-skeleton-radius-banner-mobile);
+  }
+
+  .gb-banner-skeleton__dots {
+    inset-block-end: var(--gb-skeleton-banner-dots-inset-block-end-mobile);
+    inset-inline-start: var(--gb-skeleton-banner-dots-inset-inline-start-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gb-skeleton::after,
+  .gb-banner-skeleton::after {
+    animation: none;
+    transform: none;
+  }
+}

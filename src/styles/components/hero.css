@@ -1,0 +1,212 @@
+/* =============================================================================
+   365 SHOP — HERO / IMAGE BANNER SECTION
+   -----------------------------------------------------------------------------
+   Purpose:
+   Premium reusable image-only ecommerce Hero carousel styles.
+
+   Rules:
+   - Consume tokens from src/styles/tokens/hero.tokens.css.
+   - Do not hardcode raw colors, shadows, radius, spacing, or typography.
+   - Keep class prefix `gb-`.
+   ============================================================================= */
+
+.gb-hero-carousel {
+  position: relative;
+  padding-block: var(--gb-hero-section-padding-top)
+    var(--gb-hero-section-padding-bottom);
+}
+
+.gb-hero-carousel__container {
+  width: 100%;
+  max-width: var(--gb-hero-container-max-width);
+  margin-inline: auto;
+  padding-inline: clamp(
+    var(--gb-hero-container-padding-min),
+    var(--gb-hero-container-padding-fluid),
+    var(--gb-hero-container-padding-max)
+  );
+}
+
+.gb-hero-carousel__shell {
+  position: relative;
+  block-size: var(--gb-hero-shell-block-size);
+  overflow: var(--gb-hero-shell-overflow);
+  isolation: isolate;
+  border: var(--gb-hero-shell-border-width) solid
+    var(--gb-hero-shell-border-color);
+  border-radius: var(--gb-hero-shell-radius);
+  background: var(--gb-hero-shell-background);
+  box-shadow: var(--gb-hero-shell-shadow);
+}
+
+.gb-hero-carousel__skeleton {
+  position: absolute;
+  z-index: var(--gb-z-overlay);
+  inset: 0;
+  block-size: 100%;
+  border: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 1;
+  transition:
+    opacity var(--gb-hero-image-transition-duration)
+      var(--gb-hero-image-transition-ease),
+    visibility var(--gb-hero-image-transition-duration)
+      var(--gb-hero-image-transition-ease);
+  visibility: visible;
+}
+
+.gb-hero-carousel__skeleton--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gb-hero-carousel__slide {
+  position: relative;
+  z-index: var(--gb-z-base);
+  display: block;
+  block-size: 100%;
+  overflow: hidden;
+  padding: var(--gb-hero-slide-padding);
+  background: var(--gb-hero-slide-background);
+  transition:
+    opacity var(--gb-hero-slide-transition-duration)
+      var(--gb-hero-slide-transition-ease),
+    transform var(--gb-hero-slide-transition-duration)
+      var(--gb-hero-slide-transition-ease);
+}
+
+.gb-hero-carousel__image-link {
+  position: absolute;
+  z-index: var(--gb-z-base);
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.gb-hero-carousel__image-link:focus-visible {
+  outline: none;
+  box-shadow: var(--gb-shadow-focus-strong);
+}
+
+.gb-hero-carousel__image {
+  width: var(--gb-hero-image-width);
+  height: var(--gb-hero-image-height);
+  opacity: 0;
+  object-fit: var(--gb-hero-image-object-fit);
+  object-position: var(--gb-hero-image-object-position);
+  transform: var(--gb-hero-image-transform);
+  transition:
+    opacity var(--gb-hero-image-transition-duration)
+      var(--gb-hero-image-transition-ease),
+    transform var(--gb-hero-image-transition-duration)
+      var(--gb-hero-image-transition-ease);
+}
+
+.gb-hero-carousel__image--loaded {
+  opacity: 1;
+}
+
+.gb-hero-carousel__dots {
+  position: absolute;
+  z-index: var(--gb-z-dropdown);
+  inset-block-end: var(--gb-hero-dots-inset-block-end);
+  inset-inline-start: var(--gb-hero-dots-inset-inline-start);
+  display: flex;
+  flex-direction: var(--gb-hero-dots-direction);
+  align-items: center;
+  gap: var(--gb-hero-dots-gap);
+  padding-block: var(--gb-hero-dots-padding-y);
+  padding-inline: var(--gb-hero-dots-padding-x);
+  border: var(--gb-hero-dots-border-width) solid
+    var(--gb-hero-dots-border-color);
+  border-radius: var(--gb-hero-dots-radius);
+  background: var(--gb-hero-dots-background);
+  box-shadow: var(--gb-hero-dots-shadow);
+  backdrop-filter: var(--gb-hero-dots-backdrop-filter);
+}
+
+.gb-hero-carousel__dot {
+  position: relative;
+  width: var(--gb-hero-dot-inline-size);
+  height: var(--gb-hero-dot-block-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--gb-hero-dot-radius);
+  background: var(--gb-hero-dot-background);
+  cursor: pointer;
+  transform: var(--gb-hero-transform-rest);
+  transition:
+    width var(--gb-duration-base) var(--gb-ease-standard),
+    background-color var(--gb-duration-base) var(--gb-ease-standard),
+    transform var(--gb-duration-base) var(--gb-ease-emphasized);
+}
+
+.gb-hero-carousel__dot:hover {
+  background: var(--gb-hero-dot-hover-background);
+  transform: var(--gb-hero-transform-lift);
+}
+
+.gb-hero-carousel__dot:focus-visible {
+  outline: none;
+  box-shadow: var(--gb-hero-dot-focus-shadow);
+}
+
+.gb-hero-carousel__dot--active {
+  width: var(--gb-hero-dot-active-inline-size);
+  background: var(--gb-hero-dot-active-background);
+}
+
+.gb-hero-carousel__dot-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gb-hero-carousel__pause-button {
+  display: var(--gb-hero-pause-button-display);
+}
+
+@media (max-width: 64rem) {
+  .gb-hero-carousel__shell {
+    block-size: var(--gb-hero-shell-block-size-tablet);
+  }
+
+  .gb-hero-carousel__dots {
+    inset-inline-start: var(--gb-hero-dots-inset-inline-start-tablet);
+  }
+}
+
+@media (max-width: 48rem) {
+  .gb-hero-carousel {
+    padding-block: var(--gb-hero-section-padding-top-mobile)
+      var(--gb-hero-section-padding-bottom-mobile);
+  }
+
+  .gb-hero-carousel__shell {
+    block-size: var(--gb-hero-shell-block-size-mobile);
+    border-radius: var(--gb-hero-shell-radius-mobile);
+  }
+
+  .gb-hero-carousel__dots {
+    inset-block-end: var(--gb-hero-dots-inset-block-end-mobile);
+    inset-inline-start: var(--gb-hero-dots-inset-inline-start-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gb-hero-carousel__skeleton,
+  .gb-hero-carousel__slide,
+  .gb-hero-carousel__image,
+  .gb-hero-carousel__dot {
+    transition: none;
+  }
+}

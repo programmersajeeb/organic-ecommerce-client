@@ -31,9 +31,11 @@
 /* 04 — Reusable UI primitives */
 @import "../styles/components/button.css";
 @import "../styles/components/badge.css";
+@import "../styles/components/skeleton.css";
 
-/* 05 — Active layout/component modules */
+/* 05 — Active layout/section/component modules */
 @import "../styles/components/header.css";
+@import "../styles/components/hero.css";
 
 /* 06 — Global utilities and motion */
 @import "../styles/utilities.css";

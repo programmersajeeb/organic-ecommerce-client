@@ -1,0 +1,24 @@
+/* =============================================================================
+   365 SHOP — Z-INDEX TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines global stacking order tokens for layout, sticky elements, dropdowns,
+   drawers, modals, popovers, toasts, and tooltips.
+
+   Rules:
+   - Keep only reusable stacking tokens here.
+   - Component CSS must consume these tokens instead of hardcoded z-index values.
+   ============================================================================= */
+
+:root {
+  --gb-z-base: 0;
+  --gb-z-raised: 10;
+  --gb-z-sticky: 100;
+  --gb-z-header: 200;
+  --gb-z-dropdown: 300;
+  --gb-z-drawer: 400;
+  --gb-z-modal: 500;
+  --gb-z-popover: 600;
+  --gb-z-toast: 700;
+  --gb-z-tooltip: 800;
+}

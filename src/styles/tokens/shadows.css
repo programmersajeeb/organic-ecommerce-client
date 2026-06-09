@@ -1,0 +1,45 @@
+/* =============================================================================
+   365 SHOP — SHADOW TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines global elevation, component elevation aliases, and focus ring shadows.
+
+   Rules:
+   - Keep global reusable shadow scale here.
+   - Dark mode shadow overrides stay in theme-dark.css.
+   - Component-specific semantic shadows can live in component token files.
+   ============================================================================= */
+
+:root {
+  --gb-shadow-xs: 0 1px 2px hsl(220 17% 7% / 0.04);
+  --gb-shadow-sm: 0 4px 14px hsl(220 17% 7% / 0.06);
+  --gb-shadow-md: 0 8px 24px hsl(220 17% 7% / 0.08);
+  --gb-shadow-base: 0 12px 34px hsl(220 17% 7% / 0.08);
+  --gb-shadow-lg: 0 20px 54px hsl(220 17% 7% / 0.12);
+  --gb-shadow-xl: 0 28px 80px hsl(220 17% 7% / 0.16);
+
+  --gb-shadow-card: 0 12px 34px hsl(220 17% 7% / 0.07);
+  --gb-shadow-card-hover: 0 22px 58px hsl(220 17% 7% / 0.13);
+
+  --gb-shadow-header: 0 10px 34px hsl(220 17% 7% / 0.08);
+  --gb-shadow-dropdown: 0 18px 56px hsl(220 17% 7% / 0.16);
+  --gb-shadow-drawer: 0 28px 90px hsl(220 17% 7% / 0.24);
+  --gb-shadow-modal: 0 32px 100px hsl(220 17% 7% / 0.28);
+
+  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-brand-ring) / 0.16);
+  --gb-shadow-focus-strong: 0 0 0 4px hsl(var(--gb-brand-ring) / 0.22);
+
+  --shadow-xs: var(--gb-shadow-xs);
+  --shadow-sm: var(--gb-shadow-sm);
+  --shadow-md: var(--gb-shadow-md);
+  --shadow: var(--gb-shadow-base);
+  --shadow-lg: var(--gb-shadow-lg);
+  --shadow-xl: var(--gb-shadow-xl);
+  --shadow-card: var(--gb-shadow-card);
+  --shadow-card-hover: var(--gb-shadow-card-hover);
+  --shadow-header: var(--gb-shadow-header);
+  --shadow-dropdown: var(--gb-shadow-dropdown);
+  --shadow-drawer: var(--gb-shadow-drawer);
+  --shadow-modal: var(--gb-shadow-modal);
+  --shadow-focus: var(--gb-shadow-focus);
+}

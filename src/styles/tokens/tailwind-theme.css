@@ -1,0 +1,161 @@
+/* =============================================================================
+   365 SHOP — TAILWIND V4 THEME BRIDGE
+   -----------------------------------------------------------------------------
+   Purpose:
+   Maps project design tokens to Tailwind v4 theme variables.
+
+   Rules:
+   - This file must be imported after all token definition files.
+   - Do not define raw design values here.
+   - Only map existing project tokens to Tailwind theme variables.
+   ============================================================================= */
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-brand: hsl(var(--gb-brand));
+  --color-brand-hover: hsl(var(--gb-brand-hover));
+  --color-brand-active: hsl(var(--gb-brand-active));
+  --color-brand-soft: hsl(var(--gb-brand-soft));
+  --color-brand-subtle: hsl(var(--gb-brand-subtle));
+  --color-brand-foreground: hsl(var(--gb-inverse));
+
+  --color-graphite: hsl(var(--gb-graphite));
+  --color-graphite-soft: hsl(var(--gb-graphite-soft));
+  --color-graphite-muted: hsl(var(--gb-graphite-muted));
+
+  --color-surface: hsl(var(--gb-surface));
+  --color-surface-soft: hsl(var(--gb-surface-soft));
+  --color-surface-muted: hsl(var(--gb-surface-muted));
+  --color-surface-elevated: hsl(var(--gb-surface-elevated));
+  --color-surface-inverse: hsl(var(--gb-surface-inverse));
+
+  --color-section: hsl(var(--gb-surface-soft));
+  --color-header: hsl(var(--gb-header));
+  --color-header-top: hsl(var(--gb-header-top));
+  --color-navigation: hsl(var(--gb-navigation));
+  --color-navbar: hsl(var(--gb-header-top));
+  --color-footer: hsl(var(--gb-footer));
+
+  --color-heading: hsl(var(--gb-heading));
+  --color-body: hsl(var(--gb-body));
+  --color-text-muted: hsl(var(--gb-muted));
+  --color-subtle: hsl(var(--gb-subtle));
+  --color-disabled: hsl(var(--gb-disabled));
+  --color-inverse: hsl(var(--gb-inverse));
+
+  --color-divider: hsl(var(--gb-divider));
+  --color-border-soft: hsl(var(--gb-border-soft));
+  --color-border-strong: hsl(var(--gb-border-strong));
+
+  --color-price: hsl(var(--gb-price));
+  --color-price-old: hsl(var(--gb-price-old));
+  --color-old-price: hsl(var(--gb-price-old));
+  --color-discount: hsl(var(--gb-discount));
+  --color-rating: hsl(var(--gb-rating));
+  --color-rating-soft: hsl(var(--gb-rating-soft));
+  --color-stock: hsl(var(--gb-stock));
+  --color-stock-soft: hsl(var(--gb-stock-soft));
+
+  --color-success: hsl(var(--gb-success));
+  --color-success-soft: hsl(var(--gb-success-soft));
+  --color-success-foreground: hsl(var(--gb-success-foreground));
+
+  --color-warning: hsl(var(--gb-warning));
+  --color-warning-soft: hsl(var(--gb-warning-soft));
+  --color-warning-foreground: hsl(var(--gb-warning-foreground));
+
+  --color-error: hsl(var(--gb-error));
+  --color-error-soft: hsl(var(--gb-error-soft));
+  --color-error-foreground: hsl(var(--gb-error-foreground));
+
+  --color-info: hsl(var(--gb-info));
+  --color-info-soft: hsl(var(--gb-info-soft));
+  --color-info-foreground: hsl(var(--gb-info-foreground));
+
+  --color-overlay: hsl(var(--gb-overlay) / var(--gb-overlay-alpha));
+  --color-skeleton: hsl(var(--gb-skeleton));
+  --color-skeleton-shine: hsl(var(--gb-skeleton-shine));
+
+  --color-primary-hover: hsl(var(--gb-brand-hover));
+  --color-primary-active: hsl(var(--gb-brand-active));
+  --color-primary-soft: hsl(var(--gb-brand-soft));
+  --color-secondary-soft: hsl(var(--gb-surface-muted));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-sans: var(--gb-font-sans);
+  --font-heading: var(--gb-font-heading);
+  --font-bangla: var(--gb-font-bangla);
+  --font-serif: var(--gb-font-heading);
+  --font-mono: var(--gb-font-mono);
+
+  --radius-xs: var(--gb-radius-xs);
+  --radius-sm: var(--gb-radius-sm);
+  --radius-md: var(--gb-radius-md);
+  --radius-base: var(--gb-radius-base);
+  --radius-lg: var(--gb-radius-lg);
+  --radius-xl: var(--gb-radius-xl);
+  --radius-2xl: var(--gb-radius-2xl);
+  --radius-3xl: var(--gb-radius-3xl);
+  --radius-4xl: var(--gb-radius-4xl);
+  --radius-full: var(--gb-radius-full);
+
+  --shadow-xs: var(--gb-shadow-xs);
+  --shadow-sm: var(--gb-shadow-sm);
+  --shadow-md: var(--gb-shadow-md);
+  --shadow: var(--gb-shadow-base);
+  --shadow-lg: var(--gb-shadow-lg);
+  --shadow-xl: var(--gb-shadow-xl);
+  --shadow-card: var(--gb-shadow-card);
+  --shadow-card-hover: var(--gb-shadow-card-hover);
+  --shadow-header: var(--gb-shadow-header);
+  --shadow-dropdown: var(--gb-shadow-dropdown);
+  --shadow-drawer: var(--gb-shadow-drawer);
+  --shadow-modal: var(--gb-shadow-modal);
+  --shadow-focus: var(--gb-shadow-focus);
+
+  --ease-standard: var(--gb-ease-standard);
+  --ease-emphasized: var(--gb-ease-emphasized);
+  --ease-entrance: var(--gb-ease-entrance);
+  --ease-exit: var(--gb-ease-exit);
+}

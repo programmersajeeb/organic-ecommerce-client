@@ -1,0 +1,135 @@
+/* =============================================================================
+   365 SHOP — LIGHT THEME TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines the default light theme color system, ecommerce semantic colors,
+   shadcn/ui color aliases, and shared surface/text/border aliases.
+
+   Rules:
+   - Keep HSL channel tokens as raw channel values.
+   - Keep resolved semantic aliases as var(...) or hsl(var(...)).
+   - Do not place component-specific tokens here.
+   ============================================================================= */
+
+:root {
+  color-scheme: light;
+
+  --gb-brand: 358 86% 49%;
+  --gb-brand-hover: 358 84% 43%;
+  --gb-brand-active: 358 78% 36%;
+  --gb-brand-soft: 358 100% 96%;
+  --gb-brand-subtle: 358 100% 98%;
+  --gb-brand-ring: 358 86% 49%;
+
+  --gb-graphite: 220 17% 7%;
+  --gb-graphite-soft: 220 14% 12%;
+  --gb-graphite-muted: 220 8% 28%;
+
+  --gb-white: 0 0% 100%;
+  --gb-off-white: 0 0% 98%;
+  --gb-snow: 0 0% 99%;
+
+  --gb-background: 0 0% 98%;
+  --gb-foreground: 220 17% 7%;
+
+  --gb-surface: 0 0% 100%;
+  --gb-surface-soft: 0 0% 97%;
+  --gb-surface-muted: 0 0% 94%;
+  --gb-surface-elevated: 0 0% 100%;
+  --gb-surface-inverse: 220 17% 7%;
+
+  --gb-header: 0 0% 100%;
+  --gb-header-top: 220 17% 7%;
+  --gb-navigation: 0 0% 100%;
+  --gb-footer: 220 17% 7%;
+
+  --gb-overlay: 220 17% 7%;
+  --gb-overlay-alpha: 0.62;
+
+  --gb-skeleton: 220 14% 92%;
+  --gb-skeleton-soft: 220 18% 96%;
+  --gb-skeleton-muted: 220 14% 90%;
+  --gb-skeleton-strong: 220 12% 84%;
+  --gb-skeleton-shine: 0 0% 100%;
+  --gb-skeleton-accent: 358 86% 49%;
+
+  --gb-heading: 220 17% 7%;
+  --gb-body: 220 9% 24%;
+  --gb-muted: 220 7% 43%;
+  --gb-subtle: 220 6% 58%;
+  --gb-disabled: 220 7% 72%;
+  --gb-inverse: 0 0% 100%;
+
+  --gb-border: 220 12% 88%;
+  --gb-border-soft: 220 13% 92%;
+  --gb-border-strong: 220 10% 78%;
+  --gb-divider: 220 13% 91%;
+  --gb-input: 220 12% 88%;
+
+  --gb-price: 358 86% 49%;
+  --gb-price-old: 220 6% 58%;
+  --gb-discount: 358 86% 49%;
+  --gb-rating: 42 96% 54%;
+  --gb-rating-soft: 42 100% 94%;
+  --gb-stock: 145 64% 36%;
+  --gb-stock-soft: 145 55% 93%;
+
+  --gb-success: 145 64% 36%;
+  --gb-success-soft: 145 55% 93%;
+  --gb-success-foreground: 145 70% 20%;
+
+  --gb-warning: 38 92% 50%;
+  --gb-warning-soft: 38 100% 94%;
+  --gb-warning-foreground: 32 90% 24%;
+
+  --gb-error: 358 86% 49%;
+  --gb-error-soft: 358 100% 96%;
+  --gb-error-foreground: 358 70% 28%;
+
+  --gb-info: 217 91% 56%;
+  --gb-info-soft: 217 100% 96%;
+  --gb-info-foreground: 217 76% 32%;
+
+  --background: var(--gb-background);
+  --foreground: var(--gb-foreground);
+
+  --card: var(--gb-surface);
+  --card-foreground: var(--gb-heading);
+
+  --popover: var(--gb-surface-elevated);
+  --popover-foreground: var(--gb-heading);
+
+  --primary: var(--gb-brand);
+  --primary-foreground: var(--gb-inverse);
+
+  --secondary: var(--gb-graphite);
+  --secondary-foreground: var(--gb-inverse);
+
+  --muted: var(--gb-surface-soft);
+  --muted-foreground: var(--gb-muted);
+
+  --accent: var(--gb-brand-soft);
+  --accent-foreground: var(--gb-heading);
+
+  --destructive: var(--gb-error);
+  --destructive-foreground: var(--gb-inverse);
+
+  --border: var(--gb-border);
+  --input: var(--gb-input);
+  --ring: var(--gb-brand-ring);
+
+  --chart-1: var(--gb-brand);
+  --chart-2: var(--gb-graphite);
+  --chart-3: var(--gb-rating);
+  --chart-4: var(--gb-success);
+  --chart-5: var(--gb-info);
+
+  --sidebar: var(--gb-surface);
+  --sidebar-foreground: var(--gb-heading);
+  --sidebar-primary: var(--gb-brand);
+  --sidebar-primary-foreground: var(--gb-inverse);
+  --sidebar-accent: var(--gb-brand-soft);
+  --sidebar-accent-foreground: var(--gb-heading);
+  --sidebar-border: var(--gb-border);
+  --sidebar-ring: var(--gb-brand-ring);
+}

@@ -1,0 +1,84 @@
+/* =============================================================================
+   365 SHOP — HERO / IMAGE BANNER SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines Hero/Banner-specific semantic design tokens for a premium,
+   reusable image-only ecommerce banner carousel.
+
+   Rules:
+   - Keep only Hero/Banner semantic tokens here.
+   - Hero component CSS must consume these tokens.
+   - Dark mode Hero overrides stay in theme-dark.css.
+   - Do not write component selectors here.
+   ============================================================================= */
+
+:root {
+  --gb-hero-container-max-width: var(--gb-container-lg);
+  --gb-hero-container-padding-min: var(--gb-container-padding-mobile);
+  --gb-hero-container-padding-fluid: 2vw;
+  --gb-hero-container-padding-max: var(--gb-container-padding-desktop);
+
+  --gb-hero-section-padding-top: 1rem;
+  --gb-hero-section-padding-bottom: 1.55rem;
+  --gb-hero-section-padding-top-mobile: 0.75rem;
+  --gb-hero-section-padding-bottom-mobile: 1rem;
+
+  --gb-hero-shell-block-size: clamp(21rem, 30vw, 28.75rem);
+  --gb-hero-shell-block-size-tablet: clamp(17.5rem, 36vw, 24rem);
+  --gb-hero-shell-block-size-mobile: clamp(10.75rem, 49vw, 16.75rem);
+  --gb-hero-shell-border-width: 0.0625rem;
+  --gb-hero-shell-border-color: hsl(var(--gb-border-soft) / 0.72);
+  --gb-hero-shell-radius: var(--radius-2xl);
+  --gb-hero-shell-radius-mobile: var(--radius-xl);
+  --gb-hero-shell-background: transparent;
+  --gb-hero-shell-shadow:
+    0 1.35rem 3.75rem hsl(220 17% 7% / 0.14),
+    0 0.25rem 0.85rem hsl(220 17% 7% / 0.08);
+  --gb-hero-shell-overflow: hidden;
+
+  --gb-hero-slide-padding: 0rem;
+  --gb-hero-slide-background: transparent;
+
+  --gb-hero-image-width: 100%;
+  --gb-hero-image-height: 100%;
+  --gb-hero-image-object-fit: cover;
+  --gb-hero-image-object-position: center center;
+  --gb-hero-image-transform: scale(1);
+  --gb-hero-image-overlay-background: transparent;
+  --gb-hero-image-glow-background: transparent;
+
+  --gb-hero-dots-direction: row;
+  --gb-hero-dots-gap: 0.5rem;
+  --gb-hero-dots-padding-y: 0.42rem;
+  --gb-hero-dots-padding-x: 0.58rem;
+  --gb-hero-dots-radius: var(--radius-full);
+  --gb-hero-dots-background: hsl(220 18% 5% / 0.5);
+  --gb-hero-dots-border-width: 0.0625rem;
+  --gb-hero-dots-border-color: hsl(var(--gb-white) / 0.16);
+  --gb-hero-dots-shadow: 0 0.65rem 1.6rem hsl(220 17% 7% / 0.22);
+  --gb-hero-dots-backdrop-filter: blur(1rem);
+  --gb-hero-dots-inset-inline-start: 1.25rem;
+  --gb-hero-dots-inset-inline-start-tablet: 1rem;
+  --gb-hero-dots-inset-inline-start-mobile: 0.75rem;
+  --gb-hero-dots-inset-block-end: 1rem;
+  --gb-hero-dots-inset-block-end-mobile: 0.7rem;
+
+  --gb-hero-dot-inline-size: 0.52rem;
+  --gb-hero-dot-block-size: 0.52rem;
+  --gb-hero-dot-active-inline-size: 1.45rem;
+  --gb-hero-dot-radius: var(--radius-full);
+  --gb-hero-dot-background: hsl(var(--gb-inverse) / 0.52);
+  --gb-hero-dot-hover-background: hsl(var(--gb-inverse) / 0.84);
+  --gb-hero-dot-active-background: hsl(var(--gb-brand));
+  --gb-hero-dot-focus-shadow: var(--shadow-focus);
+
+  --gb-hero-pause-button-display: none;
+
+  --gb-hero-slide-transition-duration: var(--gb-duration-slow);
+  --gb-hero-slide-transition-ease: var(--gb-ease-emphasized);
+  --gb-hero-image-transition-duration: var(--gb-duration-slow);
+  --gb-hero-image-transition-ease: var(--gb-ease-standard);
+  --gb-hero-transform-lift: translateY(-0.0625rem);
+  --gb-hero-transform-rest: translateY(0);
+  --gb-hero-transform-press: scale(0.98);
+}

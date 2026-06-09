@@ -1,0 +1,125 @@
+/* =============================================================================
+   365 SHOP — DARK THEME TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines dark mode overrides for the global color system, ecommerce semantic
+   colors, shadows, Header visuals, Hero visuals, and shared loading primitives.
+
+   Rules:
+   - Keep only dark-mode overrides here.
+   - Keep HSL channel tokens as raw channel values.
+   - Keep resolved semantic aliases as var(...) or hsl(var(...)).
+   - Do not place component-specific CSS selectors here except `.dark`.
+   ============================================================================= */
+
+.dark {
+  color-scheme: dark;
+
+  --gb-brand: 358 88% 58%;
+  --gb-brand-hover: 358 92% 64%;
+  --gb-brand-active: 358 78% 48%;
+  --gb-brand-soft: 358 36% 16%;
+  --gb-brand-subtle: 358 28% 12%;
+  --gb-brand-ring: 358 88% 58%;
+
+  --gb-graphite: 0 0% 96%;
+  --gb-graphite-soft: 0 0% 90%;
+  --gb-graphite-muted: 0 0% 74%;
+
+  --gb-white: 0 0% 100%;
+  --gb-off-white: 0 0% 8%;
+  --gb-snow: 0 0% 6%;
+
+  --gb-background: 220 17% 5%;
+  --gb-foreground: 0 0% 96%;
+
+  --gb-surface: 220 16% 8%;
+  --gb-surface-soft: 220 14% 11%;
+  --gb-surface-muted: 220 12% 15%;
+  --gb-surface-elevated: 220 14% 12%;
+  --gb-surface-inverse: 0 0% 96%;
+
+  --gb-header: 220 17% 6%;
+  --gb-header-top: 220 17% 4%;
+  --gb-navigation: 220 16% 8%;
+  --gb-footer: 220 17% 4%;
+
+  --gb-overlay: 0 0% 0%;
+  --gb-overlay-alpha: 0.72;
+
+  --gb-skeleton: 220 13% 17%;
+  --gb-skeleton-soft: 220 14% 12%;
+  --gb-skeleton-muted: 220 12% 20%;
+  --gb-skeleton-strong: 220 10% 28%;
+  --gb-skeleton-shine: 220 10% 34%;
+  --gb-skeleton-accent: 358 88% 58%;
+
+  --gb-heading: 0 0% 98%;
+  --gb-body: 0 0% 84%;
+  --gb-muted: 0 0% 64%;
+  --gb-subtle: 0 0% 50%;
+  --gb-disabled: 0 0% 36%;
+
+  --gb-border: 220 11% 20%;
+  --gb-border-soft: 220 12% 16%;
+  --gb-border-strong: 220 10% 28%;
+  --gb-divider: 220 12% 17%;
+  --gb-input: 220 11% 22%;
+
+  --gb-price: 358 88% 64%;
+  --gb-price-old: 0 0% 52%;
+  --gb-discount: 358 88% 64%;
+  --gb-rating: 42 96% 62%;
+  --gb-rating-soft: 42 44% 16%;
+  --gb-stock: 145 60% 50%;
+  --gb-stock-soft: 145 38% 15%;
+
+  --gb-success: 145 60% 50%;
+  --gb-success-soft: 145 38% 15%;
+  --gb-success-foreground: 145 70% 78%;
+
+  --gb-warning: 42 96% 64%;
+  --gb-warning-soft: 42 42% 16%;
+  --gb-warning-foreground: 42 92% 82%;
+
+  --gb-error: 358 88% 64%;
+  --gb-error-soft: 358 42% 16%;
+  --gb-error-foreground: 358 90% 84%;
+
+  --gb-info: 217 92% 68%;
+  --gb-info-soft: 217 42% 16%;
+  --gb-info-foreground: 217 92% 84%;
+
+  --gb-shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.22);
+  --gb-shadow-sm: 0 4px 14px hsl(0 0% 0% / 0.26);
+  --gb-shadow-md: 0 8px 24px hsl(0 0% 0% / 0.3);
+  --gb-shadow-base: 0 12px 34px hsl(0 0% 0% / 0.3);
+  --gb-shadow-lg: 0 20px 54px hsl(0 0% 0% / 0.38);
+  --gb-shadow-xl: 0 28px 80px hsl(0 0% 0% / 0.46);
+
+  --gb-shadow-card: 0 12px 34px hsl(0 0% 0% / 0.3);
+  --gb-shadow-card-hover: 0 22px 58px hsl(0 0% 0% / 0.42);
+
+  --gb-shadow-header: 0 10px 34px hsl(0 0% 0% / 0.38);
+  --gb-shadow-dropdown: 0 18px 56px hsl(0 0% 0% / 0.42);
+  --gb-shadow-drawer: 0 28px 90px hsl(0 0% 0% / 0.56);
+  --gb-shadow-modal: 0 32px 100px hsl(0 0% 0% / 0.62);
+
+  --gb-shadow-focus: 0 0 0 3px hsl(var(--gb-brand-ring) / 0.24);
+  --gb-shadow-focus-strong: 0 0 0 4px hsl(var(--gb-brand-ring) / 0.3);
+
+  --gb-header-search-shadow: 0 0.35rem 1.15rem hsl(0 0% 0% / 0.22);
+  --gb-header-search-focus-shadow:
+    0 0.35rem 1.15rem hsl(0 0% 0% / 0.24),
+    0 0 0 0.16rem hsl(var(--gb-brand-ring) / 0.16);
+  --gb-header-search-button-shadow: 0 0.26rem 0.62rem
+    hsl(var(--gb-brand) / 0.17);
+  --gb-header-search-button-shadow-hover: 0 0.32rem 0.74rem
+    hsl(var(--gb-brand) / 0.21);
+  --gb-header-mobile-button-shadow: 0 0.24rem 0.72rem hsl(0 0% 0% / 0.18);
+  --gb-header-mobile-nav-shadow: 0 -0.35rem 1.15rem hsl(0 0% 0% / 0.28);
+  --gb-header-nav-shell-shadow: 0 0.75rem 1.75rem hsl(0 0% 0% / 0.3);
+
+  --gb-hero-shell-border-color: hsl(var(--gb-border-soft));
+  --gb-hero-shell-shadow: 0 1.5rem 4.5rem hsl(0 0% 0% / 0.42);
+}

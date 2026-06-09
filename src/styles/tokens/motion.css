@@ -1,0 +1,25 @@
+/* =============================================================================
+   365 SHOP — MOTION TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines reusable duration and easing tokens for transitions, animations,
+   hover states, drawers, dropdowns, carousel slides, and UI feedback.
+
+   Rules:
+   - Keep only global reusable motion primitives here.
+   - Component-specific transform tokens should live in component token files.
+   - Do not write animation keyframes here.
+   ============================================================================= */
+
+:root {
+  --gb-duration-instant: 80ms;
+  --gb-duration-fast: 150ms;
+  --gb-duration-base: 220ms;
+  --gb-duration-slow: 320ms;
+  --gb-duration-slower: 500ms;
+
+  --gb-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --gb-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --gb-ease-entrance: cubic-bezier(0, 0, 0.2, 1);
+  --gb-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
