@@ -12,6 +12,7 @@
 
 :root {
   --gb-z-base: 0;
+  --gb-z-overlay: 5;
   --gb-z-raised: 10;
   --gb-z-sticky: 100;
   --gb-z-header: 200;

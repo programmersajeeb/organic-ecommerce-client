@@ -1,0 +1,90 @@
+/* =============================================================================
+   365 SHOP — TRUST BENEFITS SECTION SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines Trust Benefits / Service Highlights section tokens for a premium,
+   reusable ecommerce homepage strip.
+
+   Rules:
+   - Keep only Trust Benefits semantic tokens here.
+   - Component CSS must consume these tokens.
+   - Do not write component selectors here.
+   ============================================================================= */
+
+:root {
+  --gb-trust-benefits-container-max-width: var(--gb-container-lg);
+  --gb-trust-benefits-container-padding-min: var(
+    --gb-container-padding-mobile
+  );
+  --gb-trust-benefits-container-padding-fluid: 2vw;
+  --gb-trust-benefits-container-padding-max: var(
+    --gb-container-padding-desktop
+  );
+
+  --gb-trust-benefits-section-padding-top: 0rem;
+  --gb-trust-benefits-section-padding-bottom: 1.5rem;
+  --gb-trust-benefits-section-padding-bottom-mobile: calc(
+    var(--gb-bottom-nav-height) + 1rem
+  );
+
+  --gb-trust-benefits-shell-grid-columns: repeat(6, minmax(0, 1fr));
+  --gb-trust-benefits-shell-grid-columns-tablet: repeat(3, minmax(0, 1fr));
+  --gb-trust-benefits-shell-grid-columns-mobile: repeat(1, minmax(0, 1fr));
+  --gb-trust-benefits-shell-gap: 0rem;
+  --gb-trust-benefits-shell-gap-tablet: 0.72rem;
+  --gb-trust-benefits-shell-gap-mobile: 0.62rem;
+  --gb-trust-benefits-shell-padding: 0.68rem;
+  --gb-trust-benefits-shell-padding-mobile: 0.48rem;
+
+  --gb-trust-benefits-shell-border-width: 0.0625rem;
+  --gb-trust-benefits-shell-border-color: hsl(var(--gb-border-soft) / 0.72);
+  --gb-trust-benefits-shell-radius: var(--radius-2xl);
+  --gb-trust-benefits-shell-radius-mobile: var(--radius-xl);
+  --gb-trust-benefits-shell-background: hsl(var(--gb-surface) / 0.9);
+  --gb-trust-benefits-shell-shadow: var(--shadow-sm);
+  --gb-trust-benefits-shell-backdrop-filter: blur(1rem);
+
+  --gb-trust-benefits-item-min-block-size: 5.15rem;
+  --gb-trust-benefits-item-min-block-size-mobile: 4.35rem;
+  --gb-trust-benefits-item-padding-y: 0.82rem;
+  --gb-trust-benefits-item-padding-x: 0.82rem;
+  --gb-trust-benefits-item-padding-mobile: 0.72rem;
+  --gb-trust-benefits-item-gap: 0.66rem;
+  --gb-trust-benefits-item-gap-mobile: 0.62rem;
+  --gb-trust-benefits-item-radius: var(--radius-xl);
+  --gb-trust-benefits-item-radius-mobile: var(--radius-lg);
+  --gb-trust-benefits-item-background: transparent;
+  --gb-trust-benefits-item-card-background: hsl(var(--gb-surface-soft) / 0.5);
+  --gb-trust-benefits-item-border-width: 0.0625rem;
+  --gb-trust-benefits-item-border-color: hsl(var(--gb-border-soft) / 0.6);
+
+  --gb-trust-benefits-divider-width: 0.0625rem;
+  --gb-trust-benefits-divider-inset-block: 1rem;
+  --gb-trust-benefits-divider-color: hsl(var(--gb-divider) / 0.56);
+
+  --gb-trust-benefits-icon-shell-size: 2.45rem;
+  --gb-trust-benefits-icon-shell-size-mobile: 2.25rem;
+  --gb-trust-benefits-icon-shell-radius: var(--radius-full);
+  --gb-trust-benefits-icon-shell-background: hsl(var(--gb-brand) / 0.075);
+  --gb-trust-benefits-icon-shell-border-width: 0.0625rem;
+  --gb-trust-benefits-icon-shell-border-color: hsl(var(--gb-brand) / 0.16);
+  --gb-trust-benefits-icon-size: 1.2rem;
+  --gb-trust-benefits-icon-size-mobile: 1.08rem;
+  --gb-trust-benefits-icon-color: hsl(var(--gb-brand));
+  --gb-trust-benefits-icon-stroke-width: 1.78;
+
+  --gb-trust-benefits-content-gap: 0.14rem;
+  --gb-trust-benefits-title-color: var(--color-heading);
+  --gb-trust-benefits-title-font-size: var(--gb-text-sm);
+  --gb-trust-benefits-title-font-weight: 750;
+  --gb-trust-benefits-title-line-height: var(--gb-leading-snug);
+  --gb-trust-benefits-title-letter-spacing: var(--gb-tracking-tight);
+
+  --gb-trust-benefits-description-color: var(--color-text-muted);
+  --gb-trust-benefits-description-font-size: var(--gb-text-xs);
+  --gb-trust-benefits-description-font-weight: 500;
+  --gb-trust-benefits-description-line-height: var(--gb-leading-snug);
+
+  --gb-trust-benefits-transition-duration: var(--gb-duration-base);
+  --gb-trust-benefits-transition-ease: var(--gb-ease-standard);
+}

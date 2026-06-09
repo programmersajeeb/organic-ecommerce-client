@@ -1,33 +1,14 @@
 /* =============================================================================
-   365 SHOP — SHARED SKELETON COMPONENTS
+   365 SHOP — BANNER SKELETON COMPONENT
    -----------------------------------------------------------------------------
    Purpose:
-   Reusable enterprise loading skeleton styles for banners, cards, sections,
-   and shared UI modules.
+   Reusable banner/hero skeleton loading styles.
 
    Rules:
    - Consume tokens from src/styles/tokens/skeleton.tokens.css.
-   - Do not hardcode raw colors, shadows, radius, spacing, or typography.
+   - Keep only banner skeleton styles here.
    - Keep class prefix `gb-`.
    ============================================================================= */
-
-.gb-skeleton {
-  position: relative;
-  overflow: var(--gb-skeleton-overflow);
-  border-radius: var(--gb-skeleton-radius-md);
-  background: var(--gb-skeleton-surface-muted);
-}
-
-.gb-skeleton::after {
-  position: absolute;
-  inset: 0;
-  background: var(--gb-skeleton-shimmer-background);
-  background-size: var(--gb-skeleton-shimmer-size) 100%;
-  content: "";
-  transform: translateX(-100%);
-  animation: gb-skeleton-shimmer var(--gb-skeleton-shimmer-duration)
-    var(--gb-skeleton-shimmer-ease) infinite;
-}
 
 .gb-banner-skeleton {
   position: relative;
@@ -130,12 +111,6 @@
   background: var(--gb-skeleton-banner-dot-active-background);
 }
 
-@keyframes gb-skeleton-shimmer {
-  to {
-    transform: translateX(100%);
-  }
-}
-
 @media (max-width: 64rem) {
   .gb-banner-skeleton {
     block-size: var(--gb-skeleton-banner-block-size-tablet);
@@ -155,7 +130,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gb-skeleton::after,
   .gb-banner-skeleton::after {
     animation: none;
     transform: none;

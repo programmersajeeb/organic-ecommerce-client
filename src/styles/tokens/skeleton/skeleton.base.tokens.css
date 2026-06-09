@@ -1,0 +1,46 @@
+/* =============================================================================
+   365 SHOP — SKELETON BASE TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines shared skeleton primitives for reusable loading states.
+
+   Rules:
+   - Keep only generic skeleton tokens here.
+   - Section-specific skeleton tokens must live in separate files.
+   ============================================================================= */
+
+:root {
+  --gb-skeleton-surface: hsl(var(--gb-skeleton-soft));
+  --gb-skeleton-surface-muted: hsl(var(--gb-skeleton));
+  --gb-skeleton-surface-strong: hsl(var(--gb-skeleton-strong));
+  --gb-skeleton-highlight: hsl(var(--gb-skeleton-shine) / 0.68);
+  --gb-skeleton-highlight-edge: hsl(var(--gb-foreground) / 0.035);
+  --gb-skeleton-border-color: hsl(var(--gb-border-soft) / 0.72);
+  --gb-skeleton-shadow:
+    0 1.25rem 3.5rem hsl(220 17% 7% / 0.1),
+    0 0.25rem 0.85rem hsl(220 17% 7% / 0.05);
+
+  --gb-skeleton-radius-sm: var(--radius-md);
+  --gb-skeleton-radius-md: var(--radius-lg);
+  --gb-skeleton-radius-lg: var(--radius-xl);
+  --gb-skeleton-radius-full: var(--radius-full);
+
+  --gb-skeleton-border-width: 0.0625rem;
+  --gb-skeleton-overflow: hidden;
+
+  --gb-skeleton-shimmer-size: 240%;
+  --gb-skeleton-shimmer-angle: 105deg;
+  --gb-skeleton-shimmer-duration: 1.45s;
+  --gb-skeleton-shimmer-ease: var(--gb-ease-standard);
+  --gb-skeleton-shimmer-background:
+    linear-gradient(
+      var(--gb-skeleton-shimmer-angle),
+      transparent 0%,
+      transparent 32%,
+      var(--gb-skeleton-highlight-edge) 42%,
+      var(--gb-skeleton-highlight) 50%,
+      var(--gb-skeleton-highlight-edge) 58%,
+      transparent 68%,
+      transparent 100%
+    );
+}

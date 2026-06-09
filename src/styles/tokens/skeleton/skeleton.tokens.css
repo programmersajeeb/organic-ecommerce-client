@@ -1,0 +1,15 @@
+/* =============================================================================
+   365 SHOP — SKELETON TOKENS ENTRY
+   -----------------------------------------------------------------------------
+   Purpose:
+   Controls reusable Skeleton token loading order only.
+
+   Rules:
+   - Do not write raw token declarations directly in this file.
+   - Keep base skeleton tokens first.
+   - Keep section/module skeleton tokens split by responsibility.
+   ============================================================================= */
+
+@import "./skeleton.base.tokens.css";
+@import "./skeleton.banner.tokens.css";
+@import "./skeleton.trust-benefits.tokens.css";

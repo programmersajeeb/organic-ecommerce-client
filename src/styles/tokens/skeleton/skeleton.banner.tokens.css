@@ -1,52 +1,17 @@
 /* =============================================================================
-   365 SHOP — SKELETON SEMANTIC TOKENS
+   365 SHOP — BANNER SKELETON TOKENS
    -----------------------------------------------------------------------------
    Purpose:
-   Defines reusable Skeleton design tokens for enterprise-level loading states.
+   Defines image/banner skeleton tokens for hero and reusable banner loading.
 
    Rules:
-   - Keep only Skeleton semantic tokens here.
-   - Component CSS must consume these tokens.
-   - Do not write component selectors here.
-   - Skeletons should be reusable across sections, cards, banners, and modules.
+   - Keep only banner skeleton semantic tokens here.
+   - Shared skeleton primitives must come from skeleton.base.tokens.css.
    ============================================================================= */
 
 :root {
-  --gb-skeleton-surface: hsl(var(--gb-skeleton-soft));
-  --gb-skeleton-surface-muted: hsl(var(--gb-skeleton));
-  --gb-skeleton-surface-strong: hsl(var(--gb-skeleton-strong));
-  --gb-skeleton-highlight: hsl(var(--gb-skeleton-shine) / 0.68);
-  --gb-skeleton-highlight-edge: hsl(var(--gb-foreground) / 0.035);
-  --gb-skeleton-border-color: hsl(var(--gb-border-soft) / 0.72);
-  --gb-skeleton-shadow:
-    0 1.25rem 3.5rem hsl(220 17% 7% / 0.1),
-    0 0.25rem 0.85rem hsl(220 17% 7% / 0.05);
-
-  --gb-skeleton-radius-sm: var(--radius-md);
-  --gb-skeleton-radius-md: var(--radius-lg);
-  --gb-skeleton-radius-lg: var(--radius-xl);
   --gb-skeleton-radius-banner: var(--radius-2xl);
   --gb-skeleton-radius-banner-mobile: var(--radius-xl);
-  --gb-skeleton-radius-full: var(--radius-full);
-
-  --gb-skeleton-border-width: 0.0625rem;
-  --gb-skeleton-overflow: hidden;
-
-  --gb-skeleton-shimmer-size: 240%;
-  --gb-skeleton-shimmer-angle: 105deg;
-  --gb-skeleton-shimmer-duration: 1.45s;
-  --gb-skeleton-shimmer-ease: var(--gb-ease-standard);
-  --gb-skeleton-shimmer-background:
-    linear-gradient(
-      var(--gb-skeleton-shimmer-angle),
-      transparent 0%,
-      transparent 32%,
-      var(--gb-skeleton-highlight-edge) 42%,
-      var(--gb-skeleton-highlight) 50%,
-      var(--gb-skeleton-highlight-edge) 58%,
-      transparent 68%,
-      transparent 100%
-    );
 
   --gb-skeleton-banner-block-size: clamp(21rem, 30vw, 28.75rem);
   --gb-skeleton-banner-block-size-tablet: clamp(17.5rem, 36vw, 24rem);

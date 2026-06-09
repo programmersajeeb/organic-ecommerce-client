@@ -27,13 +27,13 @@
   --gb-hero-shell-block-size-tablet: clamp(17.5rem, 36vw, 24rem);
   --gb-hero-shell-block-size-mobile: clamp(10.75rem, 49vw, 16.75rem);
   --gb-hero-shell-border-width: 0.0625rem;
-  --gb-hero-shell-border-color: hsl(var(--gb-border-soft) / 0.72);
+  --gb-hero-shell-border-color: hsl(var(--gb-border-soft) / 0.66);
   --gb-hero-shell-radius: var(--radius-2xl);
   --gb-hero-shell-radius-mobile: var(--radius-xl);
   --gb-hero-shell-background: transparent;
   --gb-hero-shell-shadow:
-    0 1.35rem 3.75rem hsl(220 17% 7% / 0.14),
-    0 0.25rem 0.85rem hsl(220 17% 7% / 0.08);
+    0 1rem 2.85rem hsl(220 17% 7% / 0.1),
+    0 0.18rem 0.58rem hsl(220 17% 7% / 0.055);
   --gb-hero-shell-overflow: hidden;
 
   --gb-hero-slide-padding: 0rem;

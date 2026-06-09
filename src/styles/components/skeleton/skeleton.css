@@ -1,0 +1,16 @@
+/* =============================================================================
+   365 SHOP — SKELETON COMPONENTS ENTRY
+   -----------------------------------------------------------------------------
+   Purpose:
+   Controls reusable Skeleton component style loading order only.
+
+   Rules:
+   - Do not write component rules directly in this file.
+   - Keep base skeleton styles first.
+   - Keep section/module skeleton styles split by responsibility.
+   - Keep class prefix `gb-`.
+   ============================================================================= */
+
+@import "./skeleton.base.css";
+@import "./skeleton.banner.css";
+@import "./skeleton.trust-benefits.css";

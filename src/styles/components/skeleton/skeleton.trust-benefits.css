@@ -1,0 +1,170 @@
+/* =============================================================================
+   365 SHOP — TRUST BENEFITS SKELETON COMPONENT
+   -----------------------------------------------------------------------------
+   Purpose:
+   Trust Benefits / Service Highlights skeleton loading styles.
+
+   Rules:
+   - Consume tokens from src/styles/tokens/skeleton.tokens.css.
+   - Keep only Trust Benefits skeleton styles here.
+   - Keep class prefix `gb-`.
+   ============================================================================= */
+
+.gb-trust-benefits-skeleton {
+  position: relative;
+  padding-block: var(--gb-skeleton-trust-benefits-section-padding-top)
+    var(--gb-skeleton-trust-benefits-section-padding-bottom);
+}
+
+.gb-trust-benefits-skeleton__container {
+  width: 100%;
+  max-width: var(--gb-skeleton-trust-benefits-container-max-width);
+  margin-inline: auto;
+  padding-inline: clamp(
+    var(--gb-skeleton-trust-benefits-container-padding-min),
+    var(--gb-skeleton-trust-benefits-container-padding-fluid),
+    var(--gb-skeleton-trust-benefits-container-padding-max)
+  );
+}
+
+.gb-trust-benefits-skeleton__list {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--gb-skeleton-trust-benefits-grid-columns);
+  gap: var(--gb-skeleton-trust-benefits-list-gap);
+  padding: var(--gb-skeleton-trust-benefits-list-padding);
+  margin: 0;
+  overflow: var(--gb-skeleton-overflow);
+  border: var(--gb-skeleton-trust-benefits-list-border-width) solid
+    var(--gb-skeleton-trust-benefits-list-border-color);
+  border-radius: var(--gb-skeleton-trust-benefits-list-radius);
+  background: var(--gb-skeleton-trust-benefits-list-background);
+  box-shadow: var(--gb-skeleton-trust-benefits-list-shadow);
+  list-style: none;
+  backdrop-filter: var(--gb-skeleton-trust-benefits-list-backdrop-filter);
+  -webkit-backdrop-filter: var(
+    --gb-skeleton-trust-benefits-list-backdrop-filter
+  );
+}
+
+.gb-trust-benefits-skeleton__list::after {
+  position: absolute;
+  inset: 0;
+  background: var(--gb-skeleton-shimmer-background);
+  background-size: var(--gb-skeleton-shimmer-size) 100%;
+  content: "";
+  pointer-events: none;
+  transform: translateX(-100%);
+  animation: gb-skeleton-shimmer var(--gb-skeleton-shimmer-duration)
+    var(--gb-skeleton-shimmer-ease) infinite;
+}
+
+.gb-trust-benefits-skeleton__item {
+  position: relative;
+  display: grid;
+  min-block-size: var(--gb-skeleton-trust-benefits-item-min-block-size);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gb-skeleton-trust-benefits-item-gap);
+  padding-block: var(--gb-skeleton-trust-benefits-item-padding-y);
+  padding-inline: var(--gb-skeleton-trust-benefits-item-padding-x);
+  border-radius: var(--gb-skeleton-trust-benefits-item-radius);
+  background: var(--gb-skeleton-trust-benefits-item-background);
+}
+
+.gb-trust-benefits-skeleton__item
+  + .gb-trust-benefits-skeleton__item::before {
+  position: absolute;
+  inset-block: var(--gb-skeleton-trust-benefits-divider-inset-block);
+  inset-inline-start: 0;
+  width: var(--gb-skeleton-trust-benefits-divider-width);
+  background: var(--gb-skeleton-trust-benefits-divider-color);
+  content: "";
+}
+
+.gb-trust-benefits-skeleton__icon {
+  width: var(--gb-skeleton-trust-benefits-icon-size);
+  height: var(--gb-skeleton-trust-benefits-icon-size);
+  border-radius: var(--gb-skeleton-trust-benefits-icon-radius);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-trust-benefits-skeleton__content {
+  display: grid;
+  min-width: 0;
+  gap: var(--gb-skeleton-trust-benefits-line-gap);
+}
+
+.gb-trust-benefits-skeleton__line {
+  display: block;
+  border-radius: var(--gb-skeleton-radius-full);
+  background: var(--gb-skeleton-surface-strong);
+}
+
+.gb-trust-benefits-skeleton__line--title {
+  width: var(--gb-skeleton-trust-benefits-line-title-width);
+  height: var(--gb-skeleton-trust-benefits-line-title-height);
+}
+
+.gb-trust-benefits-skeleton__line--description {
+  width: var(--gb-skeleton-trust-benefits-line-description-width);
+  height: var(--gb-skeleton-trust-benefits-line-description-height);
+}
+
+@media (max-width: 64rem) {
+  .gb-trust-benefits-skeleton__list {
+    grid-template-columns: var(
+      --gb-skeleton-trust-benefits-grid-columns-tablet
+    );
+    gap: var(--gb-skeleton-trust-benefits-list-gap-tablet);
+  }
+
+  .gb-trust-benefits-skeleton__item {
+    border: var(--gb-skeleton-trust-benefits-item-border-width) solid
+      var(--gb-skeleton-trust-benefits-item-border-color);
+    background: var(--gb-skeleton-trust-benefits-item-card-background);
+  }
+
+  .gb-trust-benefits-skeleton__item
+    + .gb-trust-benefits-skeleton__item::before {
+    display: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .gb-trust-benefits-skeleton {
+    padding-block-end: var(
+      --gb-skeleton-trust-benefits-section-padding-bottom-mobile
+    );
+  }
+
+  .gb-trust-benefits-skeleton__list {
+    grid-template-columns: var(
+      --gb-skeleton-trust-benefits-grid-columns-mobile
+    );
+    gap: var(--gb-skeleton-trust-benefits-list-gap-mobile);
+    padding: var(--gb-skeleton-trust-benefits-list-padding-mobile);
+    border-radius: var(--gb-skeleton-trust-benefits-list-radius-mobile);
+  }
+
+  .gb-trust-benefits-skeleton__item {
+    min-block-size: var(
+      --gb-skeleton-trust-benefits-item-min-block-size-mobile
+    );
+    gap: var(--gb-skeleton-trust-benefits-item-gap-mobile);
+    padding: var(--gb-skeleton-trust-benefits-item-padding-mobile);
+    border-radius: var(--gb-skeleton-trust-benefits-item-radius-mobile);
+  }
+
+  .gb-trust-benefits-skeleton__icon {
+    width: var(--gb-skeleton-trust-benefits-icon-size-mobile);
+    height: var(--gb-skeleton-trust-benefits-icon-size-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gb-trust-benefits-skeleton__list::after {
+    animation: none;
+    transform: none;
+  }
+}

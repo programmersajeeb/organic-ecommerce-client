@@ -1,0 +1,126 @@
+/* =============================================================================
+   365 SHOP — TRUST BENEFITS SKELETON TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines Trust Benefits / Service Highlights skeleton tokens.
+
+   Rules:
+   - Keep only Trust Benefits skeleton semantic tokens here.
+   - Shared skeleton primitives must come from skeleton.base.tokens.css.
+   - Trust Benefits section tokens must load before skeleton.tokens.css.
+   ============================================================================= */
+
+:root {
+  --gb-skeleton-trust-benefits-container-max-width: var(
+    --gb-trust-benefits-container-max-width
+  );
+  --gb-skeleton-trust-benefits-container-padding-min: var(
+    --gb-trust-benefits-container-padding-min
+  );
+  --gb-skeleton-trust-benefits-container-padding-fluid: var(
+    --gb-trust-benefits-container-padding-fluid
+  );
+  --gb-skeleton-trust-benefits-container-padding-max: var(
+    --gb-trust-benefits-container-padding-max
+  );
+
+  --gb-skeleton-trust-benefits-section-padding-top: var(
+    --gb-trust-benefits-section-padding-top
+  );
+  --gb-skeleton-trust-benefits-section-padding-bottom: var(
+    --gb-trust-benefits-section-padding-bottom
+  );
+  --gb-skeleton-trust-benefits-section-padding-bottom-mobile: var(
+    --gb-trust-benefits-section-padding-bottom-mobile
+  );
+
+  --gb-skeleton-trust-benefits-grid-columns: var(
+    --gb-trust-benefits-shell-grid-columns
+  );
+  --gb-skeleton-trust-benefits-grid-columns-tablet: var(
+    --gb-trust-benefits-shell-grid-columns-tablet
+  );
+  --gb-skeleton-trust-benefits-grid-columns-mobile: var(
+    --gb-trust-benefits-shell-grid-columns-mobile
+  );
+
+  --gb-skeleton-trust-benefits-list-gap: var(--gb-trust-benefits-shell-gap);
+  --gb-skeleton-trust-benefits-list-gap-tablet: var(
+    --gb-trust-benefits-shell-gap-tablet
+  );
+  --gb-skeleton-trust-benefits-list-gap-mobile: var(
+    --gb-trust-benefits-shell-gap-mobile
+  );
+  --gb-skeleton-trust-benefits-list-padding: var(
+    --gb-trust-benefits-shell-padding
+  );
+  --gb-skeleton-trust-benefits-list-padding-mobile: var(
+    --gb-trust-benefits-shell-padding-mobile
+  );
+  --gb-skeleton-trust-benefits-list-border-width: var(
+    --gb-skeleton-border-width
+  );
+  --gb-skeleton-trust-benefits-list-border-color: var(
+    --gb-skeleton-border-color
+  );
+  --gb-skeleton-trust-benefits-list-radius: var(
+    --gb-trust-benefits-shell-radius
+  );
+  --gb-skeleton-trust-benefits-list-radius-mobile: var(
+    --gb-trust-benefits-shell-radius-mobile
+  );
+  --gb-skeleton-trust-benefits-list-background: hsl(var(--gb-surface) / 0.9);
+  --gb-skeleton-trust-benefits-list-shadow: var(--gb-skeleton-shadow);
+  --gb-skeleton-trust-benefits-list-backdrop-filter: var(
+    --gb-trust-benefits-shell-backdrop-filter
+  );
+
+  --gb-skeleton-trust-benefits-item-min-block-size: var(
+    --gb-trust-benefits-item-min-block-size
+  );
+  --gb-skeleton-trust-benefits-item-min-block-size-mobile: 4rem;
+  --gb-skeleton-trust-benefits-item-gap: var(--gb-trust-benefits-item-gap);
+  --gb-skeleton-trust-benefits-item-gap-mobile: 0.56rem;
+  --gb-skeleton-trust-benefits-item-padding-y: var(
+    --gb-trust-benefits-item-padding-y
+  );
+  --gb-skeleton-trust-benefits-item-padding-x: var(
+    --gb-trust-benefits-item-padding-x
+  );
+  --gb-skeleton-trust-benefits-item-padding-mobile: 0.62rem;
+  --gb-skeleton-trust-benefits-item-radius: var(
+    --gb-trust-benefits-item-radius
+  );
+  --gb-skeleton-trust-benefits-item-radius-mobile: var(
+    --gb-trust-benefits-item-radius-mobile
+  );
+  --gb-skeleton-trust-benefits-item-background: transparent;
+  --gb-skeleton-trust-benefits-item-card-background: hsl(
+    var(--gb-surface-soft) / 0.52
+  );
+  --gb-skeleton-trust-benefits-item-border-width: var(
+    --gb-skeleton-border-width
+  );
+  --gb-skeleton-trust-benefits-item-border-color: hsl(
+    var(--gb-border-soft) / 0.58
+  );
+
+  --gb-skeleton-trust-benefits-divider-width: var(
+    --gb-trust-benefits-divider-width
+  );
+  --gb-skeleton-trust-benefits-divider-inset-block: var(
+    --gb-trust-benefits-divider-inset-block
+  );
+  --gb-skeleton-trust-benefits-divider-color: hsl(var(--gb-divider) / 0.44);
+
+  --gb-skeleton-trust-benefits-icon-size: var(
+    --gb-trust-benefits-icon-shell-size
+  );
+  --gb-skeleton-trust-benefits-icon-size-mobile: 2rem;
+  --gb-skeleton-trust-benefits-icon-radius: var(--radius-full);
+  --gb-skeleton-trust-benefits-line-gap: 0.34rem;
+  --gb-skeleton-trust-benefits-line-title-width: 68%;
+  --gb-skeleton-trust-benefits-line-title-height: 0.62rem;
+  --gb-skeleton-trust-benefits-line-description-width: 52%;
+  --gb-skeleton-trust-benefits-line-description-height: 0.48rem;
+}

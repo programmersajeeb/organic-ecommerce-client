@@ -19,23 +19,24 @@
    ============================================================================= */
 
 /* 01 — Light theme color system */
-@import "./tokens/theme-light.css";
+@import "./tokens/theme/theme-light.css";
 
 /* 02 — Global foundation tokens */
-@import "./tokens/typography.css";
-@import "./tokens/radius.css";
-@import "./tokens/shadows.css";
-@import "./tokens/layout.css";
-@import "./tokens/motion.css";
-@import "./tokens/z-index.css";
+@import "./tokens/foundation/typography.css";
+@import "./tokens/foundation/radius.css";
+@import "./tokens/foundation/shadows.css";
+@import "./tokens/foundation/layout.css";
+@import "./tokens/foundation/motion.css";
+@import "./tokens/foundation/z-index.css";
 
 /* 03 — Feature/module semantic tokens */
-@import "./tokens/header.tokens.css";
-@import "./tokens/hero.tokens.css";
-@import "./tokens/skeleton.tokens.css";
+@import "./tokens/semantic/header.tokens.css";
+@import "./tokens/semantic/hero.tokens.css";
+@import "./tokens/semantic/trust-benefits.tokens.css";
+@import "./tokens/skeleton/skeleton.tokens.css";
 
 /* 04 — Dark theme overrides */
-@import "./tokens/theme-dark.css";
+@import "./tokens/theme/theme-dark.css";
 
 /* 05 — Tailwind v4 theme bridge */
-@import "./tokens/tailwind-theme.css";
+@import "./tokens/bridge/tailwind-theme.css";

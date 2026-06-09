@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-import "@/styles/components/notifications-page.css";
 import { headerData } from "@/components/layout/header/header-data";
 import { HeaderIcon } from "@/components/layout/header/header-icons";
 import type { HeaderNotification } from "@/components/layout/header/header.types";
+import "@/styles/components/pages/notifications-page.css";
 
 const FILTERS = ["All", "Unread", "Orders", "Offers", "Updates"] as const;
 
