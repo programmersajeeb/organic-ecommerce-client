@@ -5,7 +5,8 @@
    Premium reusable ecommerce Trust Benefits / Service Highlights section styles.
 
    Rules:
-   - Consume tokens from src/styles/tokens/trust-benefits.tokens.css.
+   - Follow the global website container rhythm.
+   - Consume design tokens only.
    - Do not hardcode raw colors, shadows, radius, spacing, or typography.
    - Keep class prefix `gb-`.
    ============================================================================= */
@@ -17,14 +18,14 @@
 }
 
 .gb-trust-benefits__container {
+  --gb-container-px: var(--gb-container-padding-desktop);
+
   width: 100%;
-  max-width: var(--gb-trust-benefits-container-max-width);
+  max-width: var(--gb-container-lg);
   margin-inline: auto;
-  padding-inline: clamp(
-    var(--gb-trust-benefits-container-padding-min),
-    var(--gb-trust-benefits-container-padding-fluid),
-    var(--gb-trust-benefits-container-padding-max)
-  );
+  padding-inline:
+    max(var(--gb-container-px), env(safe-area-inset-left))
+    max(var(--gb-container-px), env(safe-area-inset-right));
 }
 
 .gb-trust-benefits__list {
@@ -116,6 +117,10 @@
 }
 
 @media (max-width: 64rem) {
+  .gb-trust-benefits__container {
+    --gb-container-px: var(--gb-container-padding-tablet);
+  }
+
   .gb-trust-benefits__list {
     grid-template-columns: var(
       --gb-trust-benefits-shell-grid-columns-tablet
@@ -139,6 +144,10 @@
     padding-block-end: var(
       --gb-trust-benefits-section-padding-bottom-mobile
     );
+  }
+
+  .gb-trust-benefits__container {
+    --gb-container-px: var(--gb-container-padding-mobile);
   }
 
   .gb-trust-benefits__list {

@@ -5,7 +5,8 @@
    Premium reusable image-only ecommerce Hero carousel styles.
 
    Rules:
-   - Consume tokens from src/styles/tokens/hero.tokens.css.
+   - Follow the global website container rhythm.
+   - Consume design tokens only.
    - Do not hardcode raw colors, shadows, radius, spacing, or typography.
    - Keep class prefix `gb-`.
    ============================================================================= */
@@ -17,14 +18,14 @@
 }
 
 .gb-hero-carousel__container {
+  --gb-container-px: var(--gb-container-padding-desktop);
+
   width: 100%;
-  max-width: var(--gb-hero-container-max-width);
+  max-width: var(--gb-container-lg);
   margin-inline: auto;
-  padding-inline: clamp(
-    var(--gb-hero-container-padding-min),
-    var(--gb-hero-container-padding-fluid),
-    var(--gb-hero-container-padding-max)
-  );
+  padding-inline:
+    max(var(--gb-container-px), env(safe-area-inset-left))
+    max(var(--gb-container-px), env(safe-area-inset-right));
 }
 
 .gb-hero-carousel__shell {
@@ -176,6 +177,10 @@
 }
 
 @media (max-width: 64rem) {
+  .gb-hero-carousel__container {
+    --gb-container-px: var(--gb-container-padding-tablet);
+  }
+
   .gb-hero-carousel__shell {
     block-size: var(--gb-hero-shell-block-size-tablet);
   }
@@ -199,6 +204,12 @@
   .gb-hero-carousel__dots {
     inset-block-end: var(--gb-hero-dots-inset-block-end-mobile);
     inset-inline-start: var(--gb-hero-dots-inset-inline-start-mobile);
+  }
+}
+
+@media (max-width: 40rem) {
+  .gb-hero-carousel__container {
+    --gb-container-px: var(--gb-container-padding-mobile);
   }
 }
 

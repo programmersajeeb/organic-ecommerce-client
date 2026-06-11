@@ -1,0 +1,394 @@
+/* =============================================================================
+   365 SHOP — ERROR / NOT FOUND PAGE SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines semantic design tokens for premium ecommerce error pages such as
+   the 404 Not Found page.
+
+   Rules:
+   - Keep only error-page semantic tokens here.
+   - Component CSS must consume these tokens.
+   - Typography must consume global typography foundation tokens.
+   - Do not write component selectors here.
+   - Dark mode differences are handled through semantic token overrides.
+   ============================================================================= */
+
+:root {
+  --gb-error-page-section-padding-top: 1.05rem;
+  --gb-error-page-section-padding-bottom: 2.4rem;
+  --gb-error-page-section-padding-top-mobile: 0.55rem;
+  --gb-error-page-section-padding-bottom-mobile: calc(
+    var(--gb-bottom-nav-height) + 3.75rem
+  );
+
+  --gb-error-page-shell-min-height: clamp(23.75rem, 31vw, 29.75rem);
+  --gb-error-page-shell-padding-block: clamp(0.6rem, 1.25vw, 1.25rem);
+  --gb-error-page-shell-padding-inline: 0;
+  --gb-error-page-shell-gap: clamp(1.15rem, 2.65vw, 3.15rem);
+  --gb-error-page-shell-grid-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  --gb-error-page-shell-grid-columns-mobile: minmax(0, 1fr);
+  --gb-error-page-shell-radius: 0;
+  --gb-error-page-shell-radius-mobile: 0;
+  --gb-error-page-shell-border-width: 0;
+  --gb-error-page-shell-border-color: transparent;
+  --gb-error-page-shell-background: transparent;
+  --gb-error-page-shell-shadow: none;
+  --gb-error-page-shell-overflow: clip;
+
+  --gb-error-page-content-max-width: 27.75rem;
+  --gb-error-page-content-gap: 0.82rem;
+
+  --gb-error-page-eyebrow-gap: 0.45rem;
+  --gb-error-page-eyebrow-color: hsl(var(--gb-brand));
+  --gb-error-page-eyebrow-font-family: var(--gb-font-sans);
+  --gb-error-page-eyebrow-font-size: var(--gb-text-sm);
+  --gb-error-page-eyebrow-font-weight: 800;
+  --gb-error-page-eyebrow-line-height: var(--gb-leading-snug);
+  --gb-error-page-eyebrow-letter-spacing: var(--gb-tracking-wide);
+
+  --gb-error-page-code-color: hsl(var(--gb-brand));
+  --gb-error-page-code-font-family: var(--gb-font-heading);
+  --gb-error-page-code-font-size: clamp(
+    calc(var(--gb-text-6xl) * 1.32),
+    8.3vw,
+    calc(var(--gb-text-6xl) * 1.95)
+  );
+  --gb-error-page-code-font-weight: 900;
+  --gb-error-page-code-line-height: 0.8;
+  --gb-error-page-code-letter-spacing: var(--gb-tracking-tight);
+  --gb-error-page-code-text-shadow:
+    0 0.4rem 0.9rem hsl(var(--gb-brand) / 0.12);
+
+  --gb-error-page-title-color: var(--color-heading);
+  --gb-error-page-title-font-family: var(--gb-font-heading);
+  --gb-error-page-title-font-size: clamp(
+    var(--gb-text-4xl),
+    3.05vw,
+    var(--gb-text-5xl)
+  );
+  --gb-error-page-title-font-weight: 900;
+  --gb-error-page-title-line-height: var(--gb-leading-tight);
+  --gb-error-page-title-letter-spacing: var(--gb-tracking-tight);
+
+  --gb-error-page-description-color: var(--color-body);
+  --gb-error-page-description-font-family: var(--gb-font-sans);
+  --gb-error-page-description-font-size: var(--gb-text-base);
+  --gb-error-page-description-font-weight: 450;
+  --gb-error-page-description-line-height: var(--gb-leading-normal);
+  --gb-error-page-description-max-width: 24.25rem;
+
+  --gb-error-page-actions-gap: 0.78rem;
+  --gb-error-page-actions-gap-mobile: 0.6rem;
+
+  --gb-error-page-primary-button-min-height: 2.85rem;
+  --gb-error-page-primary-button-padding-inline: 1.35rem;
+  --gb-error-page-primary-button-radius: var(--radius-lg);
+  --gb-error-page-primary-button-background: hsl(var(--gb-brand));
+  --gb-error-page-primary-button-background-hover: hsl(var(--gb-brand-hover));
+  --gb-error-page-primary-button-color: hsl(var(--gb-inverse));
+  --gb-error-page-primary-button-shadow:
+    0 0.5rem 1.05rem hsl(var(--gb-brand) / 0.2);
+  --gb-error-page-primary-button-shadow-hover:
+    0 0.66rem 1.35rem hsl(var(--gb-brand) / 0.25);
+
+  --gb-error-page-secondary-button-min-height: 2.85rem;
+  --gb-error-page-secondary-button-padding-inline: 1.42rem;
+  --gb-error-page-secondary-button-radius: var(--radius-lg);
+  --gb-error-page-secondary-button-background: hsl(var(--gb-surface) / 0.98);
+  --gb-error-page-secondary-button-background-hover: hsl(var(--gb-surface-soft));
+  --gb-error-page-secondary-button-color: var(--color-heading);
+  --gb-error-page-secondary-button-border-color: hsl(
+    var(--gb-border-strong) / 0.5
+  );
+  --gb-error-page-secondary-button-shadow: var(--shadow-xs);
+
+  --gb-error-page-button-font-family: var(--gb-font-sans);
+  --gb-error-page-button-font-size: var(--gb-text-sm);
+  --gb-error-page-button-font-weight: 850;
+  --gb-error-page-button-line-height: var(--gb-leading-none);
+  --gb-error-page-button-icon-size: 1rem;
+  --gb-error-page-button-transition-duration: var(--gb-duration-base);
+  --gb-error-page-button-transition-ease: var(--gb-ease-standard);
+  --gb-error-page-button-focus-shadow: var(--gb-shadow-focus-strong);
+  --gb-error-page-button-transform-hover: translateY(-0.0625rem);
+  --gb-error-page-button-transform-active: translateY(0);
+
+  --gb-error-page-search-max-width: 26.35rem;
+  --gb-error-page-search-min-height: 3.05rem;
+  --gb-error-page-search-margin-top: 0.12rem;
+  --gb-error-page-search-padding-inline-start: 1rem;
+  --gb-error-page-search-padding-inline-end: 0.35rem;
+  --gb-error-page-search-gap: 0.72rem;
+  --gb-error-page-search-radius: var(--radius-xl);
+  --gb-error-page-search-background: hsl(var(--gb-surface) / 0.98);
+  --gb-error-page-search-border-width: 0.0625rem;
+  --gb-error-page-search-border-color: hsl(var(--gb-border) / 0.84);
+  --gb-error-page-search-border-color-focus: hsl(var(--gb-brand) / 0.42);
+  --gb-error-page-search-shadow: var(--shadow-xs);
+  --gb-error-page-search-shadow-focus: var(--gb-shadow-focus);
+  --gb-error-page-search-icon-size: 1.05rem;
+  --gb-error-page-search-icon-color: var(--color-text-muted);
+  --gb-error-page-search-input-color: var(--color-heading);
+  --gb-error-page-search-input-placeholder-color: var(--color-subtle);
+  --gb-error-page-search-input-font-family: var(--gb-font-sans);
+  --gb-error-page-search-input-font-size: var(--gb-text-sm);
+  --gb-error-page-search-input-font-weight: 500;
+  --gb-error-page-search-submit-size: 2.38rem;
+  --gb-error-page-search-submit-radius: var(--radius-lg);
+  --gb-error-page-search-submit-background: hsl(var(--gb-brand));
+  --gb-error-page-search-submit-background-hover: hsl(var(--gb-brand-hover));
+  --gb-error-page-search-submit-color: hsl(var(--gb-inverse));
+  --gb-error-page-search-submit-icon-size: 1.08rem;
+
+  --gb-error-page-visual-min-height: clamp(21.75rem, 31.5vw, 30rem);
+  --gb-error-page-visual-padding: 0;
+  --gb-error-page-visual-align-self: center;
+  --gb-error-page-visual-background: transparent;
+  --gb-error-page-visual-image-max-width: min(100%, 49rem);
+  --gb-error-page-visual-image-inline-size: 100%;
+  --gb-error-page-visual-image-block-size: auto;
+  --gb-error-page-visual-image-object-fit: contain;
+  --gb-error-page-visual-image-filter:
+    drop-shadow(0 0.95rem 1.55rem hsl(220 17% 7% / 0.06));
+  --gb-error-page-visual-image-transform: translateX(0) translateY(-0.1rem)
+    translateZ(0);
+
+  --gb-error-page-category-section-margin-top: 0.95rem;
+  --gb-error-page-category-shell-padding: clamp(0.95rem, 1.65vw, 1.35rem);
+  --gb-error-page-category-shell-radius: var(--radius-3xl);
+  --gb-error-page-category-shell-border-width: 0.0625rem;
+  --gb-error-page-category-shell-border-color: hsl(var(--gb-border-soft) / 0.86);
+  --gb-error-page-category-shell-background: hsl(var(--gb-surface) / 0.88);
+  --gb-error-page-category-shell-shadow: var(--shadow-xs);
+  --gb-error-page-category-header-gap: 0.85rem;
+  --gb-error-page-category-title-color: var(--color-heading);
+  --gb-error-page-category-title-font-family: var(--gb-font-heading);
+  --gb-error-page-category-title-font-size: var(--gb-text-xl);
+  --gb-error-page-category-title-font-weight: 900;
+  --gb-error-page-category-title-line-height: var(--gb-leading-tight);
+
+  --gb-error-page-category-grid-gap: 0.85rem;
+  --gb-error-page-category-grid-columns: repeat(5, minmax(0, 1fr));
+  --gb-error-page-category-grid-columns-tablet: repeat(3, minmax(0, 1fr));
+  --gb-error-page-category-grid-columns-mobile: repeat(2, minmax(0, 1fr));
+
+  --gb-error-page-category-card-min-height: 6.85rem;
+  --gb-error-page-category-card-padding: 0.82rem;
+  --gb-error-page-category-card-radius: var(--radius-2xl);
+  --gb-error-page-category-card-border-width: 0.0625rem;
+  --gb-error-page-category-card-border-color: hsl(var(--gb-border-soft) / 0.9);
+  --gb-error-page-category-card-border-color-hover: hsl(var(--gb-brand) / 0.26);
+  --gb-error-page-category-card-background: hsl(var(--gb-surface) / 0.98);
+  --gb-error-page-category-card-background-hover: hsl(var(--gb-brand-soft) / 0.62);
+  --gb-error-page-category-card-shadow: var(--shadow-xs);
+  --gb-error-page-category-card-shadow-hover: var(--shadow-sm);
+  --gb-error-page-category-card-transform-hover: translateY(-0.125rem);
+  --gb-error-page-category-card-transition-duration: var(--gb-duration-base);
+  --gb-error-page-category-card-transition-ease: var(--gb-ease-standard);
+  --gb-error-page-category-image-size: 2.25rem;
+  --gb-error-page-category-image-size-mobile: 2.15rem;
+  --gb-error-page-category-label-color: var(--color-heading);
+  --gb-error-page-category-label-font-family: var(--gb-font-sans);
+  --gb-error-page-category-label-font-size: var(--gb-text-sm);
+  --gb-error-page-category-label-font-weight: 750;
+  --gb-error-page-category-label-line-height: var(--gb-leading-snug);
+
+  --gb-error-page-link-color: hsl(var(--gb-brand));
+  --gb-error-page-link-color-hover: hsl(var(--gb-brand-hover));
+  --gb-error-page-link-font-family: var(--gb-font-sans);
+  --gb-error-page-link-font-size: var(--gb-text-sm);
+  --gb-error-page-link-font-weight: 850;
+  --gb-error-page-link-icon-size: 0.95rem;
+  --gb-error-page-link-focus-shadow: var(--gb-shadow-focus);
+
+  --gb-error-page-help-section-margin-top: 0.85rem;
+  --gb-error-page-help-grid-columns: repeat(3, minmax(0, 1fr));
+  --gb-error-page-help-grid-columns-mobile: minmax(0, 1fr);
+  --gb-error-page-help-gap: 0rem;
+  --gb-error-page-help-gap-mobile: 0.8rem;
+  --gb-error-page-help-shell-radius: var(--radius-3xl);
+  --gb-error-page-help-shell-border-width: 0.0625rem;
+  --gb-error-page-help-shell-border-color: hsl(var(--gb-border-soft) / 0.8);
+  --gb-error-page-help-shell-background:
+    linear-gradient(
+      135deg,
+      hsl(var(--gb-surface) / 0.98),
+      hsl(var(--gb-surface-soft) / 0.72)
+    );
+  --gb-error-page-help-shell-shadow: var(--shadow-xs);
+  --gb-error-page-help-item-padding: clamp(0.95rem, 1.6vw, 1.18rem);
+  --gb-error-page-help-item-gap: 0.82rem;
+  --gb-error-page-help-divider-color: hsl(var(--gb-divider) / 0.74);
+  --gb-error-page-help-icon-shell-size: 2.8rem;
+  --gb-error-page-help-icon-shell-radius: var(--radius-full);
+  --gb-error-page-help-icon-shell-background: hsl(var(--gb-brand) / 0.08);
+  --gb-error-page-help-icon-color: hsl(var(--gb-brand));
+  --gb-error-page-help-icon-size: 1.16rem;
+  --gb-error-page-help-title-color: var(--color-heading);
+  --gb-error-page-help-title-font-family: var(--gb-font-sans);
+  --gb-error-page-help-title-font-size: var(--gb-text-base);
+  --gb-error-page-help-title-font-weight: 850;
+  --gb-error-page-help-title-line-height: var(--gb-leading-snug);
+  --gb-error-page-help-description-color: var(--color-text-muted);
+  --gb-error-page-help-description-font-family: var(--gb-font-sans);
+  --gb-error-page-help-description-font-size: var(--gb-text-sm);
+  --gb-error-page-help-description-font-weight: 450;
+  --gb-error-page-help-description-line-height: var(--gb-leading-normal);
+
+  --gb-error-page-mobile-content-align: center;
+  --gb-error-page-mobile-visual-order: -1;
+}
+
+@media (max-width: 47.9375rem) {
+  :root {
+    --gb-error-page-section-padding-top-mobile: 0.45rem;
+    --gb-error-page-section-padding-bottom-mobile: calc(
+      var(--gb-bottom-nav-height) + 4.25rem
+    );
+
+    --gb-error-page-shell-min-height: auto;
+    --gb-error-page-shell-padding-block: 0.9rem;
+    --gb-error-page-shell-gap: 0.6rem;
+    --gb-error-page-shell-overflow: visible;
+
+    --gb-error-page-content-max-width: 100%;
+    --gb-error-page-content-gap: 0.58rem;
+
+    --gb-error-page-code-font-size: clamp(
+      calc(var(--gb-text-6xl) * 0.92),
+      15.5vw,
+      calc(var(--gb-text-6xl) * 1.08)
+    );
+    --gb-error-page-code-line-height: 0.78;
+    --gb-error-page-code-text-shadow:
+      0 0.3rem 0.7rem hsl(var(--gb-brand) / 0.11);
+
+    --gb-error-page-title-font-size: clamp(
+      var(--gb-text-2xl),
+      7.2vw,
+      var(--gb-text-3xl)
+    );
+    --gb-error-page-title-line-height: var(--gb-leading-tight);
+
+    --gb-error-page-description-font-size: var(--gb-text-sm);
+    --gb-error-page-description-line-height: var(--gb-leading-snug);
+    --gb-error-page-description-max-width: 19.5rem;
+
+    --gb-error-page-actions-gap-mobile: 0.55rem;
+
+    --gb-error-page-primary-button-min-height: 2.75rem;
+    --gb-error-page-primary-button-padding-inline: 1.1rem;
+    --gb-error-page-primary-button-radius: var(--radius-lg);
+    --gb-error-page-primary-button-shadow:
+      0 0.52rem 1rem hsl(var(--gb-brand) / 0.17);
+
+    --gb-error-page-secondary-button-min-height: 2.65rem;
+    --gb-error-page-secondary-button-padding-inline: 1.1rem;
+    --gb-error-page-secondary-button-radius: var(--radius-lg);
+    --gb-error-page-secondary-button-shadow: var(--shadow-xs);
+
+    --gb-error-page-button-font-size: var(--gb-text-sm);
+    --gb-error-page-button-font-weight: 825;
+
+    --gb-error-page-search-max-width: 100%;
+    --gb-error-page-search-min-height: 2.85rem;
+    --gb-error-page-search-margin-top: 0;
+    --gb-error-page-search-padding-inline-start: 0.9rem;
+    --gb-error-page-search-padding-inline-end: 0.3rem;
+    --gb-error-page-search-radius: var(--radius-lg);
+    --gb-error-page-search-submit-size: 2.22rem;
+    --gb-error-page-search-input-font-size: var(--gb-text-sm);
+
+    --gb-error-page-category-section-margin-top: 0.75rem;
+    --gb-error-page-category-shell-padding: 0.88rem;
+    --gb-error-page-category-header-gap: 0.62rem;
+    --gb-error-page-category-title-font-size: var(--gb-text-lg);
+    --gb-error-page-category-grid-gap: 0.72rem;
+    --gb-error-page-category-card-min-height: 5.35rem;
+    --gb-error-page-category-card-padding: 0.68rem;
+    --gb-error-page-category-image-size-mobile: 1.85rem;
+    --gb-error-page-category-label-font-size: var(--gb-text-sm);
+
+    --gb-error-page-link-font-size: var(--gb-text-sm);
+    --gb-error-page-help-section-margin-top: 0.75rem;
+    --gb-error-page-help-item-padding: 0.88rem;
+    --gb-error-page-help-icon-shell-size: 2.5rem;
+    --gb-error-page-help-icon-size: 1.05rem;
+    --gb-error-page-help-title-font-size: var(--gb-text-sm);
+    --gb-error-page-help-description-font-size: var(--gb-text-xs);
+  }
+}
+
+@media (max-width: 23.75rem) {
+  :root {
+    --gb-error-page-section-padding-top-mobile: 0.35rem;
+    --gb-error-page-section-padding-bottom-mobile: calc(
+      var(--gb-bottom-nav-height) + 4.5rem
+    );
+
+    --gb-error-page-content-gap: 0.52rem;
+
+    --gb-error-page-code-font-size: clamp(
+      calc(var(--gb-text-6xl) * 0.86),
+      15vw,
+      calc(var(--gb-text-6xl) * 1)
+    );
+
+    --gb-error-page-title-font-size: clamp(
+      var(--gb-text-2xl),
+      6.9vw,
+      var(--gb-text-3xl)
+    );
+
+    --gb-error-page-description-max-width: 18rem;
+    --gb-error-page-primary-button-min-height: 2.65rem;
+    --gb-error-page-secondary-button-min-height: 2.55rem;
+    --gb-error-page-search-min-height: 2.75rem;
+    --gb-error-page-search-submit-size: 2.14rem;
+    --gb-error-page-category-card-min-height: 5.05rem;
+    --gb-error-page-category-image-size-mobile: 1.75rem;
+  }
+}
+
+.dark {
+  --gb-error-page-shell-border-color: transparent;
+  --gb-error-page-shell-background: transparent;
+  --gb-error-page-shell-shadow: none;
+
+  --gb-error-page-code-text-shadow:
+    0 0.55rem 1.45rem hsl(var(--gb-brand) / 0.24);
+
+  --gb-error-page-secondary-button-background: hsl(var(--gb-surface-elevated));
+  --gb-error-page-secondary-button-background-hover: hsl(var(--gb-surface-muted));
+  --gb-error-page-secondary-button-border-color: hsl(
+    var(--gb-border-strong) / 0.82
+  );
+
+  --gb-error-page-search-background: hsl(var(--gb-surface-elevated) / 0.96);
+  --gb-error-page-search-border-color: hsl(var(--gb-border-strong) / 0.76);
+  --gb-error-page-search-shadow: var(--shadow-sm);
+
+  --gb-error-page-visual-background: transparent;
+  --gb-error-page-visual-image-filter:
+    drop-shadow(0 1.2rem 1.9rem hsl(0 0% 0% / 0.3));
+  --gb-error-page-visual-image-transform: translateX(0) translateY(-0.1rem)
+    translateZ(0);
+
+  --gb-error-page-category-shell-background: hsl(
+    var(--gb-surface-elevated) / 0.72
+  );
+  --gb-error-page-category-card-background: hsl(
+    var(--gb-surface-elevated) / 0.94
+  );
+  --gb-error-page-category-card-background-hover: hsl(
+    var(--gb-brand-soft) / 0.72
+  );
+
+  --gb-error-page-help-shell-background:
+    linear-gradient(
+      135deg,
+      hsl(var(--gb-surface-elevated) / 0.96),
+      hsl(var(--gb-surface-soft) / 0.86)
+    );
+  --gb-error-page-help-icon-shell-background: hsl(var(--gb-brand) / 0.14);
+}

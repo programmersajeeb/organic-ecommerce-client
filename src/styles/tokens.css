@@ -33,6 +33,7 @@
 @import "./tokens/semantic/header.tokens.css";
 @import "./tokens/semantic/hero.tokens.css";
 @import "./tokens/semantic/trust-benefits.tokens.css";
+@import "./tokens/semantic/error-page.tokens.css";
 @import "./tokens/skeleton/skeleton.tokens.css";
 
 /* 04 — Dark theme overrides */

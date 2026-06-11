@@ -25,16 +25,13 @@
       max(var(--gb-container-px), env(safe-area-inset-right));
   }
 
-  .gb-container {
-    max-width: var(--gb-container-xl);
+  .gb-container,
+  .gb-container-wide {
+    max-width: var(--gb-container-lg);
   }
 
   .gb-container-narrow {
     max-width: var(--gb-container-md);
-  }
-
-  .gb-container-wide {
-    max-width: var(--gb-container-2xl);
   }
 
   .gb-container-full {
