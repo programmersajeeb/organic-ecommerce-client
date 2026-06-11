@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 import type { NotFoundHelpItem } from "./not-found.types";
 
 type NotFoundHelpProps = Readonly<{
@@ -20,11 +23,25 @@ export function NotFoundHelp({ items }: NotFoundHelpProps) {
               />
             </div>
 
-            <div>
+            <div className="gb-not-found-page__help-content">
               <h2 className="gb-not-found-page__help-title">{item.title}</h2>
+
               <p className="gb-not-found-page__help-description">
                 {item.description}
               </p>
+
+              <Link
+                href={item.href}
+                className="gb-not-found-page__help-link"
+                aria-label={item.ariaLabel ?? item.actionLabel}
+              >
+                {item.actionLabel}
+                <ArrowRight
+                  aria-hidden="true"
+                  className="gb-not-found-page__help-link-icon"
+                  focusable="false"
+                />
+              </Link>
             </div>
           </article>
         );
