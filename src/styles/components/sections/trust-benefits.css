@@ -141,8 +141,12 @@
 
 @media (max-width: 40rem) {
   .gb-trust-benefits {
-    padding-block-end: var(
-      --gb-trust-benefits-section-padding-bottom-mobile
+    padding-block-end: max(
+      var(--gb-trust-benefits-section-padding-bottom-mobile),
+      calc(
+        var(--gb-bottom-nav-height) + var(--gb-container-padding-mobile) +
+          env(safe-area-inset-bottom)
+      )
     );
   }
 
@@ -151,9 +155,7 @@
   }
 
   .gb-trust-benefits__list {
-    grid-template-columns: var(
-      --gb-trust-benefits-shell-grid-columns-mobile
-    );
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--gb-trust-benefits-shell-gap-mobile);
     padding: var(--gb-trust-benefits-shell-padding-mobile);
     border-radius: var(--gb-trust-benefits-shell-radius-mobile);
@@ -161,9 +163,12 @@
 
   .gb-trust-benefits__item {
     min-block-size: var(--gb-trust-benefits-item-min-block-size-mobile);
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     gap: var(--gb-trust-benefits-item-gap-mobile);
     padding: var(--gb-trust-benefits-item-padding-mobile);
     border-radius: var(--gb-trust-benefits-item-radius-mobile);
+    text-align: center;
   }
 
   .gb-trust-benefits__icon-shell {
@@ -176,9 +181,42 @@
     height: var(--gb-trust-benefits-icon-size-mobile);
   }
 
-  .gb-trust-benefits__title,
-  .gb-trust-benefits__description {
+  .gb-trust-benefits__content {
+    justify-items: center;
+    width: 100%;
+  }
+
+  .gb-trust-benefits__title {
+    max-width: 100%;
+    text-align: center;
     white-space: normal;
+  }
+
+  .gb-trust-benefits__description {
+    display: none;
+  }
+}
+
+@media (max-width: 23.75rem) {
+  .gb-trust-benefits__list {
+    grid-template-columns: var(
+      --gb-trust-benefits-shell-grid-columns-mobile
+    );
+  }
+
+  .gb-trust-benefits__item {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    text-align: start;
+  }
+
+  .gb-trust-benefits__content {
+    justify-items: start;
+  }
+
+  .gb-trust-benefits__title {
+    text-align: start;
+    white-space: nowrap;
   }
 }
 

@@ -1,0 +1,508 @@
+/* =============================================================================
+   365 SHOP — NOT FOUND PAGE SKELETON COMPONENT
+   -----------------------------------------------------------------------------
+   Purpose:
+   Premium 404 page skeleton loading styles.
+
+   Rules:
+   - Consume existing semantic page tokens and skeleton tokens.
+   - Keep only Not Found skeleton styles here.
+   - Keep class prefix `gb-`.
+   ============================================================================= */
+
+.gb-not-found-skeleton {
+  min-height: 100%;
+  overflow-x: clip;
+  scroll-padding-block-end: calc(
+    var(--gb-bottom-nav-height) + var(--gb-container-padding-mobile)
+  );
+  padding-block-start: var(--gb-error-page-section-padding-top);
+  padding-block-end: var(--gb-error-page-section-padding-bottom);
+}
+
+.gb-not-found-skeleton__shell {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: var(--gb-error-page-shell-grid-columns);
+  align-items: center;
+  gap: var(--gb-error-page-shell-gap);
+  min-height: var(--gb-error-page-shell-min-height);
+  padding-block: var(--gb-error-page-shell-padding-block);
+  padding-inline: var(--gb-error-page-shell-padding-inline);
+  overflow: var(--gb-skeleton-overflow);
+  border: var(--gb-error-page-shell-border-width) solid
+    var(--gb-error-page-shell-border-color);
+  border-radius: var(--gb-error-page-shell-radius);
+  background: var(--gb-error-page-shell-background);
+  box-shadow: var(--gb-error-page-shell-shadow);
+}
+
+.gb-not-found-skeleton__categories,
+.gb-not-found-skeleton__help {
+  position: relative;
+  overflow: var(--gb-skeleton-overflow);
+}
+
+.gb-not-found-skeleton__shell::after,
+.gb-not-found-skeleton__categories::after,
+.gb-not-found-skeleton__help::after {
+  position: absolute;
+  inset: 0;
+  background: var(--gb-skeleton-shimmer-background);
+  background-size: var(--gb-skeleton-shimmer-size) 100%;
+  content: "";
+  pointer-events: none;
+  transform: translateX(-100%);
+  animation: gb-skeleton-shimmer var(--gb-skeleton-shimmer-duration)
+    var(--gb-skeleton-shimmer-ease) infinite;
+}
+
+.gb-not-found-skeleton__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  gap: var(--gb-error-page-content-gap);
+  max-width: var(--gb-error-page-content-max-width);
+}
+
+.gb-not-found-skeleton__code,
+.gb-not-found-skeleton__title,
+.gb-not-found-skeleton__description,
+.gb-not-found-skeleton__button,
+.gb-not-found-skeleton__search,
+.gb-not-found-skeleton__image,
+.gb-not-found-skeleton__section-title,
+.gb-not-found-skeleton__section-link,
+.gb-not-found-skeleton__category-media,
+.gb-not-found-skeleton__category-label,
+.gb-not-found-skeleton__help-icon,
+.gb-not-found-skeleton__help-title,
+.gb-not-found-skeleton__help-description,
+.gb-not-found-skeleton__help-link {
+  display: block;
+  border-radius: var(--gb-skeleton-radius-full);
+  background: var(--gb-skeleton-surface-strong);
+}
+
+.gb-not-found-skeleton__code {
+  width: 34%;
+  height: var(--gb-error-page-code-font-size);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__title {
+  width: 72%;
+  height: var(--gb-error-page-title-font-size);
+}
+
+.gb-not-found-skeleton__description {
+  width: min(100%, var(--gb-error-page-description-max-width));
+  height: var(--gb-error-page-description-font-size);
+}
+
+.gb-not-found-skeleton__description--short {
+  width: 62%;
+}
+
+.gb-not-found-skeleton__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gb-error-page-actions-gap);
+}
+
+.gb-not-found-skeleton__button {
+  width: 34%;
+  min-width: var(--gb-error-page-primary-button-min-height);
+  height: var(--gb-error-page-primary-button-min-height);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__button--secondary {
+  height: var(--gb-error-page-secondary-button-min-height);
+}
+
+.gb-not-found-skeleton__search {
+  width: 100%;
+  max-width: var(--gb-error-page-search-max-width);
+  height: var(--gb-error-page-search-min-height);
+  margin-block-start: var(--gb-error-page-search-margin-top);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  min-height: var(--gb-error-page-visual-min-height);
+  align-self: var(--gb-error-page-visual-align-self);
+  overflow: clip;
+  place-items: center;
+  padding: var(--gb-error-page-visual-padding);
+  background: var(--gb-error-page-visual-background);
+}
+
+.gb-not-found-skeleton__image {
+  position: relative;
+  width: 100%;
+  max-width: var(--gb-error-page-visual-image-max-width);
+  aspect-ratio: var(--gb-error-page-visual-image-aspect-ratio, 3 / 2);
+  overflow: hidden;
+  border-radius: var(--gb-error-page-category-card-radius);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__image::before,
+.gb-not-found-skeleton__image::after {
+  position: absolute;
+  border-radius: var(--gb-skeleton-radius-full);
+  background: var(--gb-skeleton-surface-strong);
+  content: "";
+}
+
+.gb-not-found-skeleton__image::before {
+  inset-block-start: 18%;
+  inset-inline-start: 12%;
+  width: 42%;
+  height: 18%;
+}
+
+.gb-not-found-skeleton__image::after {
+  inset-block-end: 16%;
+  inset-inline-end: 10%;
+  width: 46%;
+  height: 28%;
+}
+
+.gb-not-found-skeleton__categories {
+  margin-block-start: var(--gb-error-page-category-section-margin-top);
+  border: var(--gb-error-page-category-shell-border-width) solid
+    var(--gb-error-page-category-shell-border-color);
+  border-radius: var(--gb-error-page-category-shell-radius);
+  padding: var(--gb-error-page-category-shell-padding);
+  background: var(--gb-error-page-category-shell-background);
+  box-shadow: var(--gb-error-page-category-shell-shadow);
+}
+
+.gb-not-found-skeleton__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gb-error-page-category-header-gap);
+  margin-block-end: var(--gb-error-page-category-header-gap);
+}
+
+.gb-not-found-skeleton__section-title {
+  width: 28%;
+  height: var(--gb-error-page-category-title-font-size);
+}
+
+.gb-not-found-skeleton__section-link {
+  width: 14%;
+  height: var(--gb-error-page-link-font-size);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__category-grid {
+  display: grid;
+  grid-template-columns: var(--gb-error-page-category-grid-columns);
+  gap: var(--gb-error-page-category-grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gb-not-found-skeleton__category-card {
+  display: grid;
+  min-height: var(--gb-error-page-category-card-min-height);
+  grid-template-rows: minmax(
+      var(--gb-error-page-category-media-min-height),
+      auto
+    )
+    auto;
+  align-content: center;
+  justify-items: stretch;
+  gap: var(--gb-error-page-category-card-gap);
+  overflow: hidden;
+  border: var(--gb-error-page-category-card-border-width) solid
+    var(--gb-error-page-category-card-border-color);
+  border-radius: var(--gb-error-page-category-card-radius);
+  padding: var(--gb-error-page-category-card-padding);
+  background: var(--gb-error-page-category-card-background);
+  box-shadow: var(--gb-error-page-category-card-shadow);
+}
+
+.gb-not-found-skeleton__category-media {
+  width: 100%;
+  max-width: var(--gb-error-page-category-product-image-max-width);
+  height: var(--gb-error-page-category-product-image-max-height);
+  justify-self: center;
+  border-radius: var(--gb-error-page-category-media-radius);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__category-label {
+  width: 68%;
+  height: var(--gb-error-page-category-label-font-size);
+  justify-self: center;
+}
+
+.gb-not-found-skeleton__help {
+  display: grid;
+  grid-template-columns: var(--gb-error-page-help-grid-columns);
+  gap: var(--gb-error-page-help-gap);
+  margin-block-start: var(--gb-error-page-help-section-margin-top);
+  border: var(--gb-error-page-help-shell-border-width) solid
+    var(--gb-error-page-help-shell-border-color);
+  border-radius: var(--gb-error-page-help-shell-radius);
+  background: var(--gb-error-page-help-shell-background);
+  box-shadow: var(--gb-error-page-help-shell-shadow);
+}
+
+.gb-not-found-skeleton__help-item {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: var(--gb-error-page-help-item-gap);
+  padding: var(--gb-error-page-help-item-padding);
+}
+
+.gb-not-found-skeleton__help-item + .gb-not-found-skeleton__help-item {
+  border-inline-start: var(--gb-error-page-help-shell-border-width) solid
+    var(--gb-error-page-help-divider-color);
+}
+
+.gb-not-found-skeleton__help-icon {
+  width: var(--gb-error-page-help-icon-shell-size);
+  height: var(--gb-error-page-help-icon-shell-size);
+  flex: none;
+  border-radius: var(--gb-error-page-help-icon-shell-radius);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+.gb-not-found-skeleton__help-content {
+  display: grid;
+  min-width: 0;
+  width: 100%;
+  gap: var(--gb-error-page-eyebrow-gap);
+}
+
+.gb-not-found-skeleton__help-title {
+  width: 62%;
+  height: var(--gb-error-page-help-title-font-size);
+}
+
+.gb-not-found-skeleton__help-description {
+  width: 92%;
+  height: var(--gb-error-page-help-description-font-size);
+}
+
+.gb-not-found-skeleton__help-link {
+  width: 42%;
+  height: var(--gb-error-page-link-font-size);
+  background: var(--gb-skeleton-surface-muted);
+}
+
+@media (max-width: 64rem) {
+  .gb-not-found-skeleton__shell {
+    grid-template-columns: var(--gb-error-page-shell-grid-columns-mobile);
+  }
+
+  .gb-not-found-skeleton__content {
+    max-width: 100%;
+  }
+
+  .gb-not-found-skeleton__visual {
+    order: var(--gb-error-page-mobile-visual-order);
+  }
+
+  .gb-not-found-skeleton__category-grid {
+    grid-template-columns: var(--gb-error-page-category-grid-columns-tablet);
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 64rem) {
+  .gb-not-found-skeleton__shell {
+    min-height: auto;
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gb-not-found-skeleton__content {
+    order: 1;
+    width: 100%;
+    max-width: var(--gb-error-page-content-max-width);
+    justify-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .gb-not-found-skeleton__description,
+  .gb-not-found-skeleton__search {
+    margin-inline: auto;
+  }
+
+  .gb-not-found-skeleton__actions {
+    justify-content: center;
+  }
+
+  .gb-not-found-skeleton__visual {
+    order: 2;
+    min-height: auto;
+    padding-block: var(--gb-container-padding-tablet);
+  }
+
+  .gb-not-found-skeleton__image {
+    max-width: var(--gb-error-page-search-max-width);
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .gb-not-found-skeleton {
+    padding-block-start: var(--gb-error-page-section-padding-top-mobile);
+    padding-block-end: max(
+      var(--gb-error-page-section-padding-bottom-mobile),
+      calc(
+        var(--gb-bottom-nav-height) + (var(--gb-container-padding-mobile) * 3) +
+          env(safe-area-inset-bottom)
+      )
+    );
+  }
+
+  .gb-not-found-skeleton__shell {
+    min-height: auto;
+    align-items: start;
+    gap: var(--gb-error-page-content-gap);
+    border-radius: var(--gb-error-page-shell-radius-mobile);
+    overflow: var(--gb-skeleton-overflow);
+  }
+
+  .gb-not-found-skeleton__visual {
+    display: none;
+  }
+
+  .gb-not-found-skeleton__content {
+    width: 100%;
+    max-width: 100%;
+    justify-items: var(--gb-error-page-mobile-content-align);
+    text-align: var(--gb-error-page-mobile-content-align);
+  }
+
+  .gb-not-found-skeleton__code {
+    width: 40%;
+  }
+
+  .gb-not-found-skeleton__title {
+    width: 82%;
+  }
+
+  .gb-not-found-skeleton__description {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .gb-not-found-skeleton__description--short {
+    width: 74%;
+  }
+
+  .gb-not-found-skeleton__actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: center;
+    gap: var(--gb-error-page-actions-gap-mobile);
+  }
+
+  .gb-not-found-skeleton__button {
+    width: 100%;
+  }
+
+  .gb-not-found-skeleton__search {
+    display: none;
+  }
+
+  .gb-not-found-skeleton__categories {
+    margin-block-start: var(--gb-error-page-category-section-margin-top);
+    margin-block-end: var(--gb-error-page-help-section-margin-top);
+  }
+
+  .gb-not-found-skeleton__section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .gb-not-found-skeleton__section-title {
+    width: 58%;
+  }
+
+  .gb-not-found-skeleton__section-link {
+    width: 32%;
+  }
+
+  .gb-not-found-skeleton__category-grid {
+    grid-template-columns: var(--gb-error-page-category-grid-columns-mobile);
+    gap: var(--gb-error-page-category-grid-gap);
+  }
+
+  .gb-not-found-skeleton__category-grid > li {
+    min-width: 0;
+  }
+
+  .gb-not-found-skeleton__category-grid > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc((100% - var(--gb-error-page-category-grid-gap)) / 2);
+    justify-self: center;
+  }
+
+  .gb-not-found-skeleton__category-card {
+    min-height: var(--gb-error-page-category-card-min-height);
+  }
+
+  .gb-not-found-skeleton__help {
+    grid-template-columns: var(--gb-error-page-help-grid-columns-mobile);
+    gap: var(--gb-error-page-help-gap-mobile);
+    margin-block-start: 0;
+    overflow: visible;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .gb-not-found-skeleton__help::after {
+    display: none;
+  }
+
+  .gb-not-found-skeleton__help-item {
+    border: var(--gb-error-page-help-shell-border-width) solid
+      var(--gb-error-page-help-shell-border-color);
+    border-radius: var(--gb-error-page-help-shell-radius);
+    background: var(--gb-error-page-help-shell-background);
+    box-shadow: var(--gb-error-page-help-shell-shadow);
+  }
+
+  .gb-not-found-skeleton__help-item + .gb-not-found-skeleton__help-item {
+    border-inline-start: var(--gb-error-page-help-shell-border-width) solid
+      var(--gb-error-page-help-shell-border-color);
+  }
+}
+
+@supports not (overflow: clip) {
+  .gb-not-found-skeleton,
+  .gb-not-found-skeleton__visual {
+    overflow-x: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gb-not-found-skeleton__shell::after,
+  .gb-not-found-skeleton__categories::after,
+  .gb-not-found-skeleton__help::after {
+    animation: none;
+    transform: none;
+  }
+}

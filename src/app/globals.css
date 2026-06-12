@@ -32,6 +32,7 @@
 @import "../styles/components/primitives/button.css";
 @import "../styles/components/primitives/badge.css";
 @import "../styles/components/skeleton/skeleton.css";
+@import "../styles/components/skeleton/skeleton.not-found.css";
 
 /* 05 — Active layout/section/component modules */
 @import "../styles/components/layout/header.css";

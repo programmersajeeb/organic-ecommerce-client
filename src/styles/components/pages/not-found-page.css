@@ -635,6 +635,50 @@
   }
 }
 
+@media (min-width: 48rem) and (max-width: 64rem) {
+  .gb-not-found-page__shell {
+    min-height: auto;
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gb-not-found-page__content {
+    order: 1;
+    width: 100%;
+    max-width: var(--gb-error-page-content-max-width);
+    justify-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .gb-not-found-page__description {
+    margin-inline: auto;
+  }
+
+  .gb-not-found-page__actions {
+    justify-content: center;
+  }
+
+  .gb-not-found-page__search {
+    margin-inline: auto;
+  }
+
+  .gb-not-found-page__visual {
+    order: 2;
+    min-height: auto;
+    padding-block: var(--gb-container-padding-tablet);
+  }
+
+  .gb-not-found-page__picture {
+    max-width: var(--gb-error-page-search-max-width);
+  }
+
+  .gb-not-found-page__image {
+    width: 100%;
+    height: auto;
+  }
+}
+
 @media (max-width: 47.9375rem) {
   .gb-not-found-page {
     padding-block-start: var(--gb-error-page-section-padding-top-mobile);

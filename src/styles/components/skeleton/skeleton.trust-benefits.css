@@ -133,15 +133,17 @@
 
 @media (max-width: 40rem) {
   .gb-trust-benefits-skeleton {
-    padding-block-end: var(
-      --gb-skeleton-trust-benefits-section-padding-bottom-mobile
+    padding-block-end: max(
+      var(--gb-skeleton-trust-benefits-section-padding-bottom-mobile),
+      calc(
+        var(--gb-bottom-nav-height) + var(--gb-container-padding-mobile) +
+          env(safe-area-inset-bottom)
+      )
     );
   }
 
   .gb-trust-benefits-skeleton__list {
-    grid-template-columns: var(
-      --gb-skeleton-trust-benefits-grid-columns-mobile
-    );
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--gb-skeleton-trust-benefits-list-gap-mobile);
     padding: var(--gb-skeleton-trust-benefits-list-padding-mobile);
     border-radius: var(--gb-skeleton-trust-benefits-list-radius-mobile);
@@ -151,6 +153,8 @@
     min-block-size: var(
       --gb-skeleton-trust-benefits-item-min-block-size-mobile
     );
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     gap: var(--gb-skeleton-trust-benefits-item-gap-mobile);
     padding: var(--gb-skeleton-trust-benefits-item-padding-mobile);
     border-radius: var(--gb-skeleton-trust-benefits-item-radius-mobile);
@@ -159,6 +163,40 @@
   .gb-trust-benefits-skeleton__icon {
     width: var(--gb-skeleton-trust-benefits-icon-size-mobile);
     height: var(--gb-skeleton-trust-benefits-icon-size-mobile);
+  }
+
+  .gb-trust-benefits-skeleton__content {
+    justify-items: center;
+    width: 100%;
+  }
+
+  .gb-trust-benefits-skeleton__line--title {
+    max-width: 100%;
+  }
+
+  .gb-trust-benefits-skeleton__line--description {
+    display: none;
+  }
+}
+
+@media (max-width: 23.75rem) {
+  .gb-trust-benefits-skeleton__list {
+    grid-template-columns: var(
+      --gb-skeleton-trust-benefits-grid-columns-mobile
+    );
+  }
+
+  .gb-trust-benefits-skeleton__item {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+  }
+
+  .gb-trust-benefits-skeleton__content {
+    justify-items: start;
+  }
+
+  .gb-trust-benefits-skeleton__line--description {
+    display: block;
   }
 }
 
