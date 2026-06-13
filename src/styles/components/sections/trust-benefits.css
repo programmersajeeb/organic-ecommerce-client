@@ -61,12 +61,12 @@
 }
 
 .gb-trust-benefits__item + .gb-trust-benefits__item::before {
-  content: "";
   position: absolute;
   inset-block: var(--gb-trust-benefits-divider-inset-block);
   inset-inline-start: 0;
   width: var(--gb-trust-benefits-divider-width);
   background: var(--gb-trust-benefits-divider-color);
+  content: "";
 }
 
 .gb-trust-benefits__icon-shell {
@@ -100,8 +100,8 @@
   color: var(--gb-trust-benefits-title-color);
   font-size: var(--gb-trust-benefits-title-font-size);
   font-weight: var(--gb-trust-benefits-title-font-weight);
-  letter-spacing: var(--gb-trust-benefits-title-letter-spacing);
   line-height: var(--gb-trust-benefits-title-line-height);
+  letter-spacing: var(--gb-trust-benefits-title-letter-spacing);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -141,13 +141,7 @@
 
 @media (max-width: 40rem) {
   .gb-trust-benefits {
-    padding-block-end: max(
-      var(--gb-trust-benefits-section-padding-bottom-mobile),
-      calc(
-        var(--gb-bottom-nav-height) + var(--gb-container-padding-mobile) +
-          env(safe-area-inset-bottom)
-      )
-    );
+    padding-block-end: var(--gb-trust-benefits-section-padding-bottom-mobile);
   }
 
   .gb-trust-benefits__container {
@@ -182,8 +176,8 @@
   }
 
   .gb-trust-benefits__content {
-    justify-items: center;
     width: 100%;
+    justify-items: center;
   }
 
   .gb-trust-benefits__title {

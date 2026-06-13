@@ -38,6 +38,7 @@
 @import "../styles/components/layout/header.css";
 @import "../styles/components/sections/hero.css";
 @import "../styles/components/sections/trust-benefits.css";
+@import "../styles/components/sections/shop-by-category.css";
 @import "../styles/components/pages/not-found-page.css";
 
 /* 06 — Global utilities and motion */

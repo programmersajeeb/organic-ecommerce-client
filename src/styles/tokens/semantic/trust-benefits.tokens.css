@@ -23,9 +23,7 @@
 
   --gb-trust-benefits-section-padding-top: 0rem;
   --gb-trust-benefits-section-padding-bottom: 1.5rem;
-  --gb-trust-benefits-section-padding-bottom-mobile: calc(
-    var(--gb-bottom-nav-height) + 1rem
-  );
+  --gb-trust-benefits-section-padding-bottom-mobile: 1rem;
 
   --gb-trust-benefits-shell-grid-columns: repeat(6, minmax(0, 1fr));
   --gb-trust-benefits-shell-grid-columns-tablet: repeat(3, minmax(0, 1fr));

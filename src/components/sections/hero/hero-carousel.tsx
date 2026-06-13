@@ -1,6 +1,6 @@
 "use client";
 
-import { BannerSkeleton } from "@/components/common/skeletons";
+import { BannerSkeleton } from "@/components/common/skeleton";
 import Image from "next/image";
 import Link from "next/link";
 import {
