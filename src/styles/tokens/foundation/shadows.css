@@ -42,4 +42,5 @@
   --shadow-drawer: var(--gb-shadow-drawer);
   --shadow-modal: var(--gb-shadow-modal);
   --shadow-focus: var(--gb-shadow-focus);
+  --shadow-focus-strong: var(--gb-shadow-focus-strong);
 }

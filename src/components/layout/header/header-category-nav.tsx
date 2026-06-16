@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, type KeyboardEvent } from "react";
@@ -38,6 +39,10 @@ type CategoryMenuProps = Readonly<{
 }>;
 
 const ROOT_PATHNAME = "/";
+
+function getRouteHref(href: string) {
+  return href as Route;
+}
 
 function getCleanPathname(pathname: string) {
   return pathname.split(/[?#]/)[0] || ROOT_PATHNAME;
@@ -183,12 +188,13 @@ function CategoryMenu({
     >
       {categories.map((category) => {
         const isActive = isCategoryActive(pathname, category.href);
+        const categoryHref = getRouteHref(category.href);
 
         return (
           <Link
             key={category.id}
             className="gb-site-header__language-option gb-site-header__category-menu-option"
-            href={category.href}
+            href={categoryHref}
             role="menuitem"
             aria-current={isActive ? "page" : undefined}
             aria-label={category.name}
@@ -298,12 +304,13 @@ export function HeaderCategoryNav({
           <div className="gb-site-header__category-list">
             {primaryCategories.map((category) => {
               const isActive = isCategoryActive(pathname, category.href);
+              const categoryHref = getRouteHref(category.href);
 
               return (
                 <Link
                   key={category.id}
                   className="gb-site-header__category-link"
-                  href={category.href}
+                  href={categoryHref}
                   aria-current={isActive ? "page" : undefined}
                   aria-label={category.name}
                   data-active={isActive ? "true" : undefined}

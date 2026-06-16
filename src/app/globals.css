@@ -15,9 +15,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* next-themes uses `.dark` class, so Tailwind dark: utilities must follow it */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* 01 — Design system tokens */
 @import "../styles/tokens.css";
 
@@ -34,13 +31,20 @@
 @import "../styles/components/skeleton/skeleton.css";
 @import "../styles/components/skeleton/skeleton.not-found.css";
 
-/* 05 — Active layout/section/component modules */
+/* 05 — Reusable ecommerce components */
+@import "../styles/components/common/product-card.css";
+@import "../styles/components/common/product-showcase.css";
+
+/* 06 — Active layout/section/component modules */
 @import "../styles/components/layout/header.css";
 @import "../styles/components/sections/hero.css";
 @import "../styles/components/sections/trust-benefits.css";
 @import "../styles/components/sections/shop-by-category.css";
 @import "../styles/components/pages/not-found-page.css";
 
-/* 06 — Global utilities and motion */
+/* 07 — Global utilities and motion */
 @import "../styles/utilities.css";
 @import "../styles/animations.css";
+
+/* next-themes uses `.dark` class, so Tailwind dark: utilities must follow it */
+@custom-variant dark (&:where(.dark, .dark *));

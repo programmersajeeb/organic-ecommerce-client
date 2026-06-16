@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import { BannerSkeleton } from "@/components/common/skeleton";
 import Image from "next/image";
 import Link from "next/link";
@@ -85,11 +86,13 @@ function HeroBannerImage({ isLoaded, onLoad, slide }: HeroBannerImageProps) {
     return image;
   }
 
+  const slideHref = slide.href as Route;
+
   return (
     <Link
       aria-label={slide.ariaLabel ?? slide.image.alt}
       className="gb-hero-carousel__image-link"
-      href={slide.href}
+      href={slideHref}
     >
       {image}
     </Link>

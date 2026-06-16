@@ -73,12 +73,12 @@ export const shopByCategoryData: ShopByCategorySectionViewModel = {
       },
     },
     {
-      id: "headphones",
-      title: "Headphones",
-      href: "/categories/headphones",
+      id: "electronics",
+      title: "Electronics",
+      href: "/categories/electronics",
       image: {
-        src: "/images/categories/headphones.png",
-        alt: "Wireless and wired headphones",
+        src: "/images/categories/electronics.png",
+        alt: "Electronic devices and accessories",
       },
     },
   ],

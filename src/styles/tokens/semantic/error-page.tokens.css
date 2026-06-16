@@ -59,7 +59,7 @@
   --gb-error-page-code-text-shadow:
     0 0.4rem 0.9rem hsl(var(--gb-brand) / 0.12);
 
-  --gb-error-page-title-color: var(--color-heading);
+  --gb-error-page-title-color: hsl(var(--gb-heading));
   --gb-error-page-title-font-family: var(--gb-font-heading);
   --gb-error-page-title-font-size: clamp(
     var(--gb-text-4xl),
@@ -70,7 +70,7 @@
   --gb-error-page-title-line-height: var(--gb-leading-tight);
   --gb-error-page-title-letter-spacing: var(--gb-tracking-tight);
 
-  --gb-error-page-description-color: var(--color-body);
+  --gb-error-page-description-color: hsl(var(--gb-body));
   --gb-error-page-description-font-family: var(--gb-font-sans);
   --gb-error-page-description-font-size: var(--gb-text-base);
   --gb-error-page-description-font-weight: 450;
@@ -96,7 +96,7 @@
   --gb-error-page-secondary-button-radius: var(--radius-lg);
   --gb-error-page-secondary-button-background: hsl(var(--gb-surface) / 0.98);
   --gb-error-page-secondary-button-background-hover: hsl(var(--gb-surface-soft));
-  --gb-error-page-secondary-button-color: var(--color-heading);
+  --gb-error-page-secondary-button-color: hsl(var(--gb-heading));
   --gb-error-page-secondary-button-border-color: hsl(
     var(--gb-border-strong) / 0.5
   );
@@ -127,9 +127,9 @@
   --gb-error-page-search-shadow: var(--shadow-xs);
   --gb-error-page-search-shadow-focus: var(--gb-shadow-focus);
   --gb-error-page-search-icon-size: 1.05rem;
-  --gb-error-page-search-icon-color: var(--color-text-muted);
-  --gb-error-page-search-input-color: var(--color-heading);
-  --gb-error-page-search-input-placeholder-color: var(--color-subtle);
+  --gb-error-page-search-icon-color: hsl(var(--gb-muted));
+  --gb-error-page-search-input-color: hsl(var(--gb-heading));
+  --gb-error-page-search-input-placeholder-color: hsl(var(--gb-subtle));
   --gb-error-page-search-input-font-family: var(--gb-font-sans);
   --gb-error-page-search-input-font-size: var(--gb-text-sm);
   --gb-error-page-search-input-font-weight: 500;
@@ -162,7 +162,7 @@
   --gb-error-page-category-shell-shadow: var(--shadow-xs);
   --gb-error-page-category-header-gap: 0.85rem;
 
-  --gb-error-page-category-title-color: var(--color-heading);
+  --gb-error-page-category-title-color: hsl(var(--gb-heading));
   --gb-error-page-category-title-font-family: var(--gb-font-heading);
   --gb-error-page-category-title-font-size: var(--gb-text-xl);
   --gb-error-page-category-title-font-weight: 900;
@@ -213,7 +213,7 @@
   --gb-error-page-category-image-size: 2.25rem;
   --gb-error-page-category-image-size-mobile: 2.15rem;
 
-  --gb-error-page-category-label-color: var(--color-heading);
+  --gb-error-page-category-label-color: hsl(var(--gb-heading));
   --gb-error-page-category-label-font-family: var(--gb-font-sans);
   --gb-error-page-category-label-font-size: var(--gb-text-sm);
   --gb-error-page-category-label-font-weight: 800;
@@ -250,12 +250,12 @@
   --gb-error-page-help-icon-shell-background: hsl(var(--gb-brand) / 0.08);
   --gb-error-page-help-icon-color: hsl(var(--gb-brand));
   --gb-error-page-help-icon-size: 1.16rem;
-  --gb-error-page-help-title-color: var(--color-heading);
+  --gb-error-page-help-title-color: hsl(var(--gb-heading));
   --gb-error-page-help-title-font-family: var(--gb-font-sans);
   --gb-error-page-help-title-font-size: var(--gb-text-base);
   --gb-error-page-help-title-font-weight: 850;
   --gb-error-page-help-title-line-height: var(--gb-leading-snug);
-  --gb-error-page-help-description-color: var(--color-text-muted);
+  --gb-error-page-help-description-color: hsl(var(--gb-muted));
   --gb-error-page-help-description-font-family: var(--gb-font-sans);
   --gb-error-page-help-description-font-size: var(--gb-text-sm);
   --gb-error-page-help-description-font-weight: 450;

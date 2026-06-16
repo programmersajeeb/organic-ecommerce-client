@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -180,6 +181,10 @@ const FOCUSABLE_SELECTOR = [
 
 function getClassName(...classNames: Array<string | false | null | undefined>) {
   return classNames.filter(Boolean).join(" ");
+}
+
+function getRouteHref(href: string) {
+  return href as Route;
 }
 
 function normalizePathname(pathname: string) {
@@ -705,7 +710,7 @@ function HeaderMobileNotificationAction({
   return (
     <Link
       className="gb-site-header__mobile-button"
-      href={href}
+      href={getRouteHref(href)}
       aria-label={`View notifications, ${getNotificationLabel(count)}`}
       onClick={onCloseAll}
     >
@@ -739,7 +744,7 @@ function HeaderLogo({ onClick }: HeaderLogoProps) {
   return (
     <Link
       className="gb-site-header__logo"
-      href="/"
+      href={getRouteHref(ROOT_PATHNAME)}
       aria-label="365 SHOP home"
       onClick={onClick}
     >
@@ -838,7 +843,7 @@ function HeaderMobileBottomLink({
   return (
     <Link
       className="gb-site-header__mobile-nav-link"
-      href={href}
+      href={getRouteHref(href)}
       aria-label={ariaLabel ?? label}
       aria-current={isActive ? "page" : undefined}
       data-active={isActive ? "true" : undefined}
@@ -912,7 +917,7 @@ function HeaderMobileBottomNavigation({
       aria-label="Mobile primary navigation"
     >
       <HeaderMobileBottomLink
-        href="/"
+        href={ROOT_PATHNAME}
         icon="home"
         isActive={isHomeActive}
         label="Home"
@@ -1103,7 +1108,7 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
 
       setSearchQuery(normalizedQuery);
       closeAll();
-      router.push(getSearchHref(searchConfig.searchHref, normalizedQuery));
+      router.push(getRouteHref(getSearchHref(searchConfig.searchHref, normalizedQuery)));
     },
     [closeAll, router, searchConfig.searchHref],
   );
@@ -1178,7 +1183,7 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
                 <Link
                   key={item.id}
                   className="gb-site-header__trust-item"
-                  href={item.href}
+                  href={getRouteHref(getSafeHeaderHref(item.href))}
                   aria-label={item.ariaLabel ?? item.label}
                   onClick={closePanels}
                 >
@@ -1203,7 +1208,7 @@ export function HeaderClient({ data, searchConfig }: HeaderClientProps) {
               <Link
                 key={item.id}
                 className="gb-site-header__utility-link"
-                href={item.href}
+                href={getRouteHref(getSafeHeaderHref(item.href))}
                 aria-label={item.ariaLabel ?? item.label}
                 onClick={closePanels}
               >

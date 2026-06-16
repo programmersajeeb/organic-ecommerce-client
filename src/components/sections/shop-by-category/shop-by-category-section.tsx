@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 
 import { ShopByCategoryCard } from "./shop-by-category-card";
@@ -22,30 +23,27 @@ export function ShopByCategorySection({
 }: ShopByCategorySectionProps) {
   const items = data.items ?? [];
   const hasItems = items.length > 0;
+  const viewAllHref = data.viewAllHref as Route;
 
   if (loading) {
-    return (
-      <ShopByCategorySkeleton
-        {...(className ? { className } : {})}
-      />
-    );
+    return <ShopByCategorySkeleton {...(className ? { className } : {})} />;
   }
 
   return (
     <section
       aria-labelledby={data.headingId}
-      className={cn("gb-section-tight gb-shop-by-category", className)}
+      className={cn("gb-shop-by-category", className)}
     >
-      <div className="gb-container">
+      <div className="gb-shop-by-category__container">
         <div className="gb-shop-by-category__header">
           <h2 id={data.headingId} className="gb-shop-by-category__title">
             {data.heading}
           </h2>
 
           <Link
-            href={data.viewAllHref}
+            href={viewAllHref}
             className="gb-shop-by-category__view-all"
-            aria-label="Browse all categories"
+            aria-label={`${data.viewAllLabel}: ${data.heading}`}
           >
             <span>{data.viewAllLabel}</span>
             <span aria-hidden="true">→</span>
@@ -62,7 +60,7 @@ export function ShopByCategorySection({
           </ul>
         ) : (
           <div className="gb-shop-by-category__empty" role="status">
-            No categories available
+            Categories are not available right now.
           </div>
         )}
       </div>

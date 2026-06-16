@@ -27,15 +27,27 @@
   }
 
   .gb-section-sm {
-    padding-block: clamp(1.75rem, 3vw, 3rem);
+    padding-block: clamp(
+      calc(var(--gb-section-y-tablet) * 0.6),
+      3vw,
+      calc(var(--gb-section-y-desktop) * 0.75)
+    );
   }
 
   .gb-section-lg {
-    padding-block: clamp(4rem, 7vw, 7.5rem);
+    padding-block: clamp(
+      calc(var(--gb-section-y-tablet) * 1.333),
+      7vw,
+      calc(var(--gb-section-y-desktop) * 1.875)
+    );
   }
 
   .gb-section-tight {
-    padding-block: clamp(1.25rem, 2vw, 2rem);
+    padding-block: clamp(
+      calc(var(--gb-section-y-mobile) * 0.625),
+      2vw,
+      var(--gb-section-y-mobile)
+    );
   }
 
   .gb-section-soft {
@@ -127,30 +139,42 @@
 
   .gb-section-stack {
     display: grid;
-    gap: clamp(1.25rem, 2.5vw, 2rem);
+    gap: clamp(
+      calc(var(--gb-section-y-mobile) * 0.625),
+      2.5vw,
+      calc(var(--gb-section-y-mobile))
+    );
   }
 
   .gb-section-stack-lg {
     display: grid;
-    gap: clamp(1.75rem, 3vw, 3rem);
+    gap: clamp(
+      calc(var(--gb-section-y-tablet) * 0.583),
+      3vw,
+      calc(var(--gb-section-y-tablet))
+    );
   }
 
   .gb-section-stack-xl {
     display: grid;
-    gap: clamp(2rem, 4vw, 4rem);
+    gap: clamp(
+      var(--gb-section-y-mobile),
+      4vw,
+      var(--gb-section-y-desktop)
+    );
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 64rem) {
     .gb-section {
       padding-block: var(--gb-section-y-tablet);
     }
 
     .gb-section-sm {
-      padding-block: 1.75rem;
+      padding-block: calc(var(--gb-section-y-tablet) * 0.583);
     }
 
     .gb-section-lg {
-      padding-block: 3.5rem;
+      padding-block: calc(var(--gb-section-y-tablet) * 1.167);
     }
 
     .gb-section-fill {
@@ -158,33 +182,33 @@
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 40rem) {
     .gb-section {
       padding-block: var(--gb-section-y-mobile);
     }
 
     .gb-section-sm {
-      padding-block: 1.5rem;
+      padding-block: calc(var(--gb-section-y-mobile) * 0.75);
     }
 
     .gb-section-lg {
-      padding-block: 3rem;
+      padding-block: calc(var(--gb-section-y-mobile) * 1.5);
     }
 
     .gb-section-tight {
-      padding-block: 1rem;
+      padding-block: calc(var(--gb-section-y-mobile) * 0.5);
     }
 
     .gb-section-stack {
-      gap: 1.125rem;
+      gap: calc(var(--gb-section-y-mobile) * 0.5625);
     }
 
     .gb-section-stack-lg {
-      gap: 1.5rem;
+      gap: calc(var(--gb-section-y-mobile) * 0.75);
     }
 
     .gb-section-stack-xl {
-      gap: 2rem;
+      gap: var(--gb-section-y-mobile);
     }
   }
 }

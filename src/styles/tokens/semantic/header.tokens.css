@@ -29,29 +29,29 @@
   --gb-header-logo-cart-transform: rotate(-7deg);
   --gb-header-drawer-backdrop-blur: blur(0.375rem);
 
-  --gb-header-topbar-height: 2rem;
+  --gb-header-topbar-height: 1.75rem;
   --gb-header-topbar-background: hsl(var(--gb-snow));
   --gb-header-topbar-border-color: hsl(var(--gb-border-soft));
   --gb-header-topbar-text-color: hsl(var(--gb-body));
   --gb-header-topbar-icon-color: hsl(var(--gb-muted));
   --gb-header-topbar-hover-color: hsl(var(--gb-brand-hover));
   --gb-header-topbar-font-family: var(--font-sans);
-  --gb-header-topbar-font-size: 0.6875rem;
+  --gb-header-topbar-font-size: 0.65625rem;
   --gb-header-topbar-font-weight: 680;
   --gb-header-topbar-line-height: var(--gb-leading-none);
-  --gb-header-topbar-content-gap: 1rem;
-  --gb-header-topbar-trust-gap-min: 0.85rem;
-  --gb-header-topbar-trust-gap-fluid: 1.6vw;
-  --gb-header-topbar-trust-gap-max: 1.35rem;
-  --gb-header-topbar-utility-gap-min: 0.75rem;
-  --gb-header-topbar-utility-gap-fluid: 1.25vw;
-  --gb-header-topbar-utility-gap-max: 1.05rem;
-  --gb-header-topbar-item-gap: 0.35rem;
-  --gb-header-topbar-action-height: 1.75rem;
-  --gb-header-topbar-icon-size: 0.82rem;
+  --gb-header-topbar-content-gap: 0.875rem;
+  --gb-header-topbar-trust-gap-min: 0.75rem;
+  --gb-header-topbar-trust-gap-fluid: 1.35vw;
+  --gb-header-topbar-trust-gap-max: 1.15rem;
+  --gb-header-topbar-utility-gap-min: 0.65rem;
+  --gb-header-topbar-utility-gap-fluid: 1vw;
+  --gb-header-topbar-utility-gap-max: 0.95rem;
+  --gb-header-topbar-item-gap: 0.3rem;
+  --gb-header-topbar-action-height: 1.5rem;
+  --gb-header-topbar-icon-size: 0.76rem;
   --gb-header-topbar-icon-stroke-width: 2.15;
 
-  --gb-header-dropdown-offset: 0.5rem;
+  --gb-header-dropdown-offset: 0.45rem;
   --gb-header-dropdown-min-width: 11rem;
   --gb-header-dropdown-max-width: 22rem;
   --gb-header-dropdown-max-height: 28rem;
@@ -81,162 +81,162 @@
 
   --gb-header-main-background: hsl(var(--gb-header));
   --gb-header-main-min-height: var(--gb-header-height-desktop);
-  --gb-header-main-padding-y: 0.75rem;
+  --gb-header-main-padding-y: 0.5rem;
   --gb-header-main-grid-template-desktop:
-    minmax(6.25rem, 7rem) minmax(9.75rem, 10.75rem) minmax(20rem, 1fr) auto;
+    minmax(5.75rem, 6.35rem) minmax(8.75rem, 9.75rem) minmax(20rem, 1fr) auto;
   --gb-header-main-grid-template-2xl:
-    minmax(6rem, 6.65rem) minmax(9.25rem, 10rem) minmax(18rem, 1fr) auto;
+    minmax(5.5rem, 6.05rem) minmax(8.5rem, 9.25rem) minmax(18rem, 1fr) auto;
   --gb-header-main-grid-template-xl:
-    minmax(5.9rem, 6.4rem) minmax(8.6rem, 9.4rem) minmax(15rem, 1fr) auto;
+    minmax(5.35rem, 5.85rem) minmax(8rem, 8.75rem) minmax(15rem, 1fr) auto;
   --gb-header-main-grid-template-lg:
-    minmax(5.9rem, 6.4rem) minmax(16rem, 1fr) auto;
-  --gb-header-main-gap-min: 0.8rem;
-  --gb-header-main-gap-fluid: 1.4vw;
-  --gb-header-main-gap-max: 1.15rem;
-  --gb-header-main-gap-compact: 0.7rem;
+    minmax(5.35rem, 5.85rem) minmax(16rem, 1fr) auto;
+  --gb-header-main-gap-min: 0.65rem;
+  --gb-header-main-gap-fluid: 1.15vw;
+  --gb-header-main-gap-max: 0.95rem;
+  --gb-header-main-gap-compact: 0.6rem;
 
-  --gb-header-logo-mark-width: 6.35rem;
-  --gb-header-logo-mark-width-tablet: 6.15rem;
-  --gb-header-logo-mark-width-mobile: 6.28rem;
-  --gb-header-logo-mark-width-compact: 5.72rem;
-  --gb-header-logo-brand-gap: 0.14rem;
+  --gb-header-logo-mark-width: 5.75rem;
+  --gb-header-logo-mark-width-tablet: 5.6rem;
+  --gb-header-logo-mark-width-mobile: 5.85rem;
+  --gb-header-logo-mark-width-compact: 5.35rem;
+  --gb-header-logo-brand-gap: 0.12rem;
   --gb-header-logo-number-color: hsl(var(--gb-brand));
   --gb-header-logo-color: hsl(var(--gb-heading));
   --gb-header-logo-font-family: var(--font-sans);
   --gb-header-logo-font-weight: 950;
   --gb-header-logo-letter-spacing: -0.055em;
   --gb-header-logo-line-height: 0.88;
-  --gb-header-logo-number-font-size: 1.78rem;
-  --gb-header-logo-number-font-size-tablet: 1.5rem;
-  --gb-header-logo-number-font-size-mobile: 1.58rem;
-  --gb-header-logo-number-font-size-compact: 1.42rem;
+  --gb-header-logo-number-font-size: 1.58rem;
+  --gb-header-logo-number-font-size-tablet: 1.42rem;
+  --gb-header-logo-number-font-size-mobile: 1.5rem;
+  --gb-header-logo-number-font-size-compact: 1.35rem;
   --gb-header-logo-cart-margin-top: -0.04rem;
-  --gb-header-logo-cart-icon-size: 1.58rem;
-  --gb-header-logo-cart-icon-size-tablet: 1.39rem;
-  --gb-header-logo-cart-icon-size-mobile: 1.44rem;
-  --gb-header-logo-cart-icon-size-compact: 1.28rem;
+  --gb-header-logo-cart-icon-size: 1.4rem;
+  --gb-header-logo-cart-icon-size-tablet: 1.32rem;
+  --gb-header-logo-cart-icon-size-mobile: 1.38rem;
+  --gb-header-logo-cart-icon-size-compact: 1.22rem;
   --gb-header-logo-cart-icon-stroke-width: 2.55;
   --gb-header-logo-name-margin-top: -0.03rem;
-  --gb-header-logo-name-font-size: 1.5rem;
-  --gb-header-logo-name-font-size-tablet: 1.29rem;
-  --gb-header-logo-name-font-size-mobile: 1.33rem;
-  --gb-header-logo-name-font-size-compact: 1.18rem;
+  --gb-header-logo-name-font-size: 1.32rem;
+  --gb-header-logo-name-font-size-tablet: 1.18rem;
+  --gb-header-logo-name-font-size-mobile: 1.25rem;
+  --gb-header-logo-name-font-size-compact: 1.1rem;
 
-  --gb-header-category-trigger-height: 3rem;
-  --gb-header-category-trigger-gap: 0.55rem;
+  --gb-header-category-trigger-height: 2.65rem;
+  --gb-header-category-trigger-gap: 0.48rem;
   --gb-header-category-trigger-border-color: hsl(var(--gb-brand));
   --gb-header-category-trigger-background: hsl(var(--gb-brand));
   --gb-header-category-trigger-hover-background: hsl(var(--gb-brand-hover));
   --gb-header-category-trigger-color: hsl(var(--gb-inverse));
   --gb-header-category-trigger-radius: var(--radius-2xl);
-  --gb-header-category-trigger-padding-x: 1rem;
-  --gb-header-category-trigger-padding-x-compact: 0.85rem;
+  --gb-header-category-trigger-padding-x: 0.9rem;
+  --gb-header-category-trigger-padding-x-compact: 0.75rem;
   --gb-header-category-trigger-font-family: var(--font-sans);
-  --gb-header-category-trigger-font-size: 0.875rem;
-  --gb-header-category-trigger-font-size-compact: 0.8125rem;
+  --gb-header-category-trigger-font-size: 0.8125rem;
+  --gb-header-category-trigger-font-size-compact: 0.78125rem;
   --gb-header-category-trigger-font-weight: 850;
   --gb-header-category-trigger-line-height: var(--gb-leading-none);
-  --gb-header-category-trigger-shadow: 0 0.65rem 1.35rem
-    hsl(var(--gb-brand) / 0.18);
-  --gb-header-category-trigger-shadow-hover: 0 0.75rem 1.5rem
-    hsl(var(--gb-brand) / 0.22);
-  --gb-header-category-trigger-icon-size: 1.05rem;
+  --gb-header-category-trigger-shadow: 0 0.55rem 1.15rem
+    hsl(var(--gb-brand) / 0.16);
+  --gb-header-category-trigger-shadow-hover: 0 0.65rem 1.35rem
+    hsl(var(--gb-brand) / 0.2);
+  --gb-header-category-trigger-icon-size: 0.98rem;
   --gb-header-category-trigger-icon-stroke-width: 2.45;
 
-  --gb-header-search-height: 2.88rem;
+  --gb-header-search-height: 2.65rem;
   --gb-header-search-max-width: 54rem;
   --gb-header-search-border-color: hsl(var(--gb-input));
   --gb-header-search-border-focus-color: var(--gb-header-brand-focus-border);
   --gb-header-search-radius: var(--radius-2xl);
   --gb-header-search-radius-mobile: var(--radius-full);
   --gb-header-search-background: hsl(var(--gb-surface));
-  --gb-header-search-shadow: 0 0.35rem 1.15rem hsl(220 17% 7% / 0.045);
-  --gb-header-search-focus-shadow: 0 0.35rem 1.15rem
-      hsl(220 17% 7% / 0.05),
+  --gb-header-search-shadow: 0 0.3rem 0.95rem hsl(220 17% 7% / 0.04);
+  --gb-header-search-focus-shadow: 0 0.3rem 0.95rem
+      hsl(220 17% 7% / 0.045),
     0 0 0 0.16rem hsl(var(--gb-brand-ring) / 0.08);
-  --gb-header-search-input-padding-x: 1.15rem;
+  --gb-header-search-input-padding-x: 1rem;
   --gb-header-search-input-padding-x-mobile: 1.05rem;
   --gb-header-search-input-color: hsl(var(--gb-heading));
   --gb-header-search-input-placeholder-color: hsl(var(--gb-muted));
   --gb-header-search-input-font-family: var(--font-sans);
-  --gb-header-search-input-font-size: 0.875rem;
+  --gb-header-search-input-font-size: 0.8125rem;
   --gb-header-search-input-font-size-mobile: 0.90625rem;
   --gb-header-search-input-font-weight: 600;
-  --gb-header-search-button-width: 3.5rem;
+  --gb-header-search-button-width: 3.25rem;
   --gb-header-search-button-width-mobile: 2.58rem;
   --gb-header-search-button-background: hsl(var(--gb-brand));
   --gb-header-search-button-hover-background: hsl(var(--gb-brand-hover));
   --gb-header-search-button-color: hsl(var(--gb-inverse));
-  --gb-header-search-button-shadow: 0 0.26rem 0.62rem
-    hsl(var(--gb-brand) / 0.13);
-  --gb-header-search-button-shadow-hover: 0 0.32rem 0.74rem
-    hsl(var(--gb-brand) / 0.16);
-  --gb-header-search-button-icon-size: 1.02rem;
+  --gb-header-search-button-shadow: 0 0.24rem 0.56rem
+    hsl(var(--gb-brand) / 0.12);
+  --gb-header-search-button-shadow-hover: 0 0.3rem 0.68rem
+    hsl(var(--gb-brand) / 0.15);
+  --gb-header-search-button-icon-size: 0.98rem;
   --gb-header-search-button-icon-stroke-width: 2.4;
 
-  --gb-header-actions-gap: 0.65rem;
-  --gb-header-actions-gap-compact: 0.45rem;
-  --gb-header-action-size: 2.75rem;
+  --gb-header-actions-gap: 0.55rem;
+  --gb-header-actions-gap-compact: 0.4rem;
+  --gb-header-action-size: 2.55rem;
   --gb-header-action-gap: 0.18rem;
   --gb-header-action-color: hsl(var(--gb-heading));
   --gb-header-action-hover-color: hsl(var(--gb-brand-hover));
-  --gb-header-action-icon-size: 2.45rem;
+  --gb-header-action-icon-size: 2.25rem;
   --gb-header-action-icon-border-color: hsl(var(--gb-border-soft));
   --gb-header-action-icon-hover-border-color: var(--gb-header-brand-border-subtle);
   --gb-header-action-icon-background: hsl(var(--gb-surface));
   --gb-header-action-icon-hover-background: hsl(var(--gb-brand-soft));
   --gb-header-action-icon-shadow: var(--shadow-xs);
   --gb-header-action-icon-hover-shadow: var(--shadow-sm);
-  --gb-header-action-svg-size: 1.2rem;
+  --gb-header-action-svg-size: 1.08rem;
   --gb-header-action-svg-stroke-width: 2.25;
 
-  --gb-header-count-offset: -0.13rem;
-  --gb-header-count-min-width: 0.92rem;
-  --gb-header-count-height: 0.92rem;
+  --gb-header-count-offset: -0.12rem;
+  --gb-header-count-min-width: 0.9rem;
+  --gb-header-count-height: 0.9rem;
   --gb-header-count-border-width: 2px;
   --gb-header-count-border-color: hsl(var(--gb-header));
   --gb-header-count-background: hsl(var(--gb-brand));
   --gb-header-count-color: hsl(var(--gb-inverse));
   --gb-header-count-padding-x: 0.16rem;
-  --gb-header-count-font-size: 0.52rem;
+  --gb-header-count-font-size: 0.5rem;
   --gb-header-count-font-weight: 950;
   --gb-header-count-line-height: 1;
 
   --gb-header-nav-section-background: hsl(var(--gb-header));
   --gb-header-nav-section-border-color: transparent;
-  --gb-header-nav-section-padding-start: 0.55rem;
-  --gb-header-nav-section-padding-end: 0.68rem;
+  --gb-header-nav-section-padding-start: 0.42rem;
+  --gb-header-nav-section-padding-end: 0.52rem;
 
-  --gb-header-nav-shell-height: 2.95rem;
-  --gb-header-nav-shell-gap: 0.75rem;
+  --gb-header-nav-shell-height: 2.65rem;
+  --gb-header-nav-shell-gap: 0.65rem;
   --gb-header-nav-shell-background: hsl(var(--gb-surface));
   --gb-header-nav-shell-border-color: hsl(var(--gb-border-soft));
   --gb-header-nav-shell-radius: var(--radius-lg);
-  --gb-header-nav-shell-padding-y: 0.24rem;
-  --gb-header-nav-shell-padding-x: 0.95rem;
-  --gb-header-nav-shell-shadow: 0 0.75rem 1.75rem hsl(220 17% 7% / 0.055);
+  --gb-header-nav-shell-padding-y: 0.2rem;
+  --gb-header-nav-shell-padding-x: 0.82rem;
+  --gb-header-nav-shell-shadow: 0 0.6rem 1.4rem hsl(220 17% 7% / 0.05);
 
-  --gb-header-nav-list-gap: 0.52rem;
+  --gb-header-nav-list-gap: 0.42rem;
 
-  --gb-header-nav-item-height: 2.35rem;
-  --gb-header-nav-item-gap: 0.4rem;
-  --gb-header-nav-item-padding-x: 0.42rem;
+  --gb-header-nav-item-height: 2.15rem;
+  --gb-header-nav-item-gap: 0.35rem;
+  --gb-header-nav-item-padding-x: 0.36rem;
   --gb-header-nav-item-radius: var(--radius-md);
   --gb-header-nav-item-color: hsl(var(--gb-body));
   --gb-header-nav-item-font-family: var(--font-sans);
-  --gb-header-nav-item-font-size: 0.71875rem;
+  --gb-header-nav-item-font-size: 0.6875rem;
   --gb-header-nav-item-font-weight: 720;
   --gb-header-nav-item-line-height: var(--gb-leading-none);
   --gb-header-nav-item-hover-background: transparent;
   --gb-header-nav-item-hover-color: hsl(var(--gb-brand-hover));
   --gb-header-nav-item-active-background: transparent;
   --gb-header-nav-item-active-color: hsl(var(--gb-brand-hover));
-  --gb-header-nav-item-icon-size: 0.88rem;
+  --gb-header-nav-item-icon-size: 0.82rem;
   --gb-header-nav-item-icon-color: hsl(var(--gb-muted));
   --gb-header-nav-item-icon-active-color: hsl(var(--gb-brand-hover));
   --gb-header-nav-item-icon-stroke-width: 2.15;
 
-  --gb-header-nav-indicator-inset-x: 0.42rem;
+  --gb-header-nav-indicator-inset-x: 0.36rem;
   --gb-header-nav-indicator-offset: calc(
     (var(--gb-header-nav-shell-padding-y) + 1px) * -1
   );

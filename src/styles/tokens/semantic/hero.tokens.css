@@ -18,22 +18,22 @@
   --gb-hero-container-padding-fluid: 2vw;
   --gb-hero-container-padding-max: var(--gb-container-padding-desktop);
 
-  --gb-hero-section-padding-top: 1rem;
-  --gb-hero-section-padding-bottom: 1.55rem;
-  --gb-hero-section-padding-top-mobile: 0.75rem;
-  --gb-hero-section-padding-bottom-mobile: 1rem;
+  --gb-hero-section-padding-top: 0.85rem;
+  --gb-hero-section-padding-bottom: 1.35rem;
+  --gb-hero-section-padding-top-mobile: 0.65rem;
+  --gb-hero-section-padding-bottom-mobile: 0.9rem;
 
-  --gb-hero-shell-block-size: clamp(21rem, 30vw, 28.75rem);
-  --gb-hero-shell-block-size-tablet: clamp(17.5rem, 36vw, 24rem);
-  --gb-hero-shell-block-size-mobile: clamp(10.75rem, 49vw, 16.75rem);
+  --gb-hero-shell-block-size: clamp(18rem, 26vw, 24.5rem);
+  --gb-hero-shell-block-size-tablet: clamp(16rem, 34vw, 22rem);
+  --gb-hero-shell-block-size-mobile: clamp(10.25rem, 48vw, 15.75rem);
   --gb-hero-shell-border-width: 0.0625rem;
   --gb-hero-shell-border-color: hsl(var(--gb-border-soft) / 0.66);
   --gb-hero-shell-radius: var(--radius-2xl);
   --gb-hero-shell-radius-mobile: var(--radius-xl);
   --gb-hero-shell-background: transparent;
   --gb-hero-shell-shadow:
-    0 1rem 2.85rem hsl(220 17% 7% / 0.1),
-    0 0.18rem 0.58rem hsl(220 17% 7% / 0.055);
+    0 0.85rem 2.25rem hsl(220 17% 7% / 0.085),
+    0 0.16rem 0.5rem hsl(220 17% 7% / 0.05);
   --gb-hero-shell-overflow: hidden;
 
   --gb-hero-slide-padding: 0rem;
@@ -48,24 +48,24 @@
   --gb-hero-image-glow-background: transparent;
 
   --gb-hero-dots-direction: row;
-  --gb-hero-dots-gap: 0.5rem;
-  --gb-hero-dots-padding-y: 0.42rem;
-  --gb-hero-dots-padding-x: 0.58rem;
+  --gb-hero-dots-gap: 0.42rem;
+  --gb-hero-dots-padding-y: 0.36rem;
+  --gb-hero-dots-padding-x: 0.52rem;
   --gb-hero-dots-radius: var(--radius-full);
   --gb-hero-dots-background: hsl(220 18% 5% / 0.5);
   --gb-hero-dots-border-width: 0.0625rem;
   --gb-hero-dots-border-color: hsl(var(--gb-white) / 0.16);
-  --gb-hero-dots-shadow: 0 0.65rem 1.6rem hsl(220 17% 7% / 0.22);
+  --gb-hero-dots-shadow: 0 0.55rem 1.35rem hsl(220 17% 7% / 0.2);
   --gb-hero-dots-backdrop-filter: blur(1rem);
-  --gb-hero-dots-inset-inline-start: 1.25rem;
-  --gb-hero-dots-inset-inline-start-tablet: 1rem;
-  --gb-hero-dots-inset-inline-start-mobile: 0.75rem;
-  --gb-hero-dots-inset-block-end: 1rem;
-  --gb-hero-dots-inset-block-end-mobile: 0.7rem;
+  --gb-hero-dots-inset-inline-start: 1rem;
+  --gb-hero-dots-inset-inline-start-tablet: 0.9rem;
+  --gb-hero-dots-inset-inline-start-mobile: 0.65rem;
+  --gb-hero-dots-inset-block-end: 0.85rem;
+  --gb-hero-dots-inset-block-end-mobile: 0.6rem;
 
-  --gb-hero-dot-inline-size: 0.52rem;
-  --gb-hero-dot-block-size: 0.52rem;
-  --gb-hero-dot-active-inline-size: 1.45rem;
+  --gb-hero-dot-inline-size: 0.48rem;
+  --gb-hero-dot-block-size: 0.48rem;
+  --gb-hero-dot-active-inline-size: 1.35rem;
   --gb-hero-dot-radius: var(--radius-full);
   --gb-hero-dot-background: hsl(var(--gb-inverse) / 0.52);
   --gb-hero-dot-hover-background: hsl(var(--gb-inverse) / 0.84);

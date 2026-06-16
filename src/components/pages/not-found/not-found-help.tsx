@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -12,6 +13,7 @@ export function NotFoundHelp({ items }: NotFoundHelpProps) {
     <section className="gb-not-found-page__help" aria-label="Shopping help">
       {items.map((item) => {
         const Icon = item.icon;
+        const href = item.href as Route;
 
         return (
           <article key={item.title} className="gb-not-found-page__help-item">
@@ -31,7 +33,7 @@ export function NotFoundHelp({ items }: NotFoundHelpProps) {
               </p>
 
               <Link
-                href={item.href}
+                href={href}
                 className="gb-not-found-page__help-link"
                 aria-label={item.ariaLabel ?? item.actionLabel}
               >

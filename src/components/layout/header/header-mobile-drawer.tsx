@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -89,6 +90,10 @@ const FOCUSABLE_SELECTOR = [
   "summary",
   '[tabindex]:not([tabindex="-1"])',
 ].join(",");
+
+function getRouteHref(href: string) {
+  return href as Route;
+}
 
 function getCleanPathname(pathname: string) {
   return pathname.split(/[?#]/)[0] || ROOT_PATHNAME;
@@ -314,7 +319,7 @@ function HeaderMobileLogo({ onCloseAll }: HeaderMobileLogoProps) {
   return (
     <Link
       className="gb-site-header__logo"
-      href="/"
+      href={getRouteHref(ROOT_PATHNAME)}
       aria-label="365 SHOP home"
       onClick={onCloseAll}
     >
@@ -346,7 +351,7 @@ function HeaderDrawerAccountLink({
   return (
     <Link
       className="gb-site-header__drawer-link"
-      href={href}
+      href={getRouteHref(href)}
       aria-current={isActive ? "page" : undefined}
       aria-label={getAccountLinkAriaLabel(item, counts)}
       onClick={onCloseAll}
@@ -554,7 +559,7 @@ export function HeaderMobileDrawer({
 
             <Link
               className="gb-site-header__drawer-link"
-              href={cartSummary.cartHref}
+              href={getRouteHref(cartSummary.cartHref)}
               aria-current={
                 isRouteActive(pathname, cartSummary.cartHref)
                   ? "page"
@@ -584,7 +589,7 @@ export function HeaderMobileDrawer({
                   <Link
                     key={category.id}
                     className="gb-site-header__drawer-link"
-                    href={category.href}
+                    href={getRouteHref(category.href)}
                     aria-current={isActive ? "page" : undefined}
                     aria-label={category.name}
                     onClick={onCloseAll}
@@ -613,7 +618,7 @@ export function HeaderMobileDrawer({
                   <Link
                     key={item.id}
                     className="gb-site-header__drawer-link"
-                    href={item.href}
+                    href={getRouteHref(item.href)}
                     aria-current={isActive ? "page" : undefined}
                     aria-label={item.ariaLabel ?? item.label}
                     onClick={onCloseAll}

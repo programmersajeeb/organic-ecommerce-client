@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 
 import { headerData } from "@/components/layout/header/header-data";
@@ -6,8 +7,13 @@ import type { HeaderNotification } from "@/components/layout/header/header.types
 import "@/styles/components/pages/notifications-page.css";
 
 const FILTERS = ["All", "Unread", "Orders", "Offers", "Updates"] as const;
+const HOME_HREF = "/";
 
 const notifications: readonly HeaderNotification[] = headerData.notifications;
+
+function getRouteHref(href: string) {
+  return href as Route;
+}
 
 export default function AccountNotificationsPage() {
   const unreadCount = notifications.filter((item) => item.isUnread).length;
@@ -22,7 +28,7 @@ export default function AccountNotificationsPage() {
           <div className="gb-notifications-page__title-group">
             <Link
               className="gb-notifications-page__back-link"
-              href="/"
+              href={getRouteHref(HOME_HREF)}
               aria-label="Go back to home"
             >
               <HeaderIcon name="chevronDown" />
@@ -76,7 +82,7 @@ export default function AccountNotificationsPage() {
             <Link
               key={item.id}
               className="gb-notifications-page__item"
-              href={item.href}
+              href={getRouteHref(item.href)}
               aria-label={item.ariaLabel ?? item.title}
               data-unread={item.isUnread ? "true" : undefined}
             >

@@ -14,9 +14,15 @@
   --gb-container-xs: 40rem;
   --gb-container-sm: 48rem;
   --gb-container-md: 64rem;
+
+  /* Main ecommerce content width */
   --gb-container-lg: 80rem;
-  --gb-container-xl: 90rem;
-  --gb-container-2xl: 96rem;
+
+  /* Keep wide layout visually aligned with main ecommerce sections */
+  --gb-container-xl: var(--gb-container-lg);
+
+  /* Reserved for future full-width editorial/campaign layouts */
+  --gb-container-2xl: 90rem;
 
   --gb-container-padding-mobile: 1rem;
   --gb-container-padding-tablet: 1.25rem;
@@ -27,8 +33,8 @@
   --gb-section-y-desktop: 4rem;
 
   --gb-header-height-mobile: 4.15rem;
-  --gb-header-height-desktop: 5rem;
-  --gb-topbar-height: 2.25rem;
+  --gb-header-height-desktop: 4.35rem;
+  --gb-topbar-height: 1.75rem;
   --gb-bottom-nav-height: 4.48rem;
 
   --gb-breakpoint-header-2xl: 90rem;

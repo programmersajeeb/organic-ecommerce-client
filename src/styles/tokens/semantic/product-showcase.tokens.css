@@ -1,0 +1,234 @@
+/* =============================================================================
+   365 SHOP — PRODUCT SHOWCASE SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines reusable Product Showcase section tokens.
+
+   Used by:
+   - Flash Deals
+   - Best Selling
+   - Pre Order
+   - Featured Products
+   - Related Products
+
+   Rules:
+   - Keep only Product Showcase semantic tokens here.
+   - Product Showcase CSS must consume these tokens.
+   - Do not write component selectors here.
+   - Global width comes from `.gb-container`.
+   - All colors must come from global theme tokens.
+   ============================================================================= */
+
+:root {
+  --gb-product-showcase-padding-y: 1.2rem;
+  --gb-product-showcase-padding-y-mobile: 1rem;
+  --gb-product-showcase-background: transparent;
+  --gb-product-showcase-color: hsl(var(--gb-body));
+
+  --gb-product-showcase-header-gap: 1rem;
+  --gb-product-showcase-header-gap-mobile: 0.8rem;
+  --gb-product-showcase-header-margin-bottom: 0.82rem;
+  --gb-product-showcase-header-margin-bottom-mobile: 0.7rem;
+
+  --gb-product-showcase-heading-gap: 0.28rem;
+  --gb-product-showcase-title-row-gap: 0.62rem;
+  --gb-product-showcase-title-row-gap-mobile: 0.52rem;
+  --gb-product-showcase-title-stack-gap: 0.18rem;
+
+  --gb-product-showcase-icon-size: 2.2rem;
+  --gb-product-showcase-icon-radius: var(--radius-lg);
+  --gb-product-showcase-icon-background: hsl(var(--gb-brand-soft));
+  --gb-product-showcase-icon-color: hsl(var(--gb-brand));
+  --gb-product-showcase-icon-shadow: var(--shadow-xs);
+  --gb-product-showcase-icon-svg-size: 1.15rem;
+  --gb-product-showcase-icon-stroke-width: 2.2;
+
+  --gb-product-showcase-eyebrow-color: hsl(var(--gb-brand));
+  --gb-product-showcase-eyebrow-font-size: 0.6625rem;
+  --gb-product-showcase-eyebrow-font-weight: 850;
+  --gb-product-showcase-eyebrow-line-height: var(--gb-leading-none);
+  --gb-product-showcase-eyebrow-letter-spacing: 0.08em;
+
+  --gb-product-showcase-title-color: hsl(var(--gb-heading));
+  --gb-product-showcase-title-font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+  --gb-product-showcase-title-font-weight: 850;
+  --gb-product-showcase-title-line-height: var(--gb-leading-tight);
+  --gb-product-showcase-title-letter-spacing: var(--gb-tracking-tight);
+
+  --gb-product-showcase-subtitle-max-width: 34rem;
+  --gb-product-showcase-subtitle-color: hsl(var(--gb-muted));
+  --gb-product-showcase-subtitle-font-size: 0.8375rem;
+  --gb-product-showcase-subtitle-font-weight: 500;
+  --gb-product-showcase-subtitle-line-height: var(--gb-leading-relaxed);
+
+  --gb-product-showcase-toolbar-gap: 0.62rem;
+
+  --gb-product-showcase-countdown-gap: 0.55rem;
+  --gb-product-showcase-countdown-gap-mobile: 0.5rem;
+  --gb-product-showcase-countdown-border-width: 0.0625rem;
+  --gb-product-showcase-countdown-border-color: hsl(var(--gb-border-soft));
+  --gb-product-showcase-countdown-radius: var(--radius-xl);
+  --gb-product-showcase-countdown-background: hsl(var(--gb-surface));
+  --gb-product-showcase-countdown-padding-y: 0.36rem;
+  --gb-product-showcase-countdown-padding-x: 0.48rem;
+
+  --gb-product-showcase-countdown-label-color: hsl(var(--gb-muted));
+  --gb-product-showcase-countdown-label-font-size: 0.7125rem;
+  --gb-product-showcase-countdown-label-font-weight: 700;
+  --gb-product-showcase-countdown-label-line-height: var(--gb-leading-none);
+
+  --gb-product-showcase-countdown-list-gap: 0.3rem;
+  --gb-product-showcase-countdown-item-width: 2.22rem;
+  --gb-product-showcase-countdown-item-height: 1.95rem;
+  --gb-product-showcase-countdown-item-radius: var(--radius-md);
+  --gb-product-showcase-countdown-item-background: hsl(var(--gb-brand));
+  --gb-product-showcase-countdown-item-color: hsl(var(--gb-inverse));
+  --gb-product-showcase-countdown-item-padding-x: 0.2rem;
+
+  --gb-product-showcase-countdown-value-color: hsl(var(--gb-inverse));
+  --gb-product-showcase-countdown-value-font-size: 0.7625rem;
+  --gb-product-showcase-countdown-value-font-weight: 850;
+  --gb-product-showcase-countdown-value-line-height: var(--gb-leading-none);
+
+  --gb-product-showcase-countdown-unit-color: hsl(var(--gb-inverse) / 0.76);
+  --gb-product-showcase-countdown-unit-font-size: 0.525rem;
+  --gb-product-showcase-countdown-unit-font-weight: 700;
+  --gb-product-showcase-countdown-unit-line-height: var(--gb-leading-none);
+
+  --gb-product-showcase-action-height: 2.2rem;
+  --gb-product-showcase-action-gap: 0.35rem;
+  --gb-product-showcase-action-border-width: 0.0625rem;
+  --gb-product-showcase-action-border-color: hsl(var(--gb-border-soft));
+  --gb-product-showcase-action-hover-border-color: hsl(var(--gb-brand));
+  --gb-product-showcase-action-radius: var(--radius-full);
+  --gb-product-showcase-action-background: hsl(var(--gb-surface));
+  --gb-product-showcase-action-hover-background: hsl(var(--gb-brand));
+  --gb-product-showcase-action-color: hsl(var(--gb-heading));
+  --gb-product-showcase-action-hover-color: hsl(var(--gb-inverse));
+  --gb-product-showcase-action-padding-x: 0.78rem;
+  --gb-product-showcase-action-font-size: 0.775rem;
+  --gb-product-showcase-action-font-weight: 750;
+  --gb-product-showcase-action-line-height: var(--gb-leading-none);
+  --gb-product-showcase-action-icon-size: 0.9rem;
+  --gb-product-showcase-action-hover-transform: translateY(-0.0625rem);
+
+  --gb-product-showcase-card-width: 12.05rem;
+  --gb-product-showcase-card-width-mobile: 10.35rem;
+  --gb-product-showcase-grid-card-min-width: 11.75rem;
+  --gb-product-showcase-grid-card-min-width-mobile: 9.65rem;
+
+  --gb-product-showcase-list-gap: 0.72rem;
+  --gb-product-showcase-list-gap-mobile: 0.62rem;
+  --gb-product-showcase-list-padding-y: 0.12rem;
+  --gb-product-showcase-scroll-padding-x: 0.2rem;
+
+  --gb-product-showcase-arrow-size: 2.35rem;
+  --gb-product-showcase-arrow-border-width: 0.0625rem;
+  --gb-product-showcase-arrow-border-color: hsl(var(--gb-border-soft));
+  --gb-product-showcase-arrow-hover-border-color: hsl(var(--gb-brand));
+  --gb-product-showcase-arrow-background: hsl(var(--gb-surface) / 0.94);
+  --gb-product-showcase-arrow-hover-background: hsl(var(--gb-brand));
+  --gb-product-showcase-arrow-color: hsl(var(--gb-heading));
+  --gb-product-showcase-arrow-hover-color: hsl(var(--gb-inverse));
+  --gb-product-showcase-arrow-shadow: var(--shadow-md);
+  --gb-product-showcase-arrow-icon-size: 1.05rem;
+  --gb-product-showcase-arrow-offset: -0.98rem;
+
+  --gb-product-showcase-empty-border-width: 0.0625rem;
+  --gb-product-showcase-empty-border-color: hsl(var(--gb-border-soft));
+  --gb-product-showcase-empty-radius: var(--radius-xl);
+  --gb-product-showcase-empty-background: hsl(var(--gb-surface-soft));
+  --gb-product-showcase-empty-color: hsl(var(--gb-muted));
+  --gb-product-showcase-empty-padding-y: 1.15rem;
+  --gb-product-showcase-empty-padding-x: 1rem;
+  --gb-product-showcase-empty-font-size: 0.8375rem;
+  --gb-product-showcase-empty-font-weight: 600;
+  --gb-product-showcase-empty-line-height: var(--gb-leading-relaxed);
+
+  --gb-product-showcase-flash-icon-background: hsl(var(--gb-error-soft));
+  --gb-product-showcase-flash-icon-color: hsl(var(--gb-error));
+  --gb-product-showcase-featured-icon-background: hsl(var(--gb-brand-soft));
+  --gb-product-showcase-featured-icon-color: hsl(var(--gb-brand));
+
+  --gb-product-showcase-compact-padding-y: 0.85rem;
+  --gb-product-showcase-compact-header-margin-bottom: 0.62rem;
+  --gb-product-showcase-compact-card-width: 11.65rem;
+
+  --gb-product-showcase-skeleton-radius: var(--radius-md);
+  --gb-product-showcase-skeleton-eyebrow-width: 5.4rem;
+  --gb-product-showcase-skeleton-eyebrow-height: 0.68rem;
+  --gb-product-showcase-skeleton-title-width: 11rem;
+  --gb-product-showcase-skeleton-title-height: 1.18rem;
+  --gb-product-showcase-skeleton-subtitle-width: 17rem;
+  --gb-product-showcase-skeleton-subtitle-height: 0.82rem;
+  --gb-product-showcase-skeleton-countdown-label-width: 3.25rem;
+  --gb-product-showcase-skeleton-countdown-label-height: 0.72rem;
+  --gb-product-showcase-skeleton-action-width: 5rem;
+
+  --gb-product-showcase-focus-shadow: var(--shadow-focus);
+  --gb-product-showcase-transition-duration: var(--gb-duration-base);
+  --gb-product-showcase-transition-ease: var(--gb-ease-standard);
+}
+
+/* Tablet polish only */
+@media (max-width: 64rem) {
+  :root {
+    --gb-product-showcase-padding-y: 1.05rem;
+    --gb-product-showcase-header-gap: 0.85rem;
+    --gb-product-showcase-header-margin-bottom: 0.72rem;
+    --gb-product-showcase-toolbar-gap: 0.5rem;
+
+    --gb-product-showcase-countdown-gap: 0.45rem;
+    --gb-product-showcase-countdown-padding-y: 0.32rem;
+    --gb-product-showcase-countdown-padding-x: 0.42rem;
+    --gb-product-showcase-countdown-list-gap: 0.24rem;
+    --gb-product-showcase-countdown-item-width: 2.05rem;
+    --gb-product-showcase-countdown-item-height: 1.82rem;
+    --gb-product-showcase-countdown-value-font-size: 0.7rem;
+    --gb-product-showcase-countdown-unit-font-size: 0.5rem;
+
+    --gb-product-showcase-action-height: 2.08rem;
+    --gb-product-showcase-action-padding-x: 0.7rem;
+    --gb-product-showcase-action-font-size: 0.75rem;
+
+    --gb-product-showcase-card-width: 11.45rem;
+    --gb-product-showcase-list-gap: 0.62rem;
+  }
+}
+
+/* Mobile polish only */
+@media (max-width: 48rem) {
+  :root {
+    --gb-product-showcase-padding-y-mobile: 0.9rem;
+    --gb-product-showcase-icon-size: 1.9rem;
+    --gb-product-showcase-icon-svg-size: 1rem;
+
+    --gb-product-showcase-header-gap-mobile: 0.65rem;
+    --gb-product-showcase-header-margin-bottom-mobile: 0.62rem;
+    --gb-product-showcase-title-row-gap-mobile: 0.45rem;
+
+    --gb-product-showcase-eyebrow-font-size: 0.6125rem;
+    --gb-product-showcase-title-font-size: 1.05rem;
+    --gb-product-showcase-subtitle-font-size: 0.775rem;
+    --gb-product-showcase-subtitle-max-width: 100%;
+
+    --gb-product-showcase-countdown-gap-mobile: 0.42rem;
+    --gb-product-showcase-countdown-padding-y: 0.28rem;
+    --gb-product-showcase-countdown-padding-x: 0.38rem;
+    --gb-product-showcase-countdown-label-font-size: 0.675rem;
+    --gb-product-showcase-countdown-list-gap: 0.22rem;
+    --gb-product-showcase-countdown-item-width: 1.95rem;
+    --gb-product-showcase-countdown-item-height: 1.75rem;
+    --gb-product-showcase-countdown-value-font-size: 0.675rem;
+    --gb-product-showcase-countdown-unit-font-size: 0.475rem;
+
+    --gb-product-showcase-action-height: 2rem;
+    --gb-product-showcase-action-padding-x: 0.65rem;
+    --gb-product-showcase-action-font-size: 0.725rem;
+    --gb-product-showcase-action-icon-size: 0.82rem;
+
+    --gb-product-showcase-card-width-mobile: 9.95rem;
+    --gb-product-showcase-grid-card-min-width-mobile: 9.35rem;
+    --gb-product-showcase-list-gap-mobile: 0.55rem;
+  }
+}

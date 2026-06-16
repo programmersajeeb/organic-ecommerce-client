@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link, { type LinkProps } from "next/link";
 import type {
   AriaAttributes,
@@ -9,12 +10,14 @@ import type {
   SVGProps,
 } from "react";
 
+type NextLinkProps = LinkProps<string>;
+
 type ActionLinkIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 type ActionLinkVariant = "primary" | "secondary" | "ghost" | "outline";
 type ActionLinkSize = "sm" | "md" | "lg";
 type ActionLinkIconPosition = "start" | "end";
-type ActionLinkHref = LinkProps["href"];
+type ActionLinkHref = string | NextLinkProps["href"];
 
 export type ActionLinkProps = Readonly<{
   href: ActionLinkHref;
@@ -32,10 +35,10 @@ export type ActionLinkProps = Readonly<{
   "aria-describedby"?: string;
   "aria-current"?: AriaAttributes["aria-current"];
 
-  locale?: LinkProps["locale"];
-  prefetch?: LinkProps["prefetch"];
-  replace?: LinkProps["replace"];
-  scroll?: LinkProps["scroll"];
+  locale?: NextLinkProps["locale"];
+  prefetch?: NextLinkProps["prefetch"];
+  replace?: NextLinkProps["replace"];
+  scroll?: NextLinkProps["scroll"];
 
   icon?: ActionLinkIcon;
   iconPosition?: ActionLinkIconPosition;
@@ -59,6 +62,18 @@ function getClassName(...classNames: Array<string | false | undefined>) {
 
 function isExternalHref(href: ActionLinkHref) {
   return typeof href === "string" && /^https?:\/\//i.test(href);
+}
+
+function getExternalHref(href: ActionLinkHref) {
+  return typeof href === "string" ? href : String(href);
+}
+
+function getInternalHref(href: ActionLinkHref): NextLinkProps["href"] {
+  if (typeof href === "string") {
+    return href as Route;
+  }
+
+  return href;
 }
 
 export function ActionLink({
@@ -165,7 +180,7 @@ export function ActionLink({
       <a
         {...sharedProps}
         {...anchorEventProps}
-        href={typeof href === "string" ? href : String(href)}
+        href={getExternalHref(href)}
         className={composedClassName}
         {...(target !== undefined ? { target } : {})}
         {...(composedRel !== undefined ? { rel: composedRel } : {})}
@@ -182,7 +197,7 @@ export function ActionLink({
     <Link
       {...sharedProps}
       {...anchorEventProps}
-      href={href}
+      href={getInternalHref(href)}
       className={composedClassName}
       {...(locale !== undefined ? { locale } : {})}
       {...(prefetch !== undefined ? { prefetch } : {})}

@@ -1,0 +1,123 @@
+/* =============================================================================
+   365 SHOP — SHOP BY CATEGORY SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines Shop by Category section tokens for a premium, compact and reusable
+   ecommerce category strip.
+
+   Rules:
+   - Keep only Shop by Category semantic tokens here.
+   - Component CSS must consume these tokens.
+   - Do not write component selectors here.
+   ============================================================================= */
+
+:root {
+  --gb-shop-category-container-max-width: var(--gb-container-lg);
+  --gb-shop-category-container-padding-min: var(--gb-container-padding-mobile);
+  --gb-shop-category-container-padding-fluid: 2vw;
+  --gb-shop-category-container-padding-max: var(--gb-container-padding-desktop);
+
+  --gb-shop-category-section-padding-top: 0.5rem;
+  --gb-shop-category-section-padding-bottom: 1.5rem;
+  --gb-shop-category-section-padding-top-mobile: 0.35rem;
+  --gb-shop-category-section-padding-bottom-mobile: 1rem;
+
+  --gb-shop-category-header-gap: 1rem;
+  --gb-shop-category-header-margin-bottom: 0.9rem;
+
+  --gb-shop-category-title-color: hsl(var(--gb-heading));
+  --gb-shop-category-title-size: 1.05rem;
+  --gb-shop-category-title-line-height: var(--gb-leading-tight);
+  --gb-shop-category-title-weight: 780;
+  --gb-shop-category-title-letter-spacing: var(--gb-tracking-tight);
+
+  --gb-shop-category-action-gap: 0.35rem;
+  --gb-shop-category-action-color: hsl(var(--gb-brand));
+  --gb-shop-category-action-hover-color: hsl(var(--gb-brand-hover));
+  --gb-shop-category-action-size: 0.75rem;
+  --gb-shop-category-action-weight: 780;
+  --gb-shop-category-action-line-height: var(--gb-leading-none);
+  --gb-shop-category-action-hover-transform: translateX(0.125rem);
+
+  --gb-shop-category-list-gap: 0.85rem;
+  --gb-shop-category-desktop-column-count: 8;
+
+  --gb-shop-category-grid-padding-block-start: 0.125rem;
+  --gb-shop-category-grid-padding-block-end: 0.5rem;
+  --gb-shop-category-grid-padding-inline: 0.125rem;
+
+  --gb-shop-category-card-width: 7.25rem;
+  --gb-shop-category-card-height: 7.85rem;
+  --gb-shop-category-card-gap: 0.48rem;
+  --gb-shop-category-card-padding-block: 0.62rem;
+  --gb-shop-category-card-padding-inline: 0.55rem;
+  --gb-shop-category-card-border-width: 0.0625rem;
+  --gb-shop-category-card-background: var(--color-surface);
+  --gb-shop-category-card-border-color: var(--color-border-soft);
+  --gb-shop-category-card-hover-border-color: hsl(var(--gb-brand) / 0.28);
+  --gb-shop-category-card-radius: var(--radius-xl);
+  --gb-shop-category-card-shadow: var(--shadow-xs);
+  --gb-shop-category-card-hover-shadow: var(--shadow-sm);
+  --gb-shop-category-card-hover-transform: translateY(-0.125rem);
+  --gb-shop-category-card-active-transform: translateY(0);
+
+  --gb-shop-category-image-size: 4.15rem;
+  --gb-shop-category-image-inner-size: 86%;
+  --gb-shop-category-image-background: var(--color-surface-soft);
+  --gb-shop-category-image-border-width: 0.0625rem;
+  --gb-shop-category-image-border-color: var(--color-border-soft);
+  --gb-shop-category-image-radius: var(--radius-lg);
+
+  --gb-shop-category-text-color: hsl(var(--gb-heading));
+  --gb-shop-category-text-hover-color: hsl(var(--gb-brand));
+  --gb-shop-category-text-size: 0.6875rem;
+  --gb-shop-category-text-line-height: var(--gb-leading-snug);
+  --gb-shop-category-text-weight: 760;
+  --gb-shop-category-text-min-height: calc(
+    var(--gb-shop-category-text-size) * 2.45
+  );
+
+  --gb-shop-category-skeleton-title-width: 10rem;
+  --gb-shop-category-skeleton-title-height: 1rem;
+  --gb-shop-category-skeleton-action-width: 4.5rem;
+  --gb-shop-category-skeleton-action-height: 0.8rem;
+  --gb-shop-category-skeleton-image-size: 72%;
+  --gb-shop-category-skeleton-text-width: 62%;
+  --gb-shop-category-skeleton-text-height: 0.7rem;
+  --gb-shop-category-skeleton-radius: var(--radius-sm);
+
+  --gb-shop-category-empty-border-width: 0.0625rem;
+  --gb-shop-category-empty-background: var(--color-surface-soft);
+  --gb-shop-category-empty-color: hsl(var(--gb-muted-foreground));
+
+  --gb-shop-category-focus-radius: var(--radius-sm);
+  --gb-shop-category-focus-shadow: var(--shadow-focus);
+  --gb-shop-category-transition-duration: var(--gb-duration-base);
+  --gb-shop-category-transition-ease: var(--gb-ease-standard);
+}
+
+@media (min-width: 75rem) {
+  :root {
+    --gb-shop-category-list-gap: 0.9rem;
+    --gb-shop-category-card-height: 7.65rem;
+    --gb-shop-category-image-size: 4.05rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --gb-shop-category-card-width: 6.75rem;
+    --gb-shop-category-card-height: 7.65rem;
+    --gb-shop-category-image-size: 4.05rem;
+    --gb-shop-category-list-gap: 0.65rem;
+  }
+}
+
+@media (max-width: 25rem) {
+  :root {
+    --gb-shop-category-card-width: 6.25rem;
+    --gb-shop-category-card-height: 7.45rem;
+    --gb-shop-category-image-size: 3.85rem;
+    --gb-shop-category-text-size: 0.64rem;
+  }
+}

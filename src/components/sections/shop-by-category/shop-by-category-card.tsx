@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,10 +18,11 @@ export function ShopByCategoryCard({
   className,
 }: ShopByCategoryCardProps) {
   const isMore = item.id === "more";
+  const href = item.href as Route;
 
   return (
     <Link
-      href={item.href}
+      href={href}
       className={cn("gb-shop-by-category-card", className)}
       aria-label={`Browse products in ${item.title}`}
       data-category-id={item.id}
@@ -41,9 +43,7 @@ export function ShopByCategoryCard({
         />
       </span>
 
-      <span className="gb-shop-by-category-card__title">
-        {item.title}
-      </span>
+      <span className="gb-shop-by-category-card__title">{item.title}</span>
     </Link>
   );
 }

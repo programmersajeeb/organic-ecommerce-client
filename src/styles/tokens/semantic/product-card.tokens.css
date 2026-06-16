@@ -1,0 +1,160 @@
+/* =============================================================================
+   365 SHOP — PRODUCT CARD SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines reusable Product Card tokens for premium ecommerce product displays.
+
+   Rules:
+   - Keep only Product Card semantic tokens here.
+   - Product Card CSS must consume these tokens.
+   - Do not write component selectors here.
+   - All colors must come from global theme tokens.
+   ============================================================================= */
+
+:root {
+  --gb-product-card-border-width: 0.0625rem;
+  --gb-product-card-border-color: hsl(var(--gb-border-soft));
+  --gb-product-card-hover-border-color: hsl(var(--gb-brand) / 0.35);
+  --gb-product-card-radius: var(--radius-xl);
+  --gb-product-card-background: hsl(var(--gb-surface));
+  --gb-product-card-color: hsl(var(--gb-body));
+  --gb-product-card-shadow: var(--shadow-xs);
+  --gb-product-card-hover-shadow: var(--shadow-sm);
+  --gb-product-card-hover-transform: translateY(-0.125rem);
+  --gb-product-card-disabled-opacity: 0.64;
+
+  --gb-product-card-media-min-height: 8.65rem;
+  --gb-product-card-media-min-height-mobile: 7.75rem;
+  --gb-product-card-media-background: hsl(var(--gb-surface));
+  --gb-product-card-media-padding: 0.72rem;
+  --gb-product-card-media-padding-mobile: 0.65rem;
+
+  --gb-product-card-image-link-min-height: 7.4rem;
+  --gb-product-card-image-size: 7.15rem;
+  --gb-product-card-image-size-mobile: 6.45rem;
+  --gb-product-card-image-hover-transform: scale(1.035);
+
+  --gb-product-card-floating-inset: 0.62rem;
+
+  --gb-product-card-badge-height: 1.35rem;
+  --gb-product-card-badge-radius: var(--radius-full);
+  --gb-product-card-badge-background: hsl(var(--gb-surface-soft));
+  --gb-product-card-badge-color: hsl(var(--gb-heading));
+  --gb-product-card-badge-padding-x: 0.5rem;
+  --gb-product-card-badge-font-size: 0.6rem;
+  --gb-product-card-badge-font-weight: 850;
+  --gb-product-card-badge-line-height: var(--gb-leading-none);
+  --gb-product-card-badge-letter-spacing: var(--gb-tracking-normal);
+
+  --gb-product-card-badge-sale-background: hsl(var(--gb-error-soft));
+  --gb-product-card-badge-sale-color: hsl(var(--gb-error));
+  --gb-product-card-badge-new-background: hsl(var(--gb-info-soft));
+  --gb-product-card-badge-new-color: hsl(var(--gb-info));
+  --gb-product-card-badge-stock-background: hsl(var(--gb-success-soft));
+  --gb-product-card-badge-stock-color: hsl(var(--gb-success));
+
+  --gb-product-card-wishlist-size: 2rem;
+  --gb-product-card-wishlist-border-width: 0.0625rem;
+  --gb-product-card-wishlist-border-color: hsl(var(--gb-border-soft));
+  --gb-product-card-wishlist-hover-border-color: hsl(var(--gb-brand) / 0.35);
+  --gb-product-card-wishlist-background: hsl(var(--gb-surface) / 0.92);
+  --gb-product-card-wishlist-hover-background: hsl(var(--gb-brand-soft));
+  --gb-product-card-wishlist-color: hsl(var(--gb-muted));
+  --gb-product-card-wishlist-hover-color: hsl(var(--gb-brand));
+  --gb-product-card-wishlist-shadow: var(--shadow-xs);
+  --gb-product-card-wishlist-icon-size: 1rem;
+
+  --gb-product-card-icon-stroke-width: 2.15;
+  --gb-product-card-action-hover-transform: scale(1.04);
+
+  --gb-product-card-body-gap: 0.4rem;
+  --gb-product-card-body-gap-mobile: 0.38rem;
+  --gb-product-card-body-padding-y: 0.68rem;
+  --gb-product-card-body-padding-y-mobile: 0.62rem;
+  --gb-product-card-body-padding-x: 0.78rem;
+  --gb-product-card-body-padding-x-mobile: 0.68rem;
+
+  --gb-product-card-eyebrow-color: hsl(var(--gb-muted));
+  --gb-product-card-eyebrow-font-size: 0.6375rem;
+  --gb-product-card-eyebrow-font-weight: 650;
+  --gb-product-card-eyebrow-line-height: var(--gb-leading-none);
+
+  --gb-product-card-title-color: hsl(var(--gb-heading));
+  --gb-product-card-title-hover-color: hsl(var(--gb-brand));
+  --gb-product-card-title-font-size: 0.8125rem;
+  --gb-product-card-title-font-weight: 750;
+  --gb-product-card-title-line-height: var(--gb-leading-snug);
+  --gb-product-card-title-letter-spacing: var(--gb-tracking-tight);
+  --gb-product-card-title-line-clamp: 2;
+
+  --gb-product-card-rating-gap: 0.32rem;
+  --gb-product-card-rating-star-gap: 0.06rem;
+  --gb-product-card-rating-star-size: 0.72rem;
+  --gb-product-card-rating-star-color: hsl(var(--gb-rating));
+  --gb-product-card-rating-star-muted-color: hsl(var(--gb-border-strong));
+  --gb-product-card-rating-star-stroke-width: 2;
+  --gb-product-card-rating-count-color: hsl(var(--gb-muted));
+  --gb-product-card-rating-count-font-size: 0.65rem;
+  --gb-product-card-rating-count-font-weight: 600;
+  --gb-product-card-rating-count-line-height: var(--gb-leading-none);
+
+  --gb-product-card-price-gap: 0.36rem;
+  --gb-product-card-price-line-height: var(--gb-leading-none);
+  --gb-product-card-price-current-color: hsl(var(--gb-heading));
+  --gb-product-card-price-current-font-size: 0.95rem;
+  --gb-product-card-price-current-font-weight: 850;
+  --gb-product-card-price-old-color: hsl(var(--gb-price-old));
+  --gb-product-card-price-old-font-size: 0.7rem;
+  --gb-product-card-price-old-font-weight: 600;
+
+  --gb-product-card-discount-color: hsl(var(--gb-discount));
+  --gb-product-card-discount-font-size: 0.65rem;
+  --gb-product-card-discount-font-weight: 850;
+
+  --gb-product-card-cart-button-height: 2.18rem;
+  --gb-product-card-cart-button-gap: 0.36rem;
+  --gb-product-card-cart-button-border-width: 0.0625rem;
+  --gb-product-card-cart-button-border-color: hsl(var(--gb-brand));
+  --gb-product-card-cart-button-hover-border-color: hsl(var(--gb-brand));
+  --gb-product-card-cart-button-disabled-border-color: hsl(var(--gb-border));
+  --gb-product-card-cart-button-radius: var(--radius-lg);
+  --gb-product-card-cart-button-background: hsl(var(--gb-brand));
+  --gb-product-card-cart-button-hover-background: hsl(var(--gb-brand));
+  --gb-product-card-cart-button-disabled-background: hsl(var(--gb-surface-muted));
+  --gb-product-card-cart-button-color: hsl(var(--gb-inverse));
+  --gb-product-card-cart-button-hover-color: hsl(var(--gb-inverse));
+  --gb-product-card-cart-button-disabled-color: hsl(var(--gb-muted));
+  --gb-product-card-cart-button-padding-x: 0.75rem;
+  --gb-product-card-cart-button-font-size: 0.775rem;
+  --gb-product-card-cart-button-font-weight: 800;
+  --gb-product-card-cart-button-line-height: var(--gb-leading-none);
+  --gb-product-card-cart-button-icon-size: 0.88rem;
+  --gb-product-card-cart-button-active-transform: scale(0.98);
+
+  --gb-product-card-skeleton-badge-width: 2.8rem;
+  --gb-product-card-skeleton-image-size: 6.25rem;
+  --gb-product-card-skeleton-image-radius: var(--radius-xl);
+  --gb-product-card-skeleton-title-width: 88%;
+  --gb-product-card-skeleton-title-short-width: 66%;
+  --gb-product-card-skeleton-title-height: 0.78rem;
+  --gb-product-card-skeleton-rating-width: 5rem;
+  --gb-product-card-skeleton-rating-height: 0.68rem;
+  --gb-product-card-skeleton-price-width: 6.4rem;
+  --gb-product-card-skeleton-price-height: 0.9rem;
+  --gb-product-card-skeleton-radius: var(--radius-sm);
+
+  --gb-product-card-focus-shadow: var(--shadow-focus);
+  --gb-product-card-transition-duration: var(--gb-duration-base);
+  --gb-product-card-transition-ease: var(--gb-ease-standard);
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --gb-product-card-radius: var(--radius-lg);
+    --gb-product-card-floating-inset: 0.55rem;
+    --gb-product-card-wishlist-size: 1.9rem;
+    --gb-product-card-title-font-size: 0.7875rem;
+    --gb-product-card-price-current-font-size: 0.9rem;
+    --gb-product-card-cart-button-height: 2.1rem;
+  }
+}

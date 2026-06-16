@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import type { KeyboardEvent } from "react";
@@ -106,6 +107,10 @@ export function getProtectedHref(
 
 function getClassName(...classNames: Array<string | false | null | undefined>) {
   return classNames.filter(Boolean).join(" ");
+}
+
+function getRouteHref(href: string) {
+  return href as Route;
 }
 
 function getCleanPathname(href: string) {
@@ -471,7 +476,7 @@ function HeaderNotificationMenu({
                 "gb-site-header__notification-item",
                 item.isUnread && "gb-site-header__notification-item--unread",
               )}
-              href={getSafeHeaderHref(item.href)}
+              href={getRouteHref(getSafeHeaderHref(item.href))}
               role="menuitem"
               aria-label={getNotificationAriaLabel(item)}
               onClick={onCloseAll}
@@ -524,7 +529,7 @@ function HeaderNotificationMenu({
 
       <Link
         className="gb-site-header__notification-view-all"
-        href={notificationsHref}
+        href={getRouteHref(notificationsHref)}
         role="menuitem"
         aria-label="View all notifications"
         onClick={onCloseAll}
@@ -690,7 +695,7 @@ export function HeaderActions({
                 {user.isAuthenticated ? (
                   <Link
                     className="gb-site-header__account-card-link gb-site-header__account-card-link--primary"
-                    href={myAccountLink?.href ?? ACCOUNT_OVERVIEW_HREF}
+                    href={getRouteHref(myAccountLink?.href ?? ACCOUNT_OVERVIEW_HREF)}
                     role="menuitem"
                     aria-label={myAccountLink?.ariaLabel ?? "Open my account"}
                     onClick={onCloseAll}
@@ -701,7 +706,7 @@ export function HeaderActions({
                   <>
                     <Link
                       className="gb-site-header__account-card-link gb-site-header__account-card-link--primary"
-                      href={signInLink?.href ?? ACCOUNT_LOGIN_HREF}
+                      href={getRouteHref(signInLink?.href ?? ACCOUNT_LOGIN_HREF)}
                       role="menuitem"
                       aria-label={signInLink?.ariaLabel ?? "Sign in"}
                       onClick={onCloseAll}
@@ -711,7 +716,9 @@ export function HeaderActions({
 
                     <Link
                       className="gb-site-header__account-card-link"
-                      href={createAccountLink?.href ?? ACCOUNT_REGISTER_HREF}
+                      href={getRouteHref(
+                        createAccountLink?.href ?? ACCOUNT_REGISTER_HREF,
+                      )}
                       role="menuitem"
                       aria-label={
                         createAccountLink?.ariaLabel ??
@@ -744,10 +751,12 @@ export function HeaderActions({
                         shouldShowWishlistCount &&
                           "gb-site-header__account-menu-item--with-badge",
                       )}
-                      href={getSafeProtectedHref(
-                        item.href,
-                        user,
-                        item.requiresAuth,
+                      href={getRouteHref(
+                        getSafeProtectedHref(
+                          item.href,
+                          user,
+                          item.requiresAuth,
+                        ),
                       )}
                       role="menuitem"
                       aria-label={getAccountShortcutAriaLabel(item, counts)}
@@ -846,7 +855,7 @@ export function HeaderActions({
 
       <Link
         className="gb-site-header__action"
-        href={wishlistHref}
+        href={getRouteHref(wishlistHref)}
         aria-label={`View wishlist, ${wishlistLabel}`}
         onClick={onCloseAll}
       >
@@ -855,7 +864,7 @@ export function HeaderActions({
 
       <Link
         className="gb-site-header__action gb-site-header__action--cart"
-        href={cartSummary.cartHref}
+        href={getRouteHref(cartSummary.cartHref)}
         aria-label={`View cart, ${cartItemLabel}, total ${cartSummary.totalLabel}`}
         onClick={onCloseAll}
       >
