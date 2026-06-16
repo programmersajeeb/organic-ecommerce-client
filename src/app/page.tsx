@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/sections/hero";
 import { TrustBenefitsSection } from "@/components/sections/trust-benefits";
 import { ShopByCategorySection } from "@/components/sections/shop-by-category";
 import { FlashDealsSection } from "@/components/sections/flash-deals";
+import { BestSellingSection } from "@/components/sections/best-selling";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <TrustBenefitsSection />
       <ShopByCategorySection />
       <FlashDealsSection />
+      <BestSellingSection />
     </>
   );
 }
