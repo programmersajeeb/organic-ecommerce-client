@@ -6,6 +6,7 @@ import { BestSellingSection } from "@/components/sections/best-selling";
 import { FeaturedBrandsSection } from "@/components/sections/featured-brands";
 import { NewArrivalsSection } from "@/components/sections/new-arrivals";
 import { PromoBannerGridSection } from "@/components/sections/promo-banner-grid";
+import { TopRatedSection } from "@/components/sections/top-rated";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       <FeaturedBrandsSection />
       <NewArrivalsSection />
       <PromoBannerGridSection />
+      <TopRatedSection />
     </>
   );
 }
