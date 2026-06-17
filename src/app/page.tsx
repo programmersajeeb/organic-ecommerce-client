@@ -5,6 +5,7 @@ import { FlashDealsSection } from "@/components/sections/flash-deals";
 import { BestSellingSection } from "@/components/sections/best-selling";
 import { FeaturedBrandsSection } from "@/components/sections/featured-brands";
 import { NewArrivalsSection } from "@/components/sections/new-arrivals";
+import { PromoBannerGridSection } from "@/components/sections/promo-banner-grid";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <BestSellingSection />
       <FeaturedBrandsSection />
       <NewArrivalsSection />
+      <PromoBannerGridSection />
     </>
   );
 }

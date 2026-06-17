@@ -1,0 +1,197 @@
+/* =============================================================================
+   365 SHOP — PROMO BANNER GRID TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Semantic tokens for the Premium Promo Banner Grid homepage section.
+
+   Rules:
+   - Keep section CSS clean.
+   - Use existing global brand, surface, border, text, radius and shadow tokens.
+   - Do not put component layout styles here.
+   ============================================================================= */
+
+:root {
+  --gb-promo-banner-grid-padding-y: var(--gb-section-y);
+  --gb-promo-banner-grid-padding-y-mobile: var(--gb-section-y-mobile);
+  --gb-promo-banner-grid-background: transparent;
+  --gb-promo-banner-grid-color: hsl(var(--gb-heading));
+
+  --gb-promo-banner-grid-container-gap: 1.35rem;
+
+  --gb-promo-banner-grid-header-gap: 1rem;
+  --gb-promo-banner-grid-heading-gap: 0.42rem;
+  --gb-promo-banner-grid-title-row-gap: 0.72rem;
+  --gb-promo-banner-grid-title-stack-gap: 0.18rem;
+
+  --gb-promo-banner-grid-section-icon-size: 2.55rem;
+  --gb-promo-banner-grid-section-icon-radius: var(--radius-xl);
+  --gb-promo-banner-grid-section-icon-color: hsl(var(--gb-inverse));
+  --gb-promo-banner-grid-section-icon-background: hsl(var(--gb-brand));
+  --gb-promo-banner-grid-section-icon-shadow: var(--shadow-md);
+  --gb-promo-banner-grid-section-icon-svg-size: 1.22rem;
+  --gb-promo-banner-grid-section-icon-stroke-width: 2.3;
+
+  --gb-promo-banner-grid-section-eyebrow-color: hsl(var(--gb-brand));
+  --gb-promo-banner-grid-section-eyebrow-font-size: 0.75rem;
+  --gb-promo-banner-grid-section-eyebrow-font-weight: 800;
+  --gb-promo-banner-grid-section-eyebrow-line-height: 1.2;
+  --gb-promo-banner-grid-section-eyebrow-letter-spacing: 0.08em;
+
+  --gb-promo-banner-grid-title-color: hsl(var(--gb-heading));
+  --gb-promo-banner-grid-title-font-size: clamp(1.45rem, 2vw, 2.05rem);
+  --gb-promo-banner-grid-title-font-weight: 850;
+  --gb-promo-banner-grid-title-line-height: 1.12;
+  --gb-promo-banner-grid-title-letter-spacing: -0.035em;
+
+  --gb-promo-banner-grid-subtitle-max-width: 42rem;
+  --gb-promo-banner-grid-subtitle-color: hsl(var(--gb-muted));
+  --gb-promo-banner-grid-subtitle-font-size: 0.95rem;
+  --gb-promo-banner-grid-subtitle-font-weight: 500;
+  --gb-promo-banner-grid-subtitle-line-height: 1.65;
+
+  --gb-promo-banner-grid-layout-gap: 0.92rem;
+  --gb-promo-banner-grid-side-list-gap: 0.92rem;
+
+  --gb-promo-banner-grid-card-radius: var(--radius-2xl);
+  --gb-promo-banner-grid-card-border-width: 0.0625rem;
+  --gb-promo-banner-grid-card-padding-y: 1.05rem;
+  --gb-promo-banner-grid-card-padding-x: 1.1rem;
+  --gb-promo-banner-grid-card-featured-padding-y: 1.45rem;
+  --gb-promo-banner-grid-card-featured-padding-x: 1.45rem;
+  --gb-promo-banner-grid-card-min-height: 10.25rem;
+  --gb-promo-banner-grid-card-featured-min-height: 17.8rem;
+  --gb-promo-banner-grid-card-shadow: var(--shadow-sm);
+  --gb-promo-banner-grid-card-hover-shadow: var(--shadow-lg);
+  --gb-promo-banner-grid-card-hover-transform: translateY(-0.1875rem);
+
+  --gb-promo-banner-grid-card-content-gap: 0.58rem;
+  --gb-promo-banner-grid-card-content-max-width: 56%;
+
+  --gb-promo-banner-grid-eyebrow-row-gap: 0.5rem;
+  --gb-promo-banner-grid-card-eyebrow-font-size: 0.68rem;
+  --gb-promo-banner-grid-card-eyebrow-font-weight: 850;
+  --gb-promo-banner-grid-card-eyebrow-line-height: 1.2;
+  --gb-promo-banner-grid-card-eyebrow-letter-spacing: 0.08em;
+
+  --gb-promo-banner-grid-badge-padding-y: 0.22rem;
+  --gb-promo-banner-grid-badge-padding-x: 0.48rem;
+  --gb-promo-banner-grid-badge-radius: var(--radius-full);
+  --gb-promo-banner-grid-badge-font-size: 0.66rem;
+  --gb-promo-banner-grid-badge-font-weight: 800;
+  --gb-promo-banner-grid-badge-line-height: 1.1;
+
+  --gb-promo-banner-grid-card-title-font-size: clamp(1.05rem, 1.45vw, 1.55rem);
+  --gb-promo-banner-grid-card-title-font-weight: 850;
+  --gb-promo-banner-grid-card-title-line-height: 1.18;
+  --gb-promo-banner-grid-card-title-letter-spacing: -0.028em;
+
+  --gb-promo-banner-grid-card-description-font-size: 0.86rem;
+  --gb-promo-banner-grid-card-description-font-weight: 500;
+  --gb-promo-banner-grid-card-description-line-height: 1.55;
+
+  --gb-promo-banner-grid-cta-gap: 0.38rem;
+  --gb-promo-banner-grid-cta-margin-top: 0.22rem;
+  --gb-promo-banner-grid-cta-font-size: 0.84rem;
+  --gb-promo-banner-grid-cta-font-weight: 850;
+  --gb-promo-banner-grid-cta-line-height: 1.2;
+  --gb-promo-banner-grid-cta-icon-size: 0.95rem;
+
+  --gb-promo-banner-grid-media-size: 9.2rem;
+  --gb-promo-banner-grid-media-featured-size: 21rem;
+  --gb-promo-banner-grid-media-offset-inline: 0.15rem;
+  --gb-promo-banner-grid-media-offset-block: -0.65rem;
+  --gb-promo-banner-grid-media-featured-offset-inline: -2.2rem;
+  --gb-promo-banner-grid-media-featured-offset-block: -1.2rem;
+
+  --gb-promo-banner-grid-image-radius: var(--radius-2xl);
+  --gb-promo-banner-grid-image-shadow: var(--shadow-md);
+
+  --gb-promo-banner-grid-transition-duration: 180ms;
+  --gb-promo-banner-grid-transition-ease: ease;
+  --gb-promo-banner-grid-focus-shadow: 0 0 0 0.18rem hsl(var(--gb-brand) / 0.22);
+
+  --gb-promo-banner-grid-card-primary-background: linear-gradient(135deg, hsl(var(--gb-brand)), hsl(var(--gb-brand) / 0.78));
+  --gb-promo-banner-grid-card-primary-border-color: hsl(var(--gb-brand) / 0.2);
+  --gb-promo-banner-grid-card-primary-color: hsl(var(--gb-inverse));
+  --gb-promo-banner-grid-card-primary-muted-color: hsl(var(--gb-inverse) / 0.78);
+  --gb-promo-banner-grid-card-primary-badge-background: hsl(var(--gb-inverse) / 0.16);
+  --gb-promo-banner-grid-card-primary-badge-color: hsl(var(--gb-inverse));
+
+  --gb-promo-banner-grid-card-dark-background: linear-gradient(135deg, hsl(var(--gb-heading)), hsl(var(--gb-heading) / 0.78));
+  --gb-promo-banner-grid-card-dark-border-color: hsl(var(--gb-heading) / 0.18);
+  --gb-promo-banner-grid-card-dark-color: hsl(var(--gb-inverse));
+  --gb-promo-banner-grid-card-dark-muted-color: hsl(var(--gb-inverse) / 0.74);
+  --gb-promo-banner-grid-card-dark-badge-background: hsl(var(--gb-inverse) / 0.14);
+  --gb-promo-banner-grid-card-dark-badge-color: hsl(var(--gb-inverse));
+
+  --gb-promo-banner-grid-card-soft-background: hsl(var(--gb-surface));
+  --gb-promo-banner-grid-card-soft-border-color: hsl(var(--gb-border-soft));
+  --gb-promo-banner-grid-card-soft-color: hsl(var(--gb-heading));
+  --gb-promo-banner-grid-card-soft-muted-color: hsl(var(--gb-muted));
+  --gb-promo-banner-grid-card-soft-badge-background: hsl(var(--gb-brand) / 0.1);
+  --gb-promo-banner-grid-card-soft-badge-color: hsl(var(--gb-brand));
+
+  --gb-promo-banner-grid-card-accent-background: linear-gradient(135deg, hsl(var(--gb-surface)), hsl(var(--gb-brand) / 0.08));
+  --gb-promo-banner-grid-card-accent-border-color: hsl(var(--gb-brand) / 0.18);
+  --gb-promo-banner-grid-card-accent-color: hsl(var(--gb-heading));
+  --gb-promo-banner-grid-card-accent-muted-color: hsl(var(--gb-muted));
+  --gb-promo-banner-grid-card-accent-badge-background: hsl(var(--gb-brand));
+  --gb-promo-banner-grid-card-accent-badge-color: hsl(var(--gb-inverse));
+}
+
+.dark,
+[data-theme="dark"] {
+  --gb-promo-banner-grid-card-dark-background: linear-gradient(135deg, hsl(var(--gb-brand) / 0.18), hsl(var(--gb-brand) / 0.07));
+  --gb-promo-banner-grid-card-dark-border-color: hsl(var(--gb-brand) / 0.26);
+  --gb-promo-banner-grid-card-dark-color: hsl(var(--gb-heading));
+  --gb-promo-banner-grid-card-dark-muted-color: hsl(var(--gb-muted));
+  --gb-promo-banner-grid-card-dark-badge-background: hsl(var(--gb-brand) / 0.18);
+  --gb-promo-banner-grid-card-dark-badge-color: hsl(var(--gb-brand));
+
+  --gb-promo-banner-grid-card-soft-background: linear-gradient(135deg, hsl(var(--gb-surface)), hsl(var(--gb-brand) / 0.04));
+  --gb-promo-banner-grid-card-soft-border-color: hsl(var(--gb-border-soft));
+  --gb-promo-banner-grid-card-soft-color: hsl(var(--gb-heading));
+  --gb-promo-banner-grid-card-soft-muted-color: hsl(var(--gb-muted));
+  --gb-promo-banner-grid-card-soft-badge-background: hsl(var(--gb-brand) / 0.14);
+  --gb-promo-banner-grid-card-soft-badge-color: hsl(var(--gb-brand));
+
+  --gb-promo-banner-grid-card-accent-background: linear-gradient(135deg, hsl(var(--gb-surface)), hsl(var(--gb-brand) / 0.1));
+  --gb-promo-banner-grid-card-accent-border-color: hsl(var(--gb-brand) / 0.24);
+  --gb-promo-banner-grid-card-accent-color: hsl(var(--gb-heading));
+  --gb-promo-banner-grid-card-accent-muted-color: hsl(var(--gb-muted));
+  --gb-promo-banner-grid-card-accent-badge-background: hsl(var(--gb-brand) / 0.18);
+  --gb-promo-banner-grid-card-accent-badge-color: hsl(var(--gb-brand));
+}
+
+@media (max-width: 64rem) {
+  :root {
+    --gb-promo-banner-grid-layout-gap: 0.75rem;
+    --gb-promo-banner-grid-side-list-gap: 0.75rem;
+    --gb-promo-banner-grid-card-featured-min-height: 16.5rem;
+    --gb-promo-banner-grid-media-featured-size: 14rem;
+    --gb-promo-banner-grid-card-content-max-width: 62%;
+    --gb-promo-banner-grid-media-offset-inline: 0.1rem;
+    --gb-promo-banner-grid-media-offset-block: -0.55rem;
+    --gb-promo-banner-grid-media-featured-offset-inline: -1rem;
+    --gb-promo-banner-grid-media-featured-offset-block: -0.85rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --gb-promo-banner-grid-container-gap: 1rem;
+    --gb-promo-banner-grid-card-padding-y: 0.95rem;
+    --gb-promo-banner-grid-card-padding-x: 0.95rem;
+    --gb-promo-banner-grid-card-featured-padding-y: 1.05rem;
+    --gb-promo-banner-grid-card-featured-padding-x: 1.05rem;
+    --gb-promo-banner-grid-card-min-height: 9.4rem;
+    --gb-promo-banner-grid-card-featured-min-height: 13.2rem;
+    --gb-promo-banner-grid-card-content-max-width: 66%;
+    --gb-promo-banner-grid-media-size: 7rem;
+    --gb-promo-banner-grid-media-featured-size: 10.5rem;
+    --gb-promo-banner-grid-media-offset-inline: 0;
+    --gb-promo-banner-grid-media-offset-block: -0.45rem;
+    --gb-promo-banner-grid-media-featured-offset-inline: -1rem;
+    --gb-promo-banner-grid-media-featured-offset-block: -0.75rem;
+  }
+}

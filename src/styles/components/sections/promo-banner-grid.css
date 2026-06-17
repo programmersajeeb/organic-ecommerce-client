@@ -1,0 +1,520 @@
+/* =============================================================================
+   365 SHOP — PROMO BANNER GRID SECTION
+   -----------------------------------------------------------------------------
+   Purpose:
+   Styles the Premium Promo Banner Grid homepage section.
+
+   Rules:
+   - Use only semantic tokens from promo-banner-grid.tokens.css.
+   - Do not define raw colors here.
+   - Global width comes from `.gb-container`.
+   ============================================================================= */
+
+.gb-promo-banner-grid {
+  padding-block: var(--gb-promo-banner-grid-padding-y);
+  color: var(--gb-promo-banner-grid-color);
+  background: var(--gb-promo-banner-grid-background);
+}
+
+.gb-promo-banner-grid__container {
+  display: grid;
+  gap: var(--gb-promo-banner-grid-container-gap);
+}
+
+.gb-promo-banner-grid__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gb-promo-banner-grid-header-gap);
+}
+
+.gb-promo-banner-grid__heading-group {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--gb-promo-banner-grid-heading-gap);
+}
+
+.gb-promo-banner-grid__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gb-promo-banner-grid-title-row-gap);
+}
+
+.gb-promo-banner-grid__section-icon {
+  inline-size: var(--gb-promo-banner-grid-section-icon-size);
+  block-size: var(--gb-promo-banner-grid-section-icon-size);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-promo-banner-grid-section-icon-radius);
+  color: var(--gb-promo-banner-grid-section-icon-color);
+  background: var(--gb-promo-banner-grid-section-icon-background);
+  box-shadow: var(--gb-promo-banner-grid-section-icon-shadow);
+}
+
+.gb-promo-banner-grid__section-icon svg {
+  inline-size: var(--gb-promo-banner-grid-section-icon-svg-size);
+  block-size: var(--gb-promo-banner-grid-section-icon-svg-size);
+  stroke-width: var(--gb-promo-banner-grid-section-icon-stroke-width);
+}
+
+.gb-promo-banner-grid__title-stack {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--gb-promo-banner-grid-title-stack-gap);
+}
+
+.gb-promo-banner-grid__section-eyebrow {
+  margin: 0;
+  color: var(--gb-promo-banner-grid-section-eyebrow-color);
+  font-size: var(--gb-promo-banner-grid-section-eyebrow-font-size);
+  font-weight: var(--gb-promo-banner-grid-section-eyebrow-font-weight);
+  line-height: var(--gb-promo-banner-grid-section-eyebrow-line-height);
+  letter-spacing: var(--gb-promo-banner-grid-section-eyebrow-letter-spacing);
+  text-transform: uppercase;
+}
+
+.gb-promo-banner-grid__title {
+  margin: 0;
+  color: var(--gb-promo-banner-grid-title-color);
+  font-size: var(--gb-promo-banner-grid-title-font-size);
+  font-weight: var(--gb-promo-banner-grid-title-font-weight);
+  line-height: var(--gb-promo-banner-grid-title-line-height);
+  letter-spacing: var(--gb-promo-banner-grid-title-letter-spacing);
+}
+
+.gb-promo-banner-grid__subtitle {
+  max-inline-size: var(--gb-promo-banner-grid-subtitle-max-width);
+  margin: 0;
+  color: var(--gb-promo-banner-grid-subtitle-color);
+  font-size: var(--gb-promo-banner-grid-subtitle-font-size);
+  font-weight: var(--gb-promo-banner-grid-subtitle-font-weight);
+  line-height: var(--gb-promo-banner-grid-subtitle-line-height);
+}
+
+.gb-promo-banner-grid__layout {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gb-promo-banner-grid-layout-gap);
+  align-items: stretch;
+}
+
+.gb-promo-banner-grid__card {
+  position: relative;
+  isolation: isolate;
+  min-inline-size: 0;
+  min-block-size: var(--gb-promo-banner-grid-card-min-height);
+  display: flex;
+  overflow: hidden;
+  padding-block: var(--gb-promo-banner-grid-card-padding-y);
+  padding-inline: var(--gb-promo-banner-grid-card-padding-x);
+  border: var(--gb-promo-banner-grid-card-border-width) solid transparent;
+  border-radius: var(--gb-promo-banner-grid-card-radius);
+  box-shadow: var(--gb-promo-banner-grid-card-shadow);
+  text-decoration: none;
+  transition:
+    border-color var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease),
+    box-shadow var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease),
+    transform var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease);
+}
+
+.gb-promo-banner-grid__card::before,
+.gb-promo-banner-grid__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.gb-promo-banner-grid__card::before {
+  background:
+    radial-gradient(
+      circle at 16% 18%,
+      hsl(var(--gb-inverse) / 0.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 14%,
+      hsl(var(--gb-inverse) / 0.1),
+      transparent 30%
+    );
+  opacity: 0;
+  transition: opacity var(--gb-promo-banner-grid-transition-duration)
+    var(--gb-promo-banner-grid-transition-ease);
+}
+
+.gb-promo-banner-grid__card::after {
+  border: var(--gb-promo-banner-grid-card-border-width) solid
+    hsl(var(--gb-inverse) / 0.1);
+  opacity: 0.45;
+}
+
+.gb-promo-banner-grid__card:hover {
+  box-shadow: var(--gb-promo-banner-grid-card-hover-shadow);
+  transform: var(--gb-promo-banner-grid-card-hover-transform);
+}
+
+.gb-promo-banner-grid__card:hover::before {
+  opacity: 1;
+}
+
+.gb-promo-banner-grid__card:focus-visible {
+  outline: 0;
+  box-shadow: var(--gb-promo-banner-grid-focus-shadow);
+}
+
+.gb-promo-banner-grid__card--large {
+  grid-column: span 2;
+  min-block-size: 14.75rem;
+  padding-block: var(--gb-promo-banner-grid-card-featured-padding-y);
+  padding-inline: var(--gb-promo-banner-grid-card-featured-padding-x);
+}
+
+.gb-promo-banner-grid__card--large::before {
+  opacity: 1;
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      hsl(var(--gb-inverse) / 0.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 84% 18%,
+      hsl(var(--gb-inverse) / 0.12),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      transparent,
+      hsl(var(--gb-heading) / 0.08)
+    );
+}
+
+.gb-promo-banner-grid__card--compact {
+  grid-column: span 2;
+  min-block-size: 10.75rem;
+}
+
+.gb-promo-banner-grid__card--primary {
+  color: var(--gb-promo-banner-grid-card-primary-color);
+  background: var(--gb-promo-banner-grid-card-primary-background);
+  border-color: var(--gb-promo-banner-grid-card-primary-border-color);
+}
+
+.gb-promo-banner-grid__card--dark {
+  color: var(--gb-promo-banner-grid-card-dark-color);
+  background: var(--gb-promo-banner-grid-card-dark-background);
+  border-color: var(--gb-promo-banner-grid-card-dark-border-color);
+}
+
+.gb-promo-banner-grid__card--soft {
+  color: var(--gb-promo-banner-grid-card-soft-color);
+  background: var(--gb-promo-banner-grid-card-soft-background);
+  border-color: var(--gb-promo-banner-grid-card-soft-border-color);
+}
+
+.gb-promo-banner-grid__card--accent {
+  color: var(--gb-promo-banner-grid-card-accent-color);
+  background: var(--gb-promo-banner-grid-card-accent-background);
+  border-color: var(--gb-promo-banner-grid-card-accent-border-color);
+}
+
+.gb-promo-banner-grid__inner {
+  position: relative;
+  z-index: 2;
+  inline-size: 100%;
+  min-block-size: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(7rem, 34%);
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.gb-promo-banner-grid__card--large .gb-promo-banner-grid__inner {
+  grid-template-columns: minmax(0, 1fr) minmax(9.5rem, 38%);
+  gap: 1rem;
+}
+
+.gb-promo-banner-grid__card-content {
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--gb-promo-banner-grid-card-content-gap);
+}
+
+.gb-promo-banner-grid__card--large .gb-promo-banner-grid__card-content {
+  max-inline-size: 23rem;
+}
+
+.gb-promo-banner-grid__copy {
+  display: grid;
+  gap: 0.36rem;
+}
+
+.gb-promo-banner-grid__eyebrow-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gb-promo-banner-grid-eyebrow-row-gap);
+}
+
+.gb-promo-banner-grid__card-eyebrow {
+  font-size: var(--gb-promo-banner-grid-card-eyebrow-font-size);
+  font-weight: var(--gb-promo-banner-grid-card-eyebrow-font-weight);
+  line-height: var(--gb-promo-banner-grid-card-eyebrow-line-height);
+  letter-spacing: var(--gb-promo-banner-grid-card-eyebrow-letter-spacing);
+  text-transform: uppercase;
+}
+
+.gb-promo-banner-grid__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--gb-promo-banner-grid-badge-padding-y);
+  padding-inline: var(--gb-promo-banner-grid-badge-padding-x);
+  border-radius: var(--gb-promo-banner-grid-badge-radius);
+  font-size: var(--gb-promo-banner-grid-badge-font-size);
+  font-weight: var(--gb-promo-banner-grid-badge-font-weight);
+  line-height: var(--gb-promo-banner-grid-badge-line-height);
+}
+
+.gb-promo-banner-grid__card--primary .gb-promo-banner-grid__badge {
+  color: var(--gb-promo-banner-grid-card-primary-badge-color);
+  background: var(--gb-promo-banner-grid-card-primary-badge-background);
+}
+
+.gb-promo-banner-grid__card--dark .gb-promo-banner-grid__badge {
+  color: var(--gb-promo-banner-grid-card-dark-badge-color);
+  background: var(--gb-promo-banner-grid-card-dark-badge-background);
+}
+
+.gb-promo-banner-grid__card--soft .gb-promo-banner-grid__badge {
+  color: var(--gb-promo-banner-grid-card-soft-badge-color);
+  background: var(--gb-promo-banner-grid-card-soft-badge-background);
+}
+
+.gb-promo-banner-grid__card--accent .gb-promo-banner-grid__badge {
+  color: var(--gb-promo-banner-grid-card-accent-badge-color);
+  background: var(--gb-promo-banner-grid-card-accent-badge-background);
+}
+
+.gb-promo-banner-grid__card-title {
+  color: currentColor;
+  font-size: var(--gb-promo-banner-grid-card-title-font-size);
+  font-weight: var(--gb-promo-banner-grid-card-title-font-weight);
+  line-height: var(--gb-promo-banner-grid-card-title-line-height);
+  letter-spacing: var(--gb-promo-banner-grid-card-title-letter-spacing);
+}
+
+.gb-promo-banner-grid__card--large .gb-promo-banner-grid__card-title {
+  max-inline-size: 19rem;
+  font-size: clamp(1.28rem, 1.55vw, 1.72rem);
+  line-height: 1.08;
+}
+
+.gb-promo-banner-grid__card-description {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: var(--gb-promo-banner-grid-card-description-font-size);
+  font-weight: var(--gb-promo-banner-grid-card-description-font-weight);
+  line-height: var(--gb-promo-banner-grid-card-description-line-height);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.gb-promo-banner-grid__card--large .gb-promo-banner-grid__card-description {
+  max-inline-size: 21rem;
+  -webkit-line-clamp: 3;
+}
+
+.gb-promo-banner-grid__card--primary .gb-promo-banner-grid__card-description {
+  color: var(--gb-promo-banner-grid-card-primary-muted-color);
+}
+
+.gb-promo-banner-grid__card--dark .gb-promo-banner-grid__card-description {
+  color: var(--gb-promo-banner-grid-card-dark-muted-color);
+}
+
+.gb-promo-banner-grid__card--soft .gb-promo-banner-grid__card-description {
+  color: var(--gb-promo-banner-grid-card-soft-muted-color);
+}
+
+.gb-promo-banner-grid__card--accent .gb-promo-banner-grid__card-description {
+  color: var(--gb-promo-banner-grid-card-accent-muted-color);
+}
+
+.gb-promo-banner-grid__cta {
+  margin-block-start: 0.28rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gb-promo-banner-grid-cta-gap);
+  padding-block: 0.44rem;
+  padding-inline: 0.72rem;
+  border-radius: var(--radius-full);
+  color: currentColor;
+  background: hsl(var(--gb-inverse) / 0.12);
+  font-size: var(--gb-promo-banner-grid-cta-font-size);
+  font-weight: var(--gb-promo-banner-grid-cta-font-weight);
+  line-height: var(--gb-promo-banner-grid-cta-line-height);
+  letter-spacing: -0.01em;
+  transition:
+    background-color var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease),
+    transform var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease);
+}
+
+.gb-promo-banner-grid__card--soft .gb-promo-banner-grid__cta,
+.gb-promo-banner-grid__card--accent .gb-promo-banner-grid__cta {
+  background: hsl(var(--gb-brand) / 0.1);
+}
+
+.gb-promo-banner-grid__cta svg {
+  inline-size: var(--gb-promo-banner-grid-cta-icon-size);
+  block-size: var(--gb-promo-banner-grid-cta-icon-size);
+  transition: transform var(--gb-promo-banner-grid-transition-duration)
+    var(--gb-promo-banner-grid-transition-ease);
+}
+
+.gb-promo-banner-grid__card:hover .gb-promo-banner-grid__cta {
+  transform: translateY(-0.0625rem);
+}
+
+.gb-promo-banner-grid__card:hover .gb-promo-banner-grid__cta svg {
+  transform: translateX(0.2rem);
+}
+
+.gb-promo-banner-grid__media {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.gb-promo-banner-grid__media-frame {
+  inline-size: min(var(--gb-promo-banner-grid-media-size), 7.6rem);
+  block-size: min(var(--gb-promo-banner-grid-media-size), 6.7rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-promo-banner-grid-image-radius);
+}
+
+.gb-promo-banner-grid__card--large .gb-promo-banner-grid__media-frame {
+  inline-size: min(var(--gb-promo-banner-grid-media-featured-size), 11.2rem);
+  block-size: min(var(--gb-promo-banner-grid-media-featured-size), 9.2rem);
+}
+
+.gb-promo-banner-grid__image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: var(--gb-promo-banner-grid-image-radius);
+  filter: drop-shadow(var(--gb-promo-banner-grid-image-shadow));
+  transition:
+    filter var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease),
+    transform var(--gb-promo-banner-grid-transition-duration)
+      var(--gb-promo-banner-grid-transition-ease);
+}
+
+.dark .gb-promo-banner-grid__image,
+[data-theme="dark"] .gb-promo-banner-grid__image {
+  filter: drop-shadow(var(--gb-promo-banner-grid-image-shadow)) brightness(1.12)
+    contrast(1.08);
+}
+
+.gb-promo-banner-grid__card:hover .gb-promo-banner-grid__image {
+  transform: scale(1.035);
+}
+
+@media (max-width: 64rem) {
+  .gb-promo-banner-grid__header {
+    align-items: flex-start;
+  }
+
+  .gb-promo-banner-grid__layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gb-promo-banner-grid__card--large,
+  .gb-promo-banner-grid__card--compact {
+    grid-column: span 1;
+  }
+
+  .gb-promo-banner-grid__card--large {
+    min-block-size: 13.25rem;
+  }
+
+  .gb-promo-banner-grid__inner,
+  .gb-promo-banner-grid__card--large .gb-promo-banner-grid__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(7rem, 34%);
+  }
+
+  .gb-promo-banner-grid__media-frame,
+  .gb-promo-banner-grid__card--large .gb-promo-banner-grid__media-frame {
+    inline-size: 7rem;
+    block-size: 6.25rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .gb-promo-banner-grid {
+    padding-block: var(--gb-promo-banner-grid-padding-y-mobile);
+  }
+
+  .gb-promo-banner-grid__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gb-promo-banner-grid__title-row {
+    align-items: flex-start;
+  }
+
+  .gb-promo-banner-grid__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .gb-promo-banner-grid__card--large,
+  .gb-promo-banner-grid__card--compact {
+    grid-column: span 1;
+  }
+
+  .gb-promo-banner-grid__card,
+  .gb-promo-banner-grid__card--large {
+    min-block-size: 10.25rem;
+  }
+
+  .gb-promo-banner-grid__inner,
+  .gb-promo-banner-grid__card--large .gb-promo-banner-grid__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(6.5rem, 34%);
+    gap: 0.7rem;
+  }
+
+  .gb-promo-banner-grid__card--large .gb-promo-banner-grid__card-title {
+    max-inline-size: 13rem;
+    font-size: clamp(1.2rem, 6vw, 1.45rem);
+  }
+
+  .gb-promo-banner-grid__card--large .gb-promo-banner-grid__card-description {
+    max-inline-size: 14rem;
+  }
+
+  .gb-promo-banner-grid__media-frame,
+  .gb-promo-banner-grid__card--large .gb-promo-banner-grid__media-frame {
+    inline-size: 6.4rem;
+    block-size: 5.8rem;
+  }
+}
