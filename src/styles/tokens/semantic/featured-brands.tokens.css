@@ -1,0 +1,208 @@
+/* =============================================================================
+   365 SHOP — FEATURED BRANDS SEMANTIC TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Defines reusable Featured Brands section tokens.
+
+   Rules:
+   - Keep only Featured Brands semantic tokens here.
+   - Component CSS must consume these tokens.
+   - Do not write component selectors here.
+   - All colors must come from global theme tokens.
+   ============================================================================= */
+
+:root {
+  --gb-featured-brands-padding-y: 1.25rem;
+  --gb-featured-brands-padding-y-mobile: 1rem;
+  --gb-featured-brands-background: transparent;
+  --gb-featured-brands-color: hsl(var(--gb-body));
+
+  --gb-featured-brands-header-gap: 1rem;
+  --gb-featured-brands-header-margin-bottom: 0.85rem;
+
+  --gb-featured-brands-title-row-gap: 0.62rem;
+  --gb-featured-brands-title-stack-gap: 0.18rem;
+
+  --gb-featured-brands-section-icon-size: 2.2rem;
+  --gb-featured-brands-section-icon-radius: var(--radius-lg);
+  --gb-featured-brands-section-icon-background: hsl(var(--gb-brand-soft));
+  --gb-featured-brands-section-icon-color: hsl(var(--gb-brand));
+  --gb-featured-brands-section-icon-shadow: var(--shadow-xs);
+  --gb-featured-brands-section-icon-svg-size: 1.12rem;
+  --gb-featured-brands-section-icon-stroke-width: 2.2;
+
+  --gb-featured-brands-eyebrow-color: hsl(var(--gb-brand));
+  --gb-featured-brands-eyebrow-font-size: 0.6625rem;
+  --gb-featured-brands-eyebrow-font-weight: 850;
+  --gb-featured-brands-eyebrow-line-height: var(--gb-leading-none);
+  --gb-featured-brands-eyebrow-letter-spacing: 0.08em;
+
+  --gb-featured-brands-title-color: hsl(var(--gb-heading));
+  --gb-featured-brands-title-font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+  --gb-featured-brands-title-font-weight: 850;
+  --gb-featured-brands-title-line-height: var(--gb-leading-tight);
+  --gb-featured-brands-title-letter-spacing: var(--gb-tracking-tight);
+
+  --gb-featured-brands-subtitle-max-width: 36rem;
+  --gb-featured-brands-subtitle-color: hsl(var(--gb-muted));
+  --gb-featured-brands-subtitle-font-size: 0.8375rem;
+  --gb-featured-brands-subtitle-font-weight: 500;
+  --gb-featured-brands-subtitle-line-height: var(--gb-leading-relaxed);
+
+  --gb-featured-brands-action-height: 2.2rem;
+  --gb-featured-brands-action-gap: 0.35rem;
+  --gb-featured-brands-action-border-width: 0.0625rem;
+  --gb-featured-brands-action-border-color: hsl(var(--gb-border-soft));
+  --gb-featured-brands-action-hover-border-color: hsl(var(--gb-brand));
+  --gb-featured-brands-action-radius: var(--radius-full);
+  --gb-featured-brands-action-background: hsl(var(--gb-surface));
+  --gb-featured-brands-action-hover-background: hsl(var(--gb-brand));
+  --gb-featured-brands-action-color: hsl(var(--gb-heading));
+  --gb-featured-brands-action-hover-color: hsl(var(--gb-inverse));
+  --gb-featured-brands-action-padding-x: 0.78rem;
+  --gb-featured-brands-action-font-size: 0.775rem;
+  --gb-featured-brands-action-font-weight: 750;
+  --gb-featured-brands-action-line-height: var(--gb-leading-none);
+  --gb-featured-brands-action-icon-size: 0.9rem;
+  --gb-featured-brands-action-hover-transform: translateY(-0.0625rem);
+
+  --gb-featured-brands-carousel-gap: 0.72rem;
+  --gb-featured-brands-carousel-gap-mobile: 0.58rem;
+  --gb-featured-brands-carousel-padding-y: 0.16rem;
+  --gb-featured-brands-carousel-scroll-padding-x: 0.2rem;
+
+  --gb-featured-brands-card-width: 20.5rem;
+  --gb-featured-brands-card-width-tablet: 18.75rem;
+  --gb-featured-brands-card-width-mobile: 16.2rem;
+  --gb-featured-brands-card-min-height: 6.1rem;
+  --gb-featured-brands-card-gap: 0.72rem;
+  --gb-featured-brands-card-padding-y: 0.82rem;
+  --gb-featured-brands-card-padding-x: 0.86rem;
+  --gb-featured-brands-card-radius: var(--radius-xl);
+  --gb-featured-brands-card-border-width: 0.0625rem;
+  --gb-featured-brands-card-border-color: hsl(var(--gb-border-soft));
+  --gb-featured-brands-card-hover-border-color: hsl(var(--gb-brand));
+  --gb-featured-brands-card-background: hsl(var(--gb-surface));
+  --gb-featured-brands-card-hover-background: hsl(var(--gb-surface-soft));
+  --gb-featured-brands-card-shadow: var(--shadow-xs);
+  --gb-featured-brands-card-hover-shadow: var(--shadow-md);
+  --gb-featured-brands-card-hover-transform: translateY(-0.125rem);
+
+  --gb-featured-brands-logo-size: 2.75rem;
+  --gb-featured-brands-logo-radius: var(--radius-lg);
+  --gb-featured-brands-logo-background: hsl(var(--gb-brand-soft));
+  --gb-featured-brands-logo-color: hsl(var(--gb-brand));
+  --gb-featured-brands-logo-font-size: 0.86rem;
+  --gb-featured-brands-logo-font-weight: 900;
+  --gb-featured-brands-logo-letter-spacing: 0.04em;
+  --gb-featured-brands-logo-shadow: var(--shadow-xs);
+
+  --gb-featured-brands-card-copy-gap: 0.24rem;
+  --gb-featured-brands-card-head-gap: 0.42rem;
+
+  --gb-featured-brands-name-color: hsl(var(--gb-heading));
+  --gb-featured-brands-name-font-size: 0.92rem;
+  --gb-featured-brands-name-font-weight: 820;
+  --gb-featured-brands-name-line-height: var(--gb-leading-tight);
+
+  --gb-featured-brands-description-color: hsl(var(--gb-muted));
+  --gb-featured-brands-description-font-size: 0.76rem;
+  --gb-featured-brands-description-font-weight: 500;
+  --gb-featured-brands-description-line-height: var(--gb-leading-snug);
+
+  --gb-featured-brands-badge-radius: var(--radius-full);
+  --gb-featured-brands-badge-background: hsl(var(--gb-brand-soft));
+  --gb-featured-brands-badge-color: hsl(var(--gb-brand));
+  --gb-featured-brands-badge-padding-y: 0.18rem;
+  --gb-featured-brands-badge-padding-x: 0.42rem;
+  --gb-featured-brands-badge-font-size: 0.62rem;
+  --gb-featured-brands-badge-font-weight: 800;
+  --gb-featured-brands-badge-line-height: var(--gb-leading-none);
+
+  --gb-featured-brands-card-icon-size: 1.85rem;
+  --gb-featured-brands-card-icon-radius: var(--radius-full);
+  --gb-featured-brands-card-icon-background: hsl(var(--gb-surface-soft));
+  --gb-featured-brands-card-icon-color: hsl(var(--gb-muted));
+  --gb-featured-brands-card-hover-icon-background: hsl(var(--gb-brand));
+  --gb-featured-brands-card-hover-icon-color: hsl(var(--gb-inverse));
+  --gb-featured-brands-card-icon-svg-size: 0.9rem;
+
+  --gb-featured-brands-arrow-size: 2.35rem;
+  --gb-featured-brands-arrow-border-width: 0.0625rem;
+  --gb-featured-brands-arrow-border-color: hsl(var(--gb-border-soft));
+  --gb-featured-brands-arrow-hover-border-color: hsl(var(--gb-brand));
+  --gb-featured-brands-arrow-background: hsl(var(--gb-surface) / 0.94);
+  --gb-featured-brands-arrow-hover-background: hsl(var(--gb-brand));
+  --gb-featured-brands-arrow-color: hsl(var(--gb-heading));
+  --gb-featured-brands-arrow-hover-color: hsl(var(--gb-inverse));
+  --gb-featured-brands-arrow-shadow: var(--shadow-md);
+  --gb-featured-brands-arrow-icon-size: 1.05rem;
+  --gb-featured-brands-arrow-offset: -0.98rem;
+
+  --gb-featured-brands-empty-border-width: 0.0625rem;
+  --gb-featured-brands-empty-border-color: hsl(var(--gb-border-soft));
+  --gb-featured-brands-empty-radius: var(--radius-xl);
+  --gb-featured-brands-empty-background: hsl(var(--gb-surface-soft));
+  --gb-featured-brands-empty-color: hsl(var(--gb-muted));
+  --gb-featured-brands-empty-padding-y: 1.15rem;
+  --gb-featured-brands-empty-padding-x: 1rem;
+  --gb-featured-brands-empty-font-size: 0.8375rem;
+  --gb-featured-brands-empty-font-weight: 600;
+  --gb-featured-brands-empty-line-height: var(--gb-leading-relaxed);
+
+  --gb-featured-brands-focus-shadow: var(--shadow-focus);
+  --gb-featured-brands-transition-duration: var(--gb-duration-base);
+  --gb-featured-brands-transition-ease: var(--gb-ease-standard);
+}
+
+/* Tablet polish only */
+@media (max-width: 64rem) {
+  :root {
+    --gb-featured-brands-padding-y: 1.05rem;
+    --gb-featured-brands-header-gap: 0.85rem;
+    --gb-featured-brands-header-margin-bottom: 0.72rem;
+
+    --gb-featured-brands-carousel-gap: 0.62rem;
+    --gb-featured-brands-card-width: var(--gb-featured-brands-card-width-tablet);
+    --gb-featured-brands-card-min-height: 5.8rem;
+    --gb-featured-brands-card-padding-y: 0.76rem;
+    --gb-featured-brands-card-padding-x: 0.78rem;
+
+    --gb-featured-brands-action-height: 2.08rem;
+    --gb-featured-brands-action-padding-x: 0.7rem;
+    --gb-featured-brands-action-font-size: 0.75rem;
+  }
+}
+
+/* Mobile polish only */
+@media (max-width: 48rem) {
+  :root {
+    --gb-featured-brands-padding-y-mobile: 0.9rem;
+    --gb-featured-brands-header-gap: 0.72rem;
+    --gb-featured-brands-header-margin-bottom: 0.64rem;
+
+    --gb-featured-brands-section-icon-size: 1.9rem;
+    --gb-featured-brands-section-icon-svg-size: 1rem;
+
+    --gb-featured-brands-eyebrow-font-size: 0.6125rem;
+    --gb-featured-brands-title-font-size: 1.05rem;
+    --gb-featured-brands-subtitle-font-size: 0.775rem;
+    --gb-featured-brands-subtitle-max-width: 100%;
+
+    --gb-featured-brands-carousel-gap: var(--gb-featured-brands-carousel-gap-mobile);
+    --gb-featured-brands-card-width: var(--gb-featured-brands-card-width-mobile);
+    --gb-featured-brands-card-min-height: 5.45rem;
+    --gb-featured-brands-card-gap: 0.62rem;
+    --gb-featured-brands-card-padding-y: 0.72rem;
+    --gb-featured-brands-card-padding-x: 0.72rem;
+
+    --gb-featured-brands-logo-size: 2.45rem;
+    --gb-featured-brands-name-font-size: 0.86rem;
+    --gb-featured-brands-description-font-size: 0.72rem;
+
+    --gb-featured-brands-action-height: 2rem;
+    --gb-featured-brands-action-padding-x: 0.65rem;
+    --gb-featured-brands-action-font-size: 0.725rem;
+    --gb-featured-brands-action-icon-size: 0.82rem;
+  }
+}

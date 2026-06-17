@@ -1,0 +1,403 @@
+/* =============================================================================
+   365 SHOP — FEATURED BRANDS SECTION
+   -----------------------------------------------------------------------------
+   Purpose:
+   Styles the Featured / Official Brands homepage carousel section.
+
+   Rules:
+   - Use only semantic tokens from featured-brands.tokens.css.
+   - Do not define raw colors here.
+   - Global width comes from `.gb-container`.
+   ============================================================================= */
+
+.gb-featured-brands {
+  padding-block: var(--gb-featured-brands-padding-y);
+  color: var(--gb-featured-brands-color);
+  background: var(--gb-featured-brands-background);
+}
+
+.gb-featured-brands__container {
+  display: grid;
+  gap: var(--gb-featured-brands-header-margin-bottom);
+}
+
+.gb-featured-brands__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gb-featured-brands-header-gap);
+}
+
+.gb-featured-brands__heading-group {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.36rem;
+}
+
+.gb-featured-brands__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gb-featured-brands-title-row-gap);
+}
+
+.gb-featured-brands__section-icon {
+  inline-size: var(--gb-featured-brands-section-icon-size);
+  block-size: var(--gb-featured-brands-section-icon-size);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-featured-brands-section-icon-radius);
+  color: var(--gb-featured-brands-section-icon-color);
+  background: var(--gb-featured-brands-section-icon-background);
+  box-shadow: var(--gb-featured-brands-section-icon-shadow);
+}
+
+.gb-featured-brands__section-icon svg {
+  inline-size: var(--gb-featured-brands-section-icon-svg-size);
+  block-size: var(--gb-featured-brands-section-icon-svg-size);
+  stroke-width: var(--gb-featured-brands-section-icon-stroke-width);
+}
+
+.gb-featured-brands__title-stack {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--gb-featured-brands-title-stack-gap);
+}
+
+.gb-featured-brands__eyebrow {
+  margin: 0;
+  color: var(--gb-featured-brands-eyebrow-color);
+  font-size: var(--gb-featured-brands-eyebrow-font-size);
+  font-weight: var(--gb-featured-brands-eyebrow-font-weight);
+  line-height: var(--gb-featured-brands-eyebrow-line-height);
+  letter-spacing: var(--gb-featured-brands-eyebrow-letter-spacing);
+  text-transform: uppercase;
+}
+
+.gb-featured-brands__title {
+  margin: 0;
+  color: var(--gb-featured-brands-title-color);
+  font-size: var(--gb-featured-brands-title-font-size);
+  font-weight: var(--gb-featured-brands-title-font-weight);
+  line-height: var(--gb-featured-brands-title-line-height);
+  letter-spacing: var(--gb-featured-brands-title-letter-spacing);
+}
+
+.gb-featured-brands__subtitle {
+  max-inline-size: var(--gb-featured-brands-subtitle-max-width);
+  margin: 0;
+  color: var(--gb-featured-brands-subtitle-color);
+  font-size: var(--gb-featured-brands-subtitle-font-size);
+  font-weight: var(--gb-featured-brands-subtitle-font-weight);
+  line-height: var(--gb-featured-brands-subtitle-line-height);
+}
+
+.gb-featured-brands__action {
+  min-block-size: var(--gb-featured-brands-action-height);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gb-featured-brands-action-gap);
+  padding-inline: var(--gb-featured-brands-action-padding-x);
+  border: var(--gb-featured-brands-action-border-width) solid
+    var(--gb-featured-brands-action-border-color);
+  border-radius: var(--gb-featured-brands-action-radius);
+  color: var(--gb-featured-brands-action-color);
+  background: var(--gb-featured-brands-action-background);
+  font-size: var(--gb-featured-brands-action-font-size);
+  font-weight: var(--gb-featured-brands-action-font-weight);
+  line-height: var(--gb-featured-brands-action-line-height);
+  text-decoration: none;
+  transition:
+    color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    background-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    border-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    transform var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease);
+}
+
+.gb-featured-brands__action svg {
+  inline-size: var(--gb-featured-brands-action-icon-size);
+  block-size: var(--gb-featured-brands-action-icon-size);
+}
+
+.gb-featured-brands__action:hover {
+  color: var(--gb-featured-brands-action-hover-color);
+  background: var(--gb-featured-brands-action-hover-background);
+  border-color: var(--gb-featured-brands-action-hover-border-color);
+  transform: var(--gb-featured-brands-action-hover-transform);
+}
+
+.gb-featured-brands__action:focus-visible {
+  outline: 0;
+  box-shadow: var(--gb-featured-brands-focus-shadow);
+}
+
+.gb-featured-brands__carousel {
+  position: relative;
+  min-inline-size: 0;
+}
+
+.gb-featured-brands__rail {
+  display: flex;
+  gap: var(--gb-featured-brands-carousel-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: var(--gb-featured-brands-carousel-padding-y);
+  padding-inline: var(--gb-featured-brands-carousel-scroll-padding-x);
+  scroll-behavior: smooth;
+  scroll-padding-inline: var(--gb-featured-brands-carousel-scroll-padding-x);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.gb-featured-brands__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.gb-featured-brands__item {
+  flex: 0 0 var(--gb-featured-brands-card-width);
+  min-inline-size: 0;
+  scroll-snap-align: start;
+}
+
+.gb-featured-brands__card {
+  inline-size: 100%;
+  min-block-size: var(--gb-featured-brands-card-min-height);
+  display: flex;
+  align-items: center;
+  gap: var(--gb-featured-brands-card-gap);
+  padding-block: var(--gb-featured-brands-card-padding-y);
+  padding-inline: var(--gb-featured-brands-card-padding-x);
+  border: var(--gb-featured-brands-card-border-width) solid
+    var(--gb-featured-brands-card-border-color);
+  border-radius: var(--gb-featured-brands-card-radius);
+  color: inherit;
+  background: var(--gb-featured-brands-card-background);
+  box-shadow: var(--gb-featured-brands-card-shadow);
+  text-decoration: none;
+  transition:
+    background-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    border-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    box-shadow var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    transform var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease);
+}
+
+.gb-featured-brands__card:hover {
+  background: var(--gb-featured-brands-card-hover-background);
+  border-color: var(--gb-featured-brands-card-hover-border-color);
+  box-shadow: var(--gb-featured-brands-card-hover-shadow);
+  transform: var(--gb-featured-brands-card-hover-transform);
+}
+
+.gb-featured-brands__card:focus-visible {
+  outline: 0;
+  box-shadow: var(--gb-featured-brands-focus-shadow);
+}
+
+.gb-featured-brands__logo {
+  inline-size: var(--gb-featured-brands-logo-size);
+  block-size: var(--gb-featured-brands-logo-size);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-featured-brands-logo-radius);
+  color: var(--gb-featured-brands-logo-color);
+  background: var(--gb-featured-brands-logo-background);
+  box-shadow: var(--gb-featured-brands-logo-shadow);
+  font-size: var(--gb-featured-brands-logo-font-size);
+  font-weight: var(--gb-featured-brands-logo-font-weight);
+  letter-spacing: var(--gb-featured-brands-logo-letter-spacing);
+}
+
+.gb-featured-brands__card-copy {
+  min-inline-size: 0;
+  flex: 1 1 auto;
+  display: grid;
+  gap: var(--gb-featured-brands-card-copy-gap);
+}
+
+.gb-featured-brands__card-head {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--gb-featured-brands-card-head-gap);
+}
+
+.gb-featured-brands__name {
+  min-inline-size: 0;
+  overflow: hidden;
+  color: var(--gb-featured-brands-name-color);
+  font-size: var(--gb-featured-brands-name-font-size);
+  font-weight: var(--gb-featured-brands-name-font-weight);
+  line-height: var(--gb-featured-brands-name-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gb-featured-brands__description {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--gb-featured-brands-description-color);
+  font-size: var(--gb-featured-brands-description-font-size);
+  font-weight: var(--gb-featured-brands-description-font-weight);
+  line-height: var(--gb-featured-brands-description-line-height);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.gb-featured-brands__badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--gb-featured-brands-badge-padding-y);
+  padding-inline: var(--gb-featured-brands-badge-padding-x);
+  border-radius: var(--gb-featured-brands-badge-radius);
+  color: var(--gb-featured-brands-badge-color);
+  background: var(--gb-featured-brands-badge-background);
+  font-size: var(--gb-featured-brands-badge-font-size);
+  font-weight: var(--gb-featured-brands-badge-font-weight);
+  line-height: var(--gb-featured-brands-badge-line-height);
+}
+
+.gb-featured-brands__card-icon {
+  inline-size: var(--gb-featured-brands-card-icon-size);
+  block-size: var(--gb-featured-brands-card-icon-size);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-featured-brands-card-icon-radius);
+  color: var(--gb-featured-brands-card-icon-color);
+  background: var(--gb-featured-brands-card-icon-background);
+  transition:
+    color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    background-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    transform var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease);
+}
+
+.gb-featured-brands__card-icon svg {
+  inline-size: var(--gb-featured-brands-card-icon-svg-size);
+  block-size: var(--gb-featured-brands-card-icon-svg-size);
+}
+
+.gb-featured-brands__card:hover .gb-featured-brands__card-icon {
+  color: var(--gb-featured-brands-card-hover-icon-color);
+  background: var(--gb-featured-brands-card-hover-icon-background);
+  transform: translateX(0.125rem);
+}
+
+.gb-featured-brands__arrow {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 50%;
+  inline-size: var(--gb-featured-brands-arrow-size);
+  block-size: var(--gb-featured-brands-arrow-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--gb-featured-brands-arrow-border-width) solid
+    var(--gb-featured-brands-arrow-border-color);
+  border-radius: var(--radius-full);
+  color: var(--gb-featured-brands-arrow-color);
+  background: var(--gb-featured-brands-arrow-background);
+  box-shadow: var(--gb-featured-brands-arrow-shadow);
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition:
+    color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    background-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    border-color var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease),
+    transform var(--gb-featured-brands-transition-duration)
+      var(--gb-featured-brands-transition-ease);
+}
+
+.gb-featured-brands__arrow svg {
+  inline-size: var(--gb-featured-brands-arrow-icon-size);
+  block-size: var(--gb-featured-brands-arrow-icon-size);
+}
+
+.gb-featured-brands__arrow:hover {
+  color: var(--gb-featured-brands-arrow-hover-color);
+  background: var(--gb-featured-brands-arrow-hover-background);
+  border-color: var(--gb-featured-brands-arrow-hover-border-color);
+}
+
+.gb-featured-brands__arrow:focus-visible {
+  outline: 0;
+  box-shadow: var(--gb-featured-brands-focus-shadow);
+}
+
+.gb-featured-brands__arrow--previous {
+  inset-inline-start: var(--gb-featured-brands-arrow-offset);
+}
+
+.gb-featured-brands__arrow--next {
+  inset-inline-end: var(--gb-featured-brands-arrow-offset);
+}
+
+.gb-featured-brands__empty {
+  margin: 0;
+  padding-block: var(--gb-featured-brands-empty-padding-y);
+  padding-inline: var(--gb-featured-brands-empty-padding-x);
+  border: var(--gb-featured-brands-empty-border-width) solid
+    var(--gb-featured-brands-empty-border-color);
+  border-radius: var(--gb-featured-brands-empty-radius);
+  color: var(--gb-featured-brands-empty-color);
+  background: var(--gb-featured-brands-empty-background);
+  font-size: var(--gb-featured-brands-empty-font-size);
+  font-weight: var(--gb-featured-brands-empty-font-weight);
+  line-height: var(--gb-featured-brands-empty-line-height);
+  text-align: center;
+}
+
+@media (max-width: 64rem) {
+  .gb-featured-brands__header {
+    align-items: flex-start;
+  }
+
+  .gb-featured-brands__arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 48rem) {
+  .gb-featured-brands {
+    padding-block: var(--gb-featured-brands-padding-y-mobile);
+  }
+
+  .gb-featured-brands__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gb-featured-brands__action {
+    inline-size: fit-content;
+  }
+
+  .gb-featured-brands__rail {
+    gap: var(--gb-featured-brands-carousel-gap-mobile);
+    padding-inline: 0;
+  }
+
+  .gb-featured-brands__card {
+    align-items: center;
+  }
+}

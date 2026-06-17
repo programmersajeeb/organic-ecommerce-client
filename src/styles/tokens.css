@@ -36,6 +36,7 @@
 @import "./tokens/semantic/shop-by-category.tokens.css";
 @import "./tokens/semantic/product-card.tokens.css";
 @import "./tokens/semantic/product-showcase.tokens.css";
+@import "./tokens/semantic/featured-brands.tokens.css";
 @import "./tokens/semantic/error-page.tokens.css";
 @import "./tokens/skeleton/skeleton.tokens.css";
 
