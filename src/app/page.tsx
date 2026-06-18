@@ -8,6 +8,7 @@ import { NewArrivalsSection } from "@/components/sections/new-arrivals";
 import { PromoBannerGridSection } from "@/components/sections/promo-banner-grid";
 import { TopRatedSection } from "@/components/sections/top-rated";
 import { CustomerReviewsSection } from "@/components/sections/customer-reviews";
+import { NewsletterCtaSection } from "@/components/sections/newsletter-cta";
 
 export default function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default function HomePage() {
       <PromoBannerGridSection />
       <TopRatedSection />
       <CustomerReviewsSection />
+      <NewsletterCtaSection />
     </>
   );
 }

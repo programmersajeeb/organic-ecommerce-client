@@ -1,0 +1,348 @@
+/* =============================================================================
+   365 SHOP — NEWSLETTER CTA SECTION
+   -----------------------------------------------------------------------------
+   Purpose:
+   Styles the Newsletter / Deals Signup CTA homepage section.
+
+   Rules:
+   - Use only semantic tokens from newsletter-cta.tokens.css.
+   - Do not define raw colors here.
+   - Global width comes from `.gb-container`.
+   ============================================================================= */
+
+.gb-newsletter-cta {
+  padding-block: var(--gb-newsletter-cta-padding-y);
+  color: var(--gb-newsletter-cta-color);
+  background: var(--gb-newsletter-cta-background);
+}
+
+.gb-newsletter-cta__container {
+  display: grid;
+}
+
+.gb-newsletter-cta__shell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(
+      var(--gb-newsletter-cta-form-card-min-width),
+      0.58fr
+    );
+  gap: var(--gb-newsletter-cta-shell-gap);
+  align-items: center;
+  overflow: hidden;
+  padding-block: var(--gb-newsletter-cta-shell-padding-y);
+  padding-inline: var(--gb-newsletter-cta-shell-padding-x);
+  border: 0.0625rem solid var(--gb-newsletter-cta-shell-border-color);
+  border-radius: var(--gb-newsletter-cta-shell-radius);
+  color: var(--gb-newsletter-cta-title-color);
+  background: var(--gb-newsletter-cta-shell-background);
+  box-shadow: var(--gb-newsletter-cta-shell-shadow);
+}
+
+.gb-newsletter-cta__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gb-newsletter-cta-glow-background);
+  pointer-events: none;
+}
+
+.gb-newsletter-cta__content {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--gb-newsletter-cta-content-gap);
+}
+
+.gb-newsletter-cta__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gb-newsletter-cta-title-row-gap);
+}
+
+.gb-newsletter-cta__section-icon {
+  inline-size: var(--gb-newsletter-cta-section-icon-size);
+  block-size: var(--gb-newsletter-cta-section-icon-size);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-newsletter-cta-section-icon-radius);
+  color: var(--gb-newsletter-cta-section-icon-color);
+  background: var(--gb-newsletter-cta-section-icon-background);
+  box-shadow: var(--gb-newsletter-cta-section-icon-shadow);
+}
+
+.gb-newsletter-cta__section-icon svg {
+  inline-size: var(--gb-newsletter-cta-section-icon-svg-size);
+  block-size: var(--gb-newsletter-cta-section-icon-svg-size);
+  stroke-width: 2.35;
+}
+
+.gb-newsletter-cta__title-stack {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--gb-newsletter-cta-title-stack-gap);
+}
+
+.gb-newsletter-cta__eyebrow {
+  margin: 0;
+  color: var(--gb-newsletter-cta-eyebrow-color);
+  font-size: var(--gb-newsletter-cta-eyebrow-font-size);
+  font-weight: var(--gb-newsletter-cta-eyebrow-font-weight);
+  line-height: var(--gb-newsletter-cta-eyebrow-line-height);
+  letter-spacing: var(--gb-newsletter-cta-eyebrow-letter-spacing);
+  text-transform: uppercase;
+}
+
+.gb-newsletter-cta__title {
+  margin: 0;
+  color: var(--gb-newsletter-cta-title-color);
+  font-size: var(--gb-newsletter-cta-title-font-size);
+  font-weight: var(--gb-newsletter-cta-title-font-weight);
+  line-height: var(--gb-newsletter-cta-title-line-height);
+  letter-spacing: var(--gb-newsletter-cta-title-letter-spacing);
+}
+
+.gb-newsletter-cta__subtitle {
+  max-inline-size: var(--gb-newsletter-cta-subtitle-max-width);
+  margin: 0;
+  color: var(--gb-newsletter-cta-subtitle-color);
+  font-size: var(--gb-newsletter-cta-subtitle-font-size);
+  font-weight: var(--gb-newsletter-cta-subtitle-font-weight);
+  line-height: var(--gb-newsletter-cta-subtitle-line-height);
+}
+
+.gb-newsletter-cta__benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gb-newsletter-cta-benefits-gap);
+}
+
+.gb-newsletter-cta__benefit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34rem;
+  padding-block: var(--gb-newsletter-cta-benefit-padding-y);
+  padding-inline: var(--gb-newsletter-cta-benefit-padding-x);
+  border-radius: var(--gb-newsletter-cta-benefit-radius);
+  color: var(--gb-newsletter-cta-benefit-color);
+  background: var(--gb-newsletter-cta-benefit-background);
+  font-size: var(--gb-newsletter-cta-benefit-font-size);
+  font-weight: var(--gb-newsletter-cta-benefit-font-weight);
+  line-height: var(--gb-newsletter-cta-benefit-line-height);
+}
+
+.gb-newsletter-cta__benefit svg {
+  inline-size: var(--gb-newsletter-cta-benefit-icon-size);
+  block-size: var(--gb-newsletter-cta-benefit-icon-size);
+  stroke-width: 2.4;
+}
+
+.gb-newsletter-cta__form-card {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.95rem;
+  padding-block: var(--gb-newsletter-cta-form-card-padding-y);
+  padding-inline: var(--gb-newsletter-cta-form-card-padding-x);
+  border: 0.0625rem solid var(--gb-newsletter-cta-form-card-border-color);
+  border-radius: var(--gb-newsletter-cta-form-card-radius);
+  background: var(--gb-newsletter-cta-form-card-background);
+  box-shadow: var(--gb-newsletter-cta-form-card-shadow);
+  backdrop-filter: blur(1rem);
+}
+
+.gb-newsletter-cta__form-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--gb-newsletter-cta-form-heading-gap);
+}
+
+.gb-newsletter-cta__form-icon {
+  inline-size: var(--gb-newsletter-cta-form-icon-size);
+  block-size: var(--gb-newsletter-cta-form-icon-size);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--gb-newsletter-cta-form-icon-radius);
+  color: var(--gb-newsletter-cta-form-icon-color);
+  background: var(--gb-newsletter-cta-form-icon-background);
+}
+
+.gb-newsletter-cta__form-icon svg {
+  inline-size: var(--gb-newsletter-cta-form-icon-svg-size);
+  block-size: var(--gb-newsletter-cta-form-icon-svg-size);
+  stroke-width: 2.4;
+}
+
+.gb-newsletter-cta__form-title-stack {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.16rem;
+}
+
+.gb-newsletter-cta__form-title {
+  margin: 0;
+  color: var(--gb-newsletter-cta-form-title-color);
+  font-size: var(--gb-newsletter-cta-form-title-font-size);
+  font-weight: var(--gb-newsletter-cta-form-title-font-weight);
+  line-height: var(--gb-newsletter-cta-form-title-line-height);
+  letter-spacing: var(--gb-newsletter-cta-form-title-letter-spacing);
+}
+
+.gb-newsletter-cta__form-subtitle {
+  margin: 0;
+  color: var(--gb-newsletter-cta-form-subtitle-color);
+  font-size: var(--gb-newsletter-cta-form-subtitle-font-size);
+  font-weight: var(--gb-newsletter-cta-form-subtitle-font-weight);
+  line-height: var(--gb-newsletter-cta-form-subtitle-line-height);
+}
+
+.gb-newsletter-cta__form {
+  display: grid;
+  gap: var(--gb-newsletter-cta-form-gap);
+}
+
+.gb-newsletter-cta__label {
+  color: var(--gb-newsletter-cta-label-color);
+  font-size: var(--gb-newsletter-cta-label-font-size);
+  font-weight: var(--gb-newsletter-cta-label-font-weight);
+  line-height: var(--gb-newsletter-cta-label-line-height);
+}
+
+.gb-newsletter-cta__input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--gb-newsletter-cta-input-row-gap);
+}
+
+.gb-newsletter-cta__input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  block-size: var(--gb-newsletter-cta-input-height);
+  padding-inline: var(--gb-newsletter-cta-input-padding-x);
+  border: 0.0625rem solid var(--gb-newsletter-cta-input-border-color);
+  border-radius: var(--gb-newsletter-cta-input-radius);
+  color: var(--gb-newsletter-cta-input-color);
+  background: var(--gb-newsletter-cta-input-background);
+  font-size: var(--gb-newsletter-cta-input-font-size);
+  font-weight: var(--gb-newsletter-cta-input-font-weight);
+  line-height: var(--gb-newsletter-cta-input-line-height);
+  outline: 0;
+  transition:
+    border-color var(--gb-newsletter-cta-transition-duration)
+      var(--gb-newsletter-cta-transition-ease),
+    box-shadow var(--gb-newsletter-cta-transition-duration)
+      var(--gb-newsletter-cta-transition-ease);
+}
+
+.gb-newsletter-cta__input::placeholder {
+  color: var(--gb-newsletter-cta-input-placeholder-color);
+}
+
+.gb-newsletter-cta__input:focus {
+  border-color: var(--gb-newsletter-cta-input-focus-border-color);
+  box-shadow: var(--gb-newsletter-cta-input-focus-shadow);
+}
+
+.gb-newsletter-cta__button {
+  block-size: var(--gb-newsletter-cta-button-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  padding-inline: var(--gb-newsletter-cta-button-padding-x);
+  border: 0.0625rem solid var(--gb-newsletter-cta-button-border-color);
+  border-radius: var(--gb-newsletter-cta-button-radius);
+  color: var(--gb-newsletter-cta-button-color);
+  background: var(--gb-newsletter-cta-button-background);
+  box-shadow: var(--gb-newsletter-cta-button-shadow);
+  font-size: var(--gb-newsletter-cta-button-font-size);
+  font-weight: var(--gb-newsletter-cta-button-font-weight);
+  line-height: var(--gb-newsletter-cta-button-line-height);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--gb-newsletter-cta-transition-duration)
+      var(--gb-newsletter-cta-transition-ease),
+    background-color var(--gb-newsletter-cta-transition-duration)
+      var(--gb-newsletter-cta-transition-ease),
+    transform var(--gb-newsletter-cta-transition-duration)
+      var(--gb-newsletter-cta-transition-ease);
+}
+
+.gb-newsletter-cta__button:hover {
+  border-color: var(--gb-newsletter-cta-button-hover-border-color);
+  background: var(--gb-newsletter-cta-button-hover-background);
+  transform: translateY(-0.0625rem);
+}
+
+.gb-newsletter-cta__button:focus-visible {
+  outline: 0;
+  box-shadow: var(--gb-newsletter-cta-input-focus-shadow);
+}
+
+.gb-newsletter-cta__button svg {
+  inline-size: var(--gb-newsletter-cta-button-icon-size);
+  block-size: var(--gb-newsletter-cta-button-icon-size);
+  stroke-width: 2.4;
+  transition: transform var(--gb-newsletter-cta-transition-duration)
+    var(--gb-newsletter-cta-transition-ease);
+}
+
+.gb-newsletter-cta__button:hover svg {
+  transform: translateX(0.16rem);
+}
+
+.gb-newsletter-cta__privacy-note {
+  margin: 0;
+  color: var(--gb-newsletter-cta-privacy-note-color);
+  font-size: var(--gb-newsletter-cta-privacy-note-font-size);
+  font-weight: var(--gb-newsletter-cta-privacy-note-font-weight);
+  line-height: var(--gb-newsletter-cta-privacy-note-line-height);
+}
+
+@media (max-width: 64rem) {
+  .gb-newsletter-cta__shell {
+    grid-template-columns: 1fr;
+  }
+
+  .gb-newsletter-cta__form-card {
+    inline-size: 100%;
+  }
+}
+
+@media (max-width: 48rem) {
+  .gb-newsletter-cta__title-row,
+  .gb-newsletter-cta__form-heading {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 40rem) {
+  .gb-newsletter-cta {
+    padding-block: var(--gb-newsletter-cta-padding-y-mobile);
+  }
+
+  .gb-newsletter-cta__shell {
+    border-radius: var(--radius-2xl);
+  }
+
+  .gb-newsletter-cta__input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .gb-newsletter-cta__button {
+    inline-size: 100%;
+  }
+
+  .gb-newsletter-cta__benefits {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .gb-newsletter-cta__benefit {
+    justify-content: flex-start;
+  }
+}

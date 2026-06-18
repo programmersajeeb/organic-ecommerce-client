@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Merriweather, Noto_Sans_Bengali } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { SiteFooter } from "@/components/layout/footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -117,6 +118,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <main id="main-content" className="gb-main-content" tabIndex={-1}>
               {children}
             </main>
+
+            <SiteFooter />
           </QueryProvider>
         </ThemeProvider>
       </body>

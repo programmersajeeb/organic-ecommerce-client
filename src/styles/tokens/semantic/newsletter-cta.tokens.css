@@ -1,0 +1,186 @@
+/* =============================================================================
+   365 SHOP — NEWSLETTER CTA TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Semantic tokens for the Newsletter / Deals Signup CTA homepage section.
+
+   Rules:
+   - Keep component CSS clean.
+   - Use existing global brand, surface, border, text, radius and shadow tokens.
+   - Do not put component layout styles here.
+   ============================================================================= */
+
+:root {
+  --gb-newsletter-cta-padding-y: var(--gb-section-y);
+  --gb-newsletter-cta-padding-y-mobile: var(--gb-section-y-mobile);
+  --gb-newsletter-cta-background: transparent;
+  --gb-newsletter-cta-color: hsl(var(--gb-heading));
+
+  --gb-newsletter-cta-shell-padding-y: 1.25rem;
+  --gb-newsletter-cta-shell-padding-x: 1.25rem;
+  --gb-newsletter-cta-shell-radius: var(--radius-3xl);
+  --gb-newsletter-cta-shell-gap: 1.25rem;
+  --gb-newsletter-cta-shell-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-brand)),
+    hsl(var(--gb-brand) / 0.78)
+  );
+  --gb-newsletter-cta-shell-border-color: hsl(var(--gb-brand) / 0.24);
+  --gb-newsletter-cta-shell-shadow: var(--shadow-lg);
+
+  --gb-newsletter-cta-glow-background: radial-gradient(
+    circle at 82% 12%,
+    hsl(var(--gb-inverse) / 0.22),
+    transparent 34%
+  );
+
+  --gb-newsletter-cta-content-gap: 0.9rem;
+  --gb-newsletter-cta-title-row-gap: 0.72rem;
+  --gb-newsletter-cta-title-stack-gap: 0.18rem;
+
+  --gb-newsletter-cta-section-icon-size: 2.65rem;
+  --gb-newsletter-cta-section-icon-radius: var(--radius-xl);
+  --gb-newsletter-cta-section-icon-color: hsl(var(--gb-inverse));
+  --gb-newsletter-cta-section-icon-background: hsl(var(--gb-inverse) / 0.16);
+  --gb-newsletter-cta-section-icon-shadow: var(--shadow-sm);
+  --gb-newsletter-cta-section-icon-svg-size: 1.18rem;
+
+  --gb-newsletter-cta-eyebrow-color: hsl(var(--gb-inverse) / 0.82);
+  --gb-newsletter-cta-eyebrow-font-size: 0.75rem;
+  --gb-newsletter-cta-eyebrow-font-weight: 850;
+  --gb-newsletter-cta-eyebrow-line-height: 1.2;
+  --gb-newsletter-cta-eyebrow-letter-spacing: 0.08em;
+
+  --gb-newsletter-cta-title-color: hsl(var(--gb-inverse));
+  --gb-newsletter-cta-title-font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+  --gb-newsletter-cta-title-font-weight: 900;
+  --gb-newsletter-cta-title-line-height: 1.1;
+  --gb-newsletter-cta-title-letter-spacing: -0.04em;
+
+  --gb-newsletter-cta-subtitle-max-width: 42rem;
+  --gb-newsletter-cta-subtitle-color: hsl(var(--gb-inverse) / 0.78);
+  --gb-newsletter-cta-subtitle-font-size: 0.96rem;
+  --gb-newsletter-cta-subtitle-font-weight: 520;
+  --gb-newsletter-cta-subtitle-line-height: 1.65;
+
+  --gb-newsletter-cta-benefits-gap: 0.48rem;
+
+  --gb-newsletter-cta-benefit-color: hsl(var(--gb-inverse));
+  --gb-newsletter-cta-benefit-background: hsl(var(--gb-inverse) / 0.13);
+  --gb-newsletter-cta-benefit-radius: var(--radius-full);
+  --gb-newsletter-cta-benefit-padding-y: 0.42rem;
+  --gb-newsletter-cta-benefit-padding-x: 0.64rem;
+  --gb-newsletter-cta-benefit-font-size: 0.78rem;
+  --gb-newsletter-cta-benefit-font-weight: 800;
+  --gb-newsletter-cta-benefit-line-height: 1.2;
+  --gb-newsletter-cta-benefit-icon-size: 0.92rem;
+
+  --gb-newsletter-cta-form-card-min-width: 24rem;
+  --gb-newsletter-cta-form-card-padding-y: 1.1rem;
+  --gb-newsletter-cta-form-card-padding-x: 1.1rem;
+  --gb-newsletter-cta-form-card-radius: var(--radius-3xl);
+  --gb-newsletter-cta-form-card-background: hsl(var(--gb-background) / 0.92);
+  --gb-newsletter-cta-form-card-border-color: hsl(var(--gb-inverse) / 0.2);
+  --gb-newsletter-cta-form-card-shadow: var(--shadow-lg);
+
+  --gb-newsletter-cta-form-heading-gap: 0.72rem;
+
+  --gb-newsletter-cta-form-icon-size: 2.4rem;
+  --gb-newsletter-cta-form-icon-radius: var(--radius-xl);
+  --gb-newsletter-cta-form-icon-color: hsl(var(--gb-brand));
+  --gb-newsletter-cta-form-icon-background: hsl(var(--gb-brand) / 0.12);
+  --gb-newsletter-cta-form-icon-svg-size: 1.12rem;
+
+  --gb-newsletter-cta-form-title-color: hsl(var(--gb-heading));
+  --gb-newsletter-cta-form-title-font-size: 1.08rem;
+  --gb-newsletter-cta-form-title-font-weight: 900;
+  --gb-newsletter-cta-form-title-line-height: 1.2;
+  --gb-newsletter-cta-form-title-letter-spacing: -0.025em;
+
+  --gb-newsletter-cta-form-subtitle-color: hsl(var(--gb-muted));
+  --gb-newsletter-cta-form-subtitle-font-size: 0.84rem;
+  --gb-newsletter-cta-form-subtitle-font-weight: 550;
+  --gb-newsletter-cta-form-subtitle-line-height: 1.45;
+
+  --gb-newsletter-cta-form-gap: 0.68rem;
+
+  --gb-newsletter-cta-label-color: hsl(var(--gb-heading));
+  --gb-newsletter-cta-label-font-size: 0.78rem;
+  --gb-newsletter-cta-label-font-weight: 800;
+  --gb-newsletter-cta-label-line-height: 1.2;
+
+  --gb-newsletter-cta-input-row-gap: 0.5rem;
+
+  --gb-newsletter-cta-input-height: 3rem;
+  --gb-newsletter-cta-input-radius: var(--radius-xl);
+  --gb-newsletter-cta-input-padding-x: 0.9rem;
+  --gb-newsletter-cta-input-color: hsl(var(--gb-heading));
+  --gb-newsletter-cta-input-placeholder-color: hsl(var(--gb-muted));
+  --gb-newsletter-cta-input-background: hsl(var(--gb-surface));
+  --gb-newsletter-cta-input-border-color: hsl(var(--gb-border-soft));
+  --gb-newsletter-cta-input-focus-border-color: hsl(var(--gb-brand));
+  --gb-newsletter-cta-input-focus-shadow: 0 0 0 0.18rem hsl(var(--gb-brand) / 0.18);
+  --gb-newsletter-cta-input-font-size: 0.9rem;
+  --gb-newsletter-cta-input-font-weight: 600;
+  --gb-newsletter-cta-input-line-height: 1.2;
+
+  --gb-newsletter-cta-button-height: 3rem;
+  --gb-newsletter-cta-button-radius: var(--radius-xl);
+  --gb-newsletter-cta-button-padding-x: 1rem;
+  --gb-newsletter-cta-button-color: hsl(var(--gb-inverse));
+  --gb-newsletter-cta-button-background: hsl(var(--gb-brand));
+  --gb-newsletter-cta-button-border-color: hsl(var(--gb-brand));
+  --gb-newsletter-cta-button-hover-background: hsl(var(--gb-brand) / 0.9);
+  --gb-newsletter-cta-button-hover-border-color: hsl(var(--gb-brand) / 0.9);
+  --gb-newsletter-cta-button-shadow: var(--shadow-sm);
+  --gb-newsletter-cta-button-font-size: 0.88rem;
+  --gb-newsletter-cta-button-font-weight: 850;
+  --gb-newsletter-cta-button-line-height: 1.2;
+  --gb-newsletter-cta-button-icon-size: 0.95rem;
+
+  --gb-newsletter-cta-privacy-note-color: hsl(var(--gb-muted));
+  --gb-newsletter-cta-privacy-note-font-size: 0.78rem;
+  --gb-newsletter-cta-privacy-note-font-weight: 550;
+  --gb-newsletter-cta-privacy-note-line-height: 1.5;
+
+  --gb-newsletter-cta-transition-duration: 180ms;
+  --gb-newsletter-cta-transition-ease: ease;
+}
+
+.dark,
+[data-theme="dark"] {
+  --gb-newsletter-cta-shell-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-brand) / 0.9),
+    hsl(var(--gb-brand) / 0.28)
+  );
+  --gb-newsletter-cta-shell-border-color: hsl(var(--gb-brand) / 0.28);
+
+  --gb-newsletter-cta-form-card-background: hsl(var(--gb-surface) / 0.9);
+  --gb-newsletter-cta-form-card-border-color: hsl(var(--gb-brand) / 0.2);
+
+  --gb-newsletter-cta-input-background: hsl(var(--gb-background) / 0.72);
+  --gb-newsletter-cta-input-border-color: hsl(var(--gb-border-soft));
+}
+
+@media (max-width: 64rem) {
+  :root {
+    --gb-newsletter-cta-shell-gap: 1rem;
+    --gb-newsletter-cta-form-card-min-width: 100%;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --gb-newsletter-cta-shell-padding-y: 1rem;
+    --gb-newsletter-cta-shell-padding-x: 1rem;
+    --gb-newsletter-cta-shell-gap: 1rem;
+
+    --gb-newsletter-cta-section-icon-size: 2.45rem;
+    --gb-newsletter-cta-form-card-padding-y: 1rem;
+    --gb-newsletter-cta-form-card-padding-x: 1rem;
+
+    --gb-newsletter-cta-input-height: 2.9rem;
+    --gb-newsletter-cta-button-height: 2.9rem;
+  }
+}

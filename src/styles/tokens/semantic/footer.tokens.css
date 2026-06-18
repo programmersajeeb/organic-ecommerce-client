@@ -1,0 +1,250 @@
+/* =============================================================================
+   365 SHOP — SITE FOOTER TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Enterprise semantic tokens for the site-wide footer component.
+
+   Rules:
+   - Keep layout styles inside footer.css.
+   - Keep reusable footer design decisions here.
+   - Use existing global color, radius, shadow and spacing tokens.
+   ============================================================================= */
+
+:root {
+  --gb-site-footer-padding-top: 1.35rem;
+  --gb-site-footer-padding-bottom: 1.15rem;
+  --gb-site-footer-padding-bottom-mobile: 6rem;
+
+  --gb-site-footer-background: linear-gradient(
+    180deg,
+    hsl(var(--gb-background)),
+    hsl(var(--gb-surface))
+  );
+  --gb-site-footer-color: hsl(var(--gb-text));
+  --gb-site-footer-border-color: hsl(var(--gb-border-soft));
+
+  --gb-site-footer-container-gap: 1rem;
+
+  --gb-site-footer-top-padding-y: 1.45rem;
+  --gb-site-footer-top-padding-x: 1.45rem;
+  --gb-site-footer-top-gap: 1.35rem;
+  --gb-site-footer-top-radius: var(--radius-3xl);
+  --gb-site-footer-top-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-surface)),
+    hsl(var(--gb-background))
+  );
+  --gb-site-footer-top-border-color: hsl(var(--gb-border-soft));
+  --gb-site-footer-top-shadow: var(--shadow-lg);
+
+  --gb-site-footer-top-glow-background: radial-gradient(
+    circle at 5% 0%,
+    hsl(var(--gb-brand) / 0.13),
+    transparent 32%
+  );
+
+  --gb-site-footer-brand-column-gap: 1rem;
+  --gb-site-footer-brand-max-width: 24rem;
+
+  --gb-site-footer-logo-gap: 0.58rem;
+  --gb-site-footer-logo-color: hsl(var(--gb-heading));
+  --gb-site-footer-logo-font-size: 1.16rem;
+  --gb-site-footer-logo-font-weight: 950;
+  --gb-site-footer-logo-line-height: 1.1;
+  --gb-site-footer-logo-letter-spacing: -0.045em;
+
+  --gb-site-footer-logo-mark-size: 2.45rem;
+  --gb-site-footer-logo-mark-radius: var(--radius-xl);
+  --gb-site-footer-logo-mark-color: hsl(var(--gb-inverse));
+  --gb-site-footer-logo-mark-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-brand)),
+    hsl(var(--gb-brand) / 0.78)
+  );
+  --gb-site-footer-logo-mark-shadow: var(--shadow-sm);
+  --gb-site-footer-logo-mark-svg-size: 1.08rem;
+
+  --gb-site-footer-brand-text-color: hsl(var(--gb-muted));
+  --gb-site-footer-brand-text-font-size: 0.88rem;
+  --gb-site-footer-brand-text-font-weight: 540;
+  --gb-site-footer-brand-text-line-height: 1.7;
+
+  --gb-site-footer-trust-gap: 0.5rem;
+
+  --gb-site-footer-trust-item-gap: 0.4rem;
+  --gb-site-footer-trust-item-padding-y: 0.44rem;
+  --gb-site-footer-trust-item-padding-x: 0.62rem;
+  --gb-site-footer-trust-item-radius: var(--radius-full);
+  --gb-site-footer-trust-item-color: hsl(var(--gb-heading));
+  --gb-site-footer-trust-item-background: hsl(var(--gb-background));
+  --gb-site-footer-trust-item-border-color: hsl(var(--gb-border-soft));
+  --gb-site-footer-trust-item-font-size: 0.74rem;
+  --gb-site-footer-trust-item-font-weight: 800;
+  --gb-site-footer-trust-item-line-height: 1.2;
+
+  --gb-site-footer-trust-icon-size: 1.05rem;
+  --gb-site-footer-trust-icon-color: hsl(var(--gb-brand));
+
+  --gb-site-footer-link-grid-gap: 1.15rem;
+  --gb-site-footer-link-grid-padding-y: 0.15rem;
+  --gb-site-footer-link-group-gap: 0.74rem;
+
+  --gb-site-footer-group-title-color: hsl(var(--gb-heading));
+  --gb-site-footer-group-title-font-size: 0.84rem;
+  --gb-site-footer-group-title-font-weight: 920;
+  --gb-site-footer-group-title-line-height: 1.2;
+  --gb-site-footer-group-title-letter-spacing: -0.02em;
+
+  --gb-site-footer-link-list-gap: 0.52rem;
+
+  --gb-site-footer-link-color: hsl(var(--gb-muted));
+  --gb-site-footer-link-hover-color: hsl(var(--gb-brand));
+  --gb-site-footer-link-font-size: 0.82rem;
+  --gb-site-footer-link-font-weight: 650;
+  --gb-site-footer-link-line-height: 1.35;
+
+  --gb-site-footer-contact-column-gap: 0.88rem;
+  --gb-site-footer-contact-card-padding: 1rem;
+  --gb-site-footer-contact-card-radius: var(--radius-3xl);
+  --gb-site-footer-contact-card-background: linear-gradient(
+    180deg,
+    hsl(var(--gb-background)),
+    hsl(var(--gb-surface))
+  );
+  --gb-site-footer-contact-card-border-color: hsl(var(--gb-border-soft));
+  --gb-site-footer-contact-card-shadow: var(--shadow-md);
+
+  --gb-site-footer-contact-header-gap: 0.68rem;
+
+  --gb-site-footer-contact-header-icon-size: 2.42rem;
+  --gb-site-footer-contact-header-icon-radius: var(--radius-xl);
+  --gb-site-footer-contact-header-icon-color: hsl(var(--gb-brand));
+  --gb-site-footer-contact-header-icon-background: hsl(var(--gb-brand) / 0.1);
+  --gb-site-footer-contact-header-icon-svg-size: 1.05rem;
+
+  --gb-site-footer-contact-title-color: hsl(var(--gb-heading));
+  --gb-site-footer-contact-title-font-size: 1rem;
+  --gb-site-footer-contact-title-font-weight: 920;
+  --gb-site-footer-contact-title-line-height: 1.2;
+  --gb-site-footer-contact-title-letter-spacing: -0.025em;
+
+  --gb-site-footer-contact-subtitle-color: hsl(var(--gb-muted));
+  --gb-site-footer-contact-subtitle-font-size: 0.78rem;
+  --gb-site-footer-contact-subtitle-font-weight: 570;
+  --gb-site-footer-contact-subtitle-line-height: 1.45;
+
+  --gb-site-footer-contact-list-gap: 0.52rem;
+
+  --gb-site-footer-contact-item-gap: 0.54rem;
+  --gb-site-footer-contact-item-padding-y: 0.58rem;
+  --gb-site-footer-contact-item-padding-x: 0.62rem;
+  --gb-site-footer-contact-item-radius: var(--radius-xl);
+  --gb-site-footer-contact-item-color: hsl(var(--gb-heading));
+  --gb-site-footer-contact-item-background: hsl(var(--gb-surface));
+  --gb-site-footer-contact-item-border-color: hsl(var(--gb-border-soft));
+  --gb-site-footer-contact-item-hover-border-color: hsl(var(--gb-brand) / 0.36);
+
+  --gb-site-footer-contact-icon-size: 1.82rem;
+  --gb-site-footer-contact-icon-radius: var(--radius-lg);
+  --gb-site-footer-contact-icon-color: hsl(var(--gb-brand));
+  --gb-site-footer-contact-icon-background: hsl(var(--gb-brand) / 0.1);
+  --gb-site-footer-contact-icon-svg-size: 0.88rem;
+
+  --gb-site-footer-contact-label-color: hsl(var(--gb-muted));
+  --gb-site-footer-contact-label-font-size: 0.7rem;
+  --gb-site-footer-contact-label-font-weight: 740;
+  --gb-site-footer-contact-label-line-height: 1.2;
+
+  --gb-site-footer-contact-value-color: hsl(var(--gb-heading));
+  --gb-site-footer-contact-value-font-size: 0.8rem;
+  --gb-site-footer-contact-value-font-weight: 780;
+  --gb-site-footer-contact-value-line-height: 1.3;
+
+  --gb-site-footer-newsletter-text-color: hsl(var(--gb-muted));
+  --gb-site-footer-newsletter-text-font-size: 0.78rem;
+  --gb-site-footer-newsletter-text-font-weight: 560;
+  --gb-site-footer-newsletter-text-line-height: 1.58;
+
+  --gb-site-footer-social-gap: 0.45rem;
+
+  --gb-site-footer-social-link-size: 2.08rem;
+  --gb-site-footer-social-link-radius: var(--radius-full);
+  --gb-site-footer-social-link-color: hsl(var(--gb-heading));
+  --gb-site-footer-social-link-background: hsl(var(--gb-surface));
+  --gb-site-footer-social-link-border-color: hsl(var(--gb-border-soft));
+  --gb-site-footer-social-link-hover-color: hsl(var(--gb-inverse));
+  --gb-site-footer-social-link-hover-background: hsl(var(--gb-brand));
+  --gb-site-footer-social-link-hover-border-color: hsl(var(--gb-brand));
+  --gb-site-footer-social-link-font-size: 0.72rem;
+  --gb-site-footer-social-link-font-weight: 920;
+  --gb-site-footer-social-link-svg-size: 0.95rem;
+
+  --gb-site-footer-bottom-gap: 1rem;
+  --gb-site-footer-bottom-padding-top: 0.8rem;
+
+  --gb-site-footer-copyright-color: hsl(var(--gb-muted));
+  --gb-site-footer-copyright-font-size: 0.78rem;
+  --gb-site-footer-copyright-font-weight: 570;
+  --gb-site-footer-copyright-line-height: 1.4;
+
+  --gb-site-footer-bottom-link-gap: 0.78rem;
+  --gb-site-footer-bottom-link-color: hsl(var(--gb-muted));
+  --gb-site-footer-bottom-link-hover-color: hsl(var(--gb-brand));
+  --gb-site-footer-bottom-link-font-size: 0.78rem;
+  --gb-site-footer-bottom-link-font-weight: 700;
+  --gb-site-footer-bottom-link-line-height: 1.3;
+
+  --gb-site-footer-transition-duration: 180ms;
+  --gb-site-footer-transition-ease: ease;
+}
+
+.dark,
+[data-theme="dark"] {
+  --gb-site-footer-background: linear-gradient(
+    180deg,
+    hsl(var(--gb-background)),
+    hsl(var(--gb-surface) / 0.72)
+  );
+
+  --gb-site-footer-top-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-surface)),
+    hsl(var(--gb-background))
+  );
+  --gb-site-footer-top-border-color: hsl(var(--gb-border-soft));
+  --gb-site-footer-top-glow-background: radial-gradient(
+    circle at 5% 0%,
+    hsl(var(--gb-brand) / 0.18),
+    transparent 34%
+  );
+
+  --gb-site-footer-trust-item-background: hsl(var(--gb-background) / 0.58);
+  --gb-site-footer-contact-card-background: linear-gradient(
+    180deg,
+    hsl(var(--gb-surface)),
+    hsl(var(--gb-background) / 0.72)
+  );
+  --gb-site-footer-contact-item-background: hsl(var(--gb-background) / 0.58);
+  --gb-site-footer-social-link-background: hsl(var(--gb-background) / 0.58);
+}
+
+@media (max-width: 64rem) {
+  :root {
+    --gb-site-footer-padding-top: 1.1rem;
+    --gb-site-footer-top-padding-y: 1.25rem;
+    --gb-site-footer-top-padding-x: 1.25rem;
+    --gb-site-footer-top-gap: 1.2rem;
+    --gb-site-footer-link-grid-gap: 1rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --gb-site-footer-padding-top: 1rem;
+    --gb-site-footer-top-padding-y: 1rem;
+    --gb-site-footer-top-padding-x: 1rem;
+    --gb-site-footer-top-gap: 1.15rem;
+    --gb-site-footer-contact-card-padding: 0.9rem;
+    --gb-site-footer-logo-mark-size: 2.24rem;
+  }
+}

@@ -37,12 +37,14 @@
 
 /* 06 — Active layout/section/component modules */
 @import "../styles/components/layout/header.css";
+@import "../styles/components/layout/footer.css";
 @import "../styles/components/sections/hero.css";
 @import "../styles/components/sections/trust-benefits.css";
 @import "../styles/components/sections/shop-by-category.css";
 @import "../styles/components/sections/featured-brands.css";
 @import "../styles/components/sections/promo-banner-grid.css";
 @import "../styles/components/sections/customer-reviews.css";
+@import "../styles/components/sections/newsletter-cta.css";
 @import "../styles/components/pages/not-found-page.css";
 
 /* 07 — Global utilities and motion */
