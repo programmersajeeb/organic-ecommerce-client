@@ -38,6 +38,7 @@
 @import "./tokens/semantic/product-showcase.tokens.css";
 @import "./tokens/semantic/featured-brands.tokens.css";
 @import "./tokens/semantic/promo-banner-grid.tokens.css";
+@import "./tokens/semantic/customer-reviews.tokens.css";
 @import "./tokens/semantic/error-page.tokens.css";
 @import "./tokens/skeleton/skeleton.tokens.css";
 

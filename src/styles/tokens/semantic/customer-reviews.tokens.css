@@ -1,0 +1,309 @@
+/* =============================================================================
+   365 SHOP — CUSTOMER REVIEWS TOKENS
+   -----------------------------------------------------------------------------
+   Purpose:
+   Semantic tokens for the premium Customer Reviews homepage section.
+
+   Rules:
+   - Keep component CSS clean.
+   - Use existing global brand, surface, border, text, radius and shadow tokens.
+   - Do not put component layout styles here.
+   ============================================================================= */
+
+:root {
+  --gb-customer-reviews-padding-y: var(--gb-section-y);
+  --gb-customer-reviews-padding-y-mobile: var(--gb-section-y-mobile);
+  --gb-customer-reviews-background: transparent;
+  --gb-customer-reviews-color: hsl(var(--gb-heading));
+
+  --gb-customer-reviews-container-gap: 1rem;
+
+  --gb-customer-reviews-shell-padding-y: 1.15rem;
+  --gb-customer-reviews-shell-padding-x: 1.15rem;
+  --gb-customer-reviews-shell-radius: var(--radius-3xl);
+  --gb-customer-reviews-shell-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-surface)),
+    hsl(var(--gb-brand) / 0.045)
+  );
+  --gb-customer-reviews-shell-border-color: hsl(var(--gb-border-soft));
+  --gb-customer-reviews-shell-shadow: var(--shadow-sm);
+  --gb-customer-reviews-shell-gap: 1rem;
+
+  --gb-customer-reviews-hero-gap: 1rem;
+  --gb-customer-reviews-heading-gap: 0.58rem;
+
+  --gb-customer-reviews-title-row-gap: 0.72rem;
+  --gb-customer-reviews-title-stack-gap: 0.18rem;
+
+  --gb-customer-reviews-section-icon-size: 2.55rem;
+  --gb-customer-reviews-section-icon-radius: var(--radius-xl);
+  --gb-customer-reviews-section-icon-color: hsl(var(--gb-inverse));
+  --gb-customer-reviews-section-icon-background: hsl(var(--gb-brand));
+  --gb-customer-reviews-section-icon-shadow: var(--shadow-md);
+  --gb-customer-reviews-section-icon-svg-size: 1.18rem;
+  --gb-customer-reviews-section-icon-stroke-width: 2.35;
+
+  --gb-customer-reviews-eyebrow-color: hsl(var(--gb-brand));
+  --gb-customer-reviews-eyebrow-font-size: 0.75rem;
+  --gb-customer-reviews-eyebrow-font-weight: 850;
+  --gb-customer-reviews-eyebrow-line-height: 1.2;
+  --gb-customer-reviews-eyebrow-letter-spacing: 0.08em;
+
+  --gb-customer-reviews-title-color: hsl(var(--gb-heading));
+  --gb-customer-reviews-title-font-size: clamp(1.5rem, 2vw, 2.12rem);
+  --gb-customer-reviews-title-font-weight: 900;
+  --gb-customer-reviews-title-line-height: 1.1;
+  --gb-customer-reviews-title-letter-spacing: -0.04em;
+
+  --gb-customer-reviews-subtitle-max-width: 42rem;
+  --gb-customer-reviews-subtitle-color: hsl(var(--gb-muted));
+  --gb-customer-reviews-subtitle-font-size: 0.95rem;
+  --gb-customer-reviews-subtitle-font-weight: 500;
+  --gb-customer-reviews-subtitle-line-height: 1.65;
+
+  --gb-customer-reviews-summary-padding-y: 0.9rem;
+  --gb-customer-reviews-summary-padding-x: 0.95rem;
+  --gb-customer-reviews-summary-radius: var(--radius-2xl);
+  --gb-customer-reviews-summary-background: hsl(var(--gb-background) / 0.72);
+  --gb-customer-reviews-summary-border-color: hsl(var(--gb-border-soft));
+  --gb-customer-reviews-summary-shadow: var(--shadow-sm);
+  --gb-customer-reviews-summary-gap: 0.82rem;
+
+  --gb-customer-reviews-summary-rating-color: hsl(var(--gb-heading));
+  --gb-customer-reviews-summary-rating-font-size: 2.15rem;
+  --gb-customer-reviews-summary-rating-font-weight: 950;
+  --gb-customer-reviews-summary-rating-line-height: 1;
+  --gb-customer-reviews-summary-rating-letter-spacing: -0.06em;
+
+  --gb-customer-reviews-summary-content-gap: 0.24rem;
+
+  --gb-customer-reviews-summary-text-color: hsl(var(--gb-muted));
+  --gb-customer-reviews-summary-text-font-size: 0.82rem;
+  --gb-customer-reviews-summary-text-font-weight: 750;
+  --gb-customer-reviews-summary-text-line-height: 1.25;
+
+  --gb-customer-reviews-trust-grid-gap: 0.46rem;
+
+  --gb-customer-reviews-trust-item-color: hsl(var(--gb-brand));
+  --gb-customer-reviews-trust-item-background: hsl(var(--gb-brand) / 0.1);
+  --gb-customer-reviews-trust-item-radius: var(--radius-full);
+  --gb-customer-reviews-trust-item-font-size: 0.74rem;
+  --gb-customer-reviews-trust-item-font-weight: 800;
+  --gb-customer-reviews-trust-item-line-height: 1.2;
+  --gb-customer-reviews-trust-item-icon-size: 0.92rem;
+
+  --gb-customer-reviews-featured-padding-y: 1.25rem;
+  --gb-customer-reviews-featured-padding-x: 1.25rem;
+  --gb-customer-reviews-featured-radius: var(--radius-3xl);
+  --gb-customer-reviews-featured-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-brand)),
+    hsl(var(--gb-brand) / 0.78)
+  );
+  --gb-customer-reviews-featured-border-color: hsl(var(--gb-brand) / 0.2);
+  --gb-customer-reviews-featured-color: hsl(var(--gb-inverse));
+  --gb-customer-reviews-featured-muted-color: hsl(var(--gb-inverse) / 0.78);
+  --gb-customer-reviews-featured-shadow: var(--shadow-lg);
+  --gb-customer-reviews-featured-gap: 1rem;
+
+  --gb-customer-reviews-featured-glow-background: radial-gradient(
+    circle at 82% 12%,
+    hsl(var(--gb-inverse) / 0.22),
+    transparent 34%
+  );
+
+  --gb-customer-reviews-featured-icon-size: 2.5rem;
+  --gb-customer-reviews-featured-icon-radius: var(--radius-xl);
+  --gb-customer-reviews-featured-icon-color: hsl(var(--gb-inverse));
+  --gb-customer-reviews-featured-icon-background: hsl(var(--gb-inverse) / 0.16);
+  --gb-customer-reviews-featured-icon-svg-size: 1.18rem;
+
+  --gb-customer-reviews-featured-title-font-size: clamp(1.25rem, 1.6vw, 1.65rem);
+  --gb-customer-reviews-featured-title-font-weight: 900;
+  --gb-customer-reviews-featured-title-line-height: 1.15;
+  --gb-customer-reviews-featured-title-letter-spacing: -0.035em;
+
+  --gb-customer-reviews-featured-comment-font-size: 0.95rem;
+  --gb-customer-reviews-featured-comment-font-weight: 550;
+  --gb-customer-reviews-featured-comment-line-height: 1.65;
+
+  --gb-customer-reviews-carousel-gap: 0.82rem;
+  --gb-customer-reviews-carousel-header-gap: 1rem;
+  --gb-customer-reviews-carousel-heading-gap: 0.14rem;
+
+  --gb-customer-reviews-carousel-eyebrow-color: hsl(var(--gb-brand));
+  --gb-customer-reviews-carousel-eyebrow-font-size: 0.72rem;
+  --gb-customer-reviews-carousel-eyebrow-font-weight: 850;
+  --gb-customer-reviews-carousel-eyebrow-line-height: 1.2;
+  --gb-customer-reviews-carousel-eyebrow-letter-spacing: 0.08em;
+
+  --gb-customer-reviews-carousel-title-color: hsl(var(--gb-heading));
+  --gb-customer-reviews-carousel-title-font-size: clamp(1.02rem, 1.25vw, 1.28rem);
+  --gb-customer-reviews-carousel-title-font-weight: 900;
+  --gb-customer-reviews-carousel-title-line-height: 1.2;
+  --gb-customer-reviews-carousel-title-letter-spacing: -0.03em;
+
+  --gb-customer-reviews-carousel-control-gap: 0.44rem;
+  --gb-customer-reviews-carousel-button-size: 2.35rem;
+  --gb-customer-reviews-carousel-button-radius: var(--radius-full);
+  --gb-customer-reviews-carousel-button-color: hsl(var(--gb-heading));
+  --gb-customer-reviews-carousel-button-background: hsl(var(--gb-surface));
+  --gb-customer-reviews-carousel-button-border-color: hsl(var(--gb-border-soft));
+  --gb-customer-reviews-carousel-button-shadow: var(--shadow-sm);
+  --gb-customer-reviews-carousel-button-hover-color: hsl(var(--gb-inverse));
+  --gb-customer-reviews-carousel-button-hover-background: hsl(var(--gb-brand));
+  --gb-customer-reviews-carousel-button-hover-border-color: hsl(var(--gb-brand));
+  --gb-customer-reviews-carousel-button-icon-size: 1rem;
+
+  --gb-customer-reviews-track-gap: 0.95rem;
+  --gb-customer-reviews-card-basis-desktop: calc((100% - (var(--gb-customer-reviews-track-gap) * 2)) / 3);
+  --gb-customer-reviews-card-basis-tablet: calc((100% - var(--gb-customer-reviews-track-gap)) / 2);
+  --gb-customer-reviews-card-basis-mobile: min(86vw, 22rem);
+
+  --gb-customer-reviews-card-min-height: 15.25rem;
+  --gb-customer-reviews-card-padding-y: 1.05rem;
+  --gb-customer-reviews-card-padding-x: 1.05rem;
+  --gb-customer-reviews-card-radius: var(--radius-2xl);
+  --gb-customer-reviews-card-background: hsl(var(--gb-surface));
+  --gb-customer-reviews-card-border-color: hsl(var(--gb-border-soft));
+  --gb-customer-reviews-card-shadow: var(--shadow-sm);
+  --gb-customer-reviews-card-hover-shadow: var(--shadow-lg);
+  --gb-customer-reviews-card-hover-transform: translateY(-0.1875rem);
+
+  --gb-customer-reviews-card-top-gap: 0.8rem;
+  --gb-customer-reviews-card-copy-gap: 0.42rem;
+
+  --gb-customer-reviews-quote-size: 2.1rem;
+  --gb-customer-reviews-quote-radius: var(--radius-xl);
+  --gb-customer-reviews-quote-color: hsl(var(--gb-brand));
+  --gb-customer-reviews-quote-background: hsl(var(--gb-brand) / 0.1);
+  --gb-customer-reviews-quote-icon-size: 1rem;
+
+  --gb-customer-reviews-star-size: 0.92rem;
+  --gb-customer-reviews-star-color: hsl(var(--gb-muted) / 0.42);
+  --gb-customer-reviews-star-active-color: hsl(var(--gb-warning, 38 92% 50%));
+
+  --gb-customer-reviews-card-title-color: hsl(var(--gb-heading));
+  --gb-customer-reviews-card-title-font-size: 1rem;
+  --gb-customer-reviews-card-title-font-weight: 850;
+  --gb-customer-reviews-card-title-line-height: 1.25;
+  --gb-customer-reviews-card-title-letter-spacing: -0.02em;
+
+  --gb-customer-reviews-comment-color: hsl(var(--gb-muted));
+  --gb-customer-reviews-comment-font-size: 0.88rem;
+  --gb-customer-reviews-comment-font-weight: 500;
+  --gb-customer-reviews-comment-line-height: 1.65;
+
+  --gb-customer-reviews-customer-gap: 0.72rem;
+  --gb-customer-reviews-avatar-size: 2.55rem;
+  --gb-customer-reviews-avatar-radius: var(--radius-full);
+  --gb-customer-reviews-avatar-color: hsl(var(--gb-inverse));
+  --gb-customer-reviews-avatar-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-brand)),
+    hsl(var(--gb-brand) / 0.72)
+  );
+  --gb-customer-reviews-avatar-font-size: 0.8rem;
+  --gb-customer-reviews-avatar-font-weight: 900;
+  --gb-customer-reviews-avatar-shadow: var(--shadow-sm);
+
+  --gb-customer-reviews-customer-name-color: hsl(var(--gb-heading));
+  --gb-customer-reviews-customer-name-font-size: 0.9rem;
+  --gb-customer-reviews-customer-name-font-weight: 850;
+  --gb-customer-reviews-customer-name-line-height: 1.25;
+
+  --gb-customer-reviews-customer-role-color: hsl(var(--gb-muted));
+  --gb-customer-reviews-customer-role-font-size: 0.77rem;
+  --gb-customer-reviews-customer-role-font-weight: 650;
+  --gb-customer-reviews-customer-role-line-height: 1.25;
+
+  --gb-customer-reviews-customer-location-color: hsl(var(--gb-muted) / 0.86);
+  --gb-customer-reviews-customer-location-font-size: 0.75rem;
+  --gb-customer-reviews-customer-location-font-weight: 550;
+  --gb-customer-reviews-customer-location-line-height: 1.25;
+
+  --gb-customer-reviews-verified-color: hsl(var(--gb-brand));
+  --gb-customer-reviews-verified-background: hsl(var(--gb-brand) / 0.1);
+  --gb-customer-reviews-verified-radius: var(--radius-full);
+  --gb-customer-reviews-verified-font-size: 0.72rem;
+  --gb-customer-reviews-verified-font-weight: 800;
+  --gb-customer-reviews-verified-line-height: 1.2;
+  --gb-customer-reviews-verified-icon-size: 0.88rem;
+
+  --gb-customer-reviews-focus-shadow: 0 0 0 0.18rem hsl(var(--gb-brand) / 0.22);
+  --gb-customer-reviews-transition-duration: 180ms;
+  --gb-customer-reviews-transition-ease: ease;
+}
+
+.dark,
+[data-theme="dark"] {
+  --gb-customer-reviews-shell-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-surface)),
+    hsl(var(--gb-brand) / 0.055)
+  );
+  --gb-customer-reviews-shell-border-color: hsl(var(--gb-brand) / 0.14);
+
+  --gb-customer-reviews-summary-background: hsl(var(--gb-background) / 0.5);
+  --gb-customer-reviews-summary-border-color: hsl(var(--gb-brand) / 0.18);
+
+  --gb-customer-reviews-featured-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-brand) / 0.9),
+    hsl(var(--gb-brand) / 0.28)
+  );
+  --gb-customer-reviews-featured-border-color: hsl(var(--gb-brand) / 0.28);
+
+  --gb-customer-reviews-card-background: linear-gradient(
+    135deg,
+    hsl(var(--gb-surface)),
+    hsl(var(--gb-brand) / 0.035)
+  );
+  --gb-customer-reviews-card-border-color: hsl(var(--gb-border-soft));
+
+  --gb-customer-reviews-carousel-button-background: hsl(var(--gb-surface));
+  --gb-customer-reviews-carousel-button-border-color: hsl(var(--gb-border-soft));
+  --gb-customer-reviews-carousel-button-color: hsl(var(--gb-heading));
+
+  --gb-customer-reviews-quote-background: hsl(var(--gb-brand) / 0.14);
+  --gb-customer-reviews-trust-item-background: hsl(var(--gb-brand) / 0.14);
+  --gb-customer-reviews-verified-background: hsl(var(--gb-brand) / 0.14);
+
+  --gb-customer-reviews-star-color: hsl(var(--gb-muted) / 0.34);
+}
+
+@media (max-width: 64rem) {
+  :root {
+    --gb-customer-reviews-container-gap: 0.92rem;
+    --gb-customer-reviews-shell-gap: 0.9rem;
+    --gb-customer-reviews-track-gap: 0.82rem;
+    --gb-customer-reviews-card-min-height: 15.4rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --gb-customer-reviews-container-gap: 0.85rem;
+
+    --gb-customer-reviews-shell-padding-y: 1rem;
+    --gb-customer-reviews-shell-padding-x: 1rem;
+    --gb-customer-reviews-shell-gap: 0.9rem;
+
+    --gb-customer-reviews-summary-padding-y: 0.86rem;
+    --gb-customer-reviews-summary-padding-x: 0.86rem;
+
+    --gb-customer-reviews-featured-padding-y: 1rem;
+    --gb-customer-reviews-featured-padding-x: 1rem;
+
+    --gb-customer-reviews-carousel-button-size: 2.2rem;
+    --gb-customer-reviews-track-gap: 0.82rem;
+
+    --gb-customer-reviews-card-min-height: 14.8rem;
+    --gb-customer-reviews-card-padding-y: 1rem;
+    --gb-customer-reviews-card-padding-x: 1rem;
+
+    --gb-customer-reviews-quote-size: 2rem;
+    --gb-customer-reviews-avatar-size: 2.5rem;
+  }
+}
